@@ -1,8 +1,9 @@
-﻿namespace SlayTheSpireSolver.Enemies;
+﻿using System.Collections;
 
-public class EnemyParty
+namespace SlayTheSpireSolver.Enemies;
+
+public class EnemyParty : IEnumerable<Enemy>
 {
-    public int Count => enemies.Length;
     public Enemy GetEnemy(int enemyPosition) => enemies[enemyPosition - 1];
 
     private readonly Enemy[] enemies;
@@ -22,5 +23,15 @@ public class EnemyParty
     public override int GetHashCode()
     {
         return 0;
+    }
+
+    public IEnumerator<Enemy> GetEnumerator()
+    {
+        return ((IEnumerable<Enemy>)enemies).GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return enemies.GetEnumerator();
     }
 }

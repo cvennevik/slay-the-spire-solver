@@ -2,6 +2,7 @@
 using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System;
+using System.Linq;
 
 namespace SlayTheSpireSolver.Tests.Enemies;
 
@@ -68,23 +69,25 @@ public class EnemyPartyTests
     }
 
     [Test]
-    public void TestCount1()
+    public void TestEnumerator1()
     {
         var enemyParty = new EnemyParty();
-        Assert.AreEqual(0, enemyParty.Count);
+        Assert.AreEqual(0, enemyParty.Count());
     }
 
     [Test]
-    public void TestCount2()
+    public void TestEnumerator2()
     {
         var enemyParty = new EnemyParty(new JawWorm());
-        Assert.AreEqual(1, enemyParty.Count);
+        Assert.AreEqual(1, enemyParty.Count());
+        Assert.True(enemyParty.All(enemy => enemy == new JawWorm()));
     }
 
     [Test]
-    public void TestCount3()
+    public void TestEnumerator3()
     {
-        var enemyParty = new EnemyParty(new JawWorm(), new JawWorm(), new JawWorm());
-        Assert.AreEqual(3, enemyParty.Count);
+        var enemyParty = new EnemyParty(new JawWorm(), new JawWorm());
+        Assert.AreEqual(2, enemyParty.Count());
+        Assert.True(enemyParty.All(enemy => enemy == new JawWorm()));
     }
 }
