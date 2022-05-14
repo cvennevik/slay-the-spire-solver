@@ -24,4 +24,13 @@ public class TurnTests
         var turn = new Turn(turnNumber);
         Assert.AreEqual(turnNumber, turn.Number);
     }
+
+    [Test]
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(10)]
+    public void TestEquality(int turnNumber)
+    {
+        Assert.AreEqual(new Turn(turnNumber), new Turn(turnNumber));
+    }
 }
