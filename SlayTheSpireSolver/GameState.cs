@@ -9,5 +9,3 @@ public record GameState
         return new[] { new EndTurnAction(this) };
     }
 }
-
-public readonly record struct Turn(int Number);

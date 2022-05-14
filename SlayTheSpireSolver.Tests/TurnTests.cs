@@ -1,0 +1,27 @@
+﻿using NUnit.Framework;
+using System;
+
+namespace SlayTheSpireSolver.Tests;
+
+[TestFixture]
+public class TurnTests
+{
+    [Test]
+    [TestCase(0)]
+    [TestCase(-1)]
+    [TestCase(-99999)]
+    public void DoesNotPermitNonPositiveTurnNumbers(int turnNumber)
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => new Turn(turnNumber));
+    }
+
+    [Test]
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(99999)]
+    public void PermitsPositiveTurnNumbers(int turnNumber)
+    {
+        var turn = new Turn(turnNumber);
+        Assert.AreEqual(turnNumber, turn.Number);
+    }
+}
