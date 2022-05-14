@@ -11,6 +11,6 @@ public record EndTurnAction : IAction
 
     public GameState Resolve()
     {
-        return new GameState { TurnNumber = GameState.TurnNumber + 1 };
+        return new GameState { TurnNumber = new TurnNumber(GameState.TurnNumber.Value + 1) };
     }
 }

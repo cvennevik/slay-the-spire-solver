@@ -11,10 +11,10 @@ public class EndTurnActionTests
     [TestCase(2, 3)]
     public void TestEndTurn(int initialTurnNumber, int expectedTurnNumber)
     {
-        var gameState = new GameState { TurnNumber = initialTurnNumber };
+        var gameState = new GameState { TurnNumber = new TurnNumber(initialTurnNumber) };
         var endTurnAction = gameState.GetLegalActions().First();
         GameState newGameState = endTurnAction.Resolve();
-        Assert.AreEqual(expectedTurnNumber, newGameState.TurnNumber);
+        Assert.AreEqual(new TurnNumber(expectedTurnNumber), newGameState.TurnNumber);
     }
 
     [Test]
@@ -39,8 +39,8 @@ public class EndTurnActionTests
     [Test]
     public void TestEquality3()
     {
-        var gameState = new GameState { TurnNumber = 1 };
-        var differentGameState = new GameState { TurnNumber = 2 };
+        var gameState = new GameState { TurnNumber = new TurnNumber(1) };
+        var differentGameState = new GameState { TurnNumber = new TurnNumber(2) };
         var action1 = new EndTurnAction(gameState);
         var action2 = new EndTurnAction(differentGameState);
         Assert.AreNotEqual(action1, action2);
