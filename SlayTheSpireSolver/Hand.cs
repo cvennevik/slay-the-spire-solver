@@ -35,4 +35,9 @@ public class Hand
         cardsCopy.Remove(card);
         return new Hand(cardsCopy.ToArray());
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(Hand)}: [{string.Join(",", Cards)}]";
+    }
 }
