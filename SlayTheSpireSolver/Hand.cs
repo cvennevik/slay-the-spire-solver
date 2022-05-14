@@ -12,15 +12,9 @@ public class Hand
 
         if (otherHand == null) return false;
         if (otherHand.Cards.Count != Cards.Count) return false;
-
-        foreach (var uniqueCard in Cards.ToHashSet())
-        {
-            var cardsInHand = Cards.Count(card => card == uniqueCard);
-            var cardsInOtherHand = otherHand.Cards.Count(card => card == uniqueCard);
-            if (cardsInHand != cardsInOtherHand) return false;
-        }
-
-        return true;
+        var orderedCards = Cards.OrderBy(x => x.GetType());
+        var orderedOtherCards = otherHand.Cards.OrderBy(x => x.GetType());
+        return orderedCards.SequenceEqual(orderedOtherCards);
     }
 
     public override int GetHashCode()

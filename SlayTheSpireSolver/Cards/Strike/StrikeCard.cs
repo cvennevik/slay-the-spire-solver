@@ -1,6 +1,4 @@
-﻿using SlayTheSpireSolver.Cards;
-
-namespace SlayTheSpireSolver.Cards.Strike;
+﻿namespace SlayTheSpireSolver.Cards.Strike;
 
 public record StrikeCard : ICard
 {
