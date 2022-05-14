@@ -13,7 +13,7 @@ public class StrikeActionTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand() { Cards = new[] { new StrikeCard() } }
+            Hand = new Hand(new StrikeCard())
         };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
@@ -33,7 +33,7 @@ public class StrikeActionTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand() { Cards = new[] { new StrikeCard() } },
+            Hand = new Hand(new StrikeCard()),
             Enemy = new JawWorm { Health = new Health(10) }
         };
 

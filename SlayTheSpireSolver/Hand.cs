@@ -4,9 +4,14 @@ namespace SlayTheSpireSolver;
 
 public class Hand
 {
-    public IReadOnlyCollection<ICard> Cards { get; init; } = Array.Empty<ICard>();
+    public IReadOnlyCollection<ICard> Cards { get; }
 
-    public override bool Equals(object obj)
+    public Hand(params ICard[] cards)
+    {
+        Cards = cards;
+    }
+
+    public override bool Equals(object? obj)
     {
         var otherHand = obj as Hand;
 

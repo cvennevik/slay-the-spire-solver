@@ -37,7 +37,7 @@ public class GameStateTests
         {
             Enemy = new JawWorm { IntendedMove = new Chomp() },
             Player = new Player { Health = new Health(50) },
-            Hand = new Hand { Cards = new ICard[] { new StrikeCard() } }
+            Hand = new Hand(new StrikeCard())
         };
         var legalActions = gameState.GetLegalActions().ToList();
         Assert.AreEqual(2, legalActions.Count);

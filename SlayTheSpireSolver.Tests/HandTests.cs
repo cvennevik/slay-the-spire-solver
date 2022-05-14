@@ -16,31 +16,31 @@ public class HandTests
     public void TestEquality2()
     {
         var hand1 = new Hand();
-        var hand2 = new Hand { Cards = new[] { new StrikeCard() } };
+        var hand2 = new Hand(new StrikeCard());
         Assert.AreNotEqual(hand1, hand2);
     }
 
     [Test]
     public void TestEquality3()
     {
-        var hand1 = new Hand { Cards = new[] { new StrikeCard() } };
-        var hand2 = new Hand { Cards = new[] { new StrikeCard() } };
+        var hand1 = new Hand(new StrikeCard());
+        var hand2 = new Hand(new StrikeCard());
         Assert.AreEqual(hand1, hand2);
     }
 
     [Test]
     public void TestEquality4()
     {
-        var hand1 = new Hand { Cards = new[] { new StrikeCard() } };
-        var hand2 = new Hand { Cards = new[] { new StrikeCard(), new StrikeCard() } };
+        var hand1 = new Hand(new StrikeCard());
+        var hand2 = new Hand(new StrikeCard(), new StrikeCard());
         Assert.AreNotEqual(hand1, hand2);
     }
 
     [Test]
     public void TestEquality5()
     {
-        var hand1 = new Hand { Cards = new[] { new StrikeCard(), new StrikeCard() } };
-        var hand2 = new Hand { Cards = new[] { new StrikeCard(), new StrikeCard() } };
-        Assert.AreNotEqual(hand1, hand2);
+        var hand1 = new Hand(new StrikeCard(), new StrikeCard());
+        var hand2 = new Hand(new StrikeCard(), new StrikeCard());
+        Assert.AreEqual(hand1, hand2);
     }
 }
