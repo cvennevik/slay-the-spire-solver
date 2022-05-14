@@ -6,11 +6,18 @@ public record EndTurnAction : IAction
 
     public EndTurnAction(GameState gameState)
     {
+        if (gameState.Enemy == null) throw new ArgumentException();
+
         GameState = gameState;
     }
 
     public GameState Resolve()
     {
-        return GameState with { Turn = new Turn(GameState.Turn.Number + 1) };
+        GameState nextGameState = GameState;
+        if (GameState.Enemy != null)
+        {
+            nextGameState = GameState.Enemy.GetIntendedMove().Resolve(GameState);
+        }
+        return nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
     }
 }

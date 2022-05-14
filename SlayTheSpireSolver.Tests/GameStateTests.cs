@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.JawWorms;
 using System.Linq;
 
 namespace SlayTheSpireSolver.Tests;
@@ -17,7 +18,11 @@ public class GameStateTests
     [Test]
     public void TestGetLegalActions()
     {
-        var gameState = new GameState();
+        var gameState = new GameState
+        {
+            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            Player = new Player { Health = new Health(50) }
+        };
         var legalActions = gameState.GetLegalActions();
         Assert.AreEqual(1, legalActions.Count);
         Assert.IsInstanceOf<EndTurnAction>(legalActions.First());
