@@ -1,4 +1,5 @@
 ﻿using SlayTheSpireSolver.Cards;
+using SlayTheSpireSolver.Cards.Strike;
 
 namespace SlayTheSpireSolver;
 
@@ -25,5 +26,13 @@ public class Hand
     public override int GetHashCode()
     {
         return 0;
+    }
+
+    public Hand Remove(ICard card)
+    {
+        if (Cards.Count == 0) throw new ArgumentException($"Hand does not contain card of type {card.GetType}");
+        var cardsCopy = Cards.ToList();
+        cardsCopy.Remove(card);
+        return new Hand(cardsCopy.ToArray());
     }
 }

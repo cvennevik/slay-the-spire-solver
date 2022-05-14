@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
+using System;
 
 namespace SlayTheSpireSolver.Tests;
 
@@ -42,5 +43,28 @@ public class HandTests
         var hand1 = new Hand(new StrikeCard(), new StrikeCard());
         var hand2 = new Hand(new StrikeCard(), new StrikeCard());
         Assert.AreEqual(hand1, hand2);
+    }
+
+    [Test]
+    public void TestRemove1()
+    {
+        var hand = new Hand();
+        Assert.Throws<ArgumentException>(() => hand.Remove(new StrikeCard()));
+    }
+
+    [Test]
+    public void TestRemove2()
+    {
+        var hand = new Hand(new StrikeCard());
+        var newHand = hand.Remove(new StrikeCard());
+        Assert.AreEqual(new Hand(), newHand);
+    }
+
+    [Test]
+    public void TestRemove3()
+    {
+        var hand = new Hand(new StrikeCard(), new StrikeCard());
+        var newHand = hand.Remove(new StrikeCard());
+        Assert.AreEqual(new Hand(new StrikeCard()), newHand);
     }
 }
