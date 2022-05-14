@@ -1,4 +1,4 @@
-﻿namespace SlayTheSpireSolver;
+﻿namespace SlayTheSpireSolver.Cards;
 
 public interface ICard
 {

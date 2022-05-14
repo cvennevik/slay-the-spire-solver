@@ -1,4 +1,4 @@
-﻿namespace SlayTheSpireSolver;
+﻿namespace SlayTheSpireSolver.Cards.Strike;
 
 public record StrikeAction : IAction
 {

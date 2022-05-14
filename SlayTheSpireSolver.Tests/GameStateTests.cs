@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.Cards;
+using SlayTheSpireSolver.Cards.Strike;
 using SlayTheSpireSolver.JawWorms;
 using System.Linq;
 

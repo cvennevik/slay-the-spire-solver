@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver;
+﻿using SlayTheSpireSolver.Cards;
+
+namespace SlayTheSpireSolver.Cards.Strike;
 
 public class StrikeCard : ICard
 {
