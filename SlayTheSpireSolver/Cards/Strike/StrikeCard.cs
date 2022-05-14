@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.Cards.Strike;
 
-public class StrikeCard : ICard
+public record StrikeCard : ICard
 {
     public IEnumerable<IAction> GetLegalActions(GameState gameState)
     {

@@ -1,8 +1,8 @@
 ﻿namespace SlayTheSpireSolver.Enemies.JawWorms;
 
-public record JawWorm : IEnemy
+public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
-    public IEnemyMove GetIntendedMove() => IntendedMove;
+    public override IEnemyMove GetIntendedMove() => IntendedMove;
 }
