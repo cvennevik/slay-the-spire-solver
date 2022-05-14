@@ -57,7 +57,7 @@ public class EndTurnActionTests
         Assert.AreNotEqual(action1, action2);
     }
 
-    private GameState CreateExampleGameState()
+    private static GameState CreateExampleGameState()
     {
         return new GameState
         {

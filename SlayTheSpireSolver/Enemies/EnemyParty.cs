@@ -15,8 +15,7 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public override bool Equals(object? obj)
     {
-        var otherParty = obj as EnemyParty;
-        if (otherParty == null) return false;
+        if (obj is not EnemyParty otherParty) return false;
         return enemies.SequenceEqual(otherParty.enemies);
     }
 

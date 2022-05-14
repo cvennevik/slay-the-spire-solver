@@ -13,9 +13,7 @@ public class Hand
 
     public override bool Equals(object? obj)
     {
-        var otherHand = obj as Hand;
-
-        if (otherHand == null) return false;
+        if (obj is not Hand otherHand) return false;
         if (otherHand.Cards.Count != Cards.Count) return false;
         var orderedCards = Cards.OrderBy(x => x.ToString());
         var orderedOtherCards = otherHand.Cards.OrderBy(x => x.ToString());

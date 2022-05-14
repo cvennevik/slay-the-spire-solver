@@ -8,7 +8,7 @@ public record StrikeAction : IAction
 
     public StrikeAction(GameState gameState)
     {
-        if (gameState.EnemyParty.Count() == 0) throw new ArgumentException("No enemy to attack");
+        if (!gameState.EnemyParty.Any()) throw new ArgumentException("No enemy to attack");
         if (!gameState.Hand.Cards.Contains(new StrikeCard())) throw new ArgumentException("No Strike card in hand");
         GameState = gameState;
     }

@@ -13,7 +13,7 @@ public record GameState
     {
         var legalActions = new List<IAction>();
         legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this)));
-        if (EnemyParty.Count() > 0)
+        if (EnemyParty.Any())
         {
             legalActions.Add(new EndTurnAction(this));
         }
@@ -27,6 +27,6 @@ public record GameState
 
     public bool IsVictory()
     {
-        return EnemyParty.Count() == 0 && Player.Health.Value > 0;
+        return !EnemyParty.Any() && Player.Health.Value > 0;
     }
 }

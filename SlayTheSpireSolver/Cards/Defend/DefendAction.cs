@@ -6,7 +6,7 @@ public record DefendAction : IAction
 
     public DefendAction(GameState gameState)
     {
-        if (gameState.EnemyParty.Count() == 0) throw new ArgumentException("Cannot play Defend when no enemies remain");
+        if (!gameState.EnemyParty.Any()) throw new ArgumentException("Cannot play Defend when no enemies remain");
         if (!gameState.Hand.Cards.Contains(new DefendCard())) throw new ArgumentException("No Defend card in hand");
         GameState = gameState;
     }
