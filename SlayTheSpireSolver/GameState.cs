@@ -2,7 +2,7 @@
 
 public record GameState
 {
-    public TurnNumber TurnNumber { get; init; }
+    public Turn Turn { get; init; }
 
     public IReadOnlyCollection<IAction> GetLegalActions()
     {
@@ -10,4 +10,4 @@ public record GameState
     }
 }
 
-public readonly record struct TurnNumber(int Value);
+public readonly record struct Turn(int Number);
