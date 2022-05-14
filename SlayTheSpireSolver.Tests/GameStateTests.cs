@@ -16,7 +16,7 @@ public class GameStateTests
     }
 
     [Test]
-    public void TestGetLegalActions()
+    public void TestGetLegalActionsWithEmptyHand()
     {
         var gameState = new GameState
         {
@@ -25,6 +25,21 @@ public class GameStateTests
         };
         var legalActions = gameState.GetLegalActions();
         Assert.AreEqual(1, legalActions.Count);
-        Assert.IsInstanceOf<EndTurnAction>(legalActions.First());
+        Assert.AreEqual(new EndTurnAction(gameState), legalActions.First());
+    }
+
+    [Test]
+    public void TestGetLegalActionsWithStrikeInHand()
+    {
+        var gameState = new GameState
+        {
+            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            Player = new Player { Health = new Health(50) },
+            Hand = new Hand { Cards = new ICard[] { new StrikeCard() } }
+        };
+        var legalActions = gameState.GetLegalActions().ToList();
+        Assert.AreEqual(2, legalActions.Count);
+        Assert.Contains(new EndTurnAction(gameState), legalActions);
+        Assert.Contains(new StrikeAction(gameState), legalActions);
     }
 }
