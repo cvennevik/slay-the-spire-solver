@@ -11,7 +11,12 @@ public record GameState
 
     public IReadOnlyCollection<IAction> GetLegalActions()
     {
-        var cardActions = Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this));
-        return cardActions.Concat(new IAction[] { new EndTurnAction(this) }).ToArray();
+        var legalActions = new List<IAction>();
+        legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this)));
+        if (Enemy != null)
+        {
+            legalActions.Add(new EndTurnAction(this));
+        }
+        return legalActions;
     }
 }

@@ -6,7 +6,7 @@ public record EndTurnAction : IAction
 
     public EndTurnAction(GameState gameState)
     {
-        if (gameState.Enemy == null) throw new ArgumentException();
+        if (gameState.Enemy == null) throw new ArgumentException("Cannot end turn with no enemies");
 
         GameState = gameState;
     }

@@ -44,4 +44,27 @@ public class GameStateTests
         Assert.Contains(new EndTurnAction(gameState), legalActions);
         Assert.Contains(new StrikeAction(gameState), legalActions);
     }
+
+    [Test]
+    public void TestLegalActionsWithNoEnemiesAndEmptyHand()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(50) }
+        };
+        var legalActions = gameState.GetLegalActions().ToList();
+        Assert.IsEmpty(legalActions);
+    }
+
+    [Test]
+    public void TestLegalActionsWithNoEnemiesAndStrikeInHand()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(50) },
+            Hand = new Hand(new StrikeCard())
+        };
+        var legalActions = gameState.GetLegalActions().ToList();
+        Assert.IsEmpty(legalActions);
+    }
 }
