@@ -23,15 +23,4 @@ public class GameStateTests
         Assert.AreEqual(1, legalActions.Count);
         Assert.IsInstanceOf<EndTurnAction>(legalActions.First());
     }
-
-    [Test]
-    [TestCase(1, 2)]
-    [TestCase(2, 3)]
-    public void TestEndTurn(int initialTurnNumber, int expectedTurnNumber)
-    {
-        var gameState = new GameState { TurnNumber = initialTurnNumber };
-        var endTurnAction = gameState.GetLegalActions().First();
-        GameState newGameState = endTurnAction.Do();
-        Assert.AreEqual(expectedTurnNumber, newGameState.TurnNumber);
-    }
 }

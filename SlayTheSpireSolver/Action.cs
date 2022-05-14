@@ -2,5 +2,5 @@
 
 public abstract record Action
 {
-    public abstract GameState Do();
+    public abstract GameState Resolve();
 }

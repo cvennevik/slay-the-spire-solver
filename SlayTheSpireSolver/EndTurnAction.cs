@@ -9,7 +9,7 @@ public record EndTurnAction : Action
         GameState = gameState;
     }
 
-    public override GameState Do()
+    public override GameState Resolve()
     {
         return new GameState { TurnNumber = GameState.TurnNumber + 1 };
     }
