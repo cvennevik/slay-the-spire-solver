@@ -19,7 +19,7 @@ public class GameStateTests
     public void TestGetLegalActions()
     {
         var gameState = new GameState();
-        IReadOnlyCollection<Action> legalActions = gameState.GetLegalActions();
+        var legalActions = gameState.GetLegalActions();
         Assert.AreEqual(1, legalActions.Count);
         Assert.IsInstanceOf<EndTurnAction>(legalActions.First());
     }

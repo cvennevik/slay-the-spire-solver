@@ -1,6 +1,6 @@
 ﻿namespace SlayTheSpireSolver;
 
-public record EndTurnAction : Action
+public record EndTurnAction : IAction
 {
     public GameState GameState { get; }
 
@@ -9,7 +9,7 @@ public record EndTurnAction : Action
         GameState = gameState;
     }
 
-    public override GameState Resolve()
+    public GameState Resolve()
     {
         return new GameState { TurnNumber = GameState.TurnNumber + 1 };
     }
