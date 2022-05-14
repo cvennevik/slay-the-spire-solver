@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Enemies.JawWorms;
 
-namespace SlayTheSpireSolver.Tests.JawWorms;
+namespace SlayTheSpireSolver.Tests.Enemies.JawWorms;
 
 [TestFixture]
 public class ChompTests
