@@ -4,6 +4,9 @@ public record DefendCard : ICard
 {
     public IEnumerable<IAction> GetLegalActions(GameState gameState)
     {
-        throw new NotImplementedException();
+        if (gameState.Enemy == null) return Array.Empty<IAction>();
+        if (!gameState.Hand.Cards.Contains(this)) return Array.Empty<IAction>();
+
+        return new[] { new DefendAction(gameState) };
     }
 }
