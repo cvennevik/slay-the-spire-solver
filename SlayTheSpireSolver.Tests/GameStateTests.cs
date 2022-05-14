@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using SlayTheSpireSolver.Cards;
 using SlayTheSpireSolver.Cards.Strike;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System.Linq;
@@ -66,5 +65,64 @@ public class GameStateTests
         };
         var legalActions = gameState.GetLegalActions().ToList();
         Assert.IsEmpty(legalActions);
+    }
+
+    [Test]
+    [TestCase(0)]
+    [TestCase(-1)]
+    [TestCase(-999)]
+    public void IsDefeatWhenHealthBelowOne(int healthValue)
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(healthValue) }
+        };
+        Assert.True(gameState.IsDefeat());
+    }
+
+    [Test]
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(999)]
+    public void IsNotDefeatWhenHealthAboveZero(int healthValue)
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(healthValue) }
+        };
+        Assert.False(gameState.IsDefeat());
+    }
+
+    [Test]
+    public void IsVictoryWhenNoEnemy()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(10) },
+            Enemy = null
+        };
+        Assert.True(gameState.IsVictory());
+    }
+
+    [Test]
+    public void IsNotVictoryWhenOneEnemy()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(10) },
+            Enemy = new JawWorm()
+        };
+        Assert.False(gameState.IsVictory());
+    }
+
+    [Test]
+    public void IsNotVictoryWhenNoEnemyAndHealthBelowOne()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(0) },
+            Enemy = null
+        };
+        Assert.False(gameState.IsVictory());
     }
 }

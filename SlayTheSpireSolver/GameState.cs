@@ -19,4 +19,14 @@ public record GameState
         }
         return legalActions;
     }
+
+    public bool IsDefeat()
+    {
+        return Player.Health.Value < 1;
+    }
+
+    public bool IsVictory()
+    {
+        return Enemy == null && Player.Health.Value > 0;
+    }
 }
