@@ -31,33 +31,40 @@ public class EnemyPartyTests
     }
 
     [Test]
-    public void TestIndexing1()
+    public void TestGetEnemy1()
     {
         var enemyParty = new EnemyParty(new JawWorm());
-        Assert.AreEqual(new JawWorm(), enemyParty[0]);
+
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(3));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(2));
+        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(1));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
     }
 
     [Test]
-    public void TestIndexing2()
+    public void TestGetEnemy2()
     {
         var enemyParty = new EnemyParty(new JawWorm(), new JawWorm());
-        Assert.AreEqual(new JawWorm(), enemyParty[1]);
+
+        Enemy _;
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(4));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(3));
+        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(2));
+        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(1));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
     }
 
     [Test]
-    public void TestIndexing3()
+    public void TestGetEnemy3()
     {
-        var enemyParty = new EnemyParty(new JawWorm());
+        var enemyParty = new EnemyParty();
         Enemy _;
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty[1]);
-    }
-
-    [Test]
-    public void TestIndexing4()
-    {
-        var enemyParty = new EnemyParty(new JawWorm());
-        Enemy _;
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty[-1]);
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(2));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(1));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
+        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
     }
 
     [Test]

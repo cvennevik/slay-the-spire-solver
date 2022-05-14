@@ -3,7 +3,7 @@
 public class EnemyParty
 {
     public int Count => enemies.Length;
-    public Enemy this[int index] => enemies[index];
+    public Enemy GetEnemy(int enemyPosition) => enemies[enemyPosition - 1];
 
     private readonly Enemy[] enemies;
 
