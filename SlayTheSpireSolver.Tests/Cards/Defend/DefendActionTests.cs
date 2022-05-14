@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Defend;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System;
 
@@ -11,7 +12,7 @@ public class DefendActionTests
     [Test]
     public void MustHaveDefendCardInHand()
     {
-        var gameState = new GameState { Enemy = new JawWorm() };
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
     }
 
@@ -27,7 +28,7 @@ public class DefendActionTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm(),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
         Assert.AreEqual(new DefendAction(gameState), new DefendAction(gameState));
@@ -39,13 +40,13 @@ public class DefendActionTests
         var gameState1 = new GameState
         {
             Hand = new Hand(new DefendCard()),
-            Enemy = new JawWorm(),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Turn = new Turn(1)
         };
         var gameState2 = new GameState
         {
             Hand = new Hand(new DefendCard()),
-            Enemy = new JawWorm(),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Turn = new Turn(2)
         };
         Assert.AreNotEqual(new DefendAction(gameState1), new DefendAction(gameState2));
@@ -59,7 +60,7 @@ public class DefendActionTests
         var gameState = new GameState()
         {
             Player = new Player { Armor = new Armor(initialArmorValue) },
-            Enemy = new JawWorm(),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
         var defendAction = new DefendAction(gameState);
@@ -67,7 +68,7 @@ public class DefendActionTests
         var expectedGameState = new GameState()
         {
             Player = new Player { Armor = new Armor(expectedArmorValue) },
-            Enemy = new JawWorm(),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand()
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);

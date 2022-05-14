@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System;
 
@@ -23,7 +24,7 @@ public class StrikeActionTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm()
+            EnemyParty = new EnemyParty(new JawWorm()),
         };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
@@ -34,7 +35,7 @@ public class StrikeActionTests
         var gameState = new GameState
         {
             Hand = new Hand(new StrikeCard()),
-            Enemy = new JawWorm { Health = new Health(10) }
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
         };
 
         var strikeAction = new StrikeAction(gameState);
@@ -43,7 +44,7 @@ public class StrikeActionTests
         var expectedGameState = new GameState()
         {
             Hand = new Hand(),
-            Enemy = new JawWorm { Health = new Health(4) }
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }

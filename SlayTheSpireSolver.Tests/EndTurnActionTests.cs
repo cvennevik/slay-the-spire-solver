@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System;
 
@@ -21,7 +22,7 @@ public class EndTurnActionTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
             Player = new Player { Health = new Health(50) },
             Turn = new Turn(initialTurnNumber)
         };
@@ -60,7 +61,7 @@ public class EndTurnActionTests
     {
         return new GameState
         {
-            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
             Player = new Player { Health = new Health(50) }
         };
     }

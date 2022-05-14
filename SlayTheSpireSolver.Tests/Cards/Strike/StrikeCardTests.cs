@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System.Linq;
 
@@ -19,7 +20,7 @@ public class StrikeCardTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm()
+            EnemyParty = new EnemyParty(new JawWorm()),
         };
         var legalActions = new StrikeCard().GetLegalActions(gameState);
         Assert.IsEmpty(legalActions);
@@ -42,7 +43,7 @@ public class StrikeCardTests
         var gameState = new GameState
         {
             Hand = new Hand(new StrikeCard()),
-            Enemy = new JawWorm()
+            EnemyParty = new EnemyParty(new JawWorm())
         };
         var legalActions = new StrikeCard().GetLegalActions(gameState).ToList();
         Assert.AreEqual(1, legalActions.Count);

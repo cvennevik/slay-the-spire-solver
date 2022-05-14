@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver;
 public record GameState
 {
     public Player Player { get; init; } = new Player();
-    public Enemy Enemy { get; init; }
+    public EnemyParty EnemyParty { get; init; } = new EnemyParty();
     public Turn Turn { get; init; } = new Turn(1);
     public Hand Hand { get; init; } = new Hand();
 
@@ -13,7 +13,7 @@ public record GameState
     {
         var legalActions = new List<IAction>();
         legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this)));
-        if (Enemy != null)
+        if (EnemyParty.Count() > 0)
         {
             legalActions.Add(new EndTurnAction(this));
         }
@@ -27,6 +27,6 @@ public record GameState
 
     public bool IsVictory()
     {
-        return Enemy == null && Player.Health.Value > 0;
+        return EnemyParty.Count() == 0 && Player.Health.Value > 0;
     }
 }

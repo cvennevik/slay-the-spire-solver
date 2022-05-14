@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests;
@@ -13,7 +14,7 @@ public class SolverTests
         var gameState = new GameState
         {
             Player = new Player { Health = new Health(50) },
-            Enemy = new JawWorm()
+            EnemyParty = new EnemyParty(new JawWorm()),
         };
         var bestAction = Solver.GetBestAction(gameState);
         Assert.AreEqual(new EndTurnAction(gameState), bestAction);
@@ -25,7 +26,7 @@ public class SolverTests
         var gameState = new GameState
         {
             Player = new Player { Health = new Health(50) },
-            Enemy = new JawWorm { Health = new Health(6) },
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
             Hand = new Hand(new StrikeCard())
         };
         var bestAction = Solver.GetBestAction(gameState);

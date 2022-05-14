@@ -6,7 +6,7 @@ public record EndTurnAction : IAction
 
     public EndTurnAction(GameState gameState)
     {
-        if (gameState.Enemy == null) throw new ArgumentException("Cannot end turn with no enemies");
+        if (gameState.EnemyParty.Count() == 0) throw new ArgumentException("Cannot end turn with no enemies");
 
         GameState = gameState;
     }
@@ -14,9 +14,12 @@ public record EndTurnAction : IAction
     public GameState Resolve()
     {
         GameState nextGameState = GameState;
-        if (GameState.Enemy != null)
+        if (GameState.EnemyParty.Count() > 0)
         {
-            nextGameState = GameState.Enemy.GetIntendedMove().Resolve(GameState);
+            foreach (var enemy in GameState.EnemyParty)
+            {
+                nextGameState = enemy.GetIntendedMove().Resolve(GameState);
+            }
         }
         return nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
     }

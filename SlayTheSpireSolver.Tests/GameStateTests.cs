@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
+using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
 using System.Linq;
 
@@ -21,7 +22,7 @@ public class GameStateTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
             Player = new Player { Health = new Health(50) }
         };
         var legalActions = gameState.GetLegalActions();
@@ -34,7 +35,7 @@ public class GameStateTests
     {
         var gameState = new GameState
         {
-            Enemy = new JawWorm { IntendedMove = new Chomp() },
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
             Player = new Player { Health = new Health(50) },
             Hand = new Hand(new StrikeCard())
         };
@@ -99,7 +100,7 @@ public class GameStateTests
         var gameState = new GameState
         {
             Player = new Player { Health = new Health(10) },
-            Enemy = null
+            EnemyParty = new EnemyParty()
         };
         Assert.True(gameState.IsVictory());
     }
@@ -110,7 +111,7 @@ public class GameStateTests
         var gameState = new GameState
         {
             Player = new Player { Health = new Health(10) },
-            Enemy = new JawWorm()
+            EnemyParty = new EnemyParty(new JawWorm())
         };
         Assert.False(gameState.IsVictory());
     }
@@ -121,7 +122,7 @@ public class GameStateTests
         var gameState = new GameState
         {
             Player = new Player { Health = new Health(0) },
-            Enemy = null
+            EnemyParty = new EnemyParty()
         };
         Assert.False(gameState.IsVictory());
     }
