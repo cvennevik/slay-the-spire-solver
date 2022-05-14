@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SlayTheSpireSolver.JawWorms;
+using SlayTheSpireSolver.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests;
 

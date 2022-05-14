@@ -1,4 +1,4 @@
-﻿namespace SlayTheSpireSolver;
+﻿namespace SlayTheSpireSolver.Enemies;
 
 public interface IEnemy
 {

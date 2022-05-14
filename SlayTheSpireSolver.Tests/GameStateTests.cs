@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.Cards;
 using SlayTheSpireSolver.Cards.Strike;
-using SlayTheSpireSolver.JawWorms;
+using SlayTheSpireSolver.Enemies.JawWorms;
 using System.Linq;
 
 namespace SlayTheSpireSolver.Tests;

@@ -1,4 +1,4 @@
-﻿namespace SlayTheSpireSolver.JawWorms;
+﻿namespace SlayTheSpireSolver.Enemies.JawWorms;
 
 public record Chomp : IJawWormMove
 {

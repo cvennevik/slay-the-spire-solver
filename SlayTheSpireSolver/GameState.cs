@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver;
+﻿using SlayTheSpireSolver.Enemies;
+
+namespace SlayTheSpireSolver;
 
 public record GameState
 {
