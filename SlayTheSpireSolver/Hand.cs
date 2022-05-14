@@ -18,8 +18,8 @@ public class Hand
 
         if (otherHand == null) return false;
         if (otherHand.Cards.Count != Cards.Count) return false;
-        var orderedCards = Cards.OrderBy(x => x.GetType());
-        var orderedOtherCards = otherHand.Cards.OrderBy(x => x.GetType());
+        var orderedCards = Cards.OrderBy(x => x.ToString());
+        var orderedOtherCards = otherHand.Cards.OrderBy(x => x.ToString());
         return orderedCards.SequenceEqual(orderedOtherCards);
     }
 
