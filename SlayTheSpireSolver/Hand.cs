@@ -30,7 +30,7 @@ public class Hand
 
     public Hand Remove(ICard card)
     {
-        if (Cards.Count == 0) throw new ArgumentException($"Hand does not contain card of type {card.GetType}");
+        if (!Cards.Contains(card)) throw new ArgumentException($"Hand does not contain card of type {card.GetType}");
         var cardsCopy = Cards.ToList();
         cardsCopy.Remove(card);
         return new Hand(cardsCopy.ToArray());
