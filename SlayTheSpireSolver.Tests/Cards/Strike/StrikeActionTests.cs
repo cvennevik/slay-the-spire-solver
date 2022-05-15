@@ -60,4 +60,24 @@ public class StrikeActionTests
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
+
+    [Test]
+    public void KillsEnemy()
+    {
+        var initialGameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(new StrikeCard()),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
+        };
+
+        var strikeAction = new StrikeAction(initialGameState);
+        var resolvedGameState = strikeAction.Resolve();
+
+        var expectedGameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(),
+            EnemyParty = new EnemyParty(),
+        };
+        Assert.AreEqual(expectedGameState, resolvedGameState);
+    }
 }
