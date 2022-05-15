@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.Enemies;
+﻿using SlayTheSpireSolver.Cards;
+using SlayTheSpireSolver.Enemies;
 
 namespace SlayTheSpireSolver;
 
@@ -27,5 +28,14 @@ public record GameState
     public bool IsCombatOver()
     {
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
+    }
+
+    public GameState MoveCardFromHandToDiscardPile(ICard card)
+    {
+        var newHand = Hand.Remove(card);
+        var discardPileCards = DiscardPile.Cards.ToList();
+        discardPileCards.Add(card);
+        var newDiscardPile = new DiscardPile(discardPileCards.ToArray());
+        return this with { Hand = newHand, DiscardPile = newDiscardPile };
     }
 }

@@ -75,6 +75,40 @@ public class GameStateTests
         Assert.True(gameState.IsCombatOver());
     }
 
+    [Test]
+    public void TestMoveCardFromHandToDiscardPile1()
+    {
+        var gameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(new StrikeCard(), new StrikeCard()),
+            DiscardPile = new DiscardPile()
+        };
+        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+        var expectedGameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(new StrikeCard()),
+            DiscardPile = new DiscardPile(new StrikeCard())
+        };
+        Assert.AreEqual(expectedGameState, newGameState);
+    }
+
+    [Test]
+    public void TestMoveCardFromHandToDiscardPile2()
+    {
+        var gameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(new StrikeCard(), new StrikeCard()),
+            DiscardPile = new DiscardPile(new StrikeCard())
+        };
+        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+        var expectedGameState = CreateBasicGameState() with
+        {
+            Hand = new Hand(new StrikeCard()),
+            DiscardPile = new DiscardPile(new StrikeCard(), new StrikeCard())
+        };
+        Assert.AreEqual(expectedGameState, newGameState);
+    }
+
     private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
     {
         Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
