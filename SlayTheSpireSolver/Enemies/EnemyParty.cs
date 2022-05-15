@@ -33,4 +33,9 @@ public class EnemyParty : IEnumerable<Enemy>
     {
         return enemies.GetEnumerator();
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(EnemyParty)}: [{string.Join(",", enemies.ToList())}]";
+    }
 }
