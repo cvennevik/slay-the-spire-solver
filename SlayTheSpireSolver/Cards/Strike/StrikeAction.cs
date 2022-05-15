@@ -21,10 +21,10 @@ public record StrikeAction : IAction
     {
         var handWithStrikeRemoved = GameState.Hand.Remove(new StrikeCard());
         var damagedEnemy = GameState.EnemyParty.First().Damage(6);
-        if (damagedEnemy.Health.Amount < 1)
-        {
-            return GameState with { EnemyParty = new EnemyParty(), Hand = handWithStrikeRemoved };
-        }
-        return GameState with { EnemyParty = new EnemyParty(damagedEnemy), Hand = handWithStrikeRemoved };
+        var newEnemyParty = damagedEnemy.Health.Amount > 0
+            ? new EnemyParty(damagedEnemy)
+            : new EnemyParty();
+        var reducedEnergy = new Energy(GameState.Energy.Amount - 1);
+        return GameState with { Energy = reducedEnergy, EnemyParty = newEnemyParty, Hand = handWithStrikeRemoved };
     }
 }

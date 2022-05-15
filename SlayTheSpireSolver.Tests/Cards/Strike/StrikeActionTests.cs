@@ -50,11 +50,12 @@ public class StrikeActionTests
     }
 
     [Test]
-    public void ReducesEnemyHealthAndRemovesCardFromHand()
+    public void TestStrike()
     {
         var initialGameState = CreateBasicGameState() with
         {
             Hand = new Hand(new StrikeCard()),
+            Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
         };
 
@@ -64,17 +65,19 @@ public class StrikeActionTests
         var expectedGameState = CreateBasicGameState() with
         {
             Hand = new Hand(),
+            Energy = new Energy(2),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
 
     [Test]
-    public void KillsEnemy()
+    public void TestLethalStrike()
     {
         var initialGameState = CreateBasicGameState() with
         {
             Hand = new Hand(new StrikeCard()),
+            Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
         };
 
@@ -84,6 +87,7 @@ public class StrikeActionTests
         var expectedGameState = CreateBasicGameState() with
         {
             Hand = new Hand(),
+            Energy = new Energy(2),
             EnemyParty = new EnemyParty(),
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
