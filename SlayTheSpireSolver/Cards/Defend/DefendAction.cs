@@ -11,7 +11,7 @@ public record DefendAction : IAction
     {
         return !gameState.IsCombatOver()
             && gameState.Hand.Contains(new DefendCard())
-            && gameState.Energy.Amount >= EnergyCost.Amount;
+            && gameState.Energy >= EnergyCost;
     }
 
     public DefendAction(GameState gameState)

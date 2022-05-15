@@ -13,7 +13,7 @@ public record StrikeAction : IAction
     {
         return !gameState.IsCombatOver()
             && gameState.Hand.Contains(new StrikeCard())
-            && gameState.Energy.Amount >= EnergyCost.Amount;
+            && gameState.Energy >= EnergyCost;
     }
 
     public StrikeAction(GameState gameState)
