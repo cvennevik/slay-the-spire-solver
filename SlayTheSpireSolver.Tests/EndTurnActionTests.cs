@@ -31,12 +31,7 @@ public class EndTurnActionTests
     [TestCase(2, 3)]
     public void TestEndTurn(int initialTurnNumber, int expectedTurnNumber)
     {
-        var gameState = new GameState
-        {
-            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
-            Player = new Player { Health = new Health(50) },
-            Turn = new Turn(initialTurnNumber)
-        };
+        var gameState = CreateBasicGameState() with { Turn = new Turn(initialTurnNumber) };
         var endTurnAction = new EndTurnAction(gameState);
         var newGameState = endTurnAction.Resolve();
         Assert.AreEqual(new Turn(expectedTurnNumber), newGameState.Turn);
@@ -46,7 +41,7 @@ public class EndTurnActionTests
     [Test]
     public void TestEquality1()
     {
-        var gameState = CreateExampleGameState();
+        var gameState = CreateBasicGameState();
         var action1 = new EndTurnAction(gameState);
         var action2 = new EndTurnAction(gameState);
         Assert.AreEqual(action1, action2);
@@ -55,20 +50,20 @@ public class EndTurnActionTests
     [Test]
     public void TestEquality2()
     {
-        var action1 = new EndTurnAction(CreateExampleGameState());
-        var action2 = new EndTurnAction(CreateExampleGameState());
+        var action1 = new EndTurnAction(CreateBasicGameState());
+        var action2 = new EndTurnAction(CreateBasicGameState());
         Assert.AreEqual(action1, action2);
     }
 
     [Test]
     public void TestEquality3()
     {
-        var action1 = new EndTurnAction(CreateExampleGameState());
-        var action2 = new EndTurnAction(CreateExampleGameState() with { Turn = new Turn(2) });
+        var action1 = new EndTurnAction(CreateBasicGameState());
+        var action2 = new EndTurnAction(CreateBasicGameState() with { Turn = new Turn(2) });
         Assert.AreNotEqual(action1, action2);
     }
 
-    private static GameState CreateExampleGameState()
+    private static GameState CreateBasicGameState()
     {
         return new GameState
         {
