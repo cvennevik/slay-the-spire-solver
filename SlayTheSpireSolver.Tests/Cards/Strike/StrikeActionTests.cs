@@ -13,7 +13,7 @@ public class StrikeActionTests
     {
         return new()
         {
-            Player = new Player { Health = new Health(70) },
+            PlayerHealth = new Health(70),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
             Hand = new Hand(new StrikeCard()),
             Turn = new Turn(1)
@@ -37,7 +37,7 @@ public class StrikeActionTests
     [Test]
     public void PlayerMustBeAlive()
     {
-        var gameState = CreateBasicGameState() with { Player = new Player { Health = new Health(0) } };
+        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
 

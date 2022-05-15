@@ -4,7 +4,8 @@ namespace SlayTheSpireSolver;
 
 public record GameState
 {
-    public Player Player { get; init; } = new Player();
+    public Health PlayerHealth { get; init; } = new Health(1);
+    public Armor PlayerArmor { get; init; } = new Armor(0);
     public EnemyParty EnemyParty { get; init; } = new EnemyParty();
     public Turn Turn { get; init; } = new Turn(1);
     public Hand Hand { get; init; } = new Hand();
@@ -22,6 +23,6 @@ public record GameState
 
     public bool IsCombatOver()
     {
-        return Player.Health.Value < 1 || !EnemyParty.Any();
+        return PlayerHealth.Value < 1 || !EnemyParty.Any();
     }
 }

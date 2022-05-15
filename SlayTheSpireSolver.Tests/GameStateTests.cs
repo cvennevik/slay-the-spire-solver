@@ -12,7 +12,7 @@ public class GameStateTests
     {
         return new()
         {
-            Player = new Player { Health = new Health(70) },
+            PlayerHealth = new Health(70),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
             Hand = new Hand(new StrikeCard()),
             Turn = new Turn(1)
@@ -49,7 +49,7 @@ public class GameStateTests
     [TestCase(-999)]
     public void TestHealthBelowOne(int healthValue)
     {
-        var gameState = CreateBasicGameState() with { Player = new Player { Health = new Health(healthValue) } };
+        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(healthValue) };
         AssertNoLegalActions(gameState);
         Assert.True(gameState.IsCombatOver());
     }
@@ -67,7 +67,7 @@ public class GameStateTests
     {
         var gameState = CreateBasicGameState() with
         {
-            Player = new Player { Health = new Health(0) },
+            PlayerHealth = new Health(0),
             EnemyParty = new EnemyParty()
         };
         AssertNoLegalActions(gameState);

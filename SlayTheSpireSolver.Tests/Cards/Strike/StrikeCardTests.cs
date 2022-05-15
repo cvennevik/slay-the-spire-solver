@@ -42,7 +42,7 @@ public class StrikeCardTests
     {
         var gameState = new GameState
         {
-            Player = new Player { Health = new Health(0) },
+            PlayerHealth = new Health(0),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new StrikeCard())
         };

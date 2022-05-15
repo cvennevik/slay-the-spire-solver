@@ -6,10 +6,16 @@ public record Chomp : IJawWormMove
 
     public GameState Resolve(GameState gameState)
     {
-        var player = gameState.Player;
-        var playerHealth = player.Health;
-        var newPlayerHealth = new Health(playerHealth.Value - Damage);
-        var newGameState = gameState with { Player = player with { Health = newPlayerHealth } };
-        return newGameState;
+        if (Damage > gameState.PlayerArmor.Value)
+        {
+            var remainingDamage = Damage - gameState.PlayerArmor.Value;
+            var newPlayerHealth = new Health(gameState.PlayerHealth.Value - remainingDamage);
+            return gameState with { PlayerHealth = newPlayerHealth, PlayerArmor = new Armor(0) };
+        }
+        else
+        {
+            var newPlayerArmor = new Armor(gameState.PlayerArmor.Value - Damage);
+            return gameState with { PlayerArmor = newPlayerArmor };
+        }
     }
 }

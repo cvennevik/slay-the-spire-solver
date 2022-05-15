@@ -28,7 +28,7 @@ public class DefendActionTests
     {
         var gameState = new GameState
         {
-            Player = new Player { Health = new Health(0) },
+            PlayerHealth = new Health(0),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
@@ -71,7 +71,7 @@ public class DefendActionTests
     {
         var gameState = new GameState()
         {
-            Player = new Player { Armor = new Armor(initialArmorValue) },
+            PlayerArmor = new Armor(initialArmorValue),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
@@ -79,7 +79,7 @@ public class DefendActionTests
         var resolvedGameState = defendAction.Resolve();
         var expectedGameState = new GameState()
         {
-            Player = new Player { Armor = new Armor(expectedArmorValue) },
+            PlayerArmor = new Armor(expectedArmorValue),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand()
         };
