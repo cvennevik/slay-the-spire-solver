@@ -18,7 +18,7 @@ public record DefendAction : IAction
     public GameState Resolve()
     {
         var oldPlayerArmor = GameState.PlayerArmor;
-        var newPlayerArmor = new Armor(oldPlayerArmor.Value + 5);
+        var newPlayerArmor = new Armor(oldPlayerArmor.Amount + 5);
         var newHand = GameState.Hand.Remove(new DefendCard());
         return GameState with { PlayerArmor = newPlayerArmor, Hand = newHand };
     }

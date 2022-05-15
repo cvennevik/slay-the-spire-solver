@@ -9,28 +9,18 @@ public class ArmorTests
     [Test]
     [TestCase(-1)]
     [TestCase(-2)]
-    [TestCase(-99999)]
-    public void DoesNotPermitNegativeArmorValues(int armorValue)
+    [TestCase(-999)]
+    public void AmmountCannotBeNegative(int amount)
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => new Armor(armorValue));
-    }
-
-    [Test]
-    [TestCase(0)]
-    [TestCase(1)]
-    [TestCase(99999)]
-    public void PermitsNonNegativeArmorValues(int armorValue)
-    {
-        var armor = new Armor(armorValue);
-        Assert.AreEqual(armorValue, armor.Value);
+        Assert.Throws<ArgumentOutOfRangeException>(() => new Armor(amount));
     }
 
     [Test]
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(10)]
-    public void TestEquality(int armorValue)
+    public void ArmorWithEqualAmountsAreEqual(int amount)
     {
-        Assert.AreEqual(new Armor(armorValue), new Armor(armorValue));
+        Assert.AreEqual(new Armor(amount), new Armor(amount));
     }
 }

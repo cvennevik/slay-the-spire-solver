@@ -2,11 +2,11 @@
 
 public record Armor
 {
-    public int Value { get; }
+    public int Amount { get; }
 
-    public Armor(int value)
+    public Armor(int amount)
     {
-        if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
-        Value = value;
+        if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
+        Amount = amount;
     }
 }

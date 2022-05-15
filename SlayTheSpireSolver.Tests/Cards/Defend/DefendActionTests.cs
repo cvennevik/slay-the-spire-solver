@@ -67,11 +67,11 @@ public class DefendActionTests
     [Test]
     [TestCase(0, 5)]
     [TestCase(2, 7)]
-    public void AddsArmorToPlayerAndRemovesDefendCard(int initialArmorValue, int expectedArmorValue)
+    public void AddsPlayerArmorAndRemovesDefendCard(int initialAmountOfArmor, int expectedAmountOfArmor)
     {
         var gameState = new GameState()
         {
-            PlayerArmor = new Armor(initialArmorValue),
+            PlayerArmor = new Armor(initialAmountOfArmor),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
@@ -79,7 +79,7 @@ public class DefendActionTests
         var resolvedGameState = defendAction.Resolve();
         var expectedGameState = new GameState()
         {
-            PlayerArmor = new Armor(expectedArmorValue),
+            PlayerArmor = new Armor(expectedAmountOfArmor),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand()
         };
