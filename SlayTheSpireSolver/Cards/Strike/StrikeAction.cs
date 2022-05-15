@@ -6,14 +6,14 @@ public record StrikeAction : IAction
 {
     public GameState GameState { get; }
 
-    private const int EnergyCost = 1;
+    private static readonly Energy EnergyCost = new(1);
     private const int DamageAmount = 6;
 
     public static bool IsLegal(GameState gameState)
     {
         return !gameState.IsCombatOver()
             && gameState.Hand.Contains(new StrikeCard())
-            && gameState.Energy.Amount >= EnergyCost;
+            && gameState.Energy.Amount >= EnergyCost.Amount;
     }
 
     public StrikeAction(GameState gameState)
@@ -29,7 +29,7 @@ public record StrikeAction : IAction
             ? new EnemyParty(damagedEnemy)
             : new EnemyParty();
         return GameState
-            .RemoveEnergy(EnergyCost)
+            .Remove(EnergyCost)
             .MoveCardFromHandToDiscardPile(new StrikeCard()) with
         {
             EnemyParty = newEnemyParty

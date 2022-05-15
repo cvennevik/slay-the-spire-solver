@@ -126,18 +126,17 @@ public class GameStateTests
     public void TestRemoveEnergy(int initialAmount, int amountToRemove, int expectedAmount)
     {
         var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
-        var newGameState = gameState.RemoveEnergy(amountToRemove);
+        var newGameState = gameState.Remove(new Energy(amountToRemove));
         var expectedGameState = CreateBasicGameState() with { Energy = new Energy(expectedAmount) };
         Assert.AreEqual(expectedGameState, newGameState);
     }
 
     [Test]
     [TestCase(3, 4)]
-    [TestCase(3, -1)]
     public void TestRemoveEnergyExceptions(int initialAmount, int amountToRemove)
     {
         var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
-        Assert.Throws<ArgumentOutOfRangeException>(() => gameState.RemoveEnergy(amountToRemove));
+        Assert.Throws<ArgumentOutOfRangeException>(() => gameState.Remove(new Energy(amountToRemove)));
     }
 
     private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)

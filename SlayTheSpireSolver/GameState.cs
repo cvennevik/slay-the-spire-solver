@@ -39,9 +39,8 @@ public record GameState
         };
     }
 
-    public GameState RemoveEnergy(int amountToRemove)
+    public GameState Remove(Energy energyToRemove)
     {
-        if (amountToRemove < 0) throw new ArgumentOutOfRangeException(nameof(amountToRemove));
-        return this with { Energy = new Energy(Energy.Amount - amountToRemove) };
+        return this with { Energy = new Energy(Energy.Amount - energyToRemove.Amount) };
     }
 }

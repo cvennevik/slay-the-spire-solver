@@ -4,14 +4,14 @@ public record DefendAction : IAction
 {
     public GameState GameState { get; }
 
-    private const int EnergyCost = 1;
+    private static readonly Energy EnergyCost = new(1);
     private const int ArmorGainAmount = 5;
 
     public static bool IsLegal(GameState gameState)
     {
         return !gameState.IsCombatOver()
             && gameState.Hand.Contains(new DefendCard())
-            && gameState.Energy.Amount >= EnergyCost;
+            && gameState.Energy.Amount >= EnergyCost.Amount;
     }
 
     public DefendAction(GameState gameState)
@@ -23,7 +23,7 @@ public record DefendAction : IAction
     public GameState Resolve()
     {
         return GameState
-            .RemoveEnergy(EnergyCost)
+            .Remove(EnergyCost)
             .MoveCardFromHandToDiscardPile(new DefendCard()) with
         {
             PlayerArmor = new Armor(GameState.PlayerArmor.Amount + ArmorGainAmount)
