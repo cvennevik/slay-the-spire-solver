@@ -17,9 +17,21 @@ public class DefendActionTests
     }
 
     [Test]
-    public void MustHaveEnemy()
+    public void MustNotHaveWon()
     {
         var gameState = new GameState { Hand = new Hand(new DefendCard()) };
+        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+    }
+
+    [Test]
+    public void MustNotHaveLost()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(0) },
+            EnemyParty = new EnemyParty(new JawWorm()),
+            Hand = new Hand(new DefendCard())
+        };
         Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
     }
 

@@ -38,6 +38,19 @@ public class DefendCardTests
     }
 
     [Test]
+    public void NoLegalActionsWhenDefeated()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(0) },
+            EnemyParty = new EnemyParty(new JawWorm()),
+            Hand = new Hand(new DefendCard())
+        };
+        var legalActions = new DefendCard().GetLegalActions(gameState);
+        Assert.IsEmpty(legalActions);
+    }
+
+    [Test]
     public void OneLegalActionWhenOneEnemy()
     {
         var gameState = new GameState

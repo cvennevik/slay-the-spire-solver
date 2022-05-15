@@ -4,10 +4,14 @@ public record DefendAction : IAction
 {
     public GameState GameState { get; }
 
+    public static bool IsLegal(GameState gameState)
+    {
+        return !gameState.IsVictory() &&!gameState.IsDefeat() && gameState.Hand.Cards.Contains(new DefendCard());
+    }
+
     public DefendAction(GameState gameState)
     {
-        if (!gameState.EnemyParty.Any()) throw new ArgumentException("Cannot play Defend when no enemies remain");
-        if (!gameState.Hand.Cards.Contains(new DefendCard())) throw new ArgumentException("No Defend card in hand");
+        if (!IsLegal(gameState)) throw new ArgumentException("Illegal Defend action");
         GameState = gameState;
     }
 

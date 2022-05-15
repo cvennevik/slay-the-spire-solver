@@ -30,6 +30,18 @@ public class StrikeActionTests
     }
 
     [Test]
+    public void MustNotHaveLost()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(0) },
+            EnemyParty = new EnemyParty(new JawWorm()),
+            Hand = new Hand(new StrikeCard())
+        };
+        Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+    }
+
+    [Test]
     public void ReducesEnemyHealthAndRemovesCardFromHand()
     {
         var gameState = new GameState
