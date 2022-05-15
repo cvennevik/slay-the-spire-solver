@@ -17,7 +17,7 @@ public class StrikeActionTests
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
             Hand = new Hand(new StrikeCard()),
-            Turn = new Turn(1)
+            DiscardPile = new DiscardPile()
         };
     }
 
@@ -55,6 +55,7 @@ public class StrikeActionTests
         var initialGameState = CreateBasicGameState() with
         {
             Hand = new Hand(new StrikeCard()),
+            DiscardPile = new DiscardPile(),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
         };
@@ -65,6 +66,7 @@ public class StrikeActionTests
         var expectedGameState = CreateBasicGameState() with
         {
             Hand = new Hand(),
+            DiscardPile = new DiscardPile(new StrikeCard()),
             Energy = new Energy(2),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
         };
@@ -77,6 +79,7 @@ public class StrikeActionTests
         var initialGameState = CreateBasicGameState() with
         {
             Hand = new Hand(new StrikeCard()),
+            DiscardPile = new DiscardPile(),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
         };
@@ -87,8 +90,9 @@ public class StrikeActionTests
         var expectedGameState = CreateBasicGameState() with
         {
             Hand = new Hand(),
+            DiscardPile = new DiscardPile(new StrikeCard()),
             Energy = new Energy(2),
-            EnemyParty = new EnemyParty(),
+            EnemyParty = new EnemyParty()
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
