@@ -123,4 +123,36 @@ public class HandTests
         var newHand = hand.Remove(new DefendCard());
         Assert.AreEqual(new Hand(), newHand);
     }
+
+    [Test]
+    public void TestContains1()
+    {
+        var hand = new Hand(new DefendCard());
+        Assert.True(hand.Contains(new DefendCard()));
+        Assert.False(hand.Contains(new StrikeCard()));
+    }
+
+    [Test]
+    public void TestContains2()
+    {
+        var hand = new Hand(new DefendCard(), new StrikeCard());
+        Assert.True(hand.Contains(new DefendCard()));
+        Assert.True(hand.Contains(new StrikeCard()));
+    }
+
+    [Test]
+    public void TestContains3()
+    {
+        var hand = new Hand();
+        Assert.False(hand.Contains(new DefendCard()));
+        Assert.False(hand.Contains(new StrikeCard()));
+    }
+
+    [Test]
+    public void TestContains4()
+    {
+        var hand = new Hand(new DefendCard(), new DefendCard());
+        Assert.True(hand.Contains(new DefendCard()));
+        Assert.False(hand.Contains(new StrikeCard()));
+    }
 }

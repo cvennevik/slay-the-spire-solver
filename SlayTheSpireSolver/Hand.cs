@@ -11,6 +11,19 @@ public class Hand
         Cards = cards;
     }
 
+    public bool Contains(ICard card)
+    {
+        return Cards.Contains(card);
+    }
+
+    public Hand Remove(ICard card)
+    {
+        if (!Contains(card)) throw new ArgumentException($"Hand does not contain card of type {card.GetType}");
+        var cardsCopy = Cards.ToList();
+        cardsCopy.Remove(card);
+        return new Hand(cardsCopy.ToArray());
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is not Hand otherHand) return false;
@@ -23,14 +36,6 @@ public class Hand
     public override int GetHashCode()
     {
         return 0;
-    }
-
-    public Hand Remove(ICard card)
-    {
-        if (!Cards.Contains(card)) throw new ArgumentException($"Hand does not contain card of type {card.GetType}");
-        var cardsCopy = Cards.ToList();
-        cardsCopy.Remove(card);
-        return new Hand(cardsCopy.ToArray());
     }
 
     public override string ToString()

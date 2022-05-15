@@ -6,7 +6,7 @@ public record DefendAction : IAction
 
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsCombatOver() && gameState.Hand.Cards.Contains(new DefendCard());
+        return !gameState.IsCombatOver() && gameState.Hand.Contains(new DefendCard());
     }
 
     public DefendAction(GameState gameState)

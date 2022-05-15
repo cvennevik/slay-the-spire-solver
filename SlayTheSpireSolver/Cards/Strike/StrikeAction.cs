@@ -8,7 +8,7 @@ public record StrikeAction : IAction
 
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsCombatOver() && gameState.Hand.Cards.Contains(new StrikeCard());
+        return !gameState.IsCombatOver() && gameState.Hand.Contains(new StrikeCard());
     }
 
     public StrikeAction(GameState gameState)
