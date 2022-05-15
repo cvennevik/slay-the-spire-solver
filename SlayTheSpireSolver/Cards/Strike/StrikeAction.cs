@@ -11,7 +11,9 @@ public record StrikeAction : IAction
 
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsCombatOver() && gameState.Hand.Contains(new StrikeCard()) && gameState.Energy.Amount >= EnergyCost;
+        return !gameState.IsCombatOver()
+            && gameState.Hand.Contains(new StrikeCard())
+            && gameState.Energy.Amount >= EnergyCost;
     }
 
     public StrikeAction(GameState gameState)

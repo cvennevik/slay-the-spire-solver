@@ -9,7 +9,9 @@ public record DefendAction : IAction
 
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsCombatOver() && gameState.Hand.Contains(new DefendCard()) && gameState.Energy.Amount >= EnergyCost;
+        return !gameState.IsCombatOver()
+            && gameState.Hand.Contains(new DefendCard())
+            && gameState.Energy.Amount >= EnergyCost;
     }
 
     public DefendAction(GameState gameState)
