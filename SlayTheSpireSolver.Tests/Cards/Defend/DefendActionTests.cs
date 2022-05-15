@@ -44,13 +44,16 @@ public class DefendActionTests
     }
 
     [Test]
+    public void EnergyMustBeAtLeastOne()
+    {
+        var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
+        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+    }
+
+    [Test]
     public void ActionsWithSameGameStatesAreEqual()
     {
-        var gameState = new GameState
-        {
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new DefendCard())
-        };
+        var gameState = CreateBasicGameState();
         Assert.AreEqual(new DefendAction(gameState), new DefendAction(gameState));
     }
 
@@ -70,6 +73,7 @@ public class DefendActionTests
         var gameState = new GameState()
         {
             PlayerArmor = new Armor(initialAmountOfArmor),
+            Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new DefendCard())
         };
@@ -78,6 +82,7 @@ public class DefendActionTests
         var expectedGameState = new GameState()
         {
             PlayerArmor = new Armor(expectedAmountOfArmor),
+            Energy = new Energy(2),
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand()
         };

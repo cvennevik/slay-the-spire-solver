@@ -4,9 +4,11 @@ public record DefendAction : IAction
 {
     public GameState GameState { get; }
 
+    private const int EnergyCost = 1;
+
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsCombatOver() && gameState.Hand.Contains(new DefendCard());
+        return !gameState.IsCombatOver() && gameState.Hand.Contains(new DefendCard()) && gameState.Energy.Amount >= EnergyCost;
     }
 
     public DefendAction(GameState gameState)
@@ -17,9 +19,9 @@ public record DefendAction : IAction
 
     public GameState Resolve()
     {
-        var oldPlayerArmor = GameState.PlayerArmor;
-        var newPlayerArmor = new Armor(oldPlayerArmor.Amount + 5);
+        var newPlayerArmor = new Armor(GameState.PlayerArmor.Amount + 5);
+        var newEnergy = new Energy(GameState.Energy.Amount - EnergyCost);
         var newHand = GameState.Hand.Remove(new DefendCard());
-        return GameState with { PlayerArmor = newPlayerArmor, Hand = newHand };
+        return GameState with { PlayerArmor = newPlayerArmor, Energy = newEnergy, Hand = newHand };
     }
 }
