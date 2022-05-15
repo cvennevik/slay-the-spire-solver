@@ -1,7 +1,9 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.Cards.Defend;
 using SlayTheSpireSolver.Cards.Strike;
 using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
+using System;
 
 namespace SlayTheSpireSolver.Tests;
 
@@ -107,6 +109,13 @@ public class GameStateTests
             DiscardPile = new DiscardPile(new StrikeCard(), new StrikeCard())
         };
         Assert.AreEqual(expectedGameState, newGameState);
+    }
+
+    [Test]
+    public void TestMoveCardFromHandToDiscardPile3()
+    {
+        var gameState = CreateBasicGameState() with { Hand = new Hand(new StrikeCard()) };
+        Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new DefendCard()));
     }
 
     private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
