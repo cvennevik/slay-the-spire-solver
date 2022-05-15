@@ -8,6 +8,6 @@ public abstract record Enemy
     public Enemy Damage(int damageValue)
     {
         if (damageValue < 0) throw new ArgumentOutOfRangeException(nameof(damageValue));
-        return this with { Health = new Health(Health.Value - damageValue) };
+        return this with { Health = new Health(Health.Amount - damageValue) };
     }
 }

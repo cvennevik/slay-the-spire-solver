@@ -13,11 +13,11 @@ public class JawWormTests
     [TestCase(7, 10, -3)]
     [TestCase(1, 1, 0)]
     [TestCase(10, 0, 10)]
-    public void DamageReducesHealth(int initialHealthValue, int damageValue, int expectedHealthValue)
+    public void DamageReducesHealth(int initialAmountOfHealth, int damageValue, int expectedAmountOfHealth)
     {
-        var jawWorm = new JawWorm { Health = new Health(initialHealthValue) };
+        var jawWorm = new JawWorm { Health = new Health(initialAmountOfHealth) };
         var damagedJawWorm = jawWorm.Damage(damageValue);
-        Assert.AreEqual(new JawWorm { Health = new Health(expectedHealthValue) }, damagedJawWorm);
+        Assert.AreEqual(new JawWorm { Health = new Health(expectedAmountOfHealth) }, damagedJawWorm);
     }
 
     [Test]

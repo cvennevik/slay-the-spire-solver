@@ -24,6 +24,6 @@ public record GameState
 
     public bool IsCombatOver()
     {
-        return PlayerHealth.Value < 1 || !EnemyParty.Any();
+        return PlayerHealth.Amount < 1 || !EnemyParty.Any();
     }
 }

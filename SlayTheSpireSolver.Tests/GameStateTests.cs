@@ -47,9 +47,9 @@ public class GameStateTests
     [TestCase(0)]
     [TestCase(-1)]
     [TestCase(-999)]
-    public void TestHealthBelowOne(int healthValue)
+    public void TestHealthBelowOne(int amountOfHealth)
     {
-        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(healthValue) };
+        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
         AssertNoLegalActions(gameState);
         Assert.True(gameState.IsCombatOver());
     }

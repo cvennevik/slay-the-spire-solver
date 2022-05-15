@@ -2,10 +2,10 @@
 
 public record Health
 {
-    public int Value { get; }
+    public int Amount { get; }
 
-    public Health(int value)
+    public Health(int amount)
     {
-        Value = value;
+        Amount = amount;
     }
 }

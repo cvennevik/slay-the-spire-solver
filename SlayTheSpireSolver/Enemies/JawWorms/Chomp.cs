@@ -9,7 +9,7 @@ public record Chomp : IJawWormMove
         if (Damage > gameState.PlayerArmor.Amount)
         {
             var remainingDamage = Damage - gameState.PlayerArmor.Amount;
-            var newPlayerHealth = new Health(gameState.PlayerHealth.Value - remainingDamage);
+            var newPlayerHealth = new Health(gameState.PlayerHealth.Amount - remainingDamage);
             return gameState with { PlayerHealth = newPlayerHealth, PlayerArmor = new Armor(0) };
         }
         else

@@ -21,7 +21,7 @@ public record StrikeAction : IAction
     {
         var handWithStrikeRemoved = GameState.Hand.Remove(new StrikeCard());
         var damagedEnemy = GameState.EnemyParty.First().Damage(6);
-        if (damagedEnemy.Health.Value < 1)
+        if (damagedEnemy.Health.Amount < 1)
         {
             return GameState with { EnemyParty = new EnemyParty(), Hand = handWithStrikeRemoved };
         }
