@@ -19,9 +19,7 @@ public record StrikeAction : IAction
 
     public GameState Resolve()
     {
-        var handCardsCopy = GameState.Hand.Cards.ToList();
-        handCardsCopy.Remove(new StrikeCard());
-        var handWithStrikeRemoved = new Hand(handCardsCopy.ToArray());
+        var handWithStrikeRemoved = GameState.Hand.Remove(new StrikeCard());
         var enemy = GameState.EnemyParty.First();
         var enemyHealth = enemy.Health;
         var damagedEnemyHealth = new Health(enemyHealth.Value - 6);
