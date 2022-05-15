@@ -41,6 +41,6 @@ public record GameState
 
     public GameState Remove(Energy energyToRemove)
     {
-        return this with { Energy = new Energy(Energy.Amount - energyToRemove.Amount) };
+        return this with { Energy = Energy - energyToRemove };
     }
 }
