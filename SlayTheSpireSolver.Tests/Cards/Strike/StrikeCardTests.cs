@@ -52,6 +52,14 @@ public class StrikeCardTests
     }
 
     [Test]
+    public void NoLegalActionsWhenNoEnergy()
+    {
+        var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
+        var legalActions = new StrikeCard().GetLegalActions(gameState);
+        Assert.IsEmpty(legalActions);
+    }
+
+    [Test]
     public void OneLegalActionWhenOneEnemy()
     {
         var gameState = CreateBasicGameState();

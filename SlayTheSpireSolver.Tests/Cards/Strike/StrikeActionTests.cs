@@ -14,6 +14,7 @@ public class StrikeActionTests
         return new()
         {
             PlayerHealth = new Health(70),
+            Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
             Hand = new Hand(new StrikeCard()),
             Turn = new Turn(1)
@@ -38,6 +39,13 @@ public class StrikeActionTests
     public void PlayerMustBeAlive()
     {
         var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
+        Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+    }
+
+    [Test]
+    public void EnergyMustBeAtLeastOne()
+    {
+        var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
 

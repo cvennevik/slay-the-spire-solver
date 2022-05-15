@@ -26,6 +26,7 @@ public class SolverTests
         var gameState = new GameState
         {
             PlayerHealth = new Health(70),
+            Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
             Hand = new Hand(new StrikeCard())
         };
