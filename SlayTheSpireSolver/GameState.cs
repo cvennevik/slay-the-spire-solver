@@ -38,4 +38,10 @@ public record GameState
             DiscardPile = DiscardPile.Add(card)
         };
     }
+
+    public GameState RemoveEnergy(int amountToRemove)
+    {
+        if (amountToRemove < 0) throw new ArgumentOutOfRangeException(nameof(amountToRemove));
+        return this with { Energy = new Energy(Energy.Amount - amountToRemove) };
+    }
 }

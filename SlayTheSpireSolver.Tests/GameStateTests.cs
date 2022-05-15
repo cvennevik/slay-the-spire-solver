@@ -118,6 +118,28 @@ public class GameStateTests
         Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new DefendCard()));
     }
 
+    [Test]
+    [TestCase(3, 2, 1)]
+    [TestCase(3, 0, 3)]
+    [TestCase(3, 3, 0)]
+    [TestCase(0, 0, 0)]
+    public void TestRemoveEnergy(int initialAmount, int amountToRemove, int expectedAmount)
+    {
+        var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
+        var newGameState = gameState.RemoveEnergy(amountToRemove);
+        var expectedGameState = CreateBasicGameState() with { Energy = new Energy(expectedAmount) };
+        Assert.AreEqual(expectedGameState, newGameState);
+    }
+
+    [Test]
+    [TestCase(3, 4)]
+    [TestCase(3, -1)]
+    public void TestRemoveEnergyExceptions(int initialAmount, int amountToRemove)
+    {
+        var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
+        Assert.Throws<ArgumentOutOfRangeException>(() => gameState.RemoveEnergy(amountToRemove));
+    }
+
     private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
     {
         Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));

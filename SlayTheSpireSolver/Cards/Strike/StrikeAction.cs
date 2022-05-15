@@ -26,10 +26,10 @@ public record StrikeAction : IAction
         var newEnemyParty = damagedEnemy.Health.Amount > 0
             ? new EnemyParty(damagedEnemy)
             : new EnemyParty();
-        var reducedEnergy = new Energy(GameState.Energy.Amount - EnergyCost);
-        return GameState.MoveCardFromHandToDiscardPile(new StrikeCard()) with
+        return GameState
+            .RemoveEnergy(EnergyCost)
+            .MoveCardFromHandToDiscardPile(new StrikeCard()) with
         {
-            Energy = reducedEnergy,
             EnemyParty = newEnemyParty
         };
     }

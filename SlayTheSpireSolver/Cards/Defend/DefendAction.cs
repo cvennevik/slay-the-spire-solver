@@ -20,12 +20,11 @@ public record DefendAction : IAction
 
     public GameState Resolve()
     {
-        var newPlayerArmor = new Armor(GameState.PlayerArmor.Amount + ArmorGainAmount);
-        var newEnergy = new Energy(GameState.Energy.Amount - EnergyCost);
-
-        return GameState.MoveCardFromHandToDiscardPile(new DefendCard()) with
+        return GameState
+            .RemoveEnergy(EnergyCost)
+            .MoveCardFromHandToDiscardPile(new DefendCard()) with
         {
-            PlayerArmor = newPlayerArmor, Energy = newEnergy
+            PlayerArmor = new Armor(GameState.PlayerArmor.Amount + ArmorGainAmount)
         };
     }
 }
