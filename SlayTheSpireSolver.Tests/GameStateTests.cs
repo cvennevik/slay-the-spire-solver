@@ -2,7 +2,6 @@ using NUnit.Framework;
 using SlayTheSpireSolver.Cards.Strike;
 using SlayTheSpireSolver.Enemies;
 using SlayTheSpireSolver.Enemies.JawWorms;
-using System.Linq;
 
 namespace SlayTheSpireSolver.Tests;
 
@@ -32,10 +31,7 @@ public class GameStateTests
     public void TestBasicGameState()
     {
         var gameState = CreateBasicGameState();
-        var legalActions = gameState.GetLegalActions().ToList();
-        Assert.AreEqual(2, legalActions.Count);
-        Assert.Contains(new EndTurnAction(gameState), legalActions);
-        Assert.Contains(new StrikeAction(gameState), legalActions);
+        AssertLegalActions(gameState, new StrikeAction(gameState), new EndTurnAction(gameState));
         Assert.False(gameState.IsVictory());
         Assert.False(gameState.IsDefeat());
     }
@@ -43,10 +39,8 @@ public class GameStateTests
     [Test]
     public void TestEmptyHand()
     {
-        var gameState =  CreateBasicGameState() with { Hand = new Hand() };
-        var legalActions = gameState.GetLegalActions();
-        Assert.AreEqual(1, legalActions.Count);
-        Assert.AreEqual(new EndTurnAction(gameState), legalActions.First());
+        var gameState = CreateBasicGameState() with { Hand = new Hand() };
+        AssertLegalActions(gameState, new EndTurnAction(gameState));
         Assert.False(gameState.IsVictory());
         Assert.False(gameState.IsDefeat());
     }
@@ -58,16 +52,18 @@ public class GameStateTests
     public void TestHealthBelowOne(int healthValue)
     {
         var gameState = CreateBasicGameState() with { Player = new Player { Health = new Health(healthValue) } };
-        Assert.IsEmpty(gameState.GetLegalActions());
+        AssertNoLegalActions(gameState);
         Assert.True(gameState.IsDefeat());
+        Assert.False(gameState.IsVictory());
     }
 
     [Test]
     public void TestNoEnemiesLeft()
     {
         var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
+        AssertNoLegalActions(gameState);
         Assert.True(gameState.IsVictory());
-        Assert.IsEmpty(gameState.GetLegalActions());
+        Assert.False(gameState.IsDefeat());
     }
 
     [Test]
@@ -78,7 +74,18 @@ public class GameStateTests
             Player = new Player { Health = new Health(0) },
             EnemyParty = new EnemyParty()
         };
+        AssertNoLegalActions(gameState);
         Assert.False(gameState.IsVictory());
         Assert.True(gameState.IsDefeat());
+    }
+
+    private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
+    {
+        Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
+    }
+
+    private static void AssertNoLegalActions(GameState gameState)
+    {
+        Assert.IsEmpty(gameState.GetLegalActions());
     }
 }
