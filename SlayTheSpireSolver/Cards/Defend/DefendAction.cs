@@ -22,6 +22,10 @@ public record DefendAction : IAction
         var newPlayerArmor = new Armor(GameState.PlayerArmor.Amount + 5);
         var newEnergy = new Energy(GameState.Energy.Amount - EnergyCost);
         var newHand = GameState.Hand.Remove(new DefendCard());
-        return GameState with { PlayerArmor = newPlayerArmor, Energy = newEnergy, Hand = newHand };
+        var discardPileCards = GameState.DiscardPile.Cards.ToList();
+        discardPileCards.Add(new DefendCard());
+        var newDiscardPile = new DiscardPile(discardPileCards.ToArray());
+
+        return GameState with { PlayerArmor = newPlayerArmor, Energy = newEnergy, Hand = newHand, DiscardPile = newDiscardPile };
     }
 }

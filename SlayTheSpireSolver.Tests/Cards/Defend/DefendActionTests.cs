@@ -17,7 +17,7 @@ public class DefendActionTests
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
             Hand = new Hand(new DefendCard()),
-            Turn = new Turn(1)
+            DiscardPile = new DiscardPile(),
         };
     }
 
@@ -75,7 +75,8 @@ public class DefendActionTests
             PlayerArmor = new Armor(initialAmountOfArmor),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new DefendCard())
+            Hand = new Hand(new DefendCard()),
+            DiscardPile = new DiscardPile()
         };
         var defendAction = new DefendAction(gameState);
         var resolvedGameState = defendAction.Resolve();
@@ -84,7 +85,8 @@ public class DefendActionTests
             PlayerArmor = new Armor(expectedAmountOfArmor),
             Energy = new Energy(2),
             EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand()
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new DefendCard())
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
