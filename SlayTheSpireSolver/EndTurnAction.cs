@@ -6,7 +6,7 @@ public record EndTurnAction : IAction
 
     public static bool IsLegal(GameState gameState)
     {
-        return !gameState.IsDefeat() && !gameState.IsVictory();
+        return !gameState.IsCombatOver();
     }
 
     public EndTurnAction(GameState gameState)

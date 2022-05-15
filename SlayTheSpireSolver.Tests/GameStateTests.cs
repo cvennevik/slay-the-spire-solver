@@ -32,8 +32,7 @@ public class GameStateTests
     {
         var gameState = CreateBasicGameState();
         AssertLegalActions(gameState, new StrikeAction(gameState), new EndTurnAction(gameState));
-        Assert.False(gameState.IsVictory());
-        Assert.False(gameState.IsDefeat());
+        Assert.False(gameState.IsCombatOver());
     }
 
     [Test]
@@ -41,8 +40,7 @@ public class GameStateTests
     {
         var gameState = CreateBasicGameState() with { Hand = new Hand() };
         AssertLegalActions(gameState, new EndTurnAction(gameState));
-        Assert.False(gameState.IsVictory());
-        Assert.False(gameState.IsDefeat());
+        Assert.False(gameState.IsCombatOver());
     }
 
     [Test]
@@ -53,8 +51,7 @@ public class GameStateTests
     {
         var gameState = CreateBasicGameState() with { Player = new Player { Health = new Health(healthValue) } };
         AssertNoLegalActions(gameState);
-        Assert.True(gameState.IsDefeat());
-        Assert.False(gameState.IsVictory());
+        Assert.True(gameState.IsCombatOver());
     }
 
     [Test]
@@ -62,8 +59,7 @@ public class GameStateTests
     {
         var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
         AssertNoLegalActions(gameState);
-        Assert.True(gameState.IsVictory());
-        Assert.False(gameState.IsDefeat());
+        Assert.True(gameState.IsCombatOver());
     }
 
     [Test]
@@ -75,8 +71,7 @@ public class GameStateTests
             EnemyParty = new EnemyParty()
         };
         AssertNoLegalActions(gameState);
-        Assert.False(gameState.IsVictory());
-        Assert.True(gameState.IsDefeat());
+        Assert.True(gameState.IsCombatOver());
     }
 
     private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)

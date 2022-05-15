@@ -20,13 +20,8 @@ public record GameState
         return legalActions;
     }
 
-    public bool IsDefeat()
+    public bool IsCombatOver()
     {
-        return Player.Health.Value < 1;
-    }
-
-    public bool IsVictory()
-    {
-        return !EnemyParty.Any() && Player.Health.Value > 0;
+        return Player.Health.Value < 1 || !EnemyParty.Any();
     }
 }
