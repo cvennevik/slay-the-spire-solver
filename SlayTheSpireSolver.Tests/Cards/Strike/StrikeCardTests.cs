@@ -9,6 +9,18 @@ namespace SlayTheSpireSolver.Tests.Cards.Strike;
 [TestFixture]
 public class StrikeCardTests
 {
+    private static GameState CreateBasicGameState()
+    {
+        return new()
+        {
+            PlayerHealth = new Health(70),
+            Energy = new Energy(3),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            Hand = new Hand(new StrikeCard()),
+            Turn = new Turn(1)
+        };
+    }
+
     [Test]
     public void TestEquality()
     {
@@ -18,10 +30,7 @@ public class StrikeCardTests
     [Test]
     public void NoLegalActionsWhenNoStrikeCardInHand()
     {
-        var gameState = new GameState
-        {
-            EnemyParty = new EnemyParty(new JawWorm()),
-        };
+        var gameState = CreateBasicGameState() with { Hand = new Hand() };
         var legalActions = new StrikeCard().GetLegalActions(gameState);
         Assert.IsEmpty(legalActions);
     }
@@ -29,10 +38,7 @@ public class StrikeCardTests
     [Test]
     public void NoLegalActionsWhenNoEnemy()
     {
-        var gameState = new GameState
-        {
-            Hand = new Hand(new StrikeCard())
-        };
+        var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
         var legalActions = new StrikeCard().GetLegalActions(gameState);
         Assert.IsEmpty(legalActions);
     }
@@ -40,12 +46,7 @@ public class StrikeCardTests
     [Test]
     public void NoLegalActionsWhenDefeated()
     {
-        var gameState = new GameState
-        {
-            PlayerHealth = new Health(0),
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new StrikeCard())
-        };
+        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
         var legalActions = new StrikeCard().GetLegalActions(gameState);
         Assert.IsEmpty(legalActions);
     }
@@ -53,11 +54,7 @@ public class StrikeCardTests
     [Test]
     public void OneLegalActionWhenOneEnemy()
     {
-        var gameState = new GameState
-        {
-            Hand = new Hand(new StrikeCard()),
-            EnemyParty = new EnemyParty(new JawWorm())
-        };
+        var gameState = CreateBasicGameState();
         var legalActions = new StrikeCard().GetLegalActions(gameState).ToList();
         Assert.AreEqual(1, legalActions.Count);
         Assert.AreEqual(new StrikeAction(gameState), legalActions.First());
