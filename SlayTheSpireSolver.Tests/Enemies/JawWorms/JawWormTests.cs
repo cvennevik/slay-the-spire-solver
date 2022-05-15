@@ -13,10 +13,10 @@ public class JawWormTests
     [TestCase(7, 10, -3)]
     [TestCase(1, 1, 0)]
     [TestCase(10, 0, 10)]
-    public void DamageReducesHealth(int initialAmountOfHealth, int damageValue, int expectedAmountOfHealth)
+    public void DamageReducesHealth(int initialAmountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
     {
         var jawWorm = new JawWorm { Health = new Health(initialAmountOfHealth) };
-        var damagedJawWorm = jawWorm.Damage(damageValue);
+        var damagedJawWorm = jawWorm.Damage(amountOfDamage);
         Assert.AreEqual(new JawWorm { Health = new Health(expectedAmountOfHealth) }, damagedJawWorm);
     }
 
@@ -24,9 +24,9 @@ public class JawWormTests
     [TestCase(-1)]
     [TestCase(-2)]
     [TestCase(-999)]
-    public void DamageCannotBeNegative(int damageValue)
+    public void AmountOfDamageCannotBeNegative(int amountOfDamage)
     {
         var jawWorm = new JawWorm { Health = new Health(10) };
-        Assert.Throws<ArgumentOutOfRangeException>(() => jawWorm.Damage(damageValue));
+        Assert.Throws<ArgumentOutOfRangeException>(() => jawWorm.Damage(amountOfDamage));
     }
 }
