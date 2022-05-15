@@ -9,51 +9,51 @@ namespace SlayTheSpireSolver.Tests.Cards.Strike;
 [TestFixture]
 public class StrikeActionTests
 {
-    [Test]
-    public void MustHaveEnemy()
+    private static GameState CreateBasicGameState()
     {
-        var gameState = new GameState
+        return new()
         {
-            Hand = new Hand(new StrikeCard())
+            Player = new Player { Health = new Health(70) },
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            Hand = new Hand(new StrikeCard()),
+            Turn = new Turn(1)
         };
+    }
+
+    [Test]
+    public void EnemiesMustExist()
+    {
+        var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
 
     [Test]
-    public void MustHaveStrikeCardInHand()
+    public void HandMustContainStrike()
     {
-        var gameState = new GameState
-        {
-            EnemyParty = new EnemyParty(new JawWorm()),
-        };
+        var gameState = CreateBasicGameState() with { Hand = new Hand() };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
 
     [Test]
-    public void MustNotHaveLost()
+    public void PlayerMustBeAlive()
     {
-        var gameState = new GameState
-        {
-            Player = new Player { Health = new Health(0) },
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new StrikeCard())
-        };
+        var gameState = CreateBasicGameState() with { Player = new Player { Health = new Health(0) } };
         Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
     }
 
     [Test]
     public void ReducesEnemyHealthAndRemovesCardFromHand()
     {
-        var gameState = new GameState
+        var initialGameState = CreateBasicGameState() with
         {
             Hand = new Hand(new StrikeCard()),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
         };
 
-        var strikeAction = new StrikeAction(gameState);
+        var strikeAction = new StrikeAction(initialGameState);
         var resolvedGameState = strikeAction.Resolve();
 
-        var expectedGameState = new GameState()
+        var expectedGameState = CreateBasicGameState() with
         {
             Hand = new Hand(),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
