@@ -9,9 +9,20 @@ namespace SlayTheSpireSolver.Tests;
 public class EndTurnActionTests
 {
     [Test]
-    public void CannotEndTurnWithNoEnemy()
+    public void CannotEndTurnAfterWinning()
     {
         var gameState = new GameState();
+        Assert.Throws<ArgumentException>(() => new EndTurnAction(gameState));
+    }
+
+    [Test]
+    public void CannotEndTurnWhenDefeated()
+    {
+        var gameState = new GameState
+        {
+            Player = new Player { Health = new Health(0) },
+            EnemyParty = new EnemyParty(new JawWorm())
+        };
         Assert.Throws<ArgumentException>(() => new EndTurnAction(gameState));
     }
 

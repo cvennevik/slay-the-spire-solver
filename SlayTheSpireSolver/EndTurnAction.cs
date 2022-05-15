@@ -4,9 +4,14 @@ public record EndTurnAction : IAction
 {
     public GameState GameState { get; }
 
+    public static bool IsLegal(GameState gameState)
+    {
+        return !gameState.IsDefeat() && !gameState.IsVictory();
+    }
+
     public EndTurnAction(GameState gameState)
     {
-        if (!gameState.EnemyParty.Any()) throw new ArgumentException("Cannot end turn with no enemies");
+        if (!IsLegal(gameState)) throw new ArgumentException("Illegal EndTurn action");
 
         GameState = gameState;
     }
@@ -14,12 +19,9 @@ public record EndTurnAction : IAction
     public GameState Resolve()
     {
         GameState nextGameState = GameState;
-        if (GameState.EnemyParty.Any())
+        foreach (var enemy in GameState.EnemyParty)
         {
-            foreach (var enemy in GameState.EnemyParty)
-            {
-                nextGameState = enemy.GetIntendedMove().Resolve(GameState);
-            }
+            nextGameState = enemy.GetIntendedMove().Resolve(GameState);
         }
         return nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
     }

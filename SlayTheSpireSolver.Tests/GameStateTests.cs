@@ -46,6 +46,18 @@ public class GameStateTests
     }
 
     [Test]
+    public void TestGetLegalActionsWhenDefeated()
+    {
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
+            Player = new Player { Health = new Health(0) }
+        };
+        var legalActions = gameState.GetLegalActions().ToList();
+        Assert.IsEmpty(legalActions);
+    }
+
+    [Test]
     public void TestLegalActionsWithNoEnemiesAndEmptyHand()
     {
         var gameState = new GameState

@@ -13,7 +13,7 @@ public record GameState
     {
         var legalActions = new List<IAction>();
         legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this)));
-        if (EnemyParty.Any())
+        if (EndTurnAction.IsLegal(this))
         {
             legalActions.Add(new EndTurnAction(this));
         }
