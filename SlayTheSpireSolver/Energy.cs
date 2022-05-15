@@ -9,4 +9,9 @@ public record Energy
         if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
         Amount = amount;
     }
+
+    public static bool operator >(Energy a, Energy b) => a.Amount > b.Amount;
+    public static bool operator >=(Energy a, Energy b) => a.Amount >= b.Amount;
+    public static bool operator <(Energy a, Energy b) => a.Amount < b.Amount;
+    public static bool operator <=(Energy a, Energy b) => a.Amount <= b.Amount;
 }
