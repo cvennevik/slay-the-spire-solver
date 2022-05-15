@@ -11,6 +11,11 @@ public class DiscardPile
         Cards = cards;
     }
 
+    public DiscardPile Add(ICard card)
+    {
+        return new DiscardPile(Cards.Append(card).ToArray());
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is not DiscardPile otherDiscardPile) return false;

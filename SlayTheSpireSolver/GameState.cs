@@ -32,10 +32,9 @@ public record GameState
 
     public GameState MoveCardFromHandToDiscardPile(ICard card)
     {
-        var newHand = Hand.Remove(card);
-        var discardPileCards = DiscardPile.Cards.ToList();
-        discardPileCards.Add(card);
-        var newDiscardPile = new DiscardPile(discardPileCards.ToArray());
-        return this with { Hand = newHand, DiscardPile = newDiscardPile };
+        return this with {
+            Hand = Hand.Remove(card),
+            DiscardPile = DiscardPile.Add(card)
+        };
     }
 }
