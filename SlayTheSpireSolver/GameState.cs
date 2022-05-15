@@ -10,6 +10,7 @@ public record GameState
     public EnemyParty EnemyParty { get; init; } = new EnemyParty();
     public Turn Turn { get; init; } = new Turn(1);
     public Hand Hand { get; init; } = new Hand();
+    public DrawPile DrawPile { get; init; } = new DrawPile();
     public DiscardPile DiscardPile { get; init; } = new DiscardPile();
 
     public IReadOnlyCollection<IAction> GetLegalActions()
