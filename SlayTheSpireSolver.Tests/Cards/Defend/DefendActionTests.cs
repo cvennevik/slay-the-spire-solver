@@ -9,29 +9,37 @@ namespace SlayTheSpireSolver.Tests.Cards.Defend;
 [TestFixture]
 public class DefendActionTests
 {
-    [Test]
-    public void MustHaveDefendCardInHand()
+    private static GameState CreateBasicGameState()
     {
-        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
-    }
-
-    [Test]
-    public void MustNotHaveWon()
-    {
-        var gameState = new GameState { Hand = new Hand(new DefendCard()) };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
-    }
-
-    [Test]
-    public void MustNotHaveLost()
-    {
-        var gameState = new GameState
+        return new()
         {
-            PlayerHealth = new Health(0),
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new DefendCard())
+            PlayerHealth = new Health(70),
+            Energy = new Energy(3),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            Hand = new Hand(new DefendCard()),
+            Turn = new Turn(1)
         };
+    }
+
+
+    [Test]
+    public void EnemiesMustExist()
+    {
+        var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
+        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+    }
+
+    [Test]
+    public void HandMustContainDefend()
+    {
+        var gameState = CreateBasicGameState() with { Hand = new Hand() };
+        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+    }
+
+    [Test]
+    public void PlayerMustBeAlive()
+    {
+        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
         Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
     }
 
@@ -49,18 +57,8 @@ public class DefendActionTests
     [Test]
     public void ActionsWithDifferentGameStatesAreNotEqual()
     {
-        var gameState1 = new GameState
-        {
-            Hand = new Hand(new DefendCard()),
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Turn = new Turn(1)
-        };
-        var gameState2 = new GameState
-        {
-            Hand = new Hand(new DefendCard()),
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Turn = new Turn(2)
-        };
+        var gameState1 = CreateBasicGameState();
+        var gameState2 = CreateBasicGameState() with { Turn = new Turn(2) };
         Assert.AreNotEqual(new DefendAction(gameState1), new DefendAction(gameState2));
     }
 
