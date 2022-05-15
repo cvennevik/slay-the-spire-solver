@@ -32,7 +32,8 @@ public record GameState
 
     public GameState MoveCardFromHandToDiscardPile(ICard card)
     {
-        return this with {
+        return this with
+        {
             Hand = Hand.Remove(card),
             DiscardPile = DiscardPile.Add(card)
         };
