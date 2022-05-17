@@ -219,7 +219,8 @@ public class GameStateTests
                 DrawPile = new DrawPile(new DefendCard(), new StrikeCard()),
                 Hand = new Hand(new DefendCard())
             };
-            Assert.AreEqual(expectedGameState, nextGameState);
+            var expectedResult = new SetOfPossibleGameStates(new PossibleGameState(expectedGameState, new Probability(1)));
+            Assert.AreEqual(expectedResult, nextGameState);
         }
 
         [Test]
@@ -236,7 +237,8 @@ public class GameStateTests
                 DrawPile = new DrawPile(new DefendCard(), new StrikeCard()),
                 Hand = new Hand(new StrikeCard(), new DefendCard())
             };
-            Assert.AreEqual(expectedGameState, nextGameState);
+            var expectedResult = new SetOfPossibleGameStates(new PossibleGameState(expectedGameState, new Probability(1)));
+            Assert.AreEqual(expectedResult, nextGameState);
         }
 
         [Test]
@@ -249,7 +251,8 @@ public class GameStateTests
                 Hand = new Hand(new StrikeCard())
             };
             var nextGameState = firstGameState.DrawCard();
-            Assert.AreEqual(firstGameState, nextGameState);
+            var expectedResult = new SetOfPossibleGameStates(new PossibleGameState(firstGameState, new Probability(1)));
+            Assert.AreEqual(expectedResult, nextGameState);
         }
     }
 
