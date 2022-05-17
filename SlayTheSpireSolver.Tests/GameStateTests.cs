@@ -252,4 +252,66 @@ public class GameStateTests
             Assert.AreEqual(firstGameState, nextGameState);
         }
     }
+
+    [TestFixture]
+    public class DiscardHandTests : GameStateTests
+    {
+        [Test]
+        public void Test1()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile()
+            };
+            var nextGameState = firstGameState.DiscardHand();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, nextGameState);
+        }
+
+        [Test]
+        public void Test2()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(new DefendCard())
+            };
+            var nextGameState = firstGameState.DiscardHand();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new DefendCard(), new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, nextGameState);
+        }
+
+        [Test]
+        public void Test3()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new DefendCard())
+            };
+            var nextGameState = firstGameState.DiscardHand();
+            Assert.AreEqual(firstGameState, nextGameState);
+        }
+
+        [Test]
+        public void Test4()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile()
+            };
+            var nextGameState = firstGameState.DiscardHand();
+            Assert.AreEqual(firstGameState, nextGameState);
+        }
+    }
 }

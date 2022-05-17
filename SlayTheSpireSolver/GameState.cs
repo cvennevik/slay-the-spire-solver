@@ -54,4 +54,13 @@ public record GameState
             Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray())
         };
     }
+
+    public GameState DiscardHand()
+    {
+        return this with
+        {
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(DiscardPile.Cards.Concat(Hand.Cards).ToArray())
+        };
+    }
 }
