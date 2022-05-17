@@ -43,4 +43,15 @@ public record GameState
     {
         return this with { Energy = Energy - energyToRemove };
     }
+
+    public GameState DrawCard()
+    {
+        if (!DrawPile.Cards.Any()) return this;
+
+        return this with
+        {
+            DrawPile = new DrawPile(DrawPile.Cards.Skip(1).ToArray()),
+            Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray())
+        };
+    }
 }

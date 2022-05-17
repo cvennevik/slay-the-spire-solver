@@ -201,4 +201,55 @@ public class GameStateTests
             Assert.AreEqual(expectedGameState, newGameState);
         }
     }
+
+    [TestFixture]
+    public class DrawCardTests : GameStateTests
+    {
+        [Test]
+        public void Test1()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                DrawPile = new DrawPile(new DefendCard(), new DefendCard(), new StrikeCard()),
+                Hand = new Hand()
+            };
+            var nextGameState = firstGameState.DrawCard();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DrawPile = new DrawPile(new DefendCard(), new StrikeCard()),
+                Hand = new Hand(new DefendCard())
+            };
+            Assert.AreEqual(expectedGameState, nextGameState);
+        }
+
+        [Test]
+        public void Test2()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                DrawPile = new DrawPile(new DefendCard(), new DefendCard(), new StrikeCard()),
+                Hand = new Hand(new StrikeCard())
+            };
+            var nextGameState = firstGameState.DrawCard();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DrawPile = new DrawPile(new DefendCard(), new StrikeCard()),
+                Hand = new Hand(new StrikeCard(), new DefendCard())
+            };
+            Assert.AreEqual(expectedGameState, nextGameState);
+        }
+
+        [Test]
+        public void Test3()
+        {
+            var firstGameState = CreateBasicGameState() with
+            {
+                DrawPile = new DrawPile(),
+                DiscardPile = new DiscardPile(),
+                Hand = new Hand(new StrikeCard())
+            };
+            var nextGameState = firstGameState.DrawCard();
+            Assert.AreEqual(firstGameState, nextGameState);
+        }
+    }
 }
