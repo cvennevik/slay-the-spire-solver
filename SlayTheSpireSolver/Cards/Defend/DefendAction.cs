@@ -5,7 +5,7 @@ public record DefendAction : IAction
     public GameState GameState { get; }
 
     private static readonly Energy EnergyCost = new(1);
-    private const int ArmorGainAmount = 5;
+    private static readonly Armor ArmorGain = new(5);
 
     public static bool IsLegal(GameState gameState)
     {
@@ -26,7 +26,7 @@ public record DefendAction : IAction
             .Remove(EnergyCost)
             .MoveCardFromHandToDiscardPile(new DefendCard()) with
         {
-            PlayerArmor = new Armor(GameState.PlayerArmor.Amount + ArmorGainAmount)
+            PlayerArmor = GameState.PlayerArmor + ArmorGain
         };
     }
 }
