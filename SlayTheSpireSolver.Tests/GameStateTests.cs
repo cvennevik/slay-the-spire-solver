@@ -22,123 +22,183 @@ public class GameStateTests
         };
     }
 
-    [Test]
-    public void TestEquality()
+    [TestFixture]
+    public class EqualityTests : GameStateTests
     {
-        var gameState1 = CreateBasicGameState();
-        var gameState2 = CreateBasicGameState();
-        Assert.AreEqual(gameState1, gameState2);
-    }
-
-    [Test]
-    public void TestBasicGameState()
-    {
-        var gameState = CreateBasicGameState();
-        AssertLegalActions(gameState, new StrikeAction(gameState), new EndTurnAction(gameState));
-        Assert.False(gameState.IsCombatOver());
-    }
-
-    [Test]
-    public void TestEmptyHand()
-    {
-        var gameState = CreateBasicGameState() with { Hand = new Hand() };
-        AssertLegalActions(gameState, new EndTurnAction(gameState));
-        Assert.False(gameState.IsCombatOver());
-    }
-
-    [Test]
-    [TestCase(0)]
-    [TestCase(-1)]
-    [TestCase(-999)]
-    public void TestHealthBelowOne(int amountOfHealth)
-    {
-        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
-        AssertNoLegalActions(gameState);
-        Assert.True(gameState.IsCombatOver());
-    }
-
-    [Test]
-    public void TestNoEnemiesLeft()
-    {
-        var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-        AssertNoLegalActions(gameState);
-        Assert.True(gameState.IsCombatOver());
-    }
-
-    [Test]
-    public void TestHealthBelowOneWithNoEnemies()
-    {
-        var gameState = CreateBasicGameState() with
+        [Test]
+        public void TestEquality()
         {
-            PlayerHealth = new Health(0),
-            EnemyParty = new EnemyParty()
-        };
-        AssertNoLegalActions(gameState);
-        Assert.True(gameState.IsCombatOver());
+            var gameState1 = CreateBasicGameState();
+            var gameState2 = CreateBasicGameState();
+            Assert.AreEqual(gameState1, gameState2);
+        }
     }
 
-    [Test]
-    public void TestMoveCardFromHandToDiscardPile1()
+    [TestFixture]
+    public class LegalActionTests : GameStateTests
     {
-        var gameState = CreateBasicGameState() with
+        [Test]
+        public void BasicGameState()
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
-            DiscardPile = new DiscardPile()
-        };
-        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
-        var expectedGameState = CreateBasicGameState() with
+            var gameState = CreateBasicGameState();
+            AssertLegalActions(gameState, new StrikeAction(gameState), new EndTurnAction(gameState));
+        }
+
+        [Test]
+        public void EmptyHand()
         {
-            Hand = new Hand(new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard())
-        };
-        Assert.AreEqual(expectedGameState, newGameState);
-    }
+            var gameState = CreateBasicGameState() with { Hand = new Hand() };
+            AssertLegalActions(gameState, new EndTurnAction(gameState));
+        }
 
-    [Test]
-    public void TestMoveCardFromHandToDiscardPile2()
-    {
-        var gameState = CreateBasicGameState() with
+        [Test]
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(-999)]
+        public void OutOfHealth(int amountOfHealth)
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard())
-        };
-        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
-        var expectedGameState = CreateBasicGameState() with
+            var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
+            AssertNoLegalActions(gameState);
+            Assert.True(gameState.IsCombatOver());
+        }
+
+        [Test]
+        public void NoEnemiesLeft()
         {
-            Hand = new Hand(new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard(), new StrikeCard())
-        };
-        Assert.AreEqual(expectedGameState, newGameState);
+            var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
+            AssertNoLegalActions(gameState);
+            Assert.True(gameState.IsCombatOver());
+        }
+
+        [Test]
+        public void OutOfHealthWithNoEnemies()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                PlayerHealth = new Health(0),
+                EnemyParty = new EnemyParty()
+            };
+            AssertNoLegalActions(gameState);
+            Assert.True(gameState.IsCombatOver());
+        }
+
+        private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
+        {
+            Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
+        }
+
+        private static void AssertNoLegalActions(GameState gameState)
+        {
+            Assert.IsEmpty(gameState.GetLegalActions());
+        }
     }
 
-    [Test]
-    public void TestMoveCardFromHandToDiscardPile3()
+    [TestFixture]
+    public class IsCombatOverTests : GameStateTests
     {
-        var gameState = CreateBasicGameState() with { Hand = new Hand(new StrikeCard()) };
-        Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new DefendCard()));
+        [Test]
+        public void BasicGameState()
+        {
+            var gameState = CreateBasicGameState();
+            Assert.False(gameState.IsCombatOver());
+        }
+
+        [Test]
+        public void EmptyHand()
+        {
+            var gameState = CreateBasicGameState() with { Hand = new Hand() };
+            Assert.False(gameState.IsCombatOver());
+        }
+
+        [Test]
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(-999)]
+        public void HealthBelowOne(int amountOfHealth)
+        {
+            var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
+            Assert.True(gameState.IsCombatOver());
+        }
+
+        [Test]
+        public void NoEnemiesLeft()
+        {
+            var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
+            Assert.True(gameState.IsCombatOver());
+        }
+
+        [Test]
+        public void HealthBelowOneWithNoEnemies()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                PlayerHealth = new Health(0),
+                EnemyParty = new EnemyParty()
+            };
+            Assert.True(gameState.IsCombatOver());
+        }
     }
 
-    [Test]
-    [TestCase(3, 2, 1)]
-    [TestCase(3, 0, 3)]
-    [TestCase(3, 3, 0)]
-    [TestCase(3, 4, 0)]
-    [TestCase(0, 0, 0)]
-    public void TestRemoveEnergy(int initialAmount, int amountToRemove, int expectedAmount)
+    [TestFixture]
+    public class MoveCardFromHandToDiscardPileTests : GameStateTests
     {
-        var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
-        var newGameState = gameState.Remove(new Energy(amountToRemove));
-        var expectedGameState = CreateBasicGameState() with { Energy = new Energy(expectedAmount) };
-        Assert.AreEqual(expectedGameState, newGameState);
+        [Test]
+        public void Test1()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new StrikeCard()),
+                DiscardPile = new DiscardPile()
+            };
+            var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+            var expectedGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+
+        [Test]
+        public void Test2()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new StrikeCard()),
+                DiscardPile = new DiscardPile(new StrikeCard())
+            };
+            var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+            var expectedGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(new StrikeCard(), new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+
+        [Test]
+        public void Test3()
+        {
+            var gameState = CreateBasicGameState() with { Hand = new Hand(new StrikeCard()) };
+            Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new DefendCard()));
+        }
     }
 
-    private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
+    [TestFixture]
+    public class RemoveEnergyTests : GameStateTests
     {
-        Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
-    }
-
-    private static void AssertNoLegalActions(GameState gameState)
-    {
-        Assert.IsEmpty(gameState.GetLegalActions());
+        [Test]
+        [TestCase(3, 2, 1)]
+        [TestCase(3, 0, 3)]
+        [TestCase(3, 3, 0)]
+        [TestCase(3, 4, 0)]
+        [TestCase(0, 0, 0)]
+        public void Test(int initialAmount, int amountToRemove, int expectedAmount)
+        {
+            var gameState = CreateBasicGameState() with { Energy = new Energy(initialAmount) };
+            var newGameState = gameState.Remove(new Energy(amountToRemove));
+            var expectedGameState = CreateBasicGameState() with { Energy = new Energy(expectedAmount) };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
     }
 }
