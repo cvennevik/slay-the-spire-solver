@@ -3,11 +3,10 @@
 public record PossibleGameState
 {
     public GameState GameState { get; }
-    public double Probability { get; }
+    public Probability Probability { get; }
 
-    public PossibleGameState(GameState gameState, double probability)
+    public PossibleGameState(GameState gameState, Probability probability)
     {
-        if (probability > 1 || probability < 0) throw new ArgumentOutOfRangeException(nameof(probability));
         GameState = gameState;
         Probability = probability;
     }
