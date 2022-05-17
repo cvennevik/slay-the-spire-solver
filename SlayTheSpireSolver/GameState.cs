@@ -46,17 +46,14 @@ public record GameState
 
     public SetOfPossibleGameStates DrawCard()
     {
-        if (!DrawPile.Cards.Any())
-        {
-            return new SetOfPossibleGameStates(new PossibleGameState(this, new Probability(1)));
-        }
+        if (!DrawPile.Cards.Any()) return ToSetOfPossibleGameStates();
 
         var nextGameState = this with
         {
             DrawPile = new DrawPile(DrawPile.Cards.Skip(1).ToArray()),
             Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray())
         };
-        return new SetOfPossibleGameStates(new PossibleGameState(nextGameState, new Probability(1)));
+        return nextGameState.ToSetOfPossibleGameStates();
     }
 
     public GameState DiscardHand()
@@ -66,5 +63,15 @@ public record GameState
             Hand = new Hand(),
             DiscardPile = new DiscardPile(DiscardPile.Cards.Concat(Hand.Cards).ToArray())
         };
+    }
+
+    public SetOfPossibleGameStates ToSetOfPossibleGameStates()
+    {
+        return new SetOfPossibleGameStates(ToPossibleGameState());
+    }
+
+    public PossibleGameState ToPossibleGameState()
+    {
+        return new PossibleGameState(this, new Probability(1));
     }
 }
