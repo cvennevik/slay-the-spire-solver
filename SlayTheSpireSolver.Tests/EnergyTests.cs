@@ -25,7 +25,6 @@ public class EnergyTests
     }
 
     [Test]
-
     [TestCase(0, 0, false)]
     [TestCase(0, 1, false)]
     [TestCase(0, 2, false)]
@@ -41,7 +40,6 @@ public class EnergyTests
     }
 
     [Test]
-
     [TestCase(0, 0, true)]
     [TestCase(0, 1, false)]
     [TestCase(0, 2, false)]
