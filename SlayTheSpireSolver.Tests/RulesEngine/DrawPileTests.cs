@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards.Defend;
 using SlayTheSpireSolver.RulesEngine.Cards.Strike;
@@ -79,6 +80,48 @@ public class DrawPileTests
             var drawPile1 = new DrawPile(new DefendCard(), new StrikeCard());
             var drawPile2 = new DrawPile(new StrikeCard(), new DefendCard());
             Assert.AreEqual(drawPile1, drawPile2);
+        }
+    }
+
+    [TestFixture]
+    public class RemoveTests : DrawPileTests
+    {
+        [Test]
+        public void ThrowsExceptionWhenDrawPileEmpty()
+        {
+            var drawPile = new DrawPile();
+            Assert.Throws<ArgumentException>(() => drawPile.Remove(new StrikeCard()));
+        }
+
+        [Test]
+        public void ThrowsExceptionWhenCardNotInDrawPile()
+        {
+            var drawPile = new DrawPile(new DefendCard());
+            Assert.Throws<ArgumentException>(() => drawPile.Remove(new StrikeCard()));
+        }
+
+        [Test]
+        public void RemovesStrike()
+        {
+            var drawPile = new DrawPile(new StrikeCard());
+            var newDrawPile = drawPile.Remove(new StrikeCard());
+            Assert.AreEqual(new DrawPile(), newDrawPile);
+        }
+
+        [Test]
+        public void RemovesDefend()
+        {
+            var drawPile = new DrawPile(new DefendCard());
+            var newDrawPile = drawPile.Remove(new DefendCard());
+            Assert.AreEqual(new DrawPile(), newDrawPile);
+        }
+
+        [Test]
+        public void RemovesOnlyOneCopy()
+        {
+            var drawPile = new DrawPile(new DefendCard(), new DefendCard());
+            var newDrawPile = drawPile.Remove(new DefendCard());
+            Assert.AreEqual(new DrawPile(new DefendCard()), newDrawPile);
         }
     }
 }

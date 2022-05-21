@@ -29,4 +29,12 @@ public class DrawPile
     {
         return $"{nameof(DrawPile)}: [{string.Join(",", Cards)}]";
     }
+
+    public DrawPile Remove(ICard card)
+    {
+        if (!Cards.Contains(card)) throw new ArgumentException($"DrawPile does not contain {card}");
+        var cardsCopy = Cards.ToList();
+        cardsCopy.Remove(card);
+        return new DrawPile(cardsCopy.ToArray());
+    }
 }
