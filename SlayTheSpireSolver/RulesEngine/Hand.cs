@@ -2,49 +2,19 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class Hand
+public class Hand : CardCollection<Hand>
 {
-    public IReadOnlyCollection<ICard> Cards { get; }
-
-    public Hand(params ICard[] cards)
+    public Hand(params ICard[] cards) : base(cards)
     {
-        Cards = cards;
     }
 
-    public bool Contains(ICard card)
+    protected override Hand CreateNew(params ICard[] cards)
     {
-        return Cards.Contains(card);
-    }
-
-    public Hand Remove(ICard card)
-    {
-        if (!Contains(card)) throw new ArgumentException($"Hand does not contain card of type {card.GetType()}");
-        var cardsCopy = Cards.ToList();
-        cardsCopy.Remove(card);
-        return new Hand(cardsCopy.ToArray());
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is not Hand otherHand) return false;
-        if (otherHand.Cards.Count != Cards.Count) return false;
-        var orderedCards = Cards.OrderBy(x => x.ToString());
-        var orderedOtherCards = otherHand.Cards.OrderBy(x => x.ToString());
-        return orderedCards.SequenceEqual(orderedOtherCards);
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
+        return new Hand(cards);
     }
 
     public override string ToString()
     {
         return $"{nameof(Hand)}: [{string.Join(",", Cards)}]";
-    }
-
-    public Hand Add(ICard card)
-    {
-        return new Hand(Cards.Append(card).ToArray());
     }
 }

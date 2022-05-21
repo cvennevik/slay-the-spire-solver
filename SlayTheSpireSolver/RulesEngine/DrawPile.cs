@@ -2,44 +2,19 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class DrawPile
+public class DrawPile : CardCollection<DrawPile>
 {
-    public IReadOnlyCollection<ICard> Cards { get; }
-
-    public DrawPile(params ICard[] cards)
+    public DrawPile(params ICard[] cards) : base(cards)
     {
-        Cards = cards;
     }
 
-    public override bool Equals(object? obj)
+    protected override DrawPile CreateNew(params ICard[] cards)
     {
-        if (obj is not DrawPile otherDrawPile) return false;
-        if (otherDrawPile.Cards.Count != Cards.Count) return false;
-        var orderedCards = Cards.OrderBy(x => x.ToString());
-        var orderedOtherCards = otherDrawPile.Cards.OrderBy(x => x.ToString());
-        return orderedCards.SequenceEqual(orderedOtherCards);
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
+        return new DrawPile(cards);
     }
 
     public override string ToString()
     {
         return $"{nameof(DrawPile)}: [{string.Join(",", Cards)}]";
-    }
-
-    public DrawPile Remove(ICard card)
-    {
-        if (!Cards.Contains(card)) throw new ArgumentException($"DrawPile does not contain {card}");
-        var cardsCopy = Cards.ToList();
-        cardsCopy.Remove(card);
-        return new DrawPile(cardsCopy.ToArray());
-    }
-
-    public DrawPile Add(ICard card)
-    {
-        return new DrawPile(Cards.Append(card).ToArray());
     }
 }
