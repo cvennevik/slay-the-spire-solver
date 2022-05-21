@@ -53,4 +53,37 @@ public record GameState
             DiscardPile = new DiscardPile(DiscardPile.Cards.Concat(Hand.Cards).ToArray())
         };
     }
+
+    public IReadOnlyList<GameState> DrawCard()
+    {
+        if (DrawPile.Cards.Count == 0)
+        {
+            return new[] { this };
+        }
+
+        if (DrawPile.Cards.Count == 1)
+        {
+            return new[]
+            {
+                this with
+                {
+                    Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray()),
+                    DrawPile = new DrawPile()
+                }
+            };
+        }
+
+        var possibleStates = new List<GameState>();
+        foreach (var card in DrawPile.Cards)
+        {
+            var drawPileCards = DrawPile.Cards.ToList();
+            drawPileCards.Remove(card);
+            possibleStates.Add(this with
+            {
+                Hand = new Hand(Hand.Cards.Append(card).ToArray()),
+                DrawPile = new DrawPile(drawPileCards.ToArray())
+            });
+        }
+        return possibleStates.Distinct().ToArray();
+    }
 }
