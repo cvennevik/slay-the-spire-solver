@@ -124,4 +124,40 @@ public class DrawPileTests
             Assert.AreEqual(new DrawPile(new DefendCard()), newDrawPile);
         }
     }
+    
+    [TestFixture]
+    public class AddTests : DrawPileTests
+    {
+        [Test]
+        public void AddsStrikeToEmptyDrawPile()
+        {
+            var drawPile = new DrawPile();
+            var newDrawPile = drawPile.Add(new StrikeCard());
+            Assert.AreEqual(new DrawPile(new StrikeCard()), newDrawPile);
+        }
+
+        [Test]
+        public void AddsDefendToEmptyDrawPile()
+        {
+            var drawPile = new DrawPile();
+            var newDrawPile = drawPile.Add(new DefendCard());
+            Assert.AreEqual(new DrawPile(new DefendCard()), newDrawPile);
+        }
+
+        [Test]
+        public void AddsStrikeToExistingDrawPile()
+        {
+            var drawPile = new DrawPile(new StrikeCard());
+            var newDrawPile = drawPile.Add(new StrikeCard());
+            Assert.AreEqual(new DrawPile(new StrikeCard(), new StrikeCard()), newDrawPile);
+        }
+
+        [Test]
+        public void AddsDefendToExistingDrawPile()
+        {
+            var drawPile = new DrawPile(new StrikeCard());
+            var newDrawPile = drawPile.Add(new DefendCard());
+            Assert.AreEqual(new DrawPile(new StrikeCard(), new DefendCard()), newDrawPile);
+        }
+    }
 }

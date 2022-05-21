@@ -37,4 +37,9 @@ public class DrawPile
         cardsCopy.Remove(card);
         return new DrawPile(cardsCopy.ToArray());
     }
+
+    public DrawPile Add(ICard card)
+    {
+        return new DrawPile(Cards.Append(card).ToArray());
+    }
 }
