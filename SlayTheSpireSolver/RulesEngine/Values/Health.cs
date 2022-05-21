@@ -8,4 +8,6 @@ public record Health
     {
         Amount = amount;
     }
+
+    public static Health operator -(Health health, Damage damage) => new(health.Amount - damage.Amount);
 }
