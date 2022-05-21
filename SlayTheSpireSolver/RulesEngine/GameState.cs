@@ -64,12 +64,10 @@ public record GameState
         var possibleStates = new List<GameState>();
         foreach (var card in DrawPile.Cards)
         {
-            var drawPileCards = DrawPile.Cards.ToList();
-            drawPileCards.Remove(card);
             possibleStates.Add(this with
             {
                 Hand = Hand.Add(card),
-                DrawPile = new DrawPile(drawPileCards.ToArray())
+                DrawPile = DrawPile.Remove(card)
             });
         }
         return possibleStates.Distinct().ToArray();
