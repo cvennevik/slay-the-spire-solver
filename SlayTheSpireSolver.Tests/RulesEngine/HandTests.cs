@@ -84,6 +84,42 @@ public class HandTests
     }
 
     [TestFixture]
+    public class AddTests : HandTests
+    {
+        [Test]
+        public void AddsStrikeToEmptyHand()
+        {
+            var hand = new Hand();
+            var newHand = hand.Add(new StrikeCard());
+            Assert.AreEqual(new Hand(new StrikeCard()), newHand);
+        }
+
+        [Test]
+        public void AddsDefendToEmptyHand()
+        {
+            var hand = new Hand();
+            var newHand = hand.Add(new DefendCard());
+            Assert.AreEqual(new Hand(new DefendCard()), newHand);
+        }
+
+        [Test]
+        public void AddsStrikeToExistingHand()
+        {
+            var hand = new Hand(new StrikeCard());
+            var newHand = hand.Add(new StrikeCard());
+            Assert.AreEqual(new Hand(new StrikeCard(), new StrikeCard()), newHand);
+        }
+
+        [Test]
+        public void AddsDefendToExistingHand()
+        {
+            var hand = new Hand(new StrikeCard());
+            var newHand = hand.Add(new DefendCard());
+            Assert.AreEqual(new Hand(new StrikeCard(), new DefendCard()), newHand);
+        }
+    }
+
+    [TestFixture]
     public class RemoveTests : HandTests
     {
         [Test]

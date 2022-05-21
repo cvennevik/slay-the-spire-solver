@@ -42,4 +42,9 @@ public class Hand
     {
         return $"{nameof(Hand)}: [{string.Join(",", Cards)}]";
     }
+
+    public Hand Add(ICard card)
+    {
+        return new Hand(Cards.Append(card).ToArray());
+    }
 }
