@@ -2,5 +2,5 @@
 
 public interface IAction
 {
-    GameState Resolve();
+    GameState[] ResolvePossibleStates();
 }

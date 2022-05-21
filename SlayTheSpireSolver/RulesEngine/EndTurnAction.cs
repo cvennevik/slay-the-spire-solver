@@ -18,13 +18,15 @@ public record EndTurnAction : IAction
         GameState = gameState;
     }
 
-    public GameState Resolve()
+    public GameState[] ResolvePossibleStates()
     {
         GameState nextGameState = GameState;
         foreach (var enemy in GameState.EnemyParty)
         {
             nextGameState = enemy.GetIntendedMove().Resolve(GameState);
         }
-        return nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
+
+        nextGameState = nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
+        return new[] { nextGameState };
     }
 }

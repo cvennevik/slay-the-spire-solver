@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards.Defend;
@@ -81,8 +82,8 @@ public class DefendActionTests
             DiscardPile = new DiscardPile()
         };
         var defendAction = new DefendAction(gameState);
-        var resolvedGameState = defendAction.Resolve();
-        var expectedGameState = new GameState()
+        var resolvedStates = defendAction.ResolvePossibleStates();
+        var expectedState = new GameState()
         {
             PlayerArmor = new Armor(expectedAmountOfArmor),
             Energy = new Energy(2),
@@ -90,6 +91,6 @@ public class DefendActionTests
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new DefendCard())
         };
-        Assert.AreEqual(expectedGameState, resolvedGameState);
+        Assert.AreEqual(expectedState, resolvedStates.Single());
     }
 }

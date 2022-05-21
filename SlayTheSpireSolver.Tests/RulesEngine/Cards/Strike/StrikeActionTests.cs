@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards.Strike;
@@ -63,16 +64,16 @@ public class StrikeActionTests
         };
 
         var strikeAction = new StrikeAction(initialGameState);
-        var resolvedGameState = strikeAction.Resolve();
+        var resolvedStates = strikeAction.ResolvePossibleStates();
 
-        var expectedGameState = CreateBasicGameState() with
+        var expectedState = CreateBasicGameState() with
         {
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new StrikeCard()),
             Energy = new Energy(2),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
         };
-        Assert.AreEqual(expectedGameState, resolvedGameState);
+        Assert.AreEqual(expectedState, resolvedStates.Single());
     }
 
     [Test]
@@ -87,15 +88,15 @@ public class StrikeActionTests
         };
 
         var strikeAction = new StrikeAction(initialGameState);
-        var resolvedGameState = strikeAction.Resolve();
+        var resolvedStates = strikeAction.ResolvePossibleStates();
 
-        var expectedGameState = CreateBasicGameState() with
+        var expectedState = CreateBasicGameState() with
         {
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new StrikeCard()),
             Energy = new Energy(2),
             EnemyParty = new EnemyParty()
         };
-        Assert.AreEqual(expectedGameState, resolvedGameState);
+        Assert.AreEqual(expectedState, resolvedStates.Single());
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Enemies;
@@ -44,8 +45,8 @@ public class EndTurnActionTests
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
             var endTurnAction = new EndTurnAction(gameState);
-            var newGameState = endTurnAction.Resolve();
-            Assert.AreEqual(new Health(38), newGameState.PlayerHealth);
+            var resolvedStates = endTurnAction.ResolvePossibleStates();
+            Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
 
         [Test]
@@ -55,8 +56,8 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with { Turn = new Turn(initialTurnNumber) };
             var endTurnAction = new EndTurnAction(gameState);
-            var newGameState = endTurnAction.Resolve();
-            Assert.AreEqual(new Turn(expectedTurnNumber), newGameState.Turn);
+            var resolvedStates = endTurnAction.ResolvePossibleStates();
+            Assert.AreEqual(new Turn(expectedTurnNumber), resolvedStates.Single().Turn);
         }
     }
 

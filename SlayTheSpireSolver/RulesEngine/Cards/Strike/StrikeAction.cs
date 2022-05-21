@@ -23,17 +23,18 @@ public record StrikeAction : IAction
         GameState = gameState;
     }
 
-    public GameState Resolve()
+    public GameState[] ResolvePossibleStates()
     {
         var damagedEnemy = GameState.EnemyParty.First().Damage(DamageAmount);
         var newEnemyParty = damagedEnemy.Health.Amount > 0
             ? new EnemyParty(damagedEnemy)
             : new EnemyParty();
-        return GameState
-            .Remove(EnergyCost)
-            .MoveCardFromHandToDiscardPile(new StrikeCard()) with
-        {
-            EnemyParty = newEnemyParty
-        };
+        var result = GameState
+                .Remove(EnergyCost)
+                .MoveCardFromHandToDiscardPile(new StrikeCard()) with
+            {
+                EnemyParty = newEnemyParty
+            };
+        return new[] { result };
     }
 }

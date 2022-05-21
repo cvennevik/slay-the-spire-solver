@@ -22,13 +22,14 @@ public record DefendAction : IAction
         GameState = gameState;
     }
 
-    public GameState Resolve()
+    public GameState[] ResolvePossibleStates()
     {
-        return GameState
+        var result = GameState
             .Remove(EnergyCost)
             .MoveCardFromHandToDiscardPile(new DefendCard()) with
         {
             PlayerArmor = GameState.PlayerArmor + ArmorGain
         };
+        return new[] { result };
     }
 }
