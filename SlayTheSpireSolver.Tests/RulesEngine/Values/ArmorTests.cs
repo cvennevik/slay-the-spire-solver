@@ -1,9 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Values;
 
-namespace SlayTheSpireSolver.Tests.RulesEngine;
+namespace SlayTheSpireSolver.Tests.RulesEngine.Values;
 
 [TestFixture]
 public class ArmorTests
