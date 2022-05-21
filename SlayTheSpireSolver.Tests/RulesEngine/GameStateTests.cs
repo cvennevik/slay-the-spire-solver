@@ -408,5 +408,51 @@ public class GameStateTests
             Assert.Contains(expectedState1, resolvedStates.ToList());
             Assert.Contains(expectedState2, resolvedStates.ToList());
         }
+
+        [Test]
+        public void ShufflesAndDrawsDiscardPileWithSingleCard()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DrawPile = new DrawPile(),
+                DiscardPile = new DiscardPile(new DefendCard())
+            };
+            var resolvedStates = gameState.DrawCard();
+            var expectedState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new DefendCard()),
+                DrawPile = new DrawPile(),
+                DiscardPile = new DiscardPile()
+            };
+            Assert.AreEqual(expectedState, resolvedStates.Single());
+        }
+
+        [Test]
+        public void ShufflesAndDrawsDiscardPileWithMultipleCards()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DrawPile = new DrawPile(),
+                DiscardPile = new DiscardPile(new StrikeCard(), new DefendCard(), new DefendCard())
+            };
+            var resolvedStates = gameState.DrawCard();
+            var expectedState1 = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new StrikeCard()),
+                DrawPile = new DrawPile(new DefendCard(), new DefendCard()),
+                DiscardPile = new DiscardPile()
+            };
+            var expectedState2 = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new DefendCard()),
+                DrawPile = new DrawPile(new StrikeCard(), new DefendCard()),
+                DiscardPile = new DiscardPile()
+            };
+            Assert.AreEqual(2, resolvedStates.Count);
+            Assert.Contains(expectedState1, resolvedStates.ToList());
+            Assert.Contains(expectedState2, resolvedStates.ToList());
+        }
     }
 }

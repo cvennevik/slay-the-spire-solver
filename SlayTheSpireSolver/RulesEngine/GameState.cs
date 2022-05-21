@@ -58,7 +58,18 @@ public record GameState
     {
         if (DrawPile.Cards.Count == 0)
         {
-            return new[] { this };
+            if (DiscardPile.Cards.Count == 0)
+            {
+                return new[] { this };
+            }
+
+            var thisWithDiscardPileShuffledIntoDrawPile = this with
+            {
+                DrawPile = new DrawPile(DiscardPile.Cards.ToArray()),
+                DiscardPile = new DiscardPile()
+            };
+
+            return thisWithDiscardPileShuffledIntoDrawPile.DrawCard();
         }
 
         var possibleStates = new List<GameState>();
