@@ -67,7 +67,7 @@ public record GameState
             {
                 this with
                 {
-                    Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray()),
+                    Hand = new Hand(Hand.Cards.Append(DrawPile.Cards.First()).ToArray()),
                     DrawPile = new DrawPile()
                 }
             };

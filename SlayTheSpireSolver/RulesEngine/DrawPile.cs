@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DrawPile
 {
-    public IReadOnlyList<ICard> Cards { get; }
+    public IReadOnlyCollection<ICard> Cards { get; }
 
     public DrawPile(params ICard[] cards)
     {
