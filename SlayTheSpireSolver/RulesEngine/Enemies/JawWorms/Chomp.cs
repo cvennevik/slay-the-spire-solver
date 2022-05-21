@@ -4,20 +4,17 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record Chomp : IJawWormMove
 {
-    private const int Damage = 12;
+    private static readonly Damage Damage = new(12);
 
     public GameState Resolve(GameState gameState)
     {
-        if (Damage > gameState.PlayerArmor.Amount)
+        if (Damage > gameState.PlayerArmor)
         {
-            var remainingDamage = Damage - gameState.PlayerArmor.Amount;
-            var newPlayerHealth = new Health(gameState.PlayerHealth.Amount - remainingDamage);
+            var remainingDamage = Damage - gameState.PlayerArmor;
+            var newPlayerHealth = gameState.PlayerHealth - remainingDamage;
             return gameState with { PlayerHealth = newPlayerHealth, PlayerArmor = new Armor(0) };
         }
-        else
-        {
-            var newPlayerArmor = new Armor(gameState.PlayerArmor.Amount - Damage);
-            return gameState with { PlayerArmor = newPlayerArmor };
-        }
+
+        return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
     }
 }
