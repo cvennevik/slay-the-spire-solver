@@ -325,6 +325,33 @@ public class GameStateTests
         }
 
         [Test]
+        public void OnlyTwoPossibleStatesWhenTwoCardKindsInDrawPile()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
+                    new DefendCard(), new DefendCard())
+            };
+            var resolvedStates = gameState.DrawCard();
+            var expectedState1 = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(),
+                    new DefendCard(), new DefendCard())
+            };
+            var expectedState2 = CreateBasicGameState() with
+            {
+                Hand = new Hand(new DefendCard()),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
+                    new DefendCard())
+            };
+            Assert.AreEqual(2, resolvedStates.Count);
+            Assert.Contains(expectedState1, resolvedStates.ToList());
+            Assert.Contains(expectedState2, resolvedStates.ToList());
+        }
+
+        [Test]
         public void CanOnlyDrawOneCardWhenSameCardsInDrawPile()
         {
             var gameState = CreateBasicGameState() with
