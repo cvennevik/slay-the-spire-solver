@@ -455,4 +455,101 @@ public class GameStateTests
             Assert.Contains(expectedState2, resolvedStates.ToList());
         }
     }
+
+    [TestFixture]
+    public class ShuffleDiscardPileIntoDrawPileTests : GameStateTests
+    {
+        [Test]
+        public void ShufflesStrikeCardIntoEmptyDrawPile()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(new StrikeCard()),
+                DrawPile = new DrawPile()
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+
+        [Test]
+        public void ShufflesDefendCardIntoEmptyDrawPile()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(new DefendCard()),
+                DrawPile = new DrawPile()
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new DefendCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+
+        [Test]
+        public void DoesNothingWhenBothPilesEmpty()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile()
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            Assert.AreEqual(gameState, newGameState);
+        }
+
+        [Test]
+        public void DoesNothingWhenDiscardPileEmpty()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            Assert.AreEqual(gameState, newGameState);
+        }
+
+        [Test]
+        public void ShufflesStrikeCardIntoExistingDrawPile()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(new StrikeCard()),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+
+        [Test]
+        public void ShufflesMultipleCardsIntoExistingDrawPile()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(new StrikeCard(), new DefendCard(), new DefendCard()),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            };
+            var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
+                    new DefendCard(), new DefendCard())
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+    }
 }

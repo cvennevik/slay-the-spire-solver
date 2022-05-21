@@ -83,4 +83,21 @@ public record GameState
         }
         return possibleStates.Distinct().ToArray();
     }
+
+    public GameState ShuffleDiscardPileIntoDrawPile()
+    {
+        if (DiscardPile.Cards.Count == 0) return this;
+
+        var drawPileCardsWithDiscardPileCards = DrawPile.Cards.ToList();
+        foreach (var card in DiscardPile.Cards)
+        {
+            drawPileCardsWithDiscardPileCards.Add(card);
+        }
+        
+        return this with
+        {
+            DiscardPile = new DiscardPile(),
+            DrawPile = new DrawPile(drawPileCardsWithDiscardPileCards.ToArray())
+        };
+    }
 }
