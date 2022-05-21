@@ -88,16 +88,16 @@ public record GameState
     {
         if (DiscardPile.Cards.Count == 0) return this;
 
-        var drawPileCardsWithDiscardPileCards = DrawPile.Cards.ToList();
+        var newDrawPile = DrawPile;
         foreach (var card in DiscardPile.Cards)
         {
-            drawPileCardsWithDiscardPileCards.Add(card);
+            newDrawPile = newDrawPile.Add(card);
         }
-        
+
         return this with
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(drawPileCardsWithDiscardPileCards.ToArray())
+            DrawPile = newDrawPile
         };
     }
 }
