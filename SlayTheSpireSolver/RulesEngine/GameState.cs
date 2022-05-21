@@ -61,18 +61,6 @@ public record GameState
             return new[] { this };
         }
 
-        if (DrawPile.Cards.Count == 1)
-        {
-            return new[]
-            {
-                this with
-                {
-                    Hand = new Hand(Hand.Cards.Append(DrawPile.Cards.First()).ToArray()),
-                    DrawPile = new DrawPile()
-                }
-            };
-        }
-
         var possibleStates = new List<GameState>();
         foreach (var card in DrawPile.Cards)
         {
@@ -80,7 +68,7 @@ public record GameState
             drawPileCards.Remove(card);
             possibleStates.Add(this with
             {
-                Hand = new Hand(Hand.Cards.Append(card).ToArray()),
+                Hand = Hand.Add(card),
                 DrawPile = new DrawPile(drawPileCards.ToArray())
             });
         }
