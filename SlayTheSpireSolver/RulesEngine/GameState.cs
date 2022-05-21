@@ -45,18 +45,6 @@ public record GameState
         return this with { Energy = Energy - energyToRemove };
     }
 
-    public PossibleStateSet DrawCard()
-    {
-        if (!DrawPile.Cards.Any()) return ToPossibleStateSet();
-
-        var nextGameState = this with
-        {
-            DrawPile = new DrawPile(DrawPile.Cards.Skip(1).ToArray()),
-            Hand = new Hand(Hand.Cards.Append(DrawPile.Cards[0]).ToArray())
-        };
-        return nextGameState.ToPossibleStateSet();
-    }
-
     public GameState DiscardHand()
     {
         return this with
@@ -64,15 +52,5 @@ public record GameState
             Hand = new Hand(),
             DiscardPile = new DiscardPile(DiscardPile.Cards.Concat(Hand.Cards).ToArray())
         };
-    }
-
-    public PossibleStateSet ToPossibleStateSet()
-    {
-        return new PossibleStateSet(ToPossibleState());
-    }
-
-    public PossibleState ToPossibleState()
-    {
-        return new PossibleState(this, new Probability(1));
     }
 }
