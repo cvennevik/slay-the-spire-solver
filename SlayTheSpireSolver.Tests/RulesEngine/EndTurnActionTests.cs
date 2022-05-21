@@ -36,15 +36,27 @@ public class EndTurnActionTests
     public class ResolveTests : EndTurnActionTests
     {
         [Test]
+        public void EnemyAttacksWhenTurnEnds()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                PlayerHealth = new Health(50),
+                EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var newGameState = endTurnAction.Resolve();
+            Assert.AreEqual(new Health(38), newGameState.PlayerHealth);
+        }
+
+        [Test]
         [TestCase(1, 2)]
         [TestCase(2, 3)]
-        public void TestEndTurn(int initialTurnNumber, int expectedTurnNumber)
+        public void EnemyAttacksWhenTurnEnds(int initialTurnNumber, int expectedTurnNumber)
         {
             var gameState = CreateBasicGameState() with { Turn = new Turn(initialTurnNumber) };
             var endTurnAction = new EndTurnAction(gameState);
             var newGameState = endTurnAction.Resolve();
             Assert.AreEqual(new Turn(expectedTurnNumber), newGameState.Turn);
-            Assert.AreEqual(new Health(38), newGameState.PlayerHealth);
         }
     }
 
