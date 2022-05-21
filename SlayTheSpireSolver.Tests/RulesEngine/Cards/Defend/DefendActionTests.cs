@@ -82,7 +82,7 @@ public class DefendActionTests
             DiscardPile = new DiscardPile()
         };
         var defendAction = new DefendAction(gameState);
-        var resolvedStates = defendAction.ResolvePossibleStates();
+        var resolvedStates = defendAction.ResolveToPossibleStates();
         var expectedState = new GameState()
         {
             PlayerArmor = new Armor(expectedAmountOfArmor),

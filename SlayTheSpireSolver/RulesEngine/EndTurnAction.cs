@@ -18,7 +18,7 @@ public record EndTurnAction : IAction
         GameState = gameState;
     }
 
-    public GameState[] ResolvePossibleStates()
+    public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
         GameState nextGameState = GameState;
         foreach (var enemy in GameState.EnemyParty)

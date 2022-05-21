@@ -2,5 +2,5 @@
 
 public interface IAction
 {
-    GameState[] ResolvePossibleStates();
+    IReadOnlyList<GameState> ResolveToPossibleStates();
 }

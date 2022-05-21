@@ -64,7 +64,7 @@ public class StrikeActionTests
         };
 
         var strikeAction = new StrikeAction(initialGameState);
-        var resolvedStates = strikeAction.ResolvePossibleStates();
+        var resolvedStates = strikeAction.ResolveToPossibleStates();
 
         var expectedState = CreateBasicGameState() with
         {
@@ -88,7 +88,7 @@ public class StrikeActionTests
         };
 
         var strikeAction = new StrikeAction(initialGameState);
-        var resolvedStates = strikeAction.ResolvePossibleStates();
+        var resolvedStates = strikeAction.ResolveToPossibleStates();
 
         var expectedState = CreateBasicGameState() with
         {

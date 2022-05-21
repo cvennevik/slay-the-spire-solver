@@ -45,7 +45,7 @@ public class EndTurnActionTests
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
             var endTurnAction = new EndTurnAction(gameState);
-            var resolvedStates = endTurnAction.ResolvePossibleStates();
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
 
@@ -56,7 +56,7 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with { Turn = new Turn(initialTurnNumber) };
             var endTurnAction = new EndTurnAction(gameState);
-            var resolvedStates = endTurnAction.ResolvePossibleStates();
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Turn(expectedTurnNumber), resolvedStates.Single().Turn);
         }
     }
