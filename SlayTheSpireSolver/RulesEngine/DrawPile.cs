@@ -15,7 +15,9 @@ public class DrawPile
     {
         if (obj is not DrawPile otherDrawPile) return false;
         if (otherDrawPile.Cards.Count != Cards.Count) return false;
-        return Cards.SequenceEqual(otherDrawPile.Cards);
+        var orderedCards = Cards.OrderBy(x => x.ToString());
+        var orderedOtherCards = otherDrawPile.Cards.OrderBy(x => x.ToString());
+        return orderedCards.SequenceEqual(orderedOtherCards);
     }
 
     public override int GetHashCode()

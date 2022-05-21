@@ -78,10 +78,10 @@ public class DrawPileTests
     }
 
     [Test]
-    public void TestEquality9()
+    public void EqualityIgnoresOrder()
     {
         var DrawPile1 = new DrawPile(new DefendCard(), new StrikeCard());
         var DrawPile2 = new DrawPile(new StrikeCard(), new DefendCard());
-        Assert.AreNotEqual(DrawPile1, DrawPile2);
+        Assert.AreEqual(DrawPile1, DrawPile2);
     }
 }
