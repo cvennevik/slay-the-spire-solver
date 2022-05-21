@@ -2,18 +2,18 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class SetOfPossibleGameStates
+public class PossibleStateSet
 {
-    public IReadOnlyCollection<PossibleGameState> PossibleGameStates { get; }
+    public IReadOnlyCollection<PossibleState> PossibleGameStates { get; }
 
-    public SetOfPossibleGameStates(params PossibleGameState[] possibleGameStates)
+    public PossibleStateSet(params PossibleState[] possibleGameStates)
     {
         var sumOfProbabilities = possibleGameStates.Select(x => x.Probability.Value).Sum();
         if (sumOfProbabilities > 1) throw new ArgumentException("Sum of probabilities cannot exceed 1");
 
         PossibleGameStates = possibleGameStates
             .GroupBy(x => x.GameState)
-            .Select(grouping => new PossibleGameState(
+            .Select(grouping => new PossibleState(
                 grouping.Key,
                 new Probability(grouping.Select(possibleGameState => possibleGameState.Probability.Value).Sum())
             ))
@@ -22,7 +22,7 @@ public class SetOfPossibleGameStates
 
     public override bool Equals(object? obj)
     {
-        if (obj is not SetOfPossibleGameStates otherSet) return false;
+        if (obj is not PossibleStateSet otherSet) return false;
         if (otherSet.PossibleGameStates.Count != PossibleGameStates.Count) return false;
         foreach (var possibleGameState in PossibleGameStates)
         {

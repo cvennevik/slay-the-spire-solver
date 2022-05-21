@@ -2,12 +2,12 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record PossibleGameState
+public record PossibleState
 {
     public GameState GameState { get; }
     public Probability Probability { get; }
 
-    public PossibleGameState(GameState gameState, Probability probability)
+    public PossibleState(GameState gameState, Probability probability)
     {
         GameState = gameState;
         Probability = probability;
