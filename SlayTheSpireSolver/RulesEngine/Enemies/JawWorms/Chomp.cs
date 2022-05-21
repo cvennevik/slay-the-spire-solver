@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
+﻿using SlayTheSpireSolver.RulesEngine.Values;
+
+namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record Chomp : IJawWormMove
 {

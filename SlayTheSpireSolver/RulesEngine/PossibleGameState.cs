@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver.RulesEngine;
+﻿using SlayTheSpireSolver.RulesEngine.Values;
+
+namespace SlayTheSpireSolver.RulesEngine;
 
 public record PossibleGameState
 {

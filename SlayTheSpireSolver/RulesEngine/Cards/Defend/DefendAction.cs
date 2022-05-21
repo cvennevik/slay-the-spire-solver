@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver.RulesEngine.Cards.Defend;
+﻿using SlayTheSpireSolver.RulesEngine.Values;
+
+namespace SlayTheSpireSolver.RulesEngine.Cards.Defend;
 
 public record DefendAction : IAction
 {

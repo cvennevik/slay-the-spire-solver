@@ -1,4 +1,6 @@
-﻿namespace SlayTheSpireSolver.RulesEngine.Enemies;
+﻿using SlayTheSpireSolver.RulesEngine.Values;
+
+namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public abstract record Enemy
 {
