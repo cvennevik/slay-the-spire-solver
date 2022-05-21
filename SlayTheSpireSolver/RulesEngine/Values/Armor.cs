@@ -12,4 +12,12 @@ public record Armor
 
     public static Armor operator +(Armor a, Armor b) => new(a.Amount + b.Amount);
     public static Armor operator -(Armor a, Armor b) => new(a.Amount < b.Amount ? 0 : a.Amount - b.Amount);
+
+    public static bool operator >(Armor armor, Damage damage) => armor.Amount > damage.Amount;
+    public static bool operator >=(Armor armor, Damage damage) => armor.Amount >= damage.Amount;
+    public static bool operator <(Armor armor, Damage damage) => armor.Amount < damage.Amount;
+    public static bool operator <=(Armor armor, Damage damage) => armor.Amount <= damage.Amount;
+
+    public static Armor operator -(Armor armor, Damage damage) =>
+        new(armor < damage ? 0 : armor.Amount - damage.Amount);
 }
