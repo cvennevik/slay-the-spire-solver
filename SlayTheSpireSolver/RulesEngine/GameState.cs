@@ -57,19 +57,10 @@ public record GameState
     public IReadOnlyList<GameState> DrawCard()
     {
         if (DrawPile.Cards.Count == 0)
-        {
-            if (DiscardPile.Cards.Count == 0)
-            {
-                return new[] { this };
-            }
-
-            var thisWithDiscardPileShuffledIntoDrawPile = this with
-            {
-                DrawPile = new DrawPile(DiscardPile.Cards.ToArray()),
-                DiscardPile = new DiscardPile()
-            };
-
-            return thisWithDiscardPileShuffledIntoDrawPile.DrawCard();
+        { 
+            return DiscardPile.Cards.Any()
+                ? ShuffleDiscardPileIntoDrawPile().DrawCard()
+                : new[] { this };
         }
 
         var possibleStates = new List<GameState>();
