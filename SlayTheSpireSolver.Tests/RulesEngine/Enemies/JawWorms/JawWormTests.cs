@@ -1,6 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using SlayTheSpireSolver.RulesEngine;
+﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -18,17 +16,7 @@ public class JawWormTests
     public void DamageReducesHealth(int initialAmountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
     {
         var jawWorm = new JawWorm { Health = new Health(initialAmountOfHealth) };
-        var damagedJawWorm = jawWorm.Damage(amountOfDamage);
+        var damagedJawWorm = jawWorm.DealDamage(new Damage(amountOfDamage));
         Assert.AreEqual(new JawWorm { Health = new Health(expectedAmountOfHealth) }, damagedJawWorm);
-    }
-
-    [Test]
-    [TestCase(-1)]
-    [TestCase(-2)]
-    [TestCase(-999)]
-    public void AmountOfDamageCannotBeNegative(int amountOfDamage)
-    {
-        var jawWorm = new JawWorm { Health = new Health(10) };
-        Assert.Throws<ArgumentOutOfRangeException>(() => jawWorm.Damage(amountOfDamage));
     }
 }

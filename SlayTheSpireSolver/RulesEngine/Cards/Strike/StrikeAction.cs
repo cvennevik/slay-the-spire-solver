@@ -8,7 +8,7 @@ public record StrikeAction : IAction
     public GameState GameState { get; }
 
     private static readonly Energy EnergyCost = new(1);
-    private const int DamageAmount = 6;
+    private static readonly Damage Damage = new(6);
 
     public static bool IsLegal(GameState gameState)
     {
@@ -25,7 +25,7 @@ public record StrikeAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        var damagedEnemy = GameState.EnemyParty.First().Damage(DamageAmount);
+        var damagedEnemy = GameState.EnemyParty.First().DealDamage(Damage);
         var newEnemyParty = damagedEnemy.Health.Amount > 0
             ? new EnemyParty(damagedEnemy)
             : new EnemyParty();

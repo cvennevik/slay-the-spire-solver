@@ -7,9 +7,8 @@ public abstract record Enemy
     public Health Health { get; init; } = new(1);
     public abstract IEnemyMove GetIntendedMove();
 
-    public Enemy Damage(int amountOfDamage)
+    public Enemy DealDamage(Damage damage)
     {
-        if (amountOfDamage < 0) throw new ArgumentOutOfRangeException(nameof(amountOfDamage));
-        return this with { Health = new Health(Health.Amount - amountOfDamage) };
+        return this with { Health = Health - damage };
     }
 }
