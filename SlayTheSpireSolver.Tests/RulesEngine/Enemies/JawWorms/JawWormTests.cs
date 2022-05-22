@@ -8,15 +8,23 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies.JawWorms;
 public class JawWormTests
 {
     [Test]
-    [TestCase(10, 6, 4)]
-    [TestCase(8, 1, 7)]
-    [TestCase(7, 10, -3)]
-    [TestCase(1, 1, 0)]
-    [TestCase(10, 0, 10)]
-    public void DamageReducesHealth(int initialAmountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
+    [TestCase(0, 10, 6, 0, 4)]
+    [TestCase(0, 8, 1, 0, 7)]
+    [TestCase(0, 7, 10, 0, -3)]
+    [TestCase(0, 1, 1, 0, 0)]
+    [TestCase(0, 10, 0, 0, 10)]
+    [TestCase(10, 10, 6, 4, 10)]
+    [TestCase(5, 10, 5, 0, 10)]
+    [TestCase(5, 10, 10, 0, 5)]
+    [TestCase(5, 10, 20, 0, -5)]
+    [TestCase(10, 10, 0, 10, 10)]
+    [TestCase(0, 10, 0, 0, 10)]
+    public void DamageReducesArmorAndHealth(int initialArmor, int initialHealth, int damage,
+        int expectedArmor, int expectedHealth)
     {
-        var jawWorm = new JawWorm { Health = new Health(initialAmountOfHealth) };
-        var damagedJawWorm = jawWorm.DealDamage(new Damage(amountOfDamage));
-        Assert.AreEqual(new JawWorm { Health = new Health(expectedAmountOfHealth) }, damagedJawWorm);
+        var jawWorm = new JawWorm { Armor = new Armor(initialArmor), Health = new Health(initialHealth) };
+        var damagedJawWorm = jawWorm.DealDamage(new Damage(damage));
+        Assert.AreEqual(new JawWorm { Armor = new Armor(expectedArmor), Health = new Health(expectedHealth) },
+            damagedJawWorm);
     }
 }
