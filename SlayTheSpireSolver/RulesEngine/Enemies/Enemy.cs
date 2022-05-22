@@ -13,9 +13,9 @@ public abstract record Enemy
         if (damage > Armor)
         {
             var remainingDamage = damage - Armor;
-            return this with { Health = Health - remainingDamage, Armor = new Armor(0) };
+            return this with { Armor = new Armor(0), Health = Health - remainingDamage };
         }
 
-        return this with { Health = Health, Armor = Armor - damage };
+        return this with { Armor = Armor - damage };
     }
 }
