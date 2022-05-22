@@ -91,4 +91,10 @@ public record GameState
             DrawPile = newDrawPile
         };
     }
+
+    public GameState ClearEnemyArmor()
+    {
+        var enemiesWithArmorCleared = EnemyParty.Select(enemy => enemy with { Armor = new Armor(0) });
+        return this with { EnemyParty = new EnemyParty(enemiesWithArmorCleared.ToArray())};
+    }
 }

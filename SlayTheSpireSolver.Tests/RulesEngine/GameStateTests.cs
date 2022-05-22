@@ -552,4 +552,29 @@ public class GameStateTests
             Assert.AreEqual(expectedGameState, newGameState);
         }
     }
+
+    [TestFixture]
+    public class ClearEnemyArmorTests : GameStateTests
+    {
+        [Test]
+        public void Test()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                EnemyParty = new EnemyParty(
+                    new JawWorm { Armor = new Armor(0), Health = new Health(10) },
+                    new JawWorm { Armor = new Armor(5), Health = new Health(7)},
+                    new JawWorm { Armor = new Armor(10), Health = new Health(8)})
+            };
+            var newGameState = gameState.ClearEnemyArmor();
+            var expectedGameState = CreateBasicGameState() with
+            {
+                EnemyParty = new EnemyParty(
+                    new JawWorm { Armor = new Armor(0), Health = new Health(10) },
+                    new JawWorm { Armor = new Armor(0), Health = new Health(7)},
+                    new JawWorm { Armor = new Armor(0), Health = new Health(8)})
+            };
+            Assert.AreEqual(expectedGameState, newGameState);
+        }
+    }
 }
