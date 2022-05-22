@@ -37,7 +37,7 @@ public class EndTurnActionTests
     public class ResolveTests : EndTurnActionTests
     {
         [Test]
-        public void EnemyAttacksWhenTurnEnds()
+        public void EnemyAttacks()
         {
             var gameState = CreateBasicGameState() with
             {
@@ -52,7 +52,7 @@ public class EndTurnActionTests
         [Test]
         [TestCase(1, 2)]
         [TestCase(2, 3)]
-        public void EnemyAttacksWhenTurnEnds(int initialTurnNumber, int expectedTurnNumber)
+        public void TurnNumberIncreases(int initialTurnNumber, int expectedTurnNumber)
         {
             var gameState = CreateBasicGameState() with { Turn = new Turn(initialTurnNumber) };
             var endTurnAction = new EndTurnAction(gameState);
