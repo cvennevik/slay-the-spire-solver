@@ -20,13 +20,13 @@ public record EndTurnAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        GameState nextGameState = GameState;
-        foreach (var enemy in GameState.EnemyParty)
+        var workingGameState = GameState.ClearEnemyArmor();
+        foreach (var enemy in workingGameState.EnemyParty)
         {
-            nextGameState = enemy.GetIntendedMove().Resolve(GameState);
+            workingGameState = enemy.GetIntendedMove().Resolve(workingGameState);
         }
 
-        nextGameState = nextGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
-        return new[] { nextGameState };
+        workingGameState = workingGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
+        return new[] { workingGameState };
     }
 }

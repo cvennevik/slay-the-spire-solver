@@ -50,6 +50,18 @@ public class EndTurnActionTests
         }
 
         [Test]
+        public void ClearsEnemyArmor()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                EnemyParty = new EnemyParty(new JawWorm { Armor = new Armor(10)})
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            Assert.AreEqual(new Armor(0), resolvedStates.Single().EnemyParty.First().Armor);
+        }
+
+        [Test]
         [TestCase(1, 2)]
         [TestCase(2, 3)]
         public void TurnNumberIncreases(int initialTurnNumber, int expectedTurnNumber)
