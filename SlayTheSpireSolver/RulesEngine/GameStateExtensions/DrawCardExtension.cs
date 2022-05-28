@@ -20,7 +20,7 @@ public static class DrawCardExtension
                 DrawPile = gameState.DrawPile.Remove(card)
             });
         }
-        return possibleStates.Distinct().ToArray();
 
+        return possibleStates.Distinct().ToArray();
     }
 }
