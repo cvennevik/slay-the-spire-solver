@@ -23,4 +23,9 @@ public static class DrawCardExtension
 
         return possibleStates.Distinct().ToArray();
     }
+
+    public static IReadOnlyCollection<GameState> DrawCard(this IReadOnlyCollection<GameState> gameStates)
+    {
+        return gameStates.SelectMany(gameState => gameState.DrawCard()).Distinct().ToArray();
+    }
 }

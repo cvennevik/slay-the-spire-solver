@@ -20,9 +20,16 @@ public record EndTurnAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        return new[]
-        {
-            GameState.ClearEnemyArmor().ResolveEnemyMoves().IncrementTurn()
-        };
+        return GameState
+            .DiscardHand()
+            .ClearEnemyArmor()
+            .ResolveEnemyMoves()
+            .IncrementTurn()
+            .DrawCard()
+            .DrawCard()
+            .DrawCard()
+            .DrawCard()
+            .DrawCard()
+            .ToArray();
     }
 }

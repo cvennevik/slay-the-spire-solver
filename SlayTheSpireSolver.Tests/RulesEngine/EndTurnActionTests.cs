@@ -2,6 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards.Defend;
+using SlayTheSpireSolver.RulesEngine.Cards.Strike;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -70,6 +72,62 @@ public class EndTurnActionTests
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Turn(expectedTurnNumber), resolvedStates.Single().Turn);
+        }
+
+        [Test]
+        public void DiscardsHandAndDrawsFiveNewCards1()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard(), new DefendCard()),
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile()
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            Assert.AreEqual(new Hand(new StrikeCard(), new DefendCard()), resolvedStates.Single().Hand);
+            Assert.AreEqual(new DiscardPile(), resolvedStates.Single().DiscardPile);
+            Assert.AreEqual(new DrawPile(), resolvedStates.Single().DrawPile);
+        }
+
+        [Test]
+        public void DiscardsHandAndDrawsFiveNewCards2()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new DefendCard()),
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
+                    new StrikeCard(), new StrikeCard(), new StrikeCard())
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            Assert.AreEqual(new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard()),
+                resolvedStates.Single().Hand);
+            Assert.AreEqual(new DiscardPile(new DefendCard()), resolvedStates.Single().DiscardPile);
+            Assert.AreEqual(new DrawPile(new StrikeCard()), resolvedStates.Single().DrawPile);
+        }
+
+        [Test]
+        public void DiscardsHandAndDrawsFiveNewCards3()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new DefendCard(), new StrikeCard()),
+                DiscardPile = new DiscardPile(),
+                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard())
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            Assert.AreEqual(2, resolvedStates.Count);
+            Assert.AreEqual(1, resolvedStates.Count(x =>
+                x.Hand == new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard()) &&
+                x.DrawPile == new DrawPile(new DefendCard()) &&
+                x.DiscardPile == new DiscardPile()));
+            Assert.AreEqual(1, resolvedStates.Count(x =>
+                x.Hand == new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new DefendCard()) &&
+                x.DrawPile == new DrawPile(new StrikeCard()) &&
+                x.DiscardPile == new DiscardPile()));
         }
     }
 
