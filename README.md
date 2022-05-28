@@ -1,8 +1,6 @@
 # Slay the Spire Solver
 A WIP tool for finding the best possible actions in Slay the Spire fights.
 
-This README was last updated May 28th, 2022.
-
 ## About the project
 
 ### Is this open source?
