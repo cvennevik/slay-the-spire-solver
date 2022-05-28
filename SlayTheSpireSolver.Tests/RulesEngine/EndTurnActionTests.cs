@@ -129,6 +129,19 @@ public class EndTurnActionTests
                 x.DrawPile == new DrawPile(new StrikeCard()) &&
                 x.DiscardPile == new DiscardPile()));
         }
+
+        [Test]
+        public void RecoversBaseEnergy()
+        {
+            var gameState = CreateBasicGameState() with
+            {
+                BaseEnergy = new Energy(4),
+                Energy = new Energy(0)
+            };
+            var endTurnAction = new EndTurnAction(gameState);
+            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            Assert.AreEqual(new Energy(4), resolvedStates.Single().Energy);
+        }
     }
 
     [TestFixture]

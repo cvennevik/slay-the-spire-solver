@@ -25,6 +25,7 @@ public record EndTurnAction : IAction
             .ClearEnemyArmor()
             .ResolveEnemyMoves()
             .IncrementTurn()
+            .RecoverBaseEnergy()
             .DrawCard()
             .DrawCard()
             .DrawCard()
