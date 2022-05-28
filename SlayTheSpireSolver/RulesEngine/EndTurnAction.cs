@@ -20,13 +20,9 @@ public record EndTurnAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        var workingGameState = GameState.ClearEnemyArmor();
-        foreach (var enemy in workingGameState.EnemyParty)
+        return new[]
         {
-            workingGameState = enemy.GetIntendedMove().Resolve(workingGameState);
-        }
-
-        workingGameState = workingGameState.IncrementTurn();
-        return new[] { workingGameState };
+            GameState.ClearEnemyArmor().ResolveEnemyMoves().IncrementTurn()
+        };
     }
 }
