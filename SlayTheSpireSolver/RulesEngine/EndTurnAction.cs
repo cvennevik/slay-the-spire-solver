@@ -1,5 +1,4 @@
 ﻿using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
-using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
@@ -27,7 +26,7 @@ public record EndTurnAction : IAction
             workingGameState = enemy.GetIntendedMove().Resolve(workingGameState);
         }
 
-        workingGameState = workingGameState with { Turn = new Turn(GameState.Turn.Number + 1) };
+        workingGameState = workingGameState.IncrementTurn();
         return new[] { workingGameState };
     }
 }
