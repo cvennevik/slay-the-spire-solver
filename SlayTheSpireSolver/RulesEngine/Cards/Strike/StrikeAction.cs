@@ -1,4 +1,5 @@
 ﻿using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards.Strike;
