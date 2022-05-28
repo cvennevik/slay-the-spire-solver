@@ -31,6 +31,8 @@ public abstract class CardCollection<T> where T : CardCollection<T>
         return CreateNew(cardsCopy.ToArray());
     }
 
+    public static bool operator ==(CardCollection<T> a, CardCollection<T> b) => a.Equals(b);
+    public static bool operator !=(CardCollection<T> a, CardCollection<T> b) => !a.Equals(b);
     public override bool Equals(object? obj)
     {
         if (obj is not T otherCardCollection) return false;
