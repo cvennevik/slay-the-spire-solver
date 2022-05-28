@@ -18,7 +18,6 @@ public class JawWormTests
     [TestCase(5, 10, 10, 0, 5)]
     [TestCase(5, 10, 20, 0, -5)]
     [TestCase(10, 10, 0, 10, 10)]
-    [TestCase(0, 10, 0, 0, 10)]
     public void DamageReducesArmorAndHealth(int initialArmor, int initialHealth, int damage,
         int expectedArmor, int expectedHealth)
     {
