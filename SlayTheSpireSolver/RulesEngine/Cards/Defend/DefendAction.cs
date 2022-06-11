@@ -1,4 +1,4 @@
-﻿using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
+﻿using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards.Defend;
@@ -8,7 +8,12 @@ public record DefendAction : IAction
     public GameState GameState { get; }
 
     private static readonly Energy EnergyCost = new(1);
-    private static readonly Armor ArmorGain = new(5);
+
+    private static readonly IEffect Effect = new CombinedEffect(
+        new RemoveEnergyEffect(1),
+        new RemoveCardFromHandEffect(new DefendCard()),
+        new GainPlayerArmorEffect(5),
+        new AddCardToDiscardPileEffect(new DefendCard()));
 
     public static bool IsLegal(GameState gameState)
     {
@@ -25,12 +30,6 @@ public record DefendAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        var resolvedState = GameState
-            .Remove(EnergyCost)
-            .MoveCardFromHandToDiscardPile(new DefendCard()) with
-        {
-            PlayerArmor = GameState.PlayerArmor + ArmorGain
-        };
-        return new[] { resolvedState };
+        return Effect.ApplyTo(GameState);
     }
 }
