@@ -31,4 +31,10 @@ public readonly record struct DamageEnemyEffect : IEffect
 
         return new[] { gameState with { EnemyParty = new EnemyParty(enemies.ToArray()) } };
     }
+
+    public IReadOnlyCollection<GameStateWithUnresolvedEffects> Resolve(GameState gameState)
+    {
+        var result = ApplyTo(gameState);
+        return result.Select(x => new GameStateWithUnresolvedEffects(x)).ToList();
+    }
 }

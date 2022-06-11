@@ -25,6 +25,12 @@ public readonly struct CombinedEffect : IEffect
         return interimGameStates.ToArray();
     }
 
+    public IReadOnlyCollection<GameStateWithUnresolvedEffects> Resolve(GameState gameState)
+    {
+        var result = ApplyTo(gameState);
+        return result.Select(x => new GameStateWithUnresolvedEffects(x)).ToList();
+    }
+
     public override bool Equals(object? obj)
     {
         return obj is CombinedEffect otherEffect

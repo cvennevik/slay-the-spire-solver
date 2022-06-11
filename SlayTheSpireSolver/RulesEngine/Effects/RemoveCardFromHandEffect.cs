@@ -17,4 +17,10 @@ public readonly record struct RemoveCardFromHandEffect : IEffect
         cardsInHand.Remove(_cardToRemove);
         return new[] { gameState with { Hand = new Hand(cardsInHand.ToArray()) } };
     }
+
+    public IReadOnlyCollection<GameStateWithUnresolvedEffects> Resolve(GameState gameState)
+    {
+        var result = ApplyTo(gameState);
+        return result.Select(x => new GameStateWithUnresolvedEffects(x)).ToList();
+    }
 }

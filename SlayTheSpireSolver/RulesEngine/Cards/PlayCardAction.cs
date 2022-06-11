@@ -34,6 +34,6 @@ public readonly record struct PlayCardAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        return _effect.ApplyTo(_gameState);
+        return _effect.Resolve(_gameState).Select(x => x.GameState).ToList();
     }
 }

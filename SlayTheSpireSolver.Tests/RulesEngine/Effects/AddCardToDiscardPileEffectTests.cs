@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -14,8 +13,8 @@ public class AddCardToDiscardPileEffectTests
     {
         var gameState = new GameState { DiscardPile = new DiscardPile() };
         var effect = new AddCardToDiscardPileEffect(new Strike());
-        var newGameStates = effect.ApplyTo(gameState);
-        Assert.AreEqual(new GameState { DiscardPile = new DiscardPile(new Strike()) }, newGameStates.Single());
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        Assert.AreEqual(new GameState { DiscardPile = new DiscardPile(new Strike()) }, result);
     }
 
     [Test]
@@ -26,12 +25,12 @@ public class AddCardToDiscardPileEffectTests
             DiscardPile = new DiscardPile(new Strike(), new Defend())
         };
         var effect = new AddCardToDiscardPileEffect(new Strike());
-        var newGameStates = effect.ApplyTo(gameState);
+        var resultingGameState = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(new Strike(), new Defend(), new Strike())
         };
-        Assert.AreEqual(expectedGameState, newGameStates.Single());
+        Assert.AreEqual(expectedGameState, resultingGameState);
     }
 
     [Test]

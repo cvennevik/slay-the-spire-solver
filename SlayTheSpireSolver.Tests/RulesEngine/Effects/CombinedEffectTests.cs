@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -15,7 +14,7 @@ public class CombinedEffectTests
     {
         var effect = new CombinedEffect();
         var gameState = new GameState { PlayerHealth = new Health(42) };
-        Assert.AreEqual(gameState, effect.ApplyTo(gameState).Single());
+        Assert.AreEqual(gameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
 
     [Test]
@@ -35,7 +34,7 @@ public class CombinedEffectTests
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Strike())
         };
-        Assert.AreEqual(expectedGameState, effect.ApplyTo(gameState).Single());
+        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
 
     [Test]

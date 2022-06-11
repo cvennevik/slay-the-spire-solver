@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -20,7 +19,7 @@ public class RemoveEnergyEffectTests
         var gameState = new GameState { Energy = new Energy(initialEnergyAmount) };
         var effect = new RemoveEnergyEffect(new Energy(effectAmount));
         var expectedGameState = new GameState { Energy = new Energy(expectedEnergyAmount) };
-        Assert.AreEqual(expectedGameState, effect.ApplyTo(gameState).Single());
+        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
 
     [Test]
