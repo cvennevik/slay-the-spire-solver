@@ -60,7 +60,7 @@ public class StrikeActionTests
     public class ResolveTests : StrikeActionTests
     {
         [Test]
-        public void TestStrike()
+        public void DamagesEnemy()
         {
             var initialGameState = CreateBasicGameState() with
             {
@@ -84,7 +84,7 @@ public class StrikeActionTests
         }
 
         [Test]
-        public void TestLethalStrike()
+        public void KillsEnemy()
         {
             var initialGameState = CreateBasicGameState() with
             {
