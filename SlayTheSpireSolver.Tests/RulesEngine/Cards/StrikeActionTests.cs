@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
-namespace SlayTheSpireSolver.Tests.RulesEngine.Cards.Strike;
+namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
 [TestFixture]
 public class StrikeActionTests
