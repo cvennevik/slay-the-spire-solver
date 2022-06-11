@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -22,35 +21,6 @@ public class DefendActionTests
             Hand = new Hand(new Defend()),
             DiscardPile = new DiscardPile(),
         };
-    }
-
-
-    [Test]
-    public void EnemiesMustExist()
-    {
-        var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Defend()));
-    }
-
-    [Test]
-    public void HandMustContainDefend()
-    {
-        var gameState = CreateBasicGameState() with { Hand = new Hand() };
-        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Defend()));
-    }
-
-    [Test]
-    public void PlayerMustBeAlive()
-    {
-        var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Defend()));
-    }
-
-    [Test]
-    public void EnergyMustBeAtLeastOne()
-    {
-        var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Defend()));
     }
 
     [Test]

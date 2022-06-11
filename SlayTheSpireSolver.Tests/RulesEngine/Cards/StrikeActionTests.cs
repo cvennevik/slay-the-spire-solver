@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -22,38 +21,6 @@ public class StrikeActionTests
             Hand = new Hand(new Strike()),
             DiscardPile = new DiscardPile()
         };
-    }
-
-    [TestFixture]
-    public class LegalityTests : StrikeActionTests
-    {
-        [Test]
-        public void EnemiesMustExist()
-        {
-            var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
-        }
-
-        [Test]
-        public void HandMustContainStrike()
-        {
-            var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
-        }
-
-        [Test]
-        public void PlayerMustBeAlive()
-        {
-            var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
-        }
-
-        [Test]
-        public void EnergyMustBeAtLeastOne()
-        {
-            var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
-        }
     }
 
     [TestFixture]
