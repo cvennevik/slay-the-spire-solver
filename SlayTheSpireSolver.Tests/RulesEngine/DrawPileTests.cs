@@ -21,63 +21,63 @@ public class DrawPileTests
         public void Test2()
         {
             var drawPile1 = new DrawPile();
-            var drawPile2 = new DrawPile(new StrikeCard());
+            var drawPile2 = new DrawPile(new Strike());
             Assert.AreNotEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test3()
         {
-            var drawPile1 = new DrawPile(new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard());
+            var drawPile1 = new DrawPile(new Strike());
+            var drawPile2 = new DrawPile(new Strike());
             Assert.AreEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test4()
         {
-            var drawPile1 = new DrawPile(new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new StrikeCard());
+            var drawPile1 = new DrawPile(new Strike());
+            var drawPile2 = new DrawPile(new Strike(), new Strike());
             Assert.AreNotEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test5()
         {
-            var drawPile1 = new DrawPile(new StrikeCard(), new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new StrikeCard());
+            var drawPile1 = new DrawPile(new Strike(), new Strike());
+            var drawPile2 = new DrawPile(new Strike(), new Strike());
             Assert.AreEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test6()
         {
-            var drawPile1 = new DrawPile(new StrikeCard(), new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new DefendCard());
+            var drawPile1 = new DrawPile(new Strike(), new Strike());
+            var drawPile2 = new DrawPile(new Strike(), new Defend());
             Assert.AreNotEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test7()
         {
-            var drawPile1 = new DrawPile(new StrikeCard(), new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new StrikeCard(), new DefendCard());
+            var drawPile1 = new DrawPile(new Strike(), new Strike());
+            var drawPile2 = new DrawPile(new Strike(), new Strike(), new Defend());
             Assert.AreNotEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void Test8()
         {
-            var drawPile1 = new DrawPile(new StrikeCard(), new DefendCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new DefendCard());
+            var drawPile1 = new DrawPile(new Strike(), new Defend());
+            var drawPile2 = new DrawPile(new Strike(), new Defend());
             Assert.AreEqual(drawPile1, drawPile2);
         }
 
         [Test]
         public void EqualityIgnoresOrder()
         {
-            var drawPile1 = new DrawPile(new DefendCard(), new StrikeCard());
-            var drawPile2 = new DrawPile(new StrikeCard(), new DefendCard());
+            var drawPile1 = new DrawPile(new Defend(), new Strike());
+            var drawPile2 = new DrawPile(new Strike(), new Defend());
             Assert.AreEqual(drawPile1, drawPile2);
         }
     }
@@ -89,38 +89,38 @@ public class DrawPileTests
         public void ThrowsExceptionWhenDrawPileEmpty()
         {
             var drawPile = new DrawPile();
-            Assert.Throws<ArgumentException>(() => drawPile.Remove(new StrikeCard()));
+            Assert.Throws<ArgumentException>(() => drawPile.Remove(new Strike()));
         }
 
         [Test]
         public void ThrowsExceptionWhenCardNotInDrawPile()
         {
-            var drawPile = new DrawPile(new DefendCard());
-            Assert.Throws<ArgumentException>(() => drawPile.Remove(new StrikeCard()));
+            var drawPile = new DrawPile(new Defend());
+            Assert.Throws<ArgumentException>(() => drawPile.Remove(new Strike()));
         }
 
         [Test]
         public void RemovesStrike()
         {
-            var drawPile = new DrawPile(new StrikeCard());
-            var newDrawPile = drawPile.Remove(new StrikeCard());
+            var drawPile = new DrawPile(new Strike());
+            var newDrawPile = drawPile.Remove(new Strike());
             Assert.AreEqual(new DrawPile(), newDrawPile);
         }
 
         [Test]
         public void RemovesDefend()
         {
-            var drawPile = new DrawPile(new DefendCard());
-            var newDrawPile = drawPile.Remove(new DefendCard());
+            var drawPile = new DrawPile(new Defend());
+            var newDrawPile = drawPile.Remove(new Defend());
             Assert.AreEqual(new DrawPile(), newDrawPile);
         }
 
         [Test]
         public void RemovesOnlyOneCopy()
         {
-            var drawPile = new DrawPile(new DefendCard(), new DefendCard());
-            var newDrawPile = drawPile.Remove(new DefendCard());
-            Assert.AreEqual(new DrawPile(new DefendCard()), newDrawPile);
+            var drawPile = new DrawPile(new Defend(), new Defend());
+            var newDrawPile = drawPile.Remove(new Defend());
+            Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
         }
     }
     
@@ -131,32 +131,32 @@ public class DrawPileTests
         public void AddsStrikeToEmptyDrawPile()
         {
             var drawPile = new DrawPile();
-            var newDrawPile = drawPile.Add(new StrikeCard());
-            Assert.AreEqual(new DrawPile(new StrikeCard()), newDrawPile);
+            var newDrawPile = drawPile.Add(new Strike());
+            Assert.AreEqual(new DrawPile(new Strike()), newDrawPile);
         }
 
         [Test]
         public void AddsDefendToEmptyDrawPile()
         {
             var drawPile = new DrawPile();
-            var newDrawPile = drawPile.Add(new DefendCard());
-            Assert.AreEqual(new DrawPile(new DefendCard()), newDrawPile);
+            var newDrawPile = drawPile.Add(new Defend());
+            Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
         }
 
         [Test]
         public void AddsStrikeToExistingDrawPile()
         {
-            var drawPile = new DrawPile(new StrikeCard());
-            var newDrawPile = drawPile.Add(new StrikeCard());
-            Assert.AreEqual(new DrawPile(new StrikeCard(), new StrikeCard()), newDrawPile);
+            var drawPile = new DrawPile(new Strike());
+            var newDrawPile = drawPile.Add(new Strike());
+            Assert.AreEqual(new DrawPile(new Strike(), new Strike()), newDrawPile);
         }
 
         [Test]
         public void AddsDefendToExistingDrawPile()
         {
-            var drawPile = new DrawPile(new StrikeCard());
-            var newDrawPile = drawPile.Add(new DefendCard());
-            Assert.AreEqual(new DrawPile(new StrikeCard(), new DefendCard()), newDrawPile);
+            var drawPile = new DrawPile(new Strike());
+            var newDrawPile = drawPile.Add(new Defend());
+            Assert.AreEqual(new DrawPile(new Strike(), new Defend()), newDrawPile);
         }
     }
 }

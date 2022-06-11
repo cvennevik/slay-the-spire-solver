@@ -19,7 +19,7 @@ public class StrikeActionTests
             PlayerHealth = new Health(70),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DiscardPile = new DiscardPile()
         };
     }
@@ -31,28 +31,28 @@ public class StrikeActionTests
         public void EnemiesMustExist()
         {
             var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
         }
 
         [Test]
         public void HandMustContainStrike()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
         }
 
         [Test]
         public void PlayerMustBeAlive()
         {
             var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
         }
 
         [Test]
         public void EnergyMustBeAtLeastOne()
         {
             var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new Strike()));
         }
     }
 
@@ -64,19 +64,19 @@ public class StrikeActionTests
         {
             var initialGameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard()),
+                Hand = new Hand(new Strike()),
                 DiscardPile = new DiscardPile(),
                 Energy = new Energy(3),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
             };
 
-            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
+            var strikeAction = new PlayCardAction(initialGameState, new Strike());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
             {
                 Hand = new Hand(),
-                DiscardPile = new DiscardPile(new StrikeCard()),
+                DiscardPile = new DiscardPile(new Strike()),
                 Energy = new Energy(2),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(4) }),
             };
@@ -88,19 +88,19 @@ public class StrikeActionTests
         {
             var initialGameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard()),
+                Hand = new Hand(new Strike()),
                 DiscardPile = new DiscardPile(),
                 Energy = new Energy(3),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
             };
 
-            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
+            var strikeAction = new PlayCardAction(initialGameState, new Strike());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
             {
                 Hand = new Hand(),
-                DiscardPile = new DiscardPile(new StrikeCard()),
+                DiscardPile = new DiscardPile(new Strike()),
                 Energy = new Energy(2),
                 EnemyParty = new EnemyParty()
             };
@@ -112,19 +112,19 @@ public class StrikeActionTests
         {
             var initialGameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard()),
+                Hand = new Hand(new Strike()),
                 DiscardPile = new DiscardPile(),
                 Energy = new Energy(3),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(10) }),
             };
 
-            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
+            var strikeAction = new PlayCardAction(initialGameState, new Strike());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
             {
                 Hand = new Hand(),
-                DiscardPile = new DiscardPile(new StrikeCard()),
+                DiscardPile = new DiscardPile(new Strike()),
                 Energy = new Energy(2),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(4) }),
             };
@@ -136,19 +136,19 @@ public class StrikeActionTests
         {
             var initialGameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard()),
+                Hand = new Hand(new Strike()),
                 DiscardPile = new DiscardPile(),
                 Energy = new Energy(3),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(3) }),
             };
 
-            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
+            var strikeAction = new PlayCardAction(initialGameState, new Strike());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
             {
                 Hand = new Hand(),
-                DiscardPile = new DiscardPile(new StrikeCard()),
+                DiscardPile = new DiscardPile(new Strike()),
                 Energy = new Energy(2),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(3) }),
             };
@@ -160,19 +160,19 @@ public class StrikeActionTests
         {
             var initialGameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard()),
+                Hand = new Hand(new Strike()),
                 DiscardPile = new DiscardPile(),
                 Energy = new Energy(3),
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(1), Armor = new Armor(3) }),
             };
 
-            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
+            var strikeAction = new PlayCardAction(initialGameState, new Strike());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
             {
                 Hand = new Hand(),
-                DiscardPile = new DiscardPile(new StrikeCard()),
+                DiscardPile = new DiscardPile(new Strike()),
                 Energy = new Energy(2),
                 EnemyParty = new EnemyParty(),
             };

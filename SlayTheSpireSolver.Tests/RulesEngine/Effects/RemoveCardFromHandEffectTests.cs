@@ -12,8 +12,8 @@ public class RemoveCardFromHandEffectTests
     [Test]
     public void DoesNothingWhenCardNotInHand()
     {
-        var gameState = new GameState { Hand = new Hand(new StrikeCard()) };
-        var effect = new RemoveCardFromHandEffect(new DefendCard());
+        var gameState = new GameState { Hand = new Hand(new Strike()) };
+        var effect = new RemoveCardFromHandEffect(new Defend());
         var newGameStates = effect.ApplyTo(gameState);
         Assert.AreEqual(gameState, newGameStates.Single());
     }
@@ -21,8 +21,8 @@ public class RemoveCardFromHandEffectTests
     [Test]
     public void RemovesSingleCardFromHand()
     {
-        var gameState = new GameState { Hand = new Hand(new StrikeCard()) };
-        var effect = new RemoveCardFromHandEffect(new StrikeCard());
+        var gameState = new GameState { Hand = new Hand(new Strike()) };
+        var effect = new RemoveCardFromHandEffect(new Strike());
         var newGameStates = effect.ApplyTo(gameState);
         Assert.AreEqual(new GameState { Hand = new Hand() }, newGameStates.Single());
     }
@@ -30,18 +30,18 @@ public class RemoveCardFromHandEffectTests
     [Test]
     public void RemovesOnlyOneCardWhenMultipleInHand()
     {
-        var gameState = new GameState { Hand = new Hand(new StrikeCard(), new StrikeCard()) };
-        var effect = new RemoveCardFromHandEffect(new StrikeCard());
+        var gameState = new GameState { Hand = new Hand(new Strike(), new Strike()) };
+        var effect = new RemoveCardFromHandEffect(new Strike());
         var newGameStates = effect.ApplyTo(gameState);
-        Assert.AreEqual(new GameState { Hand = new Hand(new StrikeCard()) }, newGameStates.Single());
+        Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, newGameStates.Single());
     }
 
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new RemoveCardFromHandEffect(new StrikeCard()), new RemoveCardFromHandEffect(new StrikeCard()));
-        Assert.AreEqual(new RemoveCardFromHandEffect(new DefendCard()), new RemoveCardFromHandEffect(new DefendCard()));
-        Assert.AreNotEqual(new RemoveCardFromHandEffect(new StrikeCard()),
-            new RemoveCardFromHandEffect(new DefendCard()));
+        Assert.AreEqual(new RemoveCardFromHandEffect(new Strike()), new RemoveCardFromHandEffect(new Strike()));
+        Assert.AreEqual(new RemoveCardFromHandEffect(new Defend()), new RemoveCardFromHandEffect(new Defend()));
+        Assert.AreNotEqual(new RemoveCardFromHandEffect(new Strike()),
+            new RemoveCardFromHandEffect(new Defend()));
     }
 }

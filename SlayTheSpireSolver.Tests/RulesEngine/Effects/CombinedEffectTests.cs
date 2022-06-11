@@ -21,19 +21,19 @@ public class CombinedEffectTests
     [Test]
     public void RemovesStrikeFromHandAndAddsToDiscardPile()
     {
-        var removeFromHand = new RemoveCardFromHandEffect(new StrikeCard());
-        var addToDiscard = new AddCardToDiscardPileEffect(new StrikeCard());
+        var removeFromHand = new RemoveCardFromHandEffect(new Strike());
+        var addToDiscard = new AddCardToDiscardPileEffect(new Strike());
         var effect = new CombinedEffect(removeFromHand, addToDiscard);
 
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DiscardPile = new DiscardPile()
         };
         var expectedGameState = new GameState
         {
             Hand = new Hand(),
-            DiscardPile = new DiscardPile(new StrikeCard())
+            DiscardPile = new DiscardPile(new Strike())
         };
         Assert.AreEqual(expectedGameState, effect.ApplyTo(gameState).Single());
     }
@@ -47,8 +47,8 @@ public class CombinedEffectTests
     [Test]
     public void TestSingleEffectEquality()
     {
-        var removeFromHand = new RemoveCardFromHandEffect(new StrikeCard());
-        var addToDiscard = new AddCardToDiscardPileEffect(new StrikeCard());
+        var removeFromHand = new RemoveCardFromHandEffect(new Strike());
+        var addToDiscard = new AddCardToDiscardPileEffect(new Strike());
         Assert.AreEqual(new CombinedEffect(removeFromHand), new CombinedEffect(removeFromHand));
         Assert.AreEqual(new CombinedEffect(addToDiscard), new CombinedEffect(addToDiscard));
         Assert.AreNotEqual(new CombinedEffect(removeFromHand), new CombinedEffect(addToDiscard));
@@ -57,8 +57,8 @@ public class CombinedEffectTests
     [Test]
     public void TestTwoEffectsEquality()
     {
-        var removeFromHand = new RemoveCardFromHandEffect(new StrikeCard());
-        var addToDiscard = new AddCardToDiscardPileEffect(new StrikeCard());
+        var removeFromHand = new RemoveCardFromHandEffect(new Strike());
+        var addToDiscard = new AddCardToDiscardPileEffect(new Strike());
         Assert.AreEqual(new CombinedEffect(removeFromHand, addToDiscard),
             new CombinedEffect(removeFromHand, addToDiscard));
         Assert.AreEqual(new CombinedEffect(addToDiscard, removeFromHand),
@@ -70,7 +70,7 @@ public class CombinedEffectTests
     [Test]
     public void TestNestedEquality()
     {
-        var removeFromHand = new RemoveCardFromHandEffect(new StrikeCard());
+        var removeFromHand = new RemoveCardFromHandEffect(new Strike());
         Assert.AreEqual(new CombinedEffect(removeFromHand),
             new CombinedEffect(new CombinedEffect(removeFromHand)));
         Assert.AreEqual(new CombinedEffect(removeFromHand),

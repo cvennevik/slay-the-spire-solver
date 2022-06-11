@@ -13,14 +13,14 @@ internal class ShuffleDiscardPileIntoDrawPileTests
     {
         var gameState = new GameState
         {
-            DiscardPile = new DiscardPile(new StrikeCard()),
+            DiscardPile = new DiscardPile(new Strike()),
             DrawPile = new DrawPile()
         };
         var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(new StrikeCard())
+            DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }
@@ -30,14 +30,14 @@ internal class ShuffleDiscardPileIntoDrawPileTests
     {
         var gameState = new GameState
         {
-            DiscardPile = new DiscardPile(new DefendCard()),
+            DiscardPile = new DiscardPile(new Defend()),
             DrawPile = new DrawPile()
         };
         var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(new DefendCard())
+            DrawPile = new DrawPile(new Defend())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }
@@ -60,7 +60,7 @@ internal class ShuffleDiscardPileIntoDrawPileTests
         var gameState = new GameState
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            DrawPile = new DrawPile(new Strike(), new Strike())
         };
         var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
         Assert.AreEqual(gameState, newGameState);
@@ -71,14 +71,14 @@ internal class ShuffleDiscardPileIntoDrawPileTests
     {
         var gameState = new GameState
         {
-            DiscardPile = new DiscardPile(new StrikeCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            DiscardPile = new DiscardPile(new Strike()),
+            DrawPile = new DrawPile(new Strike(), new Strike())
         };
         var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }
@@ -88,15 +88,15 @@ internal class ShuffleDiscardPileIntoDrawPileTests
     {
         var gameState = new GameState
         {
-            DiscardPile = new DiscardPile(new StrikeCard(), new DefendCard(), new DefendCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Strike())
         };
         var newGameState = gameState.ShuffleDiscardPileIntoDrawPile();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
-                new DefendCard(), new DefendCard())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
+                new Defend(), new Defend())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }

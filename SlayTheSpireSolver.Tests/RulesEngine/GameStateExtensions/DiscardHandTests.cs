@@ -13,14 +13,14 @@ public class DiscardHandTests : GameStateTests
     {
         var firstGameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DiscardPile = new DiscardPile()
         };
         var nextGameState = firstGameState.DiscardHand();
         var expectedGameState = new GameState
         {
             Hand = new Hand(),
-            DiscardPile = new DiscardPile(new StrikeCard())
+            DiscardPile = new DiscardPile(new Strike())
         };
         Assert.AreEqual(expectedGameState, nextGameState);
     }
@@ -30,14 +30,14 @@ public class DiscardHandTests : GameStateTests
     {
         var firstGameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DiscardPile = new DiscardPile(new DefendCard())
+            Hand = new Hand(new Strike()),
+            DiscardPile = new DiscardPile(new Defend())
         };
         var nextGameState = firstGameState.DiscardHand();
         var expectedGameState = new GameState
         {
             Hand = new Hand(),
-            DiscardPile = new DiscardPile(new DefendCard(), new StrikeCard())
+            DiscardPile = new DiscardPile(new Defend(), new Strike())
         };
         Assert.AreEqual(expectedGameState, nextGameState);
     }
@@ -48,7 +48,7 @@ public class DiscardHandTests : GameStateTests
         var firstGameState = new GameState
         {
             Hand = new Hand(),
-            DiscardPile = new DiscardPile(new DefendCard())
+            DiscardPile = new DiscardPile(new Defend())
         };
         var nextGameState = firstGameState.DiscardHand();
         Assert.AreEqual(firstGameState, nextGameState);

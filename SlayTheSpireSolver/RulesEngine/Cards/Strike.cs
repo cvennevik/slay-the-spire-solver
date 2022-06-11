@@ -3,11 +3,10 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public record DefendCard : ICard
+public record Strike : ICard
 {
     private static readonly Energy Cost = new(1);
-    private static readonly IEffect Effect = new GainPlayerArmorEffect(5);
 
     public Energy GetCost() => Cost;
-    public IEffect GetEffect(GameState gameState) => Effect;
+    public IEffect GetEffect(GameState gameState) => new DamageEnemyEffect(gameState.EnemyParty.First(), new Damage(6));
 }

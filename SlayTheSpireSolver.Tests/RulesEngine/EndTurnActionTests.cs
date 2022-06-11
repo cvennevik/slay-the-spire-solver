@@ -78,13 +78,13 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new StrikeCard(), new DefendCard()),
+                Hand = new Hand(new Strike(), new Defend()),
                 DiscardPile = new DiscardPile(),
                 DrawPile = new DrawPile()
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
-            Assert.AreEqual(new Hand(new StrikeCard(), new DefendCard()), resolvedStates.Single().Hand);
+            Assert.AreEqual(new Hand(new Strike(), new Defend()), resolvedStates.Single().Hand);
             Assert.AreEqual(new DiscardPile(), resolvedStates.Single().DiscardPile);
             Assert.AreEqual(new DrawPile(), resolvedStates.Single().DrawPile);
         }
@@ -94,17 +94,17 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new DefendCard()),
+                Hand = new Hand(new Defend()),
                 DiscardPile = new DiscardPile(),
-                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
-                    new StrikeCard(), new StrikeCard(), new StrikeCard())
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
+                    new Strike(), new Strike(), new Strike())
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
-            Assert.AreEqual(new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard()),
+            Assert.AreEqual(new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Strike()),
                 resolvedStates.Single().Hand);
-            Assert.AreEqual(new DiscardPile(new DefendCard()), resolvedStates.Single().DiscardPile);
-            Assert.AreEqual(new DrawPile(new StrikeCard()), resolvedStates.Single().DrawPile);
+            Assert.AreEqual(new DiscardPile(new Defend()), resolvedStates.Single().DiscardPile);
+            Assert.AreEqual(new DrawPile(new Strike()), resolvedStates.Single().DrawPile);
         }
 
         [Test]
@@ -112,20 +112,20 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                Hand = new Hand(new DefendCard(), new StrikeCard()),
+                Hand = new Hand(new Defend(), new Strike()),
                 DiscardPile = new DiscardPile(),
-                DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard())
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike())
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(2, resolvedStates.Count);
             Assert.AreEqual(1, resolvedStates.Count(x =>
-                x.Hand == new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard()) &&
-                x.DrawPile == new DrawPile(new DefendCard()) &&
+                x.Hand == new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Strike()) &&
+                x.DrawPile == new DrawPile(new Defend()) &&
                 x.DiscardPile == new DiscardPile()));
             Assert.AreEqual(1, resolvedStates.Count(x =>
-                x.Hand == new Hand(new StrikeCard(), new StrikeCard(), new StrikeCard(), new StrikeCard(), new DefendCard()) &&
-                x.DrawPile == new DrawPile(new StrikeCard()) &&
+                x.Hand == new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Defend()) &&
+                x.DrawPile == new DrawPile(new Strike()) &&
                 x.DiscardPile == new DiscardPile()));
         }
 

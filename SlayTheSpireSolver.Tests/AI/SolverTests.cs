@@ -31,9 +31,9 @@ public class SolverTests
             PlayerHealth = new Health(70),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
-            Hand = new Hand(new StrikeCard())
+            Hand = new Hand(new Strike())
         };
         var bestAction = Solver.GetBestAction(gameState);
-        Assert.AreEqual(new PlayCardAction(gameState, new StrikeCard()), bestAction);
+        Assert.AreEqual(new PlayCardAction(gameState, new Strike()), bestAction);
     }
 }

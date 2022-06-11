@@ -14,7 +14,7 @@ public class DrawCardTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DiscardPile = new DiscardPile(),
             DrawPile = new DrawPile()
         };
@@ -28,12 +28,12 @@ public class DrawCardTests
         var gameState = new GameState
         {
             Hand = new Hand(),
-            DrawPile = new DrawPile(new StrikeCard())
+            DrawPile = new DrawPile(new Strike())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DrawPile = new DrawPile()
         };
         Assert.AreEqual(expectedState, resolvedStates.Single());
@@ -45,18 +45,18 @@ public class DrawCardTests
         var gameState = new GameState
         {
             Hand = new Hand(),
-            DrawPile = new DrawPile(new StrikeCard(), new DefendCard())
+            DrawPile = new DrawPile(new Strike(), new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState1 = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DrawPile = new DrawPile(new DefendCard())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Defend())
         };
         var expectedState2 = new GameState
         {
-            Hand = new Hand(new DefendCard()),
-            DrawPile = new DrawPile(new StrikeCard())
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, resolvedStates.Count);
         Assert.Contains(expectedState1, resolvedStates.ToList());
@@ -69,21 +69,21 @@ public class DrawCardTests
         var gameState = new GameState
         {
             Hand = new Hand(),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
-                new DefendCard(), new DefendCard())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
+                new Defend(), new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState1 = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(),
-                new DefendCard(), new DefendCard())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Strike(), new Strike(),
+                new Defend(), new Defend())
         };
         var expectedState2 = new GameState
         {
-            Hand = new Hand(new DefendCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard(), new StrikeCard(),
-                new DefendCard())
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
+                new Defend())
         };
         Assert.AreEqual(2, resolvedStates.Count);
         Assert.Contains(expectedState1, resolvedStates.ToList());
@@ -96,13 +96,13 @@ public class DrawCardTests
         var gameState = new GameState
         {
             Hand = new Hand(),
-            DrawPile = new DrawPile(new StrikeCard(), new StrikeCard())
+            DrawPile = new DrawPile(new Strike(), new Strike())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DrawPile = new DrawPile(new StrikeCard())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(expectedState, resolvedStates.Single());
     }
@@ -112,13 +112,13 @@ public class DrawCardTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DrawPile = new DrawPile(new DefendCard())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new DefendCard()),
+            Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile()
         };
         Assert.AreEqual(expectedState, resolvedStates.Single());
@@ -129,19 +129,19 @@ public class DrawCardTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new DefendCard())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Strike(), new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState1 = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
-            DrawPile = new DrawPile(new DefendCard())
+            Hand = new Hand(new Strike(), new Strike()),
+            DrawPile = new DrawPile(new Defend())
         };
         var expectedState2 = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new DefendCard()),
-            DrawPile = new DrawPile(new StrikeCard())
+            Hand = new Hand(new Strike(), new Defend()),
+            DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, resolvedStates.Count);
         Assert.Contains(expectedState1, resolvedStates.ToList());
@@ -153,14 +153,14 @@ public class DrawCardTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(),
-            DiscardPile = new DiscardPile(new DefendCard())
+            DiscardPile = new DiscardPile(new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new DefendCard()),
+            Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(),
             DiscardPile = new DiscardPile()
         };
@@ -172,21 +172,21 @@ public class DrawCardTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(),
-            DiscardPile = new DiscardPile(new StrikeCard(), new DefendCard(), new DefendCard())
+            DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend())
         };
         var resolvedStates = gameState.DrawCard();
         var expectedState1 = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
-            DrawPile = new DrawPile(new DefendCard(), new DefendCard()),
+            Hand = new Hand(new Strike(), new Strike()),
+            DrawPile = new DrawPile(new Defend(), new Defend()),
             DiscardPile = new DiscardPile()
         };
         var expectedState2 = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new DefendCard()),
-            DrawPile = new DrawPile(new StrikeCard(), new DefendCard()),
+            Hand = new Hand(new Strike(), new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Defend()),
             DiscardPile = new DiscardPile()
         };
         Assert.AreEqual(2, resolvedStates.Count);

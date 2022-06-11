@@ -14,14 +14,14 @@ public class MoveCardFromHandToDiscardPileTests : GameStateTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
+            Hand = new Hand(new Strike(), new Strike()),
             DiscardPile = new DiscardPile()
         };
-        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+        var newGameState = gameState.MoveCardFromHandToDiscardPile(new Strike());
         var expectedGameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard())
+            Hand = new Hand(new Strike()),
+            DiscardPile = new DiscardPile(new Strike())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }
@@ -31,14 +31,14 @@ public class MoveCardFromHandToDiscardPileTests : GameStateTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new StrikeCard(), new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard())
+            Hand = new Hand(new Strike(), new Strike()),
+            DiscardPile = new DiscardPile(new Strike())
         };
-        var newGameState = gameState.MoveCardFromHandToDiscardPile(new StrikeCard());
+        var newGameState = gameState.MoveCardFromHandToDiscardPile(new Strike());
         var expectedGameState = new GameState
         {
-            Hand = new Hand(new StrikeCard()),
-            DiscardPile = new DiscardPile(new StrikeCard(), new StrikeCard())
+            Hand = new Hand(new Strike()),
+            DiscardPile = new DiscardPile(new Strike(), new Strike())
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }
@@ -46,7 +46,7 @@ public class MoveCardFromHandToDiscardPileTests : GameStateTests
     [Test]
     public void Test3()
     {
-        var gameState = new GameState { Hand = new Hand(new StrikeCard()) };
-        Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new DefendCard()));
+        var gameState = new GameState { Hand = new Hand(new Strike()) };
+        Assert.Throws<ArgumentException>(() => gameState.MoveCardFromHandToDiscardPile(new Defend()));
     }
 }

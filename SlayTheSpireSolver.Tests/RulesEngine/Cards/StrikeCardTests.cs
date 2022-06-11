@@ -18,7 +18,7 @@ public class StrikeCardTests
             PlayerHealth = new Health(70),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             Turn = new Turn(1)
         };
     }
@@ -26,14 +26,14 @@ public class StrikeCardTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new StrikeCard(), new StrikeCard());
+        Assert.AreEqual(new Strike(), new Strike());
     }
 
     [Test]
     public void NoLegalActionsWhenNoStrikeCardInHand()
     {
         var gameState = CreateBasicGameState() with { Hand = new Hand() };
-        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new Strike());
         Assert.IsEmpty(legalActions);
     }
 
@@ -41,7 +41,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenNoEnemy()
     {
         var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new Strike());
         Assert.IsEmpty(legalActions);
     }
 
@@ -49,7 +49,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenDefeated()
     {
         var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new Strike());
         Assert.IsEmpty(legalActions);
     }
 
@@ -57,7 +57,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenNoEnergy()
     {
         var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new Strike());
         Assert.IsEmpty(legalActions);
     }
 
@@ -65,8 +65,8 @@ public class StrikeCardTests
     public void OneLegalActionWhenOneEnemy()
     {
         var gameState = CreateBasicGameState();
-        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new Strike());
         Assert.AreEqual(1, legalActions.Count);
-        Assert.AreEqual(new PlayCardAction(gameState, new StrikeCard()), legalActions.First());
+        Assert.AreEqual(new PlayCardAction(gameState, new Strike()), legalActions.First());
     }
 }

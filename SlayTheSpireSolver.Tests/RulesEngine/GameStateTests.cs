@@ -17,7 +17,7 @@ public class GameStateTests
             PlayerHealth = new Health(70),
             Energy = new Energy(3),
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
-            Hand = new Hand(new StrikeCard()),
+            Hand = new Hand(new Strike()),
             Turn = new Turn(1)
         };
     }
@@ -42,7 +42,7 @@ public class GameStateTests
         {
             var gameState = CreateBasicGameState();
             AssertLegalActions(gameState,
-                new PlayCardAction(gameState, new StrikeCard()), new EndTurnAction(gameState));
+                new PlayCardAction(gameState, new Strike()), new EndTurnAction(gameState));
         }
 
         [Test]
