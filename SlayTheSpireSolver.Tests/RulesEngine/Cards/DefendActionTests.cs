@@ -11,34 +11,6 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 [TestFixture]
 public class DefendActionTests
 {
-    private static GameState CreateBasicGameState()
-    {
-        return new()
-        {
-            PlayerHealth = new Health(70),
-            Energy = new Energy(3),
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
-            Hand = new Hand(new Defend()),
-            DiscardPile = new DiscardPile(),
-        };
-    }
-
-    [Test]
-    public void ActionsWithSameGameStatesAreEqual()
-    {
-        var gameState = CreateBasicGameState();
-        Assert.AreEqual(new PlayCardAction(gameState, new Defend()), new PlayCardAction(gameState, new Defend()));
-    }
-
-    [Test]
-    public void ActionsWithDifferentGameStatesAreNotEqual()
-    {
-        var gameState1 = CreateBasicGameState();
-        var gameState2 = CreateBasicGameState() with { Turn = new Turn(2) };
-        Assert.AreNotEqual(new PlayCardAction(gameState1, new Defend()),
-            new PlayCardAction(gameState2, new Defend()));
-    }
-
     [Test]
     [TestCase(0, 5)]
     [TestCase(2, 7)]

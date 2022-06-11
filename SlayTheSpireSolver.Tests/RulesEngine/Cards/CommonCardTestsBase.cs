@@ -34,6 +34,26 @@ public class CommonCardTestsBase<TCard> where TCard : ICard, new()
     }
 
     [Test]
+    public void PlayCardActionsWithSameGameStateAreEqual()
+    {
+        Assert.AreEqual(new PlayCardAction(_basicGameState, _card), new PlayCardAction(_basicGameState, _card));
+    }
+
+    [Test]
+    public void PlayCardActionsWithDifferentGameStatesAreNotEqual()
+    {
+        Assert.AreNotEqual(new PlayCardAction(_basicGameState, _card),
+            new PlayCardAction(_basicGameState with {Turn = new Turn(2)}, _card));
+    }
+
+    [Test]
+    public void OneLegalActionForBasicGameState()
+    {
+        var legalActions = PlayCardAction.GetLegalActions(_basicGameState, _card);
+        Assert.AreEqual(new PlayCardAction(_basicGameState, _card), legalActions.Single());
+    }
+
+    [Test]
     public void NoLegalActionsWhenNoEnemies()
     {
         AssertNoLegalActions(_basicGameState with { EnemyParty = new EnemyParty() });
@@ -44,7 +64,7 @@ public class CommonCardTestsBase<TCard> where TCard : ICard, new()
     {
         AssertNoLegalActions(_basicGameState with { Hand = new Hand() });
     }
-        
+
     [Test]
     public void NoLegalActionsWhenPlayerDefeated()
     {
@@ -55,13 +75,6 @@ public class CommonCardTestsBase<TCard> where TCard : ICard, new()
     public void NoLegalActionsWhenNoEnergy()
     {
         AssertNoLegalActions(_basicGameState with { Energy = new Energy(0) });
-    }
-
-    [Test]
-    public void OneLegalActionForBasicGameState()
-    {
-        var legalActions = PlayCardAction.GetLegalActions(_basicGameState, _card);
-        Assert.AreEqual(new PlayCardAction(_basicGameState, _card), legalActions.Single());
     }
 
     private void AssertNoLegalActions(GameState gameState)
