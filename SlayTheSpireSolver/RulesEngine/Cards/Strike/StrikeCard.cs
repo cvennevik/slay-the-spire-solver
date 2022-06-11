@@ -5,7 +5,7 @@ public record StrikeCard : ICard
     public IEnumerable<IAction> GetLegalActions(GameState gameState)
     {
         return StrikeAction.IsLegal(gameState)
-            ? new[] { new StrikeAction(gameState) }
+            ? new IAction[] { new StrikeAction(gameState) }
             : Array.Empty<IAction>();
     }
 }
