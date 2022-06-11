@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Cards.Defend;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -29,35 +30,35 @@ public class DefendActionTests
     public void EnemiesMustExist()
     {
         var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new DefendCard()));
     }
 
     [Test]
     public void HandMustContainDefend()
     {
         var gameState = CreateBasicGameState() with { Hand = new Hand() };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new DefendCard()));
     }
 
     [Test]
     public void PlayerMustBeAlive()
     {
         var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new DefendCard()));
     }
 
     [Test]
     public void EnergyMustBeAtLeastOne()
     {
         var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-        Assert.Throws<ArgumentException>(() => new DefendAction(gameState));
+        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new DefendCard()));
     }
 
     [Test]
     public void ActionsWithSameGameStatesAreEqual()
     {
         var gameState = CreateBasicGameState();
-        Assert.AreEqual(new DefendAction(gameState), new DefendAction(gameState));
+        Assert.AreEqual(new PlayCardAction(gameState, new DefendCard()), new PlayCardAction(gameState, new DefendCard()));
     }
 
     [Test]
@@ -65,7 +66,8 @@ public class DefendActionTests
     {
         var gameState1 = CreateBasicGameState();
         var gameState2 = CreateBasicGameState() with { Turn = new Turn(2) };
-        Assert.AreNotEqual(new DefendAction(gameState1), new DefendAction(gameState2));
+        Assert.AreNotEqual(new PlayCardAction(gameState1, new DefendCard()),
+            new PlayCardAction(gameState2, new DefendCard()));
     }
 
     [Test]
@@ -81,7 +83,7 @@ public class DefendActionTests
             Hand = new Hand(new DefendCard()),
             DiscardPile = new DiscardPile()
         };
-        var defendAction = new DefendAction(gameState);
+        var defendAction = new PlayCardAction(gameState, new DefendCard());
         var resolvedStates = defendAction.ResolveToPossibleStates();
         var expectedState = new GameState()
         {

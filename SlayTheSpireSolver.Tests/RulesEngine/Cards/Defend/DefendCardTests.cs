@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Cards.Defend;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -67,6 +68,6 @@ public class DefendCardTests
         var gameState = CreateBasicGameState();
         var legalActions = new DefendCard().GetLegalActions(gameState).ToList();
         Assert.AreEqual(1, legalActions.Count);
-        Assert.AreEqual(new DefendAction(gameState), legalActions.First());
+        Assert.AreEqual(new PlayCardAction(gameState, new DefendCard()), legalActions.First());
     }
 }

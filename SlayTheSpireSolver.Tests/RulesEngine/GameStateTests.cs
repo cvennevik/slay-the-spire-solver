@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Cards.Strike;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -41,7 +42,8 @@ public class GameStateTests
         public void BasicGameState()
         {
             var gameState = CreateBasicGameState();
-            AssertLegalActions(gameState, new StrikeAction(gameState), new EndTurnAction(gameState));
+            AssertLegalActions(gameState,
+                new PlayCardAction(gameState, new StrikeCard()), new EndTurnAction(gameState));
         }
 
         [Test]

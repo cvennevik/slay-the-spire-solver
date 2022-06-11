@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.AI;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Cards.Strike;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -34,6 +35,6 @@ public class SolverTests
             Hand = new Hand(new StrikeCard())
         };
         var bestAction = Solver.GetBestAction(gameState);
-        Assert.AreEqual(new StrikeAction(gameState), bestAction);
+        Assert.AreEqual(new PlayCardAction(gameState, new StrikeCard()), bestAction);
     }
 }

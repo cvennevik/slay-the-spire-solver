@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Cards.Strike;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -31,28 +32,28 @@ public class StrikeActionTests
         public void EnemiesMustExist()
         {
             var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-            Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
         }
 
         [Test]
         public void HandMustContainStrike()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
         }
 
         [Test]
         public void PlayerMustBeAlive()
         {
             var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-            Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
         }
 
         [Test]
         public void EnergyMustBeAtLeastOne()
         {
             var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-            Assert.Throws<ArgumentException>(() => new StrikeAction(gameState));
+            Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, new StrikeCard()));
         }
     }
 
@@ -70,7 +71,7 @@ public class StrikeActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }),
             };
 
-            var strikeAction = new StrikeAction(initialGameState);
+            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
@@ -94,7 +95,7 @@ public class StrikeActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
             };
 
-            var strikeAction = new StrikeAction(initialGameState);
+            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
@@ -118,7 +119,7 @@ public class StrikeActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(10) }),
             };
 
-            var strikeAction = new StrikeAction(initialGameState);
+            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
@@ -142,7 +143,7 @@ public class StrikeActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(3) }),
             };
 
-            var strikeAction = new StrikeAction(initialGameState);
+            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
@@ -166,7 +167,7 @@ public class StrikeActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Health = new Health(1), Armor = new Armor(3) }),
             };
 
-            var strikeAction = new StrikeAction(initialGameState);
+            var strikeAction = new PlayCardAction(initialGameState, new StrikeCard());
             var resolvedStates = strikeAction.ResolveToPossibleStates();
 
             var expectedState = CreateBasicGameState() with
