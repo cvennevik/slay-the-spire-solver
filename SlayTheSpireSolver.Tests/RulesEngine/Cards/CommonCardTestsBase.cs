@@ -34,25 +34,25 @@ public class CommonCardTestsBase<TCard> where TCard : ICard, new()
     }
 
     [Test]
-    public void MustHaveEnemies()
+    public void NoLegalActionsWhenNoEnemies()
     {
         AssertNoLegalActions(_basicGameState with { EnemyParty = new EnemyParty() });
     }
 
     [Test]
-    public void MustHaveCardInHand()
+    public void NoLegalActionsWhenCardNotInHand()
     {
         AssertNoLegalActions(_basicGameState with { Hand = new Hand() });
     }
         
     [Test]
-    public void MustBeAlive()
+    public void NoLegalActionsWhenPlayerDefeated()
     {
         AssertNoLegalActions(_basicGameState with { PlayerHealth = new Health(0) });
     }
 
     [Test]
-    public void MustHaveEnoughEnergy()
+    public void NoLegalActionsWhenNoEnergy()
     {
         AssertNoLegalActions(_basicGameState with { Energy = new Energy(0) });
     }
