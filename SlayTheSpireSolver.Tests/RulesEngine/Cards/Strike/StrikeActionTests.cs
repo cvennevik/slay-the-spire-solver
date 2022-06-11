@@ -106,5 +106,77 @@ public class StrikeActionTests
             };
             Assert.AreEqual(expectedState, resolvedStates.Single());
         }
+
+        [Test]
+        public void DamagesEnemyArmor()
+        {
+            var initialGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(),
+                Energy = new Energy(3),
+                EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(10) }),
+            };
+
+            var strikeAction = new StrikeAction(initialGameState);
+            var resolvedStates = strikeAction.ResolveToPossibleStates();
+
+            var expectedState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new StrikeCard()),
+                Energy = new Energy(2),
+                EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(4) }),
+            };
+            Assert.AreEqual(expectedState, resolvedStates.Single());
+        }
+
+        [Test]
+        public void HitsThroughEnemyArmor()
+        {
+            var initialGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(),
+                Energy = new Energy(3),
+                EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6), Armor = new Armor(3) }),
+            };
+
+            var strikeAction = new StrikeAction(initialGameState);
+            var resolvedStates = strikeAction.ResolveToPossibleStates();
+
+            var expectedState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new StrikeCard()),
+                Energy = new Energy(2),
+                EnemyParty = new EnemyParty(new JawWorm { Health = new Health(3) }),
+            };
+            Assert.AreEqual(expectedState, resolvedStates.Single());
+        }
+
+        [Test]
+        public void KillsThroughEnemyArmor()
+        {
+            var initialGameState = CreateBasicGameState() with
+            {
+                Hand = new Hand(new StrikeCard()),
+                DiscardPile = new DiscardPile(),
+                Energy = new Energy(3),
+                EnemyParty = new EnemyParty(new JawWorm { Health = new Health(1), Armor = new Armor(3) }),
+            };
+
+            var strikeAction = new StrikeAction(initialGameState);
+            var resolvedStates = strikeAction.ResolveToPossibleStates();
+
+            var expectedState = CreateBasicGameState() with
+            {
+                Hand = new Hand(),
+                DiscardPile = new DiscardPile(new StrikeCard()),
+                Energy = new Energy(2),
+                EnemyParty = new EnemyParty(),
+            };
+            Assert.AreEqual(expectedState, resolvedStates.Single());
+        }
     }
 }
