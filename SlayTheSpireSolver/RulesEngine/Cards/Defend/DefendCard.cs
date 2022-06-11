@@ -5,7 +5,7 @@ public record DefendCard : ICard
     public IEnumerable<IAction> GetLegalActions(GameState gameState)
     {
         return DefendAction.IsLegal(gameState)
-            ? new[] { new DefendAction(gameState) }
+            ? new IAction[] { new DefendAction(gameState) }
             : Array.Empty<IAction>();
     }
 }

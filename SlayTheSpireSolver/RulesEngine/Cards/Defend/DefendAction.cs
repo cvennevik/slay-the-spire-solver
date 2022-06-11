@@ -3,10 +3,9 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards.Defend;
 
-public record DefendAction : IAction
+public readonly record struct DefendAction : IAction
 {
-    public GameState GameState { get; }
-
+    private readonly GameState _gameState;
     private static readonly Energy EnergyCost = new(1);
 
     private static readonly IEffect Effect = new CombinedEffect(
@@ -25,11 +24,11 @@ public record DefendAction : IAction
     public DefendAction(GameState gameState)
     {
         if (!IsLegal(gameState)) throw new ArgumentException("Illegal Defend action");
-        GameState = gameState;
+        _gameState = gameState;
     }
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
-        return Effect.ApplyTo(GameState);
+        return Effect.ApplyTo(_gameState);
     }
 }
