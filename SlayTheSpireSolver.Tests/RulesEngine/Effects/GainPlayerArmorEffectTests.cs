@@ -28,8 +28,16 @@ public class GainPlayerArmorEffectTests
     [TestCase(0, 0)]
     [TestCase(0, -10)]
     [TestCase(5, 5)]
-    public void TestEquality(int amountA, int amountB)
+    public void TestEqual(int amountA, int amountB)
     {
         Assert.AreEqual(new GainPlayerArmorEffect(amountA), new GainPlayerArmorEffect(amountB));
+    }
+
+    [Test]
+    [TestCase(0, 5)]
+    [TestCase(1, -10)]
+    public void TestNotEqual(int amountA, int amountB)
+    {
+        Assert.AreNotEqual(new GainPlayerArmorEffect(amountA), new GainPlayerArmorEffect(amountB));
     }
 }
