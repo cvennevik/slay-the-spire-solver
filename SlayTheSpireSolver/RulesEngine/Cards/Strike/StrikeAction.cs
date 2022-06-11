@@ -24,7 +24,7 @@ public readonly record struct StrikeAction : IAction
         _gameState = gameState;
         var targetEnemy = _gameState.EnemyParty.First();
         _effect = new CombinedEffect(
-            new RemoveEnergyEffect(1),
+            new RemoveEnergyEffect(EnergyCost),
             new RemoveCardFromHandEffect(new StrikeCard()),
             new DamageEnemyEffect(targetEnemy, Damage),
             new AddCardToDiscardPileEffect(new StrikeCard()));

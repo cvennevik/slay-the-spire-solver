@@ -10,8 +10,6 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class RemoveEnergyEffectTests
 {
     [Test]
-    [TestCase(0, -1, 0)]
-    [TestCase(1, -1, 1)]
     [TestCase(0, 0, 0)]
     [TestCase(1, 0, 1)]
     [TestCase(0, 1, 0)]
@@ -20,7 +18,7 @@ public class RemoveEnergyEffectTests
     public void TestEffect(int initialEnergyAmount, int effectAmount, int expectedEnergyAmount)
     {
         var gameState = new GameState { Energy = new Energy(initialEnergyAmount) };
-        var effect = new RemoveEnergyEffect(effectAmount);
+        var effect = new RemoveEnergyEffect(new Energy(effectAmount));
         var expectedGameState = new GameState { Energy = new Energy(expectedEnergyAmount) };
         Assert.AreEqual(expectedGameState, effect.ApplyTo(gameState).Single());
     }
@@ -28,9 +26,8 @@ public class RemoveEnergyEffectTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(0));
-        Assert.AreEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(-1));
-        Assert.AreEqual(new RemoveEnergyEffect(1), new RemoveEnergyEffect(1));
-        Assert.AreNotEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(1));
+        Assert.AreEqual(new RemoveEnergyEffect(new Energy(0)), new RemoveEnergyEffect(new Energy(0)));
+        Assert.AreEqual(new RemoveEnergyEffect(new Energy(1)), new RemoveEnergyEffect(new Energy(1)));
+        Assert.AreNotEqual(new RemoveEnergyEffect(new Energy(0)), new RemoveEnergyEffect(new Energy(1)));
     }
 }

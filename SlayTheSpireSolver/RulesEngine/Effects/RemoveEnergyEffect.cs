@@ -6,9 +6,9 @@ public readonly record struct RemoveEnergyEffect : IEffect
 {
     private readonly Energy _energyToRemove;
 
-    public RemoveEnergyEffect(int amountToRemove)
+    public RemoveEnergyEffect(Energy energyToRemove)
     {
-        _energyToRemove = new Energy(Math.Max(amountToRemove, 0));
+        _energyToRemove = energyToRemove;
     }
     
     public IReadOnlyList<GameState> ApplyTo(GameState gameState)

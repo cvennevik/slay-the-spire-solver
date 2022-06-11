@@ -9,7 +9,7 @@ public readonly record struct DefendAction : IAction
     private static readonly Energy EnergyCost = new(1);
 
     private static readonly IEffect Effect = new CombinedEffect(
-        new RemoveEnergyEffect(1),
+        new RemoveEnergyEffect(EnergyCost),
         new RemoveCardFromHandEffect(new DefendCard()),
         new GainPlayerArmorEffect(5),
         new AddCardToDiscardPileEffect(new DefendCard()));
