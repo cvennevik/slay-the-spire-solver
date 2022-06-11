@@ -103,4 +103,14 @@ public class DamageEnemyEffectTests
         };
         Assert.AreEqual(expectedGameState, effect.ApplyTo(gameState).Single());
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        var target1 = new JawWorm { Health = new Health(10) };
+        var target2 = new JawWorm { Health = new Health(5) };
+        Assert.AreEqual(new DamageEnemyEffect(target1, new Damage(10)), new DamageEnemyEffect(target1, new Damage(10)));
+        Assert.AreNotEqual(new DamageEnemyEffect(target1, new Damage(10)), new DamageEnemyEffect(target2, new Damage(10)));
+        Assert.AreNotEqual(new DamageEnemyEffect(target1, new Damage(10)), new DamageEnemyEffect(target1, new Damage(5)));
+    }
 }
