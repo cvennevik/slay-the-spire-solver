@@ -10,11 +10,4 @@ public record DefendCard : ICard
 
     public Energy GetCost() => Cost;
     public IEffect GetEffect(GameState gameState) => Effect;
-
-    public IEnumerable<IAction> GetLegalActions(GameState gameState)
-    {
-        return PlayCardAction.IsLegal(gameState, this)
-            ? new IAction[] { new PlayCardAction(gameState, this) }
-            : Array.Empty<IAction>();
-    }
 }

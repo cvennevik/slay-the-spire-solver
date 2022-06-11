@@ -33,7 +33,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenNoStrikeCardInHand()
     {
         var gameState = CreateBasicGameState() with { Hand = new Hand() };
-        var legalActions = new StrikeCard().GetLegalActions(gameState);
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
         Assert.IsEmpty(legalActions);
     }
 
@@ -41,7 +41,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenNoEnemy()
     {
         var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-        var legalActions = new StrikeCard().GetLegalActions(gameState);
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
         Assert.IsEmpty(legalActions);
     }
 
@@ -49,7 +49,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenDefeated()
     {
         var gameState = CreateBasicGameState() with { PlayerHealth = new Health(0) };
-        var legalActions = new StrikeCard().GetLegalActions(gameState);
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
         Assert.IsEmpty(legalActions);
     }
 
@@ -57,7 +57,7 @@ public class StrikeCardTests
     public void NoLegalActionsWhenNoEnergy()
     {
         var gameState = CreateBasicGameState() with { Energy = new Energy(0) };
-        var legalActions = new StrikeCard().GetLegalActions(gameState);
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
         Assert.IsEmpty(legalActions);
     }
 
@@ -65,7 +65,7 @@ public class StrikeCardTests
     public void OneLegalActionWhenOneEnemy()
     {
         var gameState = CreateBasicGameState();
-        var legalActions = new StrikeCard().GetLegalActions(gameState).ToList();
+        var legalActions = PlayCardAction.GetLegalActions(gameState, new StrikeCard());
         Assert.AreEqual(1, legalActions.Count);
         Assert.AreEqual(new PlayCardAction(gameState, new StrikeCard()), legalActions.First());
     }

@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine.Enemies;
+﻿using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
@@ -18,7 +19,7 @@ public record GameState
     public IReadOnlyCollection<IAction> GetLegalActions()
     {
         var legalActions = new List<IAction>();
-        legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => card.GetLegalActions(this)));
+        legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => PlayCardAction.GetLegalActions(this, card)));
         if (EndTurnAction.IsLegal(this))
         {
             legalActions.Add(new EndTurnAction(this));

@@ -9,11 +9,4 @@ public record StrikeCard : ICard
 
     public Energy GetCost() => Cost;
     public IEffect GetEffect(GameState gameState) => new DamageEnemyEffect(gameState.EnemyParty.First(), new Damage(6));
-
-    public IEnumerable<IAction> GetLegalActions(GameState gameState)
-    {
-        return PlayCardAction.IsLegal(gameState, this)
-            ? new IAction[] { new PlayCardAction(gameState, this) }
-            : Array.Empty<IAction>();
-    }
 }
