@@ -2,8 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
-using SlayTheSpireSolver.RulesEngine.Cards.Defend;
-using SlayTheSpireSolver.RulesEngine.Cards.Strike;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;

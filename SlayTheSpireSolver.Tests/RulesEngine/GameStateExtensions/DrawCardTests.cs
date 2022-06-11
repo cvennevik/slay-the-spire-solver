@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
-using SlayTheSpireSolver.RulesEngine.Cards.Defend;
-using SlayTheSpireSolver.RulesEngine.Cards.Strike;
 using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 using System.Linq;
+using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.GameStateExtensions;
 

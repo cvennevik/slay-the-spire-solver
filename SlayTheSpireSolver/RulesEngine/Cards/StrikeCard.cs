@@ -1,7 +1,7 @@
 ﻿using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
-namespace SlayTheSpireSolver.RulesEngine.Cards.Strike;
+namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record StrikeCard : ICard
 {
