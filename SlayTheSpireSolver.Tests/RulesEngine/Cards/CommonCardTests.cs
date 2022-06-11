@@ -1,32 +1,85 @@
+using System;
 using System.Linq;
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
-using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
-[TestFixture]
-public class CommonCardTests
+public class CommonCardTests<TCard> where TCard : ICard, new()
 {
-    [TestFixture]
-    public class CommonStrikeTests : CommonCardTestsBase<Strike>
+    protected readonly TCard Card;
+    protected readonly GameState BasicGameState;
+
+    protected CommonCardTests()
     {
-        [Test]
-        public void TestEffect()
+        Card = new TCard();
+        BasicGameState = new GameState
         {
-            Assert.AreEqual(new DamageEnemyEffect(BasicGameState.EnemyParty.First(), new Damage(6)),
-                Card.GetEffect(BasicGameState));
-        }
+            PlayerHealth = new Health(70),
+            Energy = new Energy(3),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            Hand = new Hand(Card),
+            DiscardPile = new DiscardPile(),
+        };
     }
 
-    [TestFixture]
-    public class CommonDefendTests : CommonCardTestsBase<Defend>
+    [Test]
+    public void InstancesAreEqual()
     {
-        [Test]
-        public void TestEffect()
-        {
-            Assert.AreEqual(new GainPlayerArmorEffect(5), Card.GetEffect(BasicGameState));
-        }
+        Assert.AreEqual(new TCard(), new TCard());
+    }
+
+    [Test]
+    public void PlayCardActionsWithSameGameStateAreEqual()
+    {
+        Assert.AreEqual(new PlayCardAction(BasicGameState, Card), new PlayCardAction(BasicGameState, Card));
+    }
+
+    [Test]
+    public void PlayCardActionsWithDifferentGameStatesAreNotEqual()
+    {
+        Assert.AreNotEqual(new PlayCardAction(BasicGameState, Card),
+            new PlayCardAction(BasicGameState with {Turn = new Turn(2)}, Card));
+    }
+
+    [Test]
+    public void OneLegalActionForBasicGameState()
+    {
+        var legalActions = PlayCardAction.GetLegalActions(BasicGameState, Card);
+        Assert.AreEqual(new PlayCardAction(BasicGameState, Card), legalActions.Single());
+    }
+
+    [Test]
+    public void NoLegalActionsWhenNoEnemies()
+    {
+        AssertNoLegalActions(BasicGameState with { EnemyParty = new EnemyParty() });
+    }
+
+    [Test]
+    public void NoLegalActionsWhenCardNotInHand()
+    {
+        AssertNoLegalActions(BasicGameState with { Hand = new Hand() });
+    }
+
+    [Test]
+    public void NoLegalActionsWhenPlayerDefeated()
+    {
+        AssertNoLegalActions(BasicGameState with { PlayerHealth = new Health(0) });
+    }
+
+    [Test]
+    public void NoLegalActionsWhenNoEnergy()
+    {
+        AssertNoLegalActions(BasicGameState with { Energy = new Energy(0) });
+    }
+
+    private void AssertNoLegalActions(GameState gameState)
+    {
+        Assert.IsEmpty(PlayCardAction.GetLegalActions(gameState, Card));
+        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, Card));
     }
 }
