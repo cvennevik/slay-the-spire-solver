@@ -138,4 +138,29 @@ public class ArmorTests
             Assert.AreEqual(expectedResult, new Armor(amountOfArmor) <= new Damage(amountOfDamage));
         }
     }
+
+    
+    [TestFixture]
+    public class ImplicitConversionTests : ArmorTests
+    {
+        [Test]
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(5)]
+        public void ImplicitlyConvertedArmorEqualsExplicitArmor(int amount)
+        {
+            Armor armor = amount;
+            Assert.AreEqual(new Armor(amount), armor);
+            Assert.True(new Armor(amount) == amount);
+            Assert.True(amount == new Armor(amount));
+        }
+
+        [Test]
+        public void ImplicitlyConvertsNegativeAmountsToZeroArmor()
+        {
+            Assert.True(new Armor(0) == 0);
+            Assert.True(new Armor(0) == -1);
+            Assert.True(new Armor(0) == -5);
+        }
+    }
 }
