@@ -114,4 +114,24 @@ public class EnergyTests
     {
         Assert.AreEqual(new Energy(expectedAmount), new Energy(amountA) - new Energy(amountB));
     }
+
+    [Test]
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(5)]
+    public void ImplicitlyConvertedEnergyEqualsExplicitEnergy(int amount)
+    {
+        Energy energy = amount;
+        Assert.AreEqual(new Energy(amount), energy);
+        Assert.True(new Energy(amount) == amount);
+        Assert.True(amount == new Energy(amount));
+    }
+
+    [Test]
+    public void ImplicitlyConvertsNegativeAmountsToZeroEnergy()
+    {
+        Assert.True(new Energy(0) == 0);
+        Assert.True(new Energy(0) == -1);
+        Assert.True(new Energy(0) == -5);
+    }
 }

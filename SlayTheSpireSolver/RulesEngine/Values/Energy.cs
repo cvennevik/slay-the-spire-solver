@@ -16,4 +16,6 @@ public record Energy
     public static bool operator <=(Energy a, Energy b) => a.Amount <= b.Amount;
     public static Energy operator +(Energy a, Energy b) => new(a.Amount + b.Amount);
     public static Energy operator -(Energy a, Energy b) => new(a < b ? 0 : a.Amount - b.Amount);
+
+    public static implicit operator Energy(int amount) => amount > 0 ? new Energy(amount) : new Energy(0);
 }
