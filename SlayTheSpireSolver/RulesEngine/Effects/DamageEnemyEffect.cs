@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct DamageEnemyEffect : IEffect
+public record DamageEnemyEffect : IEffect
 {
     private readonly EnemyId _target;
     private readonly Damage _damage;
@@ -21,10 +21,8 @@ public readonly record struct DamageEnemyEffect : IEffect
             return new[] { gameState.WithEffectStack() };
         }
 
-        var damage = _damage;
-        var newEnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(damage));
-        var damagedEnemy = newEnemyParty.Get(_target);
-        if (damagedEnemy.Health.Amount <= 0)
+        var newEnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(_damage));
+        if (newEnemyParty.Get(_target).Health.Amount <= 0)
         {
             newEnemyParty = newEnemyParty.Remove(_target);
         }
