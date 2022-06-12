@@ -16,19 +16,14 @@ public readonly record struct DamageEnemyEffect : IEffect
 
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var targetEnemy = _target;
-        if (gameState.EnemyParty.All(x => x.Id != targetEnemy))
+        if (!gameState.EnemyParty.Has(_target))
         {
-            return new[] { new GameStateWithEffectStack(gameState) };
+            return new[] { gameState.WithEffectStack() };
         }
 
+        var targetEnemy = _target;
         var enemies = gameState.EnemyParty.Select(x => x).ToList();
         var enemyIndex = enemies.FindIndex(enemy => enemy.Id == targetEnemy);
-        if (enemyIndex < 0)
-        {
-            return new[] { new GameStateWithEffectStack(gameState) };
-        }
-
         enemies[enemyIndex] = enemies[enemyIndex].DealDamage(_damage);
         if (enemies[enemyIndex].Health.Amount <= 0)
         {
