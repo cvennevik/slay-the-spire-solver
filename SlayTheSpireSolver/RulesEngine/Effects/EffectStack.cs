@@ -45,4 +45,9 @@ public readonly struct EffectStack
     {
         return !(left == right);
     }
+
+    public override string ToString()
+    {
+        return $"[{string.Join<IEffect>(", ", _effects)}]";
+    }
 }
