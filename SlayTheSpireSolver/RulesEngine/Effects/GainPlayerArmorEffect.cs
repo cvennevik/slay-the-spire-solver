@@ -6,9 +6,9 @@ public readonly record struct GainPlayerArmorEffect : IEffect
 {
     private readonly Armor _armorGain;
 
-    public GainPlayerArmorEffect(int armorGainAmount)
+    public GainPlayerArmorEffect(Armor armorGain)
     {
-        _armorGain = new Armor(Math.Max(armorGainAmount, 0));
+        _armorGain = armorGain;
     }
 
     public IReadOnlyList<GameState> ApplyTo(GameState gameState)

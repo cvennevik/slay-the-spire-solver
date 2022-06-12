@@ -2,6 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
@@ -13,7 +14,7 @@ public class DefendTests : CommonCardTests
     [Test]
     public void TestEffect()
     {
-        Assert.AreEqual(new GainPlayerArmorEffect(5), Card.GetEffect(BasicGameState));
+        Assert.AreEqual(new GainPlayerArmorEffect(new Armor(5)), Card.GetEffect(BasicGameState));
     }
 
     [Test]
