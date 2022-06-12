@@ -9,14 +9,14 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
-public abstract class CommonCardTests
+public class CommonCardTests<TCard> where TCard : ICard, new()
 {
-    protected readonly ICard Card;
+    protected readonly TCard Card;
     protected readonly GameState BasicGameState;
 
-    protected CommonCardTests(ICard card)
+    protected CommonCardTests()
     {
-        Card = card;
+        Card = new TCard();
         BasicGameState = new GameState
         {
             PlayerHealth = new Health(70),
@@ -25,6 +25,12 @@ public abstract class CommonCardTests
             Hand = new Hand(Card),
             DiscardPile = new DiscardPile(),
         };
+    }
+
+    [Test]
+    public void InstancesAreEqual()
+    {
+        Assert.AreEqual(new TCard(), new TCard());
     }
 
     [Test]
