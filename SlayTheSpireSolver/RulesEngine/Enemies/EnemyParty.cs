@@ -15,8 +15,7 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public override bool Equals(object? obj)
     {
-        if (obj is not EnemyParty otherParty) return false;
-        return enemies.SequenceEqual(otherParty.enemies);
+        return obj is EnemyParty otherParty && enemies.SequenceEqual(otherParty.enemies);
     }
 
     public override int GetHashCode()
