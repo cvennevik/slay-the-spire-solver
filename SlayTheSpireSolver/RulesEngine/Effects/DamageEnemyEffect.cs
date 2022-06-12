@@ -21,15 +21,16 @@ public record DamageEnemyEffect : IEffect
             return new[] { gameState.WithEffectStack() };
         }
 
-        var newEnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(_damage));
-        if (newEnemyParty.Get(_target).Health.Amount <= 0)
+        var newGameState = new GameState
         {
-            newEnemyParty = newEnemyParty.Remove(_target);
+            EnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(_damage))
+        };
+
+        if (newGameState.EnemyParty.Get(_target).Health.Amount <= 0)
+        {
+            return new[] { newGameState.WithEffectStack(new EffectStack(new KillEnemyEffect(_target))) };
         }
 
-        return new[]
-        {
-            new GameStateWithEffectStack(gameState with { EnemyParty = newEnemyParty })
-        };
+        return new[] { newGameState.WithEffectStack() };
     }
 }

@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class KillEnemyEffect : IEffect
+public record KillEnemyEffect : IEffect
 {
     private readonly EnemyId _targetId;
 
