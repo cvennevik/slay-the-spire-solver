@@ -4,9 +4,9 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public readonly record struct AddCardToDiscardPileEffect : IEffect
 {
-    private readonly ICard _cardToAdd;
+    private readonly Card _cardToAdd;
 
-    public AddCardToDiscardPileEffect(ICard card)
+    public AddCardToDiscardPileEffect(Card card)
     {
         _cardToAdd = card;
     }

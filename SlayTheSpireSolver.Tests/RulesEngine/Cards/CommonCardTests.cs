@@ -9,7 +9,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
-public class CommonCardTests<TCard> where TCard : ICard, new()
+public class CommonCardTests<TCard> where TCard : Card, new()
 {
     protected readonly TCard Card;
     protected readonly GameState BasicGameState;
