@@ -4,18 +4,18 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyParty : IEnumerable<Enemy>
 {
-    public Enemy GetEnemy(int enemyPosition) => enemies[enemyPosition - 1];
+    public Enemy GetEnemy(int enemyPosition) => _enemies[enemyPosition - 1];
 
-    private readonly Enemy[] enemies;
+    private readonly Enemy[] _enemies;
 
     public EnemyParty(params Enemy[] enemies)
     {
-        this.enemies = enemies;
+        _enemies = enemies;
     }
 
     public override bool Equals(object? obj)
     {
-        return obj is EnemyParty otherParty && enemies.SequenceEqual(otherParty.enemies);
+        return obj is EnemyParty otherParty && _enemies.SequenceEqual(otherParty._enemies);
     }
 
     public override int GetHashCode()
@@ -25,16 +25,16 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public IEnumerator<Enemy> GetEnumerator()
     {
-        return ((IEnumerable<Enemy>)enemies).GetEnumerator();
+        return ((IEnumerable<Enemy>)_enemies).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return enemies.GetEnumerator();
+        return _enemies.GetEnumerator();
     }
 
     public override string ToString()
     {
-        return $"[{string.Join(",\n\t\t", enemies.ToList())}]";
+        return $"[{string.Join(",\n\t\t", _enemies.ToList())}]";
     }
 }
