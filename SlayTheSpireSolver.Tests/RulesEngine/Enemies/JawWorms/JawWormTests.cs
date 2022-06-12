@@ -15,8 +15,9 @@ public class JawWormTests
     }
 
     [Test]
-    public void NewEnemiesHaveSameId()
+    public void NewEnemiesHaveDefaultId()
     {
+        Assert.AreEqual(EnemyId.Default, new JawWorm().Id);
         Assert.AreEqual(new JawWorm().Id, new JawWorm().Id);
     }
 

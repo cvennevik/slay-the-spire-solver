@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public abstract record Enemy
 {
-    public EnemyId Id { get; init; }
+    public EnemyId Id { get; init; } = EnemyId.Default;
     public Health Health { get; init; } = new(1);
     public Armor Armor { get; init; } = new(0);
     public abstract IEnemyMove GetIntendedMove();
