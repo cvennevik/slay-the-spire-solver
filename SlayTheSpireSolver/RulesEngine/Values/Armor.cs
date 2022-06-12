@@ -21,6 +21,5 @@ public record Armor
     public static Armor operator -(Armor armor, Damage damage) =>
         new(armor < damage ? 0 : armor.Amount - damage.Amount);
 
-    
     public static implicit operator Armor(int amount) => amount > 0 ? new Armor(amount) : new Armor(0);
 }
