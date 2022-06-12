@@ -7,8 +7,10 @@ using SlayTheSpireSolver.RulesEngine.Values;
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
 [TestFixture]
-public class StrikeTests : CommonCardTests<Strike>
+public class StrikeTests : CommonCardTests
 {
+    public StrikeTests() : base(new Strike()) { }
+
     [Test]
     public void TestEffect()
     {

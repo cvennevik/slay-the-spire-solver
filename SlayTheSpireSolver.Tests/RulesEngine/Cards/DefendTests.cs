@@ -5,8 +5,10 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
 [TestFixture]
-public class DefendTests : CommonCardTests<Defend>
+public class DefendTests : CommonCardTests
 {
+    public DefendTests() : base(new Defend()) { }
+
     [Test]
     public void TestEffect()
     {
