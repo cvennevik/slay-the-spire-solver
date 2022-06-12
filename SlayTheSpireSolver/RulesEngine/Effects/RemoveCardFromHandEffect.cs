@@ -11,16 +11,10 @@ public readonly record struct RemoveCardFromHandEffect : IEffect
         _cardToRemove = cardToRemove;
     }
 
-    public IReadOnlyList<GameState> ApplyTo(GameState gameState)
+    public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
         cardsInHand.Remove(_cardToRemove);
-        return new[] { gameState with { Hand = new Hand(cardsInHand.ToArray()) } };
-    }
-
-    public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
-    {
-        var result = ApplyTo(gameState);
-        return result.Select(x => new GameStateWithEffectStack(x)).ToList();
+        return new[] { new GameStateWithEffectStack(gameState with { Hand = new Hand(cardsInHand.ToArray()) }) };
     }
 }

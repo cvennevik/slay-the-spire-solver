@@ -11,14 +11,9 @@ public readonly record struct GainPlayerArmorEffect : IEffect
         _armorGain = armorGain;
     }
 
-    public IReadOnlyList<GameState> ApplyTo(GameState gameState)
-    {
-        return new[] { gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain } };
-    }
-
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var result = ApplyTo(gameState);
+        var result = new[] { gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain } };
         return result.Select(x => new GameStateWithEffectStack(x)).ToList();
     }
 }

@@ -11,15 +11,11 @@ public readonly record struct AddCardToDiscardPileEffect : IEffect
         _cardToAdd = card;
     }
 
-    public IReadOnlyList<GameState> ApplyTo(GameState gameState)
-    {
-        var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
-        return new[] { gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) } };
-    }
-
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var result = ApplyTo(gameState);
-        return result.Select(x => new GameStateWithEffectStack(x)).ToList();
+        var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
+        var otherResult = new GameStateWithEffectStack(
+            gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) });
+        return new[] { otherResult };
     }
 }
