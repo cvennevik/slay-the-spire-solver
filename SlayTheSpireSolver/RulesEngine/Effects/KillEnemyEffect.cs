@@ -19,7 +19,7 @@ public class KillEnemyEffect : IEffect
         {
             enemies.RemoveAt(targetIndex);
         }
-        var newEnemyParty = new EnemyParty(enemies.ToArray());
-        return new[] { new GameStateWithEffectStack(gameState with { EnemyParty = newEnemyParty }) };
+        var newGameState = gameState with { EnemyParty = new EnemyParty(enemies.ToArray()) };
+        return new[] { newGameState.WithEffectStack() };
     }
 }
