@@ -49,7 +49,7 @@ public class CommonCardTests<TCard> where TCard : ICard, new()
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var legalActions = PlayCardAction.GetLegalActions(BasicGameState, Card);
+        var legalActions = Card.GetLegalActions(BasicGameState);
         Assert.AreEqual(new PlayCardAction(BasicGameState, Card), legalActions.Single());
     }
 
