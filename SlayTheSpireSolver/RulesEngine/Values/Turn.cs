@@ -10,4 +10,6 @@ public record Turn
 
         Number = number;
     }
+
+    public static implicit operator Turn(int amount) => amount > 1 ? new Turn(amount) : new Turn(1);
 }

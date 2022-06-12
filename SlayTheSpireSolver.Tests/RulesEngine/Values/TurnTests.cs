@@ -34,4 +34,24 @@ public class TurnTests
     {
         Assert.AreEqual(new Turn(turnNumber), new Turn(turnNumber));
     }
+
+    
+    [Test]
+    [TestCase(1)]
+    [TestCase(5)]
+    public void ImplicitlyConvertedTurnEqualsExplicitTurn(int turnNumber)
+    {
+        Turn turn = turnNumber;
+        Assert.AreEqual(new Turn(turnNumber), turn);
+        Assert.True(new Turn(turnNumber) == turnNumber);
+        Assert.True(turnNumber == new Turn(turnNumber));
+    }
+
+    [Test]
+    public void ImplicitlyConvertsNonPositiveTurnNumbersToTurnOne()
+    {
+        Assert.True(new Turn(1) == 0);
+        Assert.True(new Turn(1) == -1);
+        Assert.True(new Turn(1) == -5);
+    }
 }
