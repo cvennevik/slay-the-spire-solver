@@ -9,7 +9,7 @@ public readonly record struct PlayCardAction : IAction
 
     public PlayCardAction(GameState gameState, Card card)
     {
-        if (!card.IsLegal(gameState)) throw new ArgumentException("Illegal PlayCard action");
+        if (!card.CanBePlayed(gameState)) throw new ArgumentException("Illegal PlayCard action");
         _gameState = gameState;
         _effect = new CombinedEffect(
             new RemoveEnergyEffect(card.GetCost()),

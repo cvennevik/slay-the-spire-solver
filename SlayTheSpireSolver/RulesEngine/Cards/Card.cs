@@ -10,12 +10,12 @@ public abstract record Card
 
     public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState)
     {
-        return IsLegal(gameState)
+        return CanBePlayed(gameState)
             ? new IAction[] { new PlayCardAction(gameState, this) }
             : Array.Empty<IAction>();
     }
 
-    public bool IsLegal(GameState gameState)
+    public bool CanBePlayed(GameState gameState)
     {
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
