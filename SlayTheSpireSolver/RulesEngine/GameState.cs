@@ -31,4 +31,19 @@ public record GameState
     {
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
     }
+
+    public override string ToString()
+    {
+        return $@"GameState {{
+    PlayerHealth: {PlayerHealth},
+    PlayerArmor: {PlayerArmor},
+    BaseEnergy: {BaseEnergy},
+    Energy: {Energy},
+    EnemyParty: {EnemyParty},
+    Turn: {Turn},
+    Hand: {Hand},
+    DrawPile: {DrawPile},
+    DiscardPile: {DiscardPile}
+}}";
+    }
 }
