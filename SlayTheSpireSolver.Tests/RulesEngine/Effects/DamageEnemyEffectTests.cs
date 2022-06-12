@@ -15,7 +15,7 @@ public class DamageEnemyEffectTests
     public void DamagesSingleEnemy()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }) };
-        var effect = new DamageEnemyEffect(gameState.EnemyParty.First().Id, new Damage(5));
+        var effect = new DamageEnemyEffect(EnemyId.Default, new Damage(5));
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = new Health(5) }) };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
@@ -24,7 +24,7 @@ public class DamageEnemyEffectTests
     public void KillsSingleEnemy()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10) }) };
-        var effect = new DamageEnemyEffect(gameState.EnemyParty.First().Id, new Damage(10));
+        var effect = new DamageEnemyEffect(EnemyId.Default, new Damage(10));
         var expectedGameState = new GameState { EnemyParty = new EnemyParty() };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
@@ -37,8 +37,8 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(
                 new JawWorm { Health = new Health(10), Id = id1 },
-                new JawWorm { Health = new Health(9), Id = id2 },
-                new JawWorm { Health = new Health(8), Id = id3 }
+                new JawWorm { Health = new Health(10), Id = id2 },
+                new JawWorm { Health = new Health(10), Id = id3 }
             )
         };
         var effect = new DamageEnemyEffect(id2, new Damage(5));
@@ -46,8 +46,8 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(
                 new JawWorm { Health = new Health(10), Id = id1 },
-                new JawWorm { Health = new Health(4), Id = id2 },
-                new JawWorm { Health = new Health(8), Id = id3 }
+                new JawWorm { Health = new Health(5), Id = id2 },
+                new JawWorm { Health = new Health(10), Id = id3 }
             )
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
@@ -61,8 +61,8 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(
                 new JawWorm { Health = new Health(10), Id = id1 },
-                new JawWorm { Health = new Health(9), Id = id2 },
-                new JawWorm { Health = new Health(8), Id = id3 }
+                new JawWorm { Health = new Health(10), Id = id2 },
+                new JawWorm { Health = new Health(10), Id = id3 }
             )
         };
         var effect = new DamageEnemyEffect(id2, new Damage(10));
@@ -70,7 +70,7 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(
                 new JawWorm { Health = new Health(10), Id = id1 },
-                new JawWorm { Health = new Health(8), Id = id3 }
+                new JawWorm { Health = new Health(10), Id = id3 }
             )
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
@@ -83,7 +83,7 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(10) })
         };
-        var effect = new DamageEnemyEffect(gameState.EnemyParty.First().Id, new Damage(5));
+        var effect = new DamageEnemyEffect(EnemyId.Default, new Damage(5));
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(5) })
@@ -98,7 +98,7 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(10) })
         };
-        var effect = new DamageEnemyEffect(gameState.EnemyParty.First().Id, new Damage(15));
+        var effect = new DamageEnemyEffect(EnemyId.Default, new Damage(15));
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = new Health(5) })
