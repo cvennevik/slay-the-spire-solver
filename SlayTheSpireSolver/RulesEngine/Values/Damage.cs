@@ -19,4 +19,9 @@ public record Damage
         new(damage < armor ? 0 : damage.Amount - armor.Amount);
 
     public static implicit operator Damage(int amount) => amount > 0 ? new Damage(amount) : new Damage(0);
+
+    public override string ToString()
+    {
+        return $"{Amount}";
+    }
 }

@@ -12,4 +12,9 @@ public record Turn
     }
 
     public static implicit operator Turn(int amount) => amount > 1 ? new Turn(amount) : new Turn(1);
+
+    public override string ToString()
+    {
+        return $"{Number}";
+    }
 }
