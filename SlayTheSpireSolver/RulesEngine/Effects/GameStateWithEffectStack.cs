@@ -1,11 +1,11 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record GameStateWithUnresolvedEffects
+public record GameStateWithEffectStack
 {
     public GameState GameState { get; init; }
     public IReadOnlyList<IEffect> UnresolvedEffects { get; init; } = Array.Empty<IEffect>();
 
-    public GameStateWithUnresolvedEffects(GameState gameState)
+    public GameStateWithEffectStack(GameState gameState)
     {
         GameState = gameState;
     }

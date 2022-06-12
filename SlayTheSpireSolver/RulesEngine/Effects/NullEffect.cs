@@ -7,8 +7,8 @@ public readonly record struct NullEffect : IEffect
         return new[] { gameState };
     }
 
-    public IReadOnlyCollection<GameStateWithUnresolvedEffects> Resolve(GameState gameState)
+    public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        return new[] { new GameStateWithUnresolvedEffects(gameState) };
+        return new[] { new GameStateWithEffectStack(gameState) };
     }
 }
