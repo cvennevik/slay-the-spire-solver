@@ -10,9 +10,15 @@ public abstract record Card
 
     public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState)
     {
-        return PlayCardAction.IsLegal(gameState, this)
+        return IsLegal(gameState)
             ? new IAction[] { new PlayCardAction(gameState, this) }
             : Array.Empty<IAction>();
     }
 
+    public bool IsLegal(GameState gameState)
+    {
+        return !gameState.IsCombatOver()
+               && gameState.Hand.Contains(this)
+               && gameState.Energy >= GetCost();
+    }
 }
