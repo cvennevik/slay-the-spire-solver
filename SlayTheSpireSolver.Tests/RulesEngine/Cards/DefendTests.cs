@@ -13,6 +13,6 @@ public class DefendTests : CommonCardTests<Defend>
     [Test]
     public void TestEffect()
     {
-        Assert.AreEqual(new GainPlayerArmorEffect(new Armor(5)), Card.GetEffect(BasicGameState));
+        Assert.AreEqual(new GainPlayerArmorEffect(5), Card.GetEffect(BasicGameState));
     }
 }

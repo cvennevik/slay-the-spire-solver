@@ -80,12 +80,12 @@ public class DamageEnemyEffectTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(10) })
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = 10 })
         };
         var effect = new DamageEnemyEffect(EnemyId.Default, 5);
         var expectedGameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(5) })
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = 5 })
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
@@ -95,7 +95,7 @@ public class DamageEnemyEffectTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = new Armor(10) })
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(10), Armor = 10 })
         };
         var effect = new DamageEnemyEffect(EnemyId.Default, 15);
         var expectedGameState = new GameState

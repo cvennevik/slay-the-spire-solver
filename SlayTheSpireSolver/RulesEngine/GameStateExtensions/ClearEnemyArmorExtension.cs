@@ -7,7 +7,7 @@ public static class ClearEnemyArmorExtension
 {
     public static GameState ClearEnemyArmor(this GameState gameState)
     {
-        var enemiesWithArmorCleared = gameState.EnemyParty.Select(enemy => enemy with { Armor = new Armor(0) });
+        var enemiesWithArmorCleared = gameState.EnemyParty.Select(enemy => enemy with { Armor = 0 });
         return gameState with { EnemyParty = new EnemyParty(enemiesWithArmorCleared.ToArray()) };
     }
 }

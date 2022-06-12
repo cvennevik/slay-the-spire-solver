@@ -16,27 +16,27 @@ public class ChompTests
     [TestCase(5, -7)]
     public void TestWithoutArmor(int initialPlayerHealth, int expectedPlayerHealth)
     {
-        var gameState = new GameState { PlayerHealth = new Health(initialPlayerHealth), PlayerArmor = new Armor(0) };
+        var gameState = new GameState { PlayerHealth = new Health(initialPlayerHealth), PlayerArmor = 0 };
         var resolvedGameState = Chomp.Resolve(gameState);
-        var expectedGameState = new GameState { PlayerHealth = new Health(expectedPlayerHealth), PlayerArmor = new Armor(0) };
+        var expectedGameState = new GameState { PlayerHealth = new Health(expectedPlayerHealth), PlayerArmor = 0 };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
 
     [Test]
     public void TestWithArmor1()
     {
-        var gameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = new Armor(10) };
+        var gameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = 10 };
         var resolvedGameState = Chomp.Resolve(gameState);
-        var expectedGameState = new GameState { PlayerHealth = new Health(48), PlayerArmor = new Armor(0) };
+        var expectedGameState = new GameState { PlayerHealth = new Health(48), PlayerArmor = 0 };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
 
     [Test]
     public void TestWithArmor2()
     {
-        var gameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = new Armor(20) };
+        var gameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = 20 };
         var resolvedGameState = Chomp.Resolve(gameState);
-        var expectedGameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = new Armor(8) };
+        var expectedGameState = new GameState { PlayerHealth = new Health(50), PlayerArmor = 8 };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
 }

@@ -19,15 +19,15 @@ public class ThrashTests
         var gameState = new GameState
         {
             PlayerHealth = new Health(initialPlayerHealth),
-            PlayerArmor = new Armor(0),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(initialEnemyArmor)})
+            PlayerArmor = 0,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = initialEnemyArmor})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
             PlayerHealth = new Health(expectedPlayerHealth),
-            PlayerArmor = new Armor(0),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(expectedEnemyArmor)})
+            PlayerArmor = 0,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = expectedEnemyArmor})
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
@@ -38,15 +38,15 @@ public class ThrashTests
         var gameState = new GameState
         {
             PlayerHealth = new Health(10),
-            PlayerArmor = new Armor(10),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(0)})
+            PlayerArmor = 10,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = 0})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
             PlayerHealth = new Health(10),
-            PlayerArmor = new Armor(3),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(5)})
+            PlayerArmor = 3,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = 5})
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
@@ -57,15 +57,15 @@ public class ThrashTests
         var gameState = new GameState
         {
             PlayerHealth = new Health(10),
-            PlayerArmor = new Armor(5),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(0)})
+            PlayerArmor = 5,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = 0})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
             PlayerHealth = new Health(8),
-            PlayerArmor = new Armor(0),
-            EnemyParty = new EnemyParty(new JawWorm {Armor = new Armor(5)})
+            PlayerArmor = 0,
+            EnemyParty = new EnemyParty(new JawWorm {Armor = 5})
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }

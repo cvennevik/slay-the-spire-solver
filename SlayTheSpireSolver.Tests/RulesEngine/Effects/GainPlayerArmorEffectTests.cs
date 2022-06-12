@@ -15,9 +15,9 @@ public class GainPlayerArmorEffectTests
     [TestCase(5, 5, 10)]
     public void TestEffect(int initialPlayerArmor, int effectAmount, int expectedPlayerArmor)
     {
-        var gameState = new GameState { PlayerArmor = new Armor(initialPlayerArmor) };
-        var effect = new GainPlayerArmorEffect(new Armor(effectAmount));
-        Assert.AreEqual(new GameState { PlayerArmor = new Armor(expectedPlayerArmor) },
+        var gameState = new GameState { PlayerArmor = initialPlayerArmor };
+        var effect = new GainPlayerArmorEffect(effectAmount);
+        Assert.AreEqual(new GameState { PlayerArmor = expectedPlayerArmor },
             effect.Resolve(gameState).SingleResolvedGameState());
     }
 
@@ -26,7 +26,7 @@ public class GainPlayerArmorEffectTests
     [TestCase(5, 5)]
     public void TestEqual(int amountA, int amountB)
     {
-        Assert.AreEqual(new GainPlayerArmorEffect(new Armor(amountA)), new GainPlayerArmorEffect(new Armor(amountB)));
+        Assert.AreEqual(new GainPlayerArmorEffect(amountA), new GainPlayerArmorEffect(amountB));
     }
 
     [Test]
@@ -34,6 +34,6 @@ public class GainPlayerArmorEffectTests
     [TestCase(1, 0)]
     public void TestNotEqual(int amountA, int amountB)
     {
-        Assert.AreNotEqual(new GainPlayerArmorEffect(new Armor(amountA)), new GainPlayerArmorEffect(new Armor(amountB)));
+        Assert.AreNotEqual(new GainPlayerArmorEffect(amountA), new GainPlayerArmorEffect(amountB));
     }
 }

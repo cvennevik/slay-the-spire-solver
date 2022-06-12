@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 public record Thrash : IJawWormMove
 {
     private static readonly Damage Damage = 7;
-    private static readonly Armor ArmorGain = new(5);
+    private static readonly Armor ArmorGain = 5;
 
     public GameState Resolve(GameState gameState)
     {

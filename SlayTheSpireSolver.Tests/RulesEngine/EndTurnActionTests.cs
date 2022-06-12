@@ -55,7 +55,7 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                EnemyParty = new EnemyParty(new JawWorm { Armor = new Armor(10)})
+                EnemyParty = new EnemyParty(new JawWorm { Armor = 10 })
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();

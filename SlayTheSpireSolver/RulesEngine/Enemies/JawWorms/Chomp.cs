@@ -12,7 +12,7 @@ public record Chomp : IJawWormMove
         {
             var remainingDamage = Damage - gameState.PlayerArmor;
             var newPlayerHealth = gameState.PlayerHealth - remainingDamage;
-            return gameState with { PlayerHealth = newPlayerHealth, PlayerArmor = new Armor(0) };
+            return gameState with { PlayerHealth = newPlayerHealth, PlayerArmor = 0 };
         }
 
         return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
