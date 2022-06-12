@@ -36,6 +36,6 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public override string ToString()
     {
-        return $"{nameof(EnemyParty)}: [{string.Join(",", enemies.ToList())}]";
+        return $"[{string.Join(",\n\t", enemies.ToList())}]";
     }
 }
