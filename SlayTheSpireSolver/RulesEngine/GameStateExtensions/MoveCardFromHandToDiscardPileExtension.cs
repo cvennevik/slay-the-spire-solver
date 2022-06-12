@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 
 public static class MoveCardFromHandToDiscardPileExtension
 {
-    public static GameState MoveCardFromHandToDiscardPile(this GameState gameState, Card card)
+    public static GameState MoveCardFromHandToDiscardPile(this GameState gameState, ICard card)
     {
         return gameState with
         {

@@ -3,14 +3,14 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public record Defend : Card
+public record Defend : ICard
 {
     private static readonly Energy Cost = new(1);
     private static readonly IEffect Effect = new GainPlayerArmorEffect(new Armor(5));
 
-    public override Energy GetCost() => Cost;
-    public override IEffect GetEffect(GameState gameState) => Effect;
+    public Energy GetCost() => Cost;
+    public IEffect GetEffect(GameState gameState) => Effect;
 
-    public override IReadOnlyCollection<IAction> GetLegalActions(GameState gameState) =>
+    public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState) =>
         PlayCardAction.GetLegalActions(gameState, this);
 }

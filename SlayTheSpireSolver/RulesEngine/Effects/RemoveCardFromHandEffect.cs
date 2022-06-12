@@ -4,9 +4,9 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public readonly record struct RemoveCardFromHandEffect : IEffect
 {
-    private readonly Card _cardToRemove;
+    private readonly ICard _cardToRemove;
 
-    public RemoveCardFromHandEffect(Card cardToRemove)
+    public RemoveCardFromHandEffect(ICard cardToRemove)
     {
         _cardToRemove = cardToRemove;
     }

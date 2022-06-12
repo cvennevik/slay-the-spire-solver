@@ -4,11 +4,11 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DiscardPile : CardCollection<DiscardPile>
 {
-    public DiscardPile(params Card[] cards) : base(cards)
+    public DiscardPile(params ICard[] cards) : base(cards)
     {
     }
 
-    protected override DiscardPile CreateNew(params Card[] cards)
+    protected override DiscardPile CreateNew(params ICard[] cards)
     {
         return new DiscardPile(cards);
     }

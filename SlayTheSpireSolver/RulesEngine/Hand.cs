@@ -4,11 +4,11 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class Hand : CardCollection<Hand>
 {
-    public Hand(params Card[] cards) : base(cards)
+    public Hand(params ICard[] cards) : base(cards)
     {
     }
 
-    protected override Hand CreateNew(params Card[] cards)
+    protected override Hand CreateNew(params ICard[] cards)
     {
         return new Hand(cards);
     }

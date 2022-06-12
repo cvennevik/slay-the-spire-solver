@@ -4,11 +4,11 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DrawPile : CardCollection<DrawPile>
 {
-    public DrawPile(params Card[] cards) : base(cards)
+    public DrawPile(params ICard[] cards) : base(cards)
     {
     }
 
-    protected override DrawPile CreateNew(params Card[] cards)
+    protected override DrawPile CreateNew(params ICard[] cards)
     {
         return new DrawPile(cards);
     }

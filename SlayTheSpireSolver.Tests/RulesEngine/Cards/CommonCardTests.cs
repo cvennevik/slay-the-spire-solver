@@ -11,10 +11,10 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
 public abstract class CommonCardTests
 {
-    protected readonly Card Card;
+    protected readonly ICard Card;
     protected readonly GameState BasicGameState;
 
-    protected CommonCardTests(Card card)
+    protected CommonCardTests(ICard card)
     {
         Card = card;
         BasicGameState = new GameState

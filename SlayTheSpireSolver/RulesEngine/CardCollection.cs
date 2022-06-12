@@ -4,26 +4,26 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public abstract class CardCollection<T> where T : CardCollection<T>
 {
-    public IReadOnlyCollection<Card> Cards { get; }
+    public IReadOnlyCollection<ICard> Cards { get; }
 
-    protected CardCollection(params Card[] cards)
+    protected CardCollection(params ICard[] cards)
     {
         Cards = cards;
     }
 
-    protected abstract T CreateNew(params Card[] cards);
+    protected abstract T CreateNew(params ICard[] cards);
 
-    public bool Contains(Card card)
+    public bool Contains(ICard card)
     {
         return Cards.Contains(card);
     }
 
-    public T Add(Card card)
+    public T Add(ICard card)
     {
         return CreateNew(Cards.Append(card).ToArray());
     }
 
-    public T Remove(Card card)
+    public T Remove(ICard card)
     {
         if (!Cards.Contains(card)) throw new ArgumentException($"CardCollection does not contain {card}");
         var cardsCopy = Cards.ToList();
