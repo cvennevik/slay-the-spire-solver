@@ -2,6 +2,7 @@
 using SlayTheSpireSolver.AI;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -34,6 +35,12 @@ public class SolverTests
             Hand = new Hand(new Strike())
         };
         var bestAction = Solver.GetBestAction(gameState);
-        Assert.AreEqual(new PlayCardAction(gameState, new Strike()), bestAction);
+        var strike = new Strike();
+        var playStrikeAction = new ActionWithEffectStack(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(strike),
+            strike.GetEffect(gameState),
+            new RemoveCardFromHandEffect(strike),
+            new RemoveEnergyEffect(strike.GetCost())));
+        Assert.AreEqual(playStrikeAction, bestAction);
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -55,5 +56,16 @@ public class CommonCardTests<TCard> where TCard : Card, new()
     public void NoLegalActionsWhenNoEnergy()
     {
         Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = new Energy(0) }));
+    }
+
+    [Test]
+    public void OneLegalActionForBasicGameState()
+    {
+        var expectedAction = new ActionWithEffectStack(BasicGameState, new EffectStack(
+            new AddCardToDiscardPileEffect(Card),
+            Card.GetEffect(BasicGameState),
+            new RemoveCardFromHandEffect(Card),
+            new RemoveEnergyEffect(Card.GetCost())));
+        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
     }
 }

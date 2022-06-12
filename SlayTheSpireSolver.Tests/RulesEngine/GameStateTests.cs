@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -41,8 +42,13 @@ public class GameStateTests
         public void BasicGameState()
         {
             var gameState = CreateBasicGameState();
-            AssertLegalActions(gameState,
-                new PlayCardAction(gameState, new Strike()), new EndTurnAction(gameState));
+            var strike = new Strike();
+            var playStrikeAction = new ActionWithEffectStack(gameState, new EffectStack(
+                new AddCardToDiscardPileEffect(strike),
+                strike.GetEffect(gameState),
+                new RemoveCardFromHandEffect(strike),
+                new RemoveEnergyEffect(strike.GetCost())));
+            AssertLegalActions(gameState, playStrikeAction, new EndTurnAction(gameState));
         }
 
         [Test]
