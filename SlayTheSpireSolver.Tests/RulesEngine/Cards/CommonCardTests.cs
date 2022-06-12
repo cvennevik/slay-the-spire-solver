@@ -79,7 +79,7 @@ public class CommonCardTests<TCard> where TCard : Card, new()
 
     private void AssertNoLegalActions(GameState gameState)
     {
-        Assert.IsEmpty(PlayCardAction.GetLegalActions(gameState, Card));
+        Assert.IsEmpty(Card.GetLegalActions(gameState));
         Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, Card));
     }
 }
