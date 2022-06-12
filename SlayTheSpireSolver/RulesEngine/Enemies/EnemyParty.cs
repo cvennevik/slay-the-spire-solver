@@ -14,6 +14,7 @@ public class EnemyParty : IEnumerable<Enemy>
     }
 
     public bool Has(EnemyId id) => _enemies.Any(enemy => enemy.Id == id);
+    public EnemyParty Remove(EnemyId id) => new(_enemies.Where(enemy => enemy.Id != id).ToArray());
 
     public override bool Equals(object? obj)
     {
