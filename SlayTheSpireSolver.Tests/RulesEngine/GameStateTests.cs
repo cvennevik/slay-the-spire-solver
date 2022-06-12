@@ -16,7 +16,7 @@ public class GameStateTests
         return new()
         {
             PlayerHealth = 70,
-            Energy = new Energy(3),
+            Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
             Hand = new Hand(new Strike()),
             Turn = new Turn(1)

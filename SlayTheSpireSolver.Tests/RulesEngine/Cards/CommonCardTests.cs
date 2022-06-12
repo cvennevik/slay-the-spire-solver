@@ -21,7 +21,7 @@ public class CommonCardTests<TCard> where TCard : Card, new()
         BasicGameState = new GameState
         {
             PlayerHealth = 70,
-            Energy = new Energy(3),
+            Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
             Hand = new Hand(Card),
             DiscardPile = new DiscardPile(),
@@ -55,7 +55,7 @@ public class CommonCardTests<TCard> where TCard : Card, new()
     [Test]
     public void NoLegalActionsWhenNoEnergy()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = new Energy(0) }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = 0 }));
     }
 
     [Test]

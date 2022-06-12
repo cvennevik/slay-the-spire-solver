@@ -14,11 +14,11 @@ public class RemoveEnergyTests : GameStateTests
     [TestCase(3, 3, 0)]
     [TestCase(3, 4, 0)]
     [TestCase(0, 0, 0)]
-    public void Test(int initialAmount, int amountToRemove, int expectedAmount)
+    public void Test(int initialEnergy, int energyToRemove, int expectedEnergy)
     {
-        var gameState = new GameState { Energy = new Energy(initialAmount) };
-        var newGameState = gameState.Remove(new Energy(amountToRemove));
-        var expectedGameState = new GameState { Energy = new Energy(expectedAmount) };
+        var gameState = new GameState { Energy = initialEnergy };
+        var newGameState = gameState.Remove(energyToRemove);
+        var expectedGameState = new GameState { Energy = expectedEnergy };
         Assert.AreEqual(expectedGameState, newGameState);
     }
 }

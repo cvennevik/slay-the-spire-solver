@@ -134,8 +134,8 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                BaseEnergy = new Energy(4),
-                Energy = new Energy(0)
+                BaseEnergy = 4,
+                Energy = 0
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();

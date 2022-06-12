@@ -17,15 +17,15 @@ public class RecoverBaseEnergyTest
     [TestCase(3, 10)]
     [TestCase(4, 3)]
     [TestCase(4, 4)]
-    public void ResetsEnergyToBaseEnergy(int amountOfBaseEnergy, int initialAmountOfEnergy)
+    public void ResetsEnergyToBaseEnergy(int baseEnergy, int initialEnergy)
     {
         var gameState = new GameState
         {
-            BaseEnergy = new Energy(amountOfBaseEnergy),
-            Energy = new Energy(initialAmountOfEnergy)
+            BaseEnergy = baseEnergy,
+            Energy = initialEnergy
         };
         var nextGameState = gameState.RecoverBaseEnergy();
-        var expectedGameState = gameState with { Energy = new Energy(amountOfBaseEnergy) };
+        var expectedGameState = gameState with { Energy = baseEnergy };
         Assert.AreEqual(expectedGameState, nextGameState);
     }
 }

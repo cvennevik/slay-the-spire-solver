@@ -14,19 +14,19 @@ public class RemoveEnergyEffectTests
     [TestCase(0, 1, 0)]
     [TestCase(1, 1, 0)]
     [TestCase(2, 1, 1)]
-    public void TestEffect(int initialEnergyAmount, int effectAmount, int expectedEnergyAmount)
+    public void TestEffect(int initialEnergy, int effectAmount, int expectedEnergy)
     {
-        var gameState = new GameState { Energy = new Energy(initialEnergyAmount) };
-        var effect = new RemoveEnergyEffect(new Energy(effectAmount));
-        var expectedGameState = new GameState { Energy = new Energy(expectedEnergyAmount) };
+        var gameState = new GameState { Energy = initialEnergy };
+        var effect = new RemoveEnergyEffect(effectAmount);
+        var expectedGameState = new GameState { Energy = expectedEnergy };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedGameState());
     }
 
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new RemoveEnergyEffect(new Energy(0)), new RemoveEnergyEffect(new Energy(0)));
-        Assert.AreEqual(new RemoveEnergyEffect(new Energy(1)), new RemoveEnergyEffect(new Energy(1)));
-        Assert.AreNotEqual(new RemoveEnergyEffect(new Energy(0)), new RemoveEnergyEffect(new Energy(1)));
+        Assert.AreEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(0));
+        Assert.AreEqual(new RemoveEnergyEffect(1), new RemoveEnergyEffect(1));
+        Assert.AreNotEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(1));
     }
 }

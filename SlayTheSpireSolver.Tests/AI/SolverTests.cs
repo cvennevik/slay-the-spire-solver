@@ -30,7 +30,7 @@ public class SolverTests
         var gameState = new GameState
         {
             PlayerHealth = 70,
-            Energy = new Energy(3),
+            Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 6 }),
             Hand = new Hand(new Strike())
         };
