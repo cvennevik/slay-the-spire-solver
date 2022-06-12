@@ -13,6 +13,8 @@ public class EnemyParty : IEnumerable<Enemy>
         _enemies = enemies;
     }
 
+    public bool Has(EnemyId id) => _enemies.Any(enemy => enemy.Id == id);
+
     public override bool Equals(object? obj)
     {
         return obj is EnemyParty otherParty && _enemies.SequenceEqual(otherParty._enemies);

@@ -13,12 +13,14 @@ public class KillEnemyEffect : IEffect
 
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
+        if (!gameState.EnemyParty.Has(_targetId))
+        {
+            return new[] { gameState.WithEffectStack() };
+        }
+
         var enemies = gameState.EnemyParty.ToList();
         var targetIndex = enemies.FindIndex(x => x.Id == _targetId);
-        if (targetIndex >= 0)
-        {
-            enemies.RemoveAt(targetIndex);
-        }
+        enemies.RemoveAt(targetIndex);
         var newGameState = gameState with { EnemyParty = new EnemyParty(enemies.ToArray()) };
         return new[] { newGameState.WithEffectStack() };
     }
