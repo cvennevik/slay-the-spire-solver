@@ -23,7 +23,7 @@ public class JawWormTests
     [Test]
     public void EnemiesWithDifferentIdsAreNotEqual()
     {
-        Assert.AreNotEqual(new JawWorm { Id = new EnemyId() }, new JawWorm { Id = new EnemyId() });
+        Assert.AreNotEqual(new JawWorm { Id = EnemyId.New() }, new JawWorm { Id = EnemyId.New() });
     }
 
     [Test]
