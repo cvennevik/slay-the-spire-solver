@@ -42,7 +42,7 @@ public class JawWormTests
         int expectedArmor, int expectedHealth)
     {
         var jawWorm = new JawWorm { Armor = new Armor(initialArmor), Health = new Health(initialHealth) };
-        var damagedJawWorm = jawWorm.DealDamage(new Damage(damage));
+        var damagedJawWorm = jawWorm.DealDamage(damage);
         Assert.AreEqual(new JawWorm { Armor = new Armor(expectedArmor), Health = new Health(expectedHealth) },
             damagedJawWorm);
     }
