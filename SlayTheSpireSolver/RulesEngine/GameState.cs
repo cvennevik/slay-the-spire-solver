@@ -19,7 +19,7 @@ public record GameState
     public IReadOnlyCollection<IAction> GetLegalActions()
     {
         var legalActions = new List<IAction>();
-        legalActions.AddRange(Hand.Cards.ToList().SelectMany(card => PlayCardAction.GetLegalActions(this, card)));
+        legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (EndTurnAction.IsLegal(this))
         {
             legalActions.Add(new EndTurnAction(this));
