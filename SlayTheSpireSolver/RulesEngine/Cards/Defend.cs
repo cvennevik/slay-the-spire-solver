@@ -10,4 +10,6 @@ public record Defend : Card
 
     public override Energy GetCost() => Cost;
     public override IEffect GetEffect(GameState gameState) => Effect;
+
+    public override string ToString() => "Defend";
 }
