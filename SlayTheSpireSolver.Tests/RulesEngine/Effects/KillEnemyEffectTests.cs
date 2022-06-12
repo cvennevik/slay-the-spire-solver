@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -14,7 +15,7 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        Assert.AreEqual(new GameState(), effect.Resolve(gameState).SingleResolvedGameState());
+        Assert.AreEqual(new GameState().WithEffectStack(), effect.Resolve(gameState).Single());
     }
 
     [Test]
@@ -26,9 +27,11 @@ public class KillEnemyEffectTests
             EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id2 }, new JawWorm { Id = id3 })
         };
         var effect = new KillEnemyEffect(id2);
-        Assert.AreEqual(
-            new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id3 }) },
-            effect.Resolve(gameState).SingleResolvedGameState());
+        var expectedGameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id3 })
+        };
+        Assert.AreEqual(expectedGameState.WithEffectStack(), effect.Resolve(gameState).Single());
     }
 
     [Test]
@@ -36,6 +39,6 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.New());
-        Assert.AreEqual(gameState, effect.Resolve(gameState).SingleResolvedGameState());
+        Assert.AreEqual(gameState.WithEffectStack(), effect.Resolve(gameState).Single());
     }
 }

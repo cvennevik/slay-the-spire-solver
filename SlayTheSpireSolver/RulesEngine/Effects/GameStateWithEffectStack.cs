@@ -9,4 +9,10 @@ public record GameStateWithEffectStack
     {
         GameState = gameState;
     }
+
+    public GameStateWithEffectStack(GameState gameState, EffectStack effectStack)
+    {
+        GameState = gameState;
+        EffectStack = effectStack;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -30,6 +31,11 @@ public record GameState
     public bool IsCombatOver()
     {
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
+    }
+
+    public GameStateWithEffectStack WithEffectStack(EffectStack? effectStack = null)
+    {
+        return new GameStateWithEffectStack(this, effectStack ?? new EffectStack());
     }
 
     public override string ToString()
