@@ -34,52 +34,26 @@ public class CommonCardTests<TCard> where TCard : Card, new()
     }
 
     [Test]
-    public void PlayCardActionsWithSameGameStateAreEqual()
-    {
-        Assert.AreEqual(new PlayCardAction(BasicGameState, Card), new PlayCardAction(BasicGameState, Card));
-    }
-
-    [Test]
-    public void PlayCardActionsWithDifferentGameStatesAreNotEqual()
-    {
-        Assert.AreNotEqual(new PlayCardAction(BasicGameState, Card),
-            new PlayCardAction(BasicGameState with {Turn = new Turn(2)}, Card));
-    }
-
-    [Test]
-    public void OneLegalActionForBasicGameState()
-    {
-        var legalActions = Card.GetLegalActions(BasicGameState);
-        Assert.AreEqual(new PlayCardAction(BasicGameState, Card), legalActions.Single());
-    }
-
-    [Test]
     public void NoLegalActionsWhenNoEnemies()
     {
-        AssertNoLegalActions(BasicGameState with { EnemyParty = new EnemyParty() });
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { EnemyParty = new EnemyParty() }));
     }
 
     [Test]
     public void NoLegalActionsWhenCardNotInHand()
     {
-        AssertNoLegalActions(BasicGameState with { Hand = new Hand() });
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Hand = new Hand() }));
     }
 
     [Test]
     public void NoLegalActionsWhenPlayerDefeated()
     {
-        AssertNoLegalActions(BasicGameState with { PlayerHealth = new Health(0) });
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = new Health(0) }));
     }
 
     [Test]
     public void NoLegalActionsWhenNoEnergy()
     {
-        AssertNoLegalActions(BasicGameState with { Energy = new Energy(0) });
-    }
-
-    private void AssertNoLegalActions(GameState gameState)
-    {
-        Assert.IsEmpty(Card.GetLegalActions(gameState));
-        Assert.Throws<ArgumentException>(() => new PlayCardAction(gameState, Card));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = new Energy(0) }));
     }
 }
