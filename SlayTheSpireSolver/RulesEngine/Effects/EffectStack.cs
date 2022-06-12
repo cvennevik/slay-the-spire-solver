@@ -35,4 +35,14 @@ public readonly struct EffectStack
     {
         return _effects.GetHashCode();
     }
+
+    public static bool operator ==(EffectStack left, EffectStack right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(EffectStack left, EffectStack right)
+    {
+        return !(left == right);
+    }
 }
