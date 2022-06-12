@@ -21,18 +21,17 @@ public readonly record struct DamageEnemyEffect : IEffect
             return new[] { gameState.WithEffectStack() };
         }
 
-        var targetEnemy = _target;
-        var enemies = gameState.EnemyParty.Select(x => x).ToList();
-        var enemyIndex = enemies.FindIndex(enemy => enemy.Id == targetEnemy);
-        enemies[enemyIndex] = enemies[enemyIndex].DealDamage(_damage);
-        if (enemies[enemyIndex].Health.Amount <= 0)
+        var damage = _damage;
+        var newEnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(damage));
+        var damagedEnemy = newEnemyParty.Get(_target);
+        if (damagedEnemy.Health.Amount <= 0)
         {
-            enemies.RemoveAt(enemyIndex);
+            newEnemyParty = newEnemyParty.Remove(_target);
         }
 
         return new[]
         {
-            new GameStateWithEffectStack(gameState with { EnemyParty = new EnemyParty(enemies.ToArray()) })
+            new GameStateWithEffectStack(gameState with { EnemyParty = newEnemyParty })
         };
     }
 }

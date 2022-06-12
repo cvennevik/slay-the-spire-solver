@@ -14,7 +14,13 @@ public class EnemyParty : IEnumerable<Enemy>
     }
 
     public bool Has(EnemyId id) => _enemies.Any(enemy => enemy.Id == id);
+    public Enemy Get(EnemyId id) => _enemies.First(x => x.Id == id);
     public EnemyParty Remove(EnemyId id) => new(_enemies.Where(enemy => enemy.Id != id).ToArray());
+
+    public EnemyParty ModifyEnemy(EnemyId id, Func<Enemy, Enemy> modifier)
+    {
+        return new EnemyParty(_enemies.Select(enemy => enemy.Id == id ? modifier(enemy) : enemy).ToArray());
+    }
 
     public override bool Equals(object? obj)
     {
