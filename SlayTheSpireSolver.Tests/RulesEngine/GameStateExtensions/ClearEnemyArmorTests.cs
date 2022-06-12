@@ -16,17 +16,17 @@ public class ClearEnemyArmorTests
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(
-                new JawWorm { Armor = 0, Health = new Health(10) },
-                new JawWorm { Armor = 5, Health = new Health(7) },
-                new JawWorm { Armor = 5, Health = new Health(8) })
+                new JawWorm { Armor = 0, Health = 10 },
+                new JawWorm { Armor = 5, Health = 7 },
+                new JawWorm { Armor = 5, Health = 8 })
         };
         var newGameState = gameState.ClearEnemyArmor();
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(
-                new JawWorm { Armor = 0, Health = new Health(10) },
-                new JawWorm { Armor = 0, Health = new Health(7) },
-                new JawWorm { Armor = 0, Health = new Health(8) })
+                new JawWorm { Armor = 0, Health = 10 },
+                new JawWorm { Armor = 0, Health = 7 },
+                new JawWorm { Armor = 0, Health = 8 })
         };
         Assert.AreEqual(expectedGameState, newGameState);
     }

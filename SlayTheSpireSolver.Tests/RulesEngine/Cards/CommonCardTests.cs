@@ -20,9 +20,9 @@ public class CommonCardTests<TCard> where TCard : Card, new()
         Card = new TCard();
         BasicGameState = new GameState
         {
-            PlayerHealth = new Health(70),
+            PlayerHealth = 70,
             Energy = new Energy(3),
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
             Hand = new Hand(Card),
             DiscardPile = new DiscardPile(),
         };
@@ -49,7 +49,7 @@ public class CommonCardTests<TCard> where TCard : Card, new()
     [Test]
     public void NoLegalActionsWhenPlayerDefeated()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = new Health(0) }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = 0 }));
     }
 
     [Test]

@@ -15,9 +15,9 @@ public class GameStateTests
     {
         return new()
         {
-            PlayerHealth = new Health(70),
+            PlayerHealth = 70,
             Energy = new Energy(3),
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40), IntendedMove = new Chomp() }),
+            EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
             Hand = new Hand(new Strike()),
             Turn = new Turn(1)
         };
@@ -64,7 +64,7 @@ public class GameStateTests
         [TestCase(-999)]
         public void OutOfHealth(int amountOfHealth)
         {
-            var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
+            var gameState = CreateBasicGameState() with { PlayerHealth = amountOfHealth };
             AssertNoLegalActions(gameState);
             Assert.True(gameState.IsCombatOver());
         }
@@ -82,7 +82,7 @@ public class GameStateTests
         {
             var gameState = CreateBasicGameState() with
             {
-                PlayerHealth = new Health(0),
+                PlayerHealth = 0,
                 EnemyParty = new EnemyParty()
             };
             AssertNoLegalActions(gameState);
@@ -123,7 +123,7 @@ public class GameStateTests
         [TestCase(-999)]
         public void HealthBelowOne(int amountOfHealth)
         {
-            var gameState = CreateBasicGameState() with { PlayerHealth = new Health(amountOfHealth) };
+            var gameState = CreateBasicGameState() with { PlayerHealth = amountOfHealth };
             Assert.True(gameState.IsCombatOver());
         }
 
@@ -139,7 +139,7 @@ public class GameStateTests
         {
             var gameState = CreateBasicGameState() with
             {
-                PlayerHealth = new Health(0),
+                PlayerHealth = 0,
                 EnemyParty = new EnemyParty()
             };
             Assert.True(gameState.IsCombatOver());

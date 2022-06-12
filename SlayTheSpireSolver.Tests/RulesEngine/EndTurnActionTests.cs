@@ -27,7 +27,7 @@ public class EndTurnActionTests
         {
             var gameState = new GameState
             {
-                PlayerHealth = new Health(0),
+                PlayerHealth = 0,
                 EnemyParty = new EnemyParty(new JawWorm())
             };
             Assert.Throws<ArgumentException>(() => new EndTurnAction(gameState));
@@ -42,12 +42,12 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with
             {
-                PlayerHealth = new Health(50),
+                PlayerHealth = 50,
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
-            Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
+            Assert.AreEqual((Health) 38, resolvedStates.Single().PlayerHealth);
         }
 
         [Test]
@@ -177,7 +177,7 @@ public class EndTurnActionTests
         return new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
-            PlayerHealth = new Health(50)
+            PlayerHealth = 50
         };
     }
 }

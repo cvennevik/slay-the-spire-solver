@@ -18,14 +18,14 @@ public class ThrashTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = new Health(initialPlayerHealth),
+            PlayerHealth = initialPlayerHealth,
             PlayerArmor = 0,
             EnemyParty = new EnemyParty(new JawWorm {Armor = initialEnemyArmor})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = new Health(expectedPlayerHealth),
+            PlayerHealth = expectedPlayerHealth,
             PlayerArmor = 0,
             EnemyParty = new EnemyParty(new JawWorm {Armor = expectedEnemyArmor})
         };
@@ -37,14 +37,14 @@ public class ThrashTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = new Health(10),
+            PlayerHealth = 10,
             PlayerArmor = 10,
             EnemyParty = new EnemyParty(new JawWorm {Armor = 0})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = new Health(10),
+            PlayerHealth = 10,
             PlayerArmor = 3,
             EnemyParty = new EnemyParty(new JawWorm {Armor = 5})
         };
@@ -56,14 +56,14 @@ public class ThrashTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = new Health(10),
+            PlayerHealth = 10,
             PlayerArmor = 5,
             EnemyParty = new EnemyParty(new JawWorm {Armor = 0})
         };
         var resolvedGameState = new Thrash().Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = new Health(8),
+            PlayerHealth = 8,
             PlayerArmor = 0,
             EnemyParty = new EnemyParty(new JawWorm {Armor = 5})
         };

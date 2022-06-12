@@ -17,7 +17,7 @@ public class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = new Health(70),
+            PlayerHealth = 70,
             EnemyParty = new EnemyParty(new JawWorm()),
         };
         var bestAction = Solver.GetBestAction(gameState);
@@ -29,9 +29,9 @@ public class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = new Health(70),
+            PlayerHealth = 70,
             Energy = new Energy(3),
-            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(6) }),
+            EnemyParty = new EnemyParty(new JawWorm { Health = 6 }),
             Hand = new Hand(new Strike())
         };
         var bestAction = Solver.GetBestAction(gameState);

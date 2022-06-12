@@ -41,8 +41,8 @@ public class JawWormTests
     public void DamageReducesArmorAndHealth(int initialArmor, int initialHealth, int damage,
         int expectedArmor, int expectedHealth)
     {
-        var jawWorm = new JawWorm { Armor = initialArmor, Health = new Health(initialHealth) };
+        var jawWorm = new JawWorm { Armor = initialArmor, Health = initialHealth };
         var damagedJawWorm = jawWorm.DealDamage(damage);
-        Assert.AreEqual(new JawWorm { Armor = expectedArmor, Health = new Health(expectedHealth) }, damagedJawWorm);
+        Assert.AreEqual(new JawWorm { Armor = expectedArmor, Health = expectedHealth }, damagedJawWorm);
     }
 }
