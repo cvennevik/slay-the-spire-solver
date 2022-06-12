@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -7,6 +8,24 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies.JawWorms;
 [TestFixture]
 public class JawWormTests
 {
+    [Test]
+    public void NewEnemiesAreEqual()
+    {
+        Assert.AreEqual(new JawWorm(), new JawWorm());
+    }
+
+    [Test]
+    public void NewEnemiesHaveSameId()
+    {
+        Assert.AreEqual(new JawWorm().Id, new JawWorm().Id);
+    }
+
+    [Test]
+    public void EnemiesWithDifferentIdsAreNotEqual()
+    {
+        Assert.AreNotEqual(new JawWorm { Id = new EnemyId() }, new JawWorm { Id = new EnemyId() });
+    }
+
     [Test]
     [TestCase(0, 10, 6, 0, 4)]
     [TestCase(0, 8, 1, 0, 7)]
