@@ -40,8 +40,8 @@ public class ActionWithEffectStackTests
     [Test]
     public void EqualityTests()
     {
-        var gameState1 = new GameState { Turn = new Turn(1) };
-        var gameState2 = new GameState { Turn = new Turn(2) };
+        var gameState1 = new GameState { Turn = 1 };
+        var gameState2 = new GameState { Turn = 2 };
         var effectStack1 = new EffectStack(new RemoveEnergyEffect(1));
         var effectStack2 = new EffectStack(new RemoveEnergyEffect(2));
         Assert.AreEqual(new ActionWithEffectStack(gameState1, effectStack1),

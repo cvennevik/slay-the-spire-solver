@@ -11,7 +11,7 @@ public record GameState
     public Energy BaseEnergy { get; init; } = 3;
     public Energy Energy { get; init; } = 0;
     public EnemyParty EnemyParty { get; init; } = new();
-    public Turn Turn { get; init; } = new(1);
+    public Turn Turn { get; init; } = 1;
     public Hand Hand { get; init; } = new();
     public DrawPile DrawPile { get; init; } = new();
     public DiscardPile DiscardPile { get; init; } = new();

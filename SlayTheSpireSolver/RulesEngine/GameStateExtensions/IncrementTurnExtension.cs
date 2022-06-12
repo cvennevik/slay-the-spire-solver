@@ -6,6 +6,6 @@ public static class IncrementTurnExtension
 {
     public static GameState IncrementTurn(this GameState gameState)
     {
-        return gameState with { Turn = new Turn(gameState.Turn.Number + 1) };
+        return gameState with { Turn = gameState.Turn.Number + 1 };
     }
 }
