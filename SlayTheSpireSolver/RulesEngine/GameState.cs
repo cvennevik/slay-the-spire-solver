@@ -35,14 +35,14 @@ public record GameState
     public override string ToString()
     {
         return $@"GameState {{
-    PlayerHealth: {PlayerHealth},
-    PlayerArmor: {PlayerArmor},
-    BaseEnergy: {BaseEnergy},
-    Energy: {Energy},
-    EnemyParty: {EnemyParty},
-    Turn: {Turn},
-    Hand: {Hand},
-    DrawPile: {DrawPile},
+    PlayerHealth: {PlayerHealth}
+    PlayerArmor: {PlayerArmor}
+    BaseEnergy: {BaseEnergy}
+    Energy: {Energy}
+    EnemyParty: {EnemyParty}
+    Turn: {Turn}
+    Hand: {Hand}
+    DrawPile: {DrawPile}
     DiscardPile: {DiscardPile}
 }}";
     }
