@@ -10,4 +10,7 @@ public record Defend : ICard
 
     public Energy GetCost() => Cost;
     public IEffect GetEffect(GameState gameState) => Effect;
+
+    public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState) =>
+        PlayCardAction.GetLegalActions(gameState, this);
 }

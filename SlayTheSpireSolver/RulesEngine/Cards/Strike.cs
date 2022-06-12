@@ -9,4 +9,7 @@ public record Strike : ICard
 
     public Energy GetCost() => Cost;
     public IEffect GetEffect(GameState gameState) => new DamageEnemyEffect(gameState.EnemyParty.First(), new Damage(6));
+
+    public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState) =>
+        PlayCardAction.GetLegalActions(gameState, this);
 }

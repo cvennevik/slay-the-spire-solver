@@ -7,4 +7,5 @@ public interface ICard
 {
     Energy GetCost();
     IEffect GetEffect(GameState gameState);
+    IReadOnlyCollection<IAction> GetLegalActions(GameState gameState);
 }
