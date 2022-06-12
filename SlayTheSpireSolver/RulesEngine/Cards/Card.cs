@@ -7,5 +7,7 @@ public abstract record Card
 {
     public abstract Energy GetCost();
     public abstract IEffect GetEffect(GameState gameState);
-    public abstract IReadOnlyCollection<IAction> GetLegalActions(GameState gameState);
+    public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState) =>
+        PlayCardAction.GetLegalActions(gameState, this);
+
 }
