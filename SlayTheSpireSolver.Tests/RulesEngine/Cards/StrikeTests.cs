@@ -14,7 +14,7 @@ public class StrikeTests : CommonCardTests<Strike>
     [Test]
     public void TestEffect()
     {
-        Assert.AreEqual(new DamageEnemyEffect(BasicGameState.EnemyParty.First(), new Damage(6)),
+        Assert.AreEqual(new DamageEnemyEffect(BasicGameState.EnemyParty.First().Id, new Damage(6)),
             Card.GetEffect(BasicGameState));
     }
 }
