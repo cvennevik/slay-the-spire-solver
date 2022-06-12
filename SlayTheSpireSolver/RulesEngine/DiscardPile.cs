@@ -12,9 +12,4 @@ public class DiscardPile : CardCollection<DiscardPile>
     {
         return new DiscardPile(cards);
     }
-
-    public override string ToString()
-    {
-        return $"{nameof(DiscardPile)}: [{string.Join(",", Cards)}]";
-    }
 }

@@ -12,9 +12,4 @@ public class DrawPile : CardCollection<DrawPile>
     {
         return new DrawPile(cards);
     }
-
-    public override string ToString()
-    {
-        return $"{nameof(DrawPile)}: [{string.Join(",", Cards)}]";
-    }
 }

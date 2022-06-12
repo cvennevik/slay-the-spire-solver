@@ -12,9 +12,4 @@ public class Hand : CardCollection<Hand>
     {
         return new Hand(cards);
     }
-
-    public override string ToString()
-    {
-        return $"{nameof(Hand)}: [{string.Join(",", Cards)}]";
-    }
 }

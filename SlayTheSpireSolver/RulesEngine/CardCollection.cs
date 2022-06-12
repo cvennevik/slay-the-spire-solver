@@ -46,4 +46,9 @@ public abstract class CardCollection<T> where T : CardCollection<T>
     {
         return 0;
     }
+
+    public override string ToString()
+    {
+        return $"[{string.Join(",", Cards)}]";
+    }
 }
