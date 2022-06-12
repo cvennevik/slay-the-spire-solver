@@ -47,7 +47,7 @@ public class EndTurnActionTests
             };
             var endTurnAction = new EndTurnAction(gameState);
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
-            Assert.AreEqual((Health) 38, resolvedStates.Single().PlayerHealth);
+            Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
 
         [Test]
