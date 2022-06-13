@@ -1,1 +1,1 @@
-dotnet test --no-restore && git add -A && git commit -m "test && commit || revert" || git restore .
+dotnet test --no-restore --nologo && git add -A && git commit -m "test && commit || revert" || git restore .
