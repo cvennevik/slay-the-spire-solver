@@ -69,4 +69,10 @@ public class ThrashTests
         };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
+
+    [Test]
+    public void TestEffects()
+    {
+        var effects = new Thrash().GetEffects();
+    }
 }
