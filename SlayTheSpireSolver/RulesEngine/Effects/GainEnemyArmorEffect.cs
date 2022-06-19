@@ -7,7 +7,7 @@ public record GainEnemyArmorEffect(EnemyId EnemyId, Armor Armor) : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var enemy = gameState.EnemyParty.Get(EnemyId);
+        var enemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId, enemy => enemy with { Armor = Armor });
         return new[] { gameState.WithEffectStack() };
     }
 }
