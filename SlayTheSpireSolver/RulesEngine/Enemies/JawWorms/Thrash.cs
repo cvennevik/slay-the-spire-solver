@@ -30,7 +30,7 @@ public record Thrash : IJawWormMove
         };
     }
 
-    public EffectStack GetEffects()
+    public EffectStack GetEffects(Enemy enemy)
     {
         return new EffectStack();
     }

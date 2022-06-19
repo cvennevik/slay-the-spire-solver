@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -73,6 +74,6 @@ public class ThrashTests
     [Test]
     public void TestEffects()
     {
-        var effects = new Thrash().GetEffects();
+        var effects = new Thrash().GetEffects(new JawWorm());
     }
 }
