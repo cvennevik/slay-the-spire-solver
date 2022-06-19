@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine.Values;
+﻿using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
@@ -16,5 +17,10 @@ public record Chomp : IJawWormMove
         }
 
         return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
+    }
+
+    public IEffect[] GetEffects()
+    {
+        return Array.Empty<IEffect>();
     }
 }
