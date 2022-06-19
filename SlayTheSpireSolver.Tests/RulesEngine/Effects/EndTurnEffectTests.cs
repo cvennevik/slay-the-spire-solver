@@ -14,8 +14,14 @@ public class EndTurnEffectTests
         var gameState = new GameState { Turn = 2 };
         var effect = new EndTurnEffect();
         var newGameStateWithEffectStack = effect.Resolve(gameState).Single();
-        var expectedResult = new GameStateWithEffectStack(gameState,
-            new EffectStack(new IncrementTurnEffect()));
+        var expectedEffectStack = new EffectStack(
+            new DrawCardEffect(),
+            new DrawCardEffect(),
+            new DrawCardEffect(),
+            new DrawCardEffect(),
+            new DrawCardEffect(),
+            new IncrementTurnEffect());
+        var expectedResult = new GameStateWithEffectStack(gameState, expectedEffectStack);
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }
 

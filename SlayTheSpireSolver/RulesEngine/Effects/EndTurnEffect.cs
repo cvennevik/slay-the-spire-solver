@@ -4,6 +4,15 @@ public record EndTurnEffect : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        return new[] { gameState.WithEffectStack(new EffectStack(new IncrementTurnEffect())) };
+        return new[]
+        {
+            gameState.WithEffectStack(new EffectStack(
+                new DrawCardEffect(),
+                new DrawCardEffect(),
+                new DrawCardEffect(),
+                new DrawCardEffect(),
+                new DrawCardEffect(),
+                new IncrementTurnEffect()))
+        };
     }
 }
