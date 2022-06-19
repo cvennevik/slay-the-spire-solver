@@ -18,4 +18,10 @@ public class EndTurnEffectTests
             new EffectStack(new IncrementTurnEffect()));
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        Assert.AreEqual(new EndTurnEffect(), new EndTurnEffect());
+    }
 }
