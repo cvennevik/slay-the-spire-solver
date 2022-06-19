@@ -33,18 +33,19 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void TestMultipleEnemies()
     {
-        var target = EnemyId.New();
+        var targetEnemyId = EnemyId.New();
+        var otherEnemyId = EnemyId.New();
         var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Id = target }, new JawWorm { Id = EnemyId.New() })
+            EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId }, new JawWorm { Id = otherEnemyId })
         };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(
-                new JawWorm { Id = target, Armor = new Armor(5) },
-                new JawWorm { Id = EnemyId.New() }
+                new JawWorm { Id = targetEnemyId, Armor = new Armor(5) },
+                new JawWorm { Id = otherEnemyId }
             )
         };
     }
