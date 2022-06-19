@@ -4,7 +4,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 [TestFixture]
-public class ResolveEnemyMoveTests
+public class ResolveEnemyMoveEffectTests
 {
     [Test]
     public void Test()
