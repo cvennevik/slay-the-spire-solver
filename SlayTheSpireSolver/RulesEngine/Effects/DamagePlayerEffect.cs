@@ -13,6 +13,7 @@ public record DamagePlayerEffect : IEffect
 
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        return new[] { gameState.WithEffectStack() };
+        var result = gameState with { PlayerHealth = gameState.PlayerHealth - Damage };
+        return new[] { result.WithEffectStack() };
     }
 }
