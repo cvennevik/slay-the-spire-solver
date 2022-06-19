@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -8,14 +9,13 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class EndTurnEffectTests
 {
     [Test]
-    [TestCase(1, 2)]
-    [TestCase(2, 3)]
-    public void Test(int initialTurn, int expectedTurn)
+    public void Test()
     {
-        var gameState = new GameState { Turn = initialTurn };
+        var gameState = new GameState { Turn = 2 };
         var effect = new EndTurnEffect();
-        var newGameState = effect.Resolve(gameState).SingleResolvedGameState();
-        var expectedGameState = gameState with { Turn = expectedTurn };
-        Assert.AreEqual(expectedGameState, newGameState);
+        var newGameStateWithEffectStack = effect.Resolve(gameState).Single();
+        var expectedResult = new GameStateWithEffectStack(gameState,
+            new EffectStack(new IncrementTurnEffect()));
+        Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }
 }
