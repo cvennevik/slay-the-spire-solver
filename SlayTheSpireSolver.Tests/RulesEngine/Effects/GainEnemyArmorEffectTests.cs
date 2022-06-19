@@ -35,7 +35,7 @@ public class GainEnemyArmorEffectTests
     {
         var targetEnemyId = EnemyId.New();
         var otherEnemyId = EnemyId.New();
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
+        var effect = new GainEnemyArmorEffect(targetEnemyId, new Armor(5));
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId },
@@ -47,6 +47,7 @@ public class GainEnemyArmorEffectTests
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId, Armor = new Armor(5) },
                 new JawWorm { Id = otherEnemyId })
         };
+        Assert.AreEqual(expectedGameState, result);
     }
 
     [Test]
