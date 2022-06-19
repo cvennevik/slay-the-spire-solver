@@ -29,4 +29,10 @@ public class GainEnemyArmorEffectTests
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
         Assert.AreEqual(expectedGameState, result);
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        
+    }
 }
