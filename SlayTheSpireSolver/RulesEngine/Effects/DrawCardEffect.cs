@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class DrawCardEffect : IEffect
+public record DrawCardEffect : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
