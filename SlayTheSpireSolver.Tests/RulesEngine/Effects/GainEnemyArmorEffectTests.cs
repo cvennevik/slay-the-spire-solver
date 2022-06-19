@@ -31,6 +31,17 @@ public class GainEnemyArmorEffectTests
     }
 
     [Test]
+    public void TestMultipleEnemies()
+    {
+        var target = EnemyId.New();
+        var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Id = target }, new JawWorm { Id = EnemyId.New() })
+        };
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 10));
