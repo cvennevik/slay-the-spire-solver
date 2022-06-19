@@ -39,4 +39,9 @@ public class ChompTests
         var expectedGameState = new GameState { PlayerHealth = 50, PlayerArmor = 8 };
         Assert.AreEqual(expectedGameState, resolvedGameState);
     }
+
+    [Test]
+    public void TestEffect()
+    {
+    }
 }
