@@ -16,4 +16,4 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
 
         return new[] { workingGameState };
     }
-};
+}
