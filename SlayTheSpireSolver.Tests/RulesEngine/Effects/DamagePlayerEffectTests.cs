@@ -8,7 +8,8 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class DamagePlayerEffectTests
 {
     [Test]
-    public void Test()
+    [TestCase(10)]
+    public void Test(int damage)
     {
         var damagePlayerEffect = new DamagePlayerEffect(10);
         var gameState = new GameState { PlayerHealth = 20 };
