@@ -8,7 +8,7 @@ public class Solver
     {
         var legalActions = gameState.GetLegalActions();
         var endTurnAction = new EndTurnAction(gameState);
-        var actionsExceptEndTurn = legalActions.Except(new[] { endTurnAction });
+        var actionsExceptEndTurn = legalActions.Except(new[] { endTurnAction }).ToList();
         if (actionsExceptEndTurn.Any())
         {
             return actionsExceptEndTurn.First();
