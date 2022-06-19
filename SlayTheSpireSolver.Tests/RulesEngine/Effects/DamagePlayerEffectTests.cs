@@ -11,10 +11,10 @@ public class DamagePlayerEffectTests
     [TestCase(10, 20, 10)]
     public void Test(int damage, int initialPlayerHealth, int expectedPlayerHealth)
     {
-        var damagePlayerEffect = new DamagePlayerEffect(10);
-        var gameState = new GameState { PlayerHealth = 20 };
+        var damagePlayerEffect = new DamagePlayerEffect(damage);
+        var gameState = new GameState { PlayerHealth = initialPlayerHealth };
         var result = damagePlayerEffect.Resolve(gameState).SingleResolvedGameState();
-        Assert.AreEqual(new GameState { PlayerHealth = 10 }, result);
+        Assert.AreEqual(new GameState { PlayerHealth = expectedPlayerHealth }, result);
     }
 
     [Test]
