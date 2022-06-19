@@ -55,7 +55,8 @@ public class GainEnemyArmorEffectTests
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
         var gameState = new GameState { Turn = 2 };
-        var reslut = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        Assert.AreEqual(gameState, result);
     }
 
     [Test]
