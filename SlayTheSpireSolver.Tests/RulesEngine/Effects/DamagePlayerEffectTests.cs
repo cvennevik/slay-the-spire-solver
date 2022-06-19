@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
@@ -10,5 +11,6 @@ public class DamagePlayerEffectTests
     public void Test()
     {
         var damagePlayerEffect = new DamagePlayerEffect();
+        var gameState = new GameState { PlayerHealth = 20 };
     }
 }
