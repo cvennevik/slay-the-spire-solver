@@ -1,3 +1,4 @@
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -27,5 +28,10 @@ public record Thrash : IJawWormMove
             PlayerArmor = newPlayerArmor,
             EnemyParty = newEnemyParty
         };
+    }
+
+    public EffectStack GetEffects()
+    {
+        return new EffectStack();
     }
 }
