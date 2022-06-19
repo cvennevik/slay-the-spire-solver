@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -43,6 +44,6 @@ public class ChompTests
     [Test]
     public void TestEffect()
     {
-        
+        Assert.AreEqual(new EffectStack(new DamagePlayerEffect(12)), Chomp.GetEffects());
     }
 }
