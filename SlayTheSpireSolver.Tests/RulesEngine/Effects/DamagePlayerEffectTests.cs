@@ -24,5 +24,6 @@ public class DamagePlayerEffectTests
     public void TestEquality()
     {
         Assert.AreEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(10));
+        Assert.AreNotEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(5));
     }
 }
