@@ -19,7 +19,7 @@ public record Chomp : IJawWormMove
         return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
     }
 
-    public EffectStack GetEffects()
+    public EffectStack GetEffects(Enemy enemy)
     {
         return new EffectStack(new DamagePlayerEffect(12));
     }
