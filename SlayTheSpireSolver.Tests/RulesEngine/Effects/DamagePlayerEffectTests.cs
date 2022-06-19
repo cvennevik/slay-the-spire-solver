@@ -11,7 +11,7 @@ public class DamagePlayerEffectTests
     [Test]
     public void Test()
     {
-        var damagePlayerEffect = new DamagePlayerEffect(new Damage(10));
+        var damagePlayerEffect = new DamagePlayerEffect(10);
         var gameState = new GameState { PlayerHealth = 20 };
         var result = damagePlayerEffect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(new GameState { PlayerHealth = 10 }, result);
