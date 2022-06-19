@@ -39,6 +39,7 @@ public class GainEnemyArmorEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = target }, new JawWorm { Id = EnemyId.New() })
         };
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
     }
 
     [Test]
