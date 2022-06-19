@@ -36,5 +36,6 @@ public class GainEnemyArmorEffectTests
         Assert.AreEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 10));
         Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 5));
         Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.New(), 10));
+        Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.New(), 10), new GainEnemyArmorEffect(EnemyId.New(), 10));
     }
 }
