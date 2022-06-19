@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine.Values;
+﻿using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
@@ -8,6 +9,7 @@ public abstract record Enemy
     public Health Health { get; init; } = 1;
     public Armor Armor { get; init; } = 0;
     public abstract IEnemyMove GetIntendedMove();
+    public abstract EffectStack GetMoveEffects();
 
     public Enemy DealDamage(Damage damage)
     {
