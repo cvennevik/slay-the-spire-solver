@@ -20,6 +20,6 @@ public class DamagePlayerEffectTests
     [Test]
     public void TestEquality()
     {
-        
+        Assert.AreEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(10));
     }
 }
