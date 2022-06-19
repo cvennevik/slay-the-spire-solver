@@ -19,8 +19,8 @@ public record Chomp : IJawWormMove
         return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
     }
 
-    public IEffect[] GetEffects()
+    public EffectStack GetEffects()
     {
-        return Array.Empty<IEffect>();
+        return new EffectStack();
     }
 }
