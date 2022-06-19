@@ -11,7 +11,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class GainEnemyArmorEffectTests
 {
     [Test]
-    public void Test()
+    public void AddsEnemyArmor()
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
@@ -21,7 +21,7 @@ public class GainEnemyArmorEffectTests
     }
 
     [Test]
-    public void TestWithExistingArmor()
+    public void AddsToExistingEnemyArmor()
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
@@ -31,7 +31,7 @@ public class GainEnemyArmorEffectTests
     }
 
     [Test]
-    public void TestMultipleEnemies()
+    public void OnlyAddsArmorToTargetEnemy()
     {
         var targetEnemyId = EnemyId.New();
         var otherEnemyId = EnemyId.New();
@@ -51,7 +51,7 @@ public class GainEnemyArmorEffectTests
     }
 
     [Test]
-    public void TestNoEnemies()
+    public void DoesNothingWhenNoEnemies()
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
         var gameState = new GameState { Turn = 2 };
