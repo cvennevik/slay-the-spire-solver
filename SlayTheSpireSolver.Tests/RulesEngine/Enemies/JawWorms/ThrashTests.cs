@@ -76,6 +76,6 @@ public class ThrashTests
     {
         var enemyId = EnemyId.New();
         var effects = new Thrash().GetEffects(new JawWorm { Id = enemyId });
-        var expectedEffects = new EffectStack(new GainEnemyArmorEffect(enemyId, 5));
+        var expectedEffects = new EffectStack(new GainEnemyArmorEffect(enemyId, 5), new DamagePlayerEffect(7));
     }
 }
