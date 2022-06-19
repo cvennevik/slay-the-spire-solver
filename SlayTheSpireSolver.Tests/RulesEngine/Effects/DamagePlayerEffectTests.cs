@@ -16,4 +16,10 @@ public class DamagePlayerEffectTests
         var result = damagePlayerEffect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(new GameState { PlayerHealth = 10 }, result);
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        
+    }
 }
