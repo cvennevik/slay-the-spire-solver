@@ -1,4 +1,4 @@
-﻿namespace SlayTheSpireSolver.RulesEngine;
+﻿namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public interface IEnemyMove
 {
