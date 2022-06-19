@@ -10,6 +10,7 @@ public class DamagePlayerEffectTests
     [Test]
     [TestCase(10, 20, 10)]
     [TestCase(5, 20, 15)]
+    [TestCase(0, 20, 20)]
     public void Test(int damage, int initialPlayerHealth, int expectedPlayerHealth)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
