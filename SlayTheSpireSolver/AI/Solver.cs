@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.AI;
 
-public class Solver
+public static class Solver
 {
     public static IAction GetBestAction(GameState gameState)
     {
