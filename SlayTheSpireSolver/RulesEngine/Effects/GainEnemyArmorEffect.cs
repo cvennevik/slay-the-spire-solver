@@ -3,11 +3,12 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record GainEnemyArmorEffect(EnemyId EnemyId, Armor Armor) : IEffect
+public record GainEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var enemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId, enemy => enemy with { Armor = enemy.Armor + Armor });
+        var enemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId,
+            enemy => enemy with { Armor = enemy.Armor + ArmorGain });
         var result = gameState with { EnemyParty = enemyParty };
         return new[] { result.WithEffectStack() };
     }
