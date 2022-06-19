@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies.JawWorms;
 [TestFixture]
 public class ChompTests
 {
-    private Chomp Chomp { get; } = new Chomp();
+    private Chomp Chomp { get; } = new();
 
     [Test]
     [TestCase(70, 58)]
