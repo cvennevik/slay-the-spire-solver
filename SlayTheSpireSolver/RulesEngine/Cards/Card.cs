@@ -19,7 +19,7 @@ public abstract record Card
             : Array.Empty<IAction>();
     }
 
-    public bool CanBePlayed(GameState gameState)
+    private bool CanBePlayed(GameState gameState)
     {
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
