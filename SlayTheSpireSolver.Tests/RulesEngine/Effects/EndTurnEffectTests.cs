@@ -20,6 +20,7 @@ public class EndTurnEffectTests
             new DrawCardEffect(),
             new DrawCardEffect(),
             new DrawCardEffect(),
+            new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect());
         var expectedResult = new GameStateWithEffectStack(gameState, expectedEffectStack);
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);

@@ -12,6 +12,7 @@ public record EndTurnEffect : IEffect
                 new DrawCardEffect(),
                 new DrawCardEffect(),
                 new DrawCardEffect(),
+                new RecoverBaseEnergyEffect(),
                 new IncrementTurnEffect()))
         };
     }
