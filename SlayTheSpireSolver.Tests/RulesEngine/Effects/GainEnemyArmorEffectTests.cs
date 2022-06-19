@@ -51,6 +51,13 @@ public class GainEnemyArmorEffectTests
     }
 
     [Test]
+    public void TestNoEnemies()
+    {
+        var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
+        var gameState = new GameState { Turn = 2 };
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 10));
