@@ -62,7 +62,7 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
+        var effect = new GainEnemyArmorEffect(EnemyId.Default, 5);
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }) };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
