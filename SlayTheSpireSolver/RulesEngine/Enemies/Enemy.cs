@@ -9,7 +9,11 @@ public abstract record Enemy
     public Health Health { get; init; } = 1;
     public Armor Armor { get; init; } = 0;
     public abstract IEnemyMove GetIntendedMove();
-    public abstract EffectStack GetMoveEffects();
+
+    public EffectStack GetMoveEffects()
+    {
+        return GetIntendedMove().GetEffects(this);
+    }
 
     public Enemy DealDamage(Damage damage)
     {
