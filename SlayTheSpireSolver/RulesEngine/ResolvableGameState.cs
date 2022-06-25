@@ -21,16 +21,14 @@ public record ResolvableGameState
 
     public IReadOnlyList<GameStatePossibility> Resolve()
     {
-        return ResolveEffects(this)
-            .Select(gameState => new GameStatePossibility(gameState, new Probability(1)))
-            .ToArray();
+        return ResolveEffects(this);
     }
 
-    private IReadOnlyList<GameState> ResolveEffects(ResolvableGameState resolvableGameState)
+    private IReadOnlyList<GameStatePossibility> ResolveEffects(ResolvableGameState resolvableGameState)
     {
         if (resolvableGameState.EffectStack.IsEmpty())
         {
-            return new[] { resolvableGameState.GameState };
+            return new GameStatePossibility[] { resolvableGameState.GameState };
         }
 
         return ResolveTopEffect(resolvableGameState).SelectMany(ResolveEffects).Distinct().ToList();
