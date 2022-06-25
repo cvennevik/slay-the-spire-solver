@@ -21,16 +21,7 @@ public record ResolvableGameState
 
     public IReadOnlyList<GameStatePossibility> Resolve()
     {
-        if (EffectStack.IsEmpty())
-        {
-            return new GameStatePossibility[] { GameState };
-        }
-
-        return WithProbability(1)
-            .ResolveTopEffect()
-            .SelectMany(x => x.ResolvableGameState.Resolve())
-            .Distinct()
-            .ToList();
+        return WithProbability(1).Resolve();
     }
 
     public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
