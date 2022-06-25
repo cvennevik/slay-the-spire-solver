@@ -8,6 +8,12 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ResolveEnemyMoveEffectTests
 {
     [Test]
+    public void Test()
+    {
+        
+    }
+
+    [Test]
     public void EqualityTest()
     {
         Assert.AreEqual(new ResolveEnemyMoveEffect(EnemyId.Default), new ResolveEnemyMoveEffect(EnemyId.Default));
