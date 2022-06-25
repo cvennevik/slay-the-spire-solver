@@ -9,6 +9,6 @@ public class StrengthTests
     [Test]
     public void Test()
     {
-        var strength = new Strength();
+        var strength = new Strength(1);
     }
 }
