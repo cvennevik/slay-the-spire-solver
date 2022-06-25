@@ -32,6 +32,8 @@ public class EffectStackTests
     [Test]
     public void TestPushEffectStack()
     {
+        var effectStack1 = new EffectStack();
+        var effectStack2 = new EffectStack(new RemoveEnergyEffect(1));
     }
 
     [Test]
