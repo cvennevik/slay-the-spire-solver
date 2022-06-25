@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class MoveHandToDiscardPileEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenHandIsEmpty()
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
         var effect = new MoveHandToDiscardPileEffect();
