@@ -102,6 +102,7 @@ public class ActionWithEffectStackTests
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count);
+        Assert.Contains(expectedResult1, result.ToList());
     }
 
     [Test]
