@@ -30,6 +30,6 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
             return new[] { gameStateWithEffectStack.GameState };
         }
 
-        return ResolveTopEffect(gameStateWithEffectStack).SelectMany(ResolveEffects).ToList();
+        return ResolveTopEffect(gameStateWithEffectStack).SelectMany(ResolveEffects).Distinct().ToList();
     }
 }
