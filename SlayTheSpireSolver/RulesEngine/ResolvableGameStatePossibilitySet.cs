@@ -13,7 +13,7 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 
     public ResolvableGameStatePossibilitySet(ResolvableGameStatePossibility[] possibilities)
     {
-        
+        _possibilities = possibilities.Select(x => x.ResolvableGameState).ToList();
     }
 
     public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
