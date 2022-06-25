@@ -9,6 +9,8 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
         var remainingEffectStack = EffectStack;
         var workingGameState = GameState;
 
+        ResolveEffects(new GameStateWithEffectStack(GameState, EffectStack));
+
         while (remainingEffectStack != new EffectStack())
         {
             (var effect, remainingEffectStack) = remainingEffectStack.Pop();
