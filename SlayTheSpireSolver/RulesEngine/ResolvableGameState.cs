@@ -7,7 +7,7 @@ public record ResolvableGameState
 {
     public GameState GameState { get; }
     public EffectStack EffectStack { get; } = new();
-    public Probability Probability { get; } = new(1, 1);
+    public Probability Probability { get; } = new(1);
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
