@@ -14,7 +14,7 @@ public record DrawCardEffect : IEffect
         if (gameState.DrawPile.Cards.Count == 0)
         {
             return gameState.DiscardPile.Cards.Any()
-                ? DrawCard(gameState.ShuffleDiscardPileIntoDrawPile())
+                ? DrawCard(ShuffleDiscardPileIntoDrawPile(gameState.ShuffleDiscardPileIntoDrawPile()))
                 : new[] { gameState };
         }
 
@@ -29,5 +29,22 @@ public record DrawCardEffect : IEffect
         }
 
         return possibleStates.Distinct().ToArray();
+    }
+
+    public static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
+    {
+        if (gameState.DiscardPile.Cards.Count == 0) return gameState;
+
+        var newDrawPile = gameState.DrawPile;
+        foreach (var card in gameState.DiscardPile.Cards)
+        {
+            newDrawPile = newDrawPile.Add(card);
+        }
+
+        return gameState with
+        {
+            DiscardPile = new DiscardPile(),
+            DrawPile = newDrawPile
+        };
     }
 }
