@@ -26,5 +26,6 @@ public class ResolveAllEnemyMovesEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveAllEnemyMovesEffect();
         var result = effect.Resolve(gameState).Single();
+        Assert.AreEqual(gameState.WithEffectStack(new EffectStack(new ResolveEnemyMoveEffect(enemy.Id))), result);
     }
 }

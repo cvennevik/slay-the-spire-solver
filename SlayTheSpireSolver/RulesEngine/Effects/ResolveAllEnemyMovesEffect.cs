@@ -4,6 +4,11 @@ public class ResolveAllEnemyMovesEffect : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        return new[] { gameState.WithEffectStack() };
+        var resolveEnemyMoveEffects = new List<ResolveEnemyMoveEffect>();
+        foreach (var enemy in gameState.EnemyParty)
+        {
+            resolveEnemyMoveEffects.Add(new ResolveEnemyMoveEffect(enemy.Id));
+        }
+        return new[] { gameState.WithEffectStack(new EffectStack(resolveEnemyMoveEffects.ToArray())) };
     }
 }
