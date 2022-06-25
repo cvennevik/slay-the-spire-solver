@@ -1,4 +1,5 @@
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
@@ -46,4 +47,6 @@ public record ResolvableGameState
     {
         return ResolveTopEffect(resolvableGameState.GameState, resolvableGameState.EffectStack);
     }
+
+    public ResolvableGameStatePossibility WithProbability(Probability probability) => new(this, probability);
 }
