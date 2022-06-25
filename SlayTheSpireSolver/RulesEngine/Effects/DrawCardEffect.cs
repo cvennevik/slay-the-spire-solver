@@ -29,8 +29,8 @@ public record DrawCardEffect : IEffect
                     Hand = gameState.Hand.Add(uniqueCard),
                     DrawPile = gameState.DrawPile.Remove(uniqueCard)
                 };
-                var instancesInDrawPile = gameState.DrawPile.Cards.Count(x => x == uniqueCard);
-                var realProbability = new Probability(instancesInDrawPile / gameState.DrawPile.Cards.Count);
+                var realProbability = new Probability(gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
+                                                      gameState.DrawPile.Cards.Count);
             }
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
