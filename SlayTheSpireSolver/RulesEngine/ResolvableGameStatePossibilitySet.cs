@@ -11,6 +11,11 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
         _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
 
+    public ResolvableGameStatePossibilitySet(ResolvableGameStatePossibility[] possibilities)
+    {
+        
+    }
+
     public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
     public static implicit operator ResolvableGameStatePossibilitySet(GameState[] gameStates) =>
         new(gameStates.Select(x => x.WithEffects()).ToArray());
