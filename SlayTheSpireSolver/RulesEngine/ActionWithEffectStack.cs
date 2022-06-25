@@ -44,6 +44,6 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
             return new[] { gameStateWithEffectStack };
         }
 
-        return null;
+        return ResolveTopEffect(gameStateWithEffectStack).SelectMany(ResolveEffects).ToList();
     }
 }
