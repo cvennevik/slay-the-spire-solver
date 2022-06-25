@@ -14,6 +14,6 @@ public record Probability
         Denominator = denominator;
     }
 
-    public static Probability operator +(Probability a, Probability b) =>
+    public static Probability operator *(Probability a, Probability b) =>
         new(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
 }

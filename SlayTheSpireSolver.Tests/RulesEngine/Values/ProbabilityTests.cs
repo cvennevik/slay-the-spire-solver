@@ -47,5 +47,6 @@ public class ProbabilityTests
     {
         var probability1 = new Probability(1, 2);
         var probability2 = new Probability(2, 7);
+        Assert.AreEqual(new Probability(2, 14), probability1 * probability2);
     }
 }
