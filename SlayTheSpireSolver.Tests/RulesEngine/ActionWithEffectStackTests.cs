@@ -52,6 +52,7 @@ public class ActionWithEffectStackTests
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         var expectedGameState = gameState with { PlayerHealth = 6 };
+        Assert.AreEqual(expectedGameState, resolvedState);
     }
 
     [Test]
