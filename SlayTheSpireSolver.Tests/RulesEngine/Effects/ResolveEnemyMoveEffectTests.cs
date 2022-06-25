@@ -13,6 +13,7 @@ public class ResolveEnemyMoveEffectTests
     public void Test()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }) };
+        var effect = new ResolveEnemyMoveEffect(EnemyId.Default);
     }
 
     [Test]
