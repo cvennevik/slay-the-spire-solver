@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Buffs;
 
-public class Strength
+public record Strength
 {
     
 }
