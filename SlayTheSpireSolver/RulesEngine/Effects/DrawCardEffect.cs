@@ -14,7 +14,7 @@ public record DrawCardEffect : IEffect
         if (gameState.DrawPile.Cards.Count == 0)
         {
             return gameState.DiscardPile.Cards.Any()
-                ? DrawCard(ShuffleDiscardPileIntoDrawPile(gameState.ShuffleDiscardPileIntoDrawPile()))
+                ? DrawCard(ShuffleDiscardPileIntoDrawPile(gameState))
                 : new[] { gameState };
         }
 
