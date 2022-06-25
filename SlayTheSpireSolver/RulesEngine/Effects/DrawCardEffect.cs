@@ -22,7 +22,10 @@ public record DrawCardEffect : IEffect
             var uniqueCards = gameState.DrawPile.Cards.Distinct();
             foreach (var uniqueCard in uniqueCards)
             {
-                var newGameState = gameState;
+                var newGameState = gameState with
+                {
+                    Hand = gameState.Hand.Add(uniqueCard)
+                };
             }
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
