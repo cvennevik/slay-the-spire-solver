@@ -38,12 +38,6 @@ public record ResolvableGameState
             .ToList();
     }
 
-    private ResolvablePossibilitySet ResolveTopEffect()
-    {
-        var (effect, remainingEffectStack) = EffectStack.Pop();
-        return effect.ResolveWithBaseEffectStack(GameState, remainingEffectStack);
-    }
-
     public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
     {
         return GameState.WithEffects(baseEffectStack.Push(EffectStack));
