@@ -30,11 +30,16 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
         return GetEnumerator();
     }
 
-    bool IEquatable<ResolvableGameStateSet>.Equals(ResolvableGameStateSet? other)
+    public bool Equals(ResolvableGameStateSet? other)
     {
         if (other == null) return false;
         return _resolvableGameStates.Count == other._resolvableGameStates.Count &&
                _resolvableGameStates.All(other.Contains);
+    }
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as ResolvableGameStateSet);
     }
 
     public override int GetHashCode()
