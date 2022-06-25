@@ -27,6 +27,11 @@ public class MoveHandToDiscardPileEffectTests
         };
         var effect = new MoveHandToDiscardPileEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
+        var expectedGameState = new GameState
+        {
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new Strike(), new Strike(), new Defend())
+        };
     }
 
     [Test]
