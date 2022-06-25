@@ -44,7 +44,7 @@ public class AddEnemyStrengthEffectTests
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedResult = new GameState
         {
-            EnemyParty = new[] { new JawWorm { Id = targetId, Strength = 5}, new JawWorm { Id = otherEnemyId } }
+            EnemyParty = new[] { new JawWorm { Id = targetId, Strength = 5 }, new JawWorm { Id = otherEnemyId } }
         };
         Assert.AreEqual(expectedResult, result);
     }
