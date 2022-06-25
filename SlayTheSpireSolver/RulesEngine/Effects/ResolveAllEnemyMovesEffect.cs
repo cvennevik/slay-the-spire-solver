@@ -6,6 +6,6 @@ public class ResolveAllEnemyMovesEffect : IEffect
     {
         var resolveEnemyMoveEffects =
             gameState.EnemyParty.Select(enemy => (IEffect)new ResolveEnemyMoveEffect(enemy.Id));
-        return new[] { gameState.WithEffectStack(new EffectStack(resolveEnemyMoveEffects.ToArray())) };
+        return new[] { gameState.WithEffectStack(new EffectStack(resolveEnemyMoveEffects.Reverse().ToArray())) };
     }
 }
