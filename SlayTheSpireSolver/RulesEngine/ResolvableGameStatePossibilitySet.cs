@@ -23,6 +23,12 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
         new(resolvableGameStates.Select(x => (ResolvableGameStatePossibility)x).ToArray());
 
+    public static implicit operator ResolvableGameStatePossibilitySet(
+        ResolvableGameStatePossibility resolvableGameState) => new(resolvableGameState);
+
+    public static implicit operator ResolvableGameStatePossibilitySet(
+        ResolvableGameStatePossibility[] resolvableGameStates) => new(resolvableGameStates);
+
     public IEnumerator<ResolvableGameStatePossibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();
