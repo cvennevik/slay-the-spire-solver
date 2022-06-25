@@ -31,7 +31,8 @@ public record ResolvableGameState
             return new GameStatePossibility[] { GameState };
         }
 
-        return ResolveTopEffect()
+        return WithProbability(1)
+            .ResolveTopEffect()
             .SelectMany(x => x.ResolvableGameState.ResolveEffects())
             .Distinct()
             .ToList();
