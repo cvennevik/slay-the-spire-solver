@@ -22,13 +22,14 @@ public record DrawCardEffect : IEffect
                 return new[] { gameState };
             }
 
-            var possibleStates = new List<GameState>();
-            foreach (var card in gameState.DrawPile.Cards)
-            {
-                possibleStates.Add(gameState with { Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card) });
-            }
+            var possibleStates = gameState.DrawPile.Cards
+                .Select(card => gameState with
+                {
+                    Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
+                })
+                .ToList();
 
-            return possibleStates.Distinct().ToArray();
+            return possibleStates;
         }
     }
 
