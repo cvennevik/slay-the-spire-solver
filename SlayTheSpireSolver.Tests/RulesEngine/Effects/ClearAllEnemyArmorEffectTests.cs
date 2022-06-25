@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
@@ -9,6 +11,6 @@ public class ClearAllEnemyArmorEffectTests
     [Test]
     public void Test()
     {
-        var gameState = new GameState();
+        var gameState = new GameState {EnemyParty = new EnemyParty(new JawWorm())};
     }
 }
