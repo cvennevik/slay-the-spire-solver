@@ -10,6 +10,16 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
     public static implicit operator ResolvablePossibility(GameState gameState) =>
         new(gameState, new Probability(1));
 
+    private IReadOnlyList<GameStatePossibility> Resolve()
+    {
+        if (ResolvableGameState.EffectStack.IsEmpty())
+        {
+            return new GameStatePossibility[] { ResolvableGameState.GameState };
+        }
+
+        return new GameStatePossibility[] { ResolvableGameState.GameState };
+    }
+
     public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
     {
         return this with
