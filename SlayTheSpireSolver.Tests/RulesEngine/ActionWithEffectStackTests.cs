@@ -2,6 +2,8 @@ using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
@@ -35,6 +37,18 @@ public class ActionWithEffectStackTests
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
+    }
+
+    [Test]
+    public void ResolvesEffectThatAddNewEffects()
+    {
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() },
+                new JawWorm { IntendedMove = new Chomp() })
+        };
+        var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
+        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
     }
 
     [Test]
