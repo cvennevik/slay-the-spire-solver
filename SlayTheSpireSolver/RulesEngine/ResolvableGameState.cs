@@ -31,19 +31,19 @@ public record ResolvableGameState
             return new GameStatePossibility[] { GameState };
         }
 
-        return ResolveTopEffect().SelectMany(x => x.ResolveEffects()).Distinct().ToList();
+        return ResolveTopEffect().SelectMany(x => x.ResolvableGameState.ResolveEffects()).Distinct().ToList();
     }
 
-    private IReadOnlyList<ResolvableGameState> ResolveTopEffect()
+    private IReadOnlyList<ResolvablePossibility> ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
         var resolvablePossibilitySet = effect.Resolve(GameState);
         return resolvablePossibilitySet.Select(resolvablePossibility =>
-            resolvablePossibility.ResolvableGameState.WithBaseEffectStack(remainingEffectStack))
+            resolvablePossibility.WithBaseEffectStack(remainingEffectStack))
             .ToList();
     }
 
-    private ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
+    public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
     {
         return GameState.WithEffects(baseEffectStack.Push(EffectStack));
     }
