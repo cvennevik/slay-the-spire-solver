@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
@@ -8,6 +10,7 @@ public class ResolveAllEnemyMovesEffectTests
     [Test]
     public void Test()
     {
-        
+        var gameState = new GameState();
+        var effect = new ResolveAllEnemyMovesEffect();
     }
 }
