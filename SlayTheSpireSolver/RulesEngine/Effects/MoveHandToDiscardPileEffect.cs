@@ -11,7 +11,7 @@ public record MoveHandToDiscardPileEffect : IEffect
             newDiscardPile = newDiscardPile.Add(card);
         }
 
-        var result = gameState with { Hand = new Hand() };
+        var result = gameState with { Hand = new Hand(), DiscardPile = newDiscardPile };
         return new[] { gameState.WithEffectStack() };
     }
 }
