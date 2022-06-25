@@ -43,7 +43,7 @@ public record ResolvableGameState
             .ToList();
     }
 
-    public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
+    private ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
     {
         return GameState.WithEffects(baseEffectStack.Push(EffectStack));
     }
