@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Buffs;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
@@ -8,6 +9,12 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 [TestFixture]
 public class AddEnemyStrengthEffectTests
 {
+    [Test]
+    public void Test()
+    {
+        var gameState = new GameState();
+    }
+
     [Test]
     public void TestEquality()
     {
