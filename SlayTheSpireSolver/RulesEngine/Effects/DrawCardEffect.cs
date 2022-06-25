@@ -1,5 +1,3 @@
-using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
-
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : IEffect
