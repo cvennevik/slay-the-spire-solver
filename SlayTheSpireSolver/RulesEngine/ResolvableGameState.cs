@@ -37,10 +37,10 @@ public record ResolvableGameState
     private IReadOnlyList<ResolvableGameState> ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
-        var possibilitySet = effect.Resolve(GameState);
-        return possibilitySet.Select(gameStateWithAddedEffects =>
-            gameStateWithAddedEffects.ResolvableGameState.GameState.WithEffects(
-                remainingEffectStack.Push(gameStateWithAddedEffects.ResolvableGameState.EffectStack))).ToList();
+        var resolvablePossibilitySet = effect.Resolve(GameState);
+        return resolvablePossibilitySet.Select(resolvablePossibility =>
+            resolvablePossibility.ResolvableGameState.GameState.WithEffects(
+                remainingEffectStack.Push(resolvablePossibility.ResolvableGameState.EffectStack))).ToList();
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
