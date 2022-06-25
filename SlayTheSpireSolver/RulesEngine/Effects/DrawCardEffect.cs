@@ -11,7 +11,7 @@ public record DrawCardEffect : IEffect
     {
         while (true)
         {
-            if (gameState.DrawPile.Cards.Count != 0)
+            if (gameState.DrawPile.Cards.Any())
             {
                 return gameState.DrawPile.Cards
                     .Select(card => gameState with
