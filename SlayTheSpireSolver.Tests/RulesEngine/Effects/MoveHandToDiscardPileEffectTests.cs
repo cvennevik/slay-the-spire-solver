@@ -7,6 +7,12 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class MoveHandToDiscardPileEffectTests
 {
     [Test]
+    public void Test()
+    {
+        
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new MoveHandToDiscardPileEffect(), new MoveHandToDiscardPileEffect());
