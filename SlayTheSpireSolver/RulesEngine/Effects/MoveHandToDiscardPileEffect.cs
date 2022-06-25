@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class MoveHandToDiscardPileEffect
+public record MoveHandToDiscardPileEffect
 {
     
 }
