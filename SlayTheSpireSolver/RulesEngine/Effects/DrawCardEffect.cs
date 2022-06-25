@@ -6,7 +6,14 @@ public record DrawCardEffect : IEffect
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {
-            gameState = ShuffleDiscardPileIntoDrawPile(gameState);
+            var newDrawPile = gameState.DiscardPile.Cards.Aggregate(gameState.DrawPile,
+                (current, card) => current.Add(card));
+
+            gameState = gameState with
+            {
+                DiscardPile = new DiscardPile(),
+                DrawPile = newDrawPile
+            };
         }
 
         if (gameState.DrawPile.Cards.Any())
