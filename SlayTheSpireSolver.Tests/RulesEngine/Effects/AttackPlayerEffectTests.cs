@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -24,6 +25,7 @@ public class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
+        var result = effect.Resolve(gameState).Single();
     }
 
     [Test]
