@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class ResolveEnemyMovesEffect
+public class ResolveAllEnemyMovesEffect
 {
     
 }
