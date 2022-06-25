@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Utils;
 
-public class IntegerWrapper
+public abstract class IntegerWrapper<T>
 {
     
 }
