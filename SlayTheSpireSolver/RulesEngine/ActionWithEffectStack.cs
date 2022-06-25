@@ -11,7 +11,7 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
 
     private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(GameState gameState, EffectStack effectStack)
     {
-        (var effect, var remainingEffectStack) = effectStack.Pop();
+        var (effect, remainingEffectStack) = effectStack.Pop();
         var outcomes = effect.Resolve(gameState);
         return outcomes.Select(gameStateWithAddedEffects =>
             gameStateWithAddedEffects.GameState.WithEffectStack(
