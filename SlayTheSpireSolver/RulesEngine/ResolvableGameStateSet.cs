@@ -14,7 +14,7 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
 
     public ResolvableGameStateSet(params ResolvableGameState[] resolvableGameStates)
     {
-        _resolvableGameStates = new List<ResolvableGameState>(resolvableGameStates);
+        _resolvableGameStates = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
 
     public IEnumerator<ResolvableGameState> GetEnumerator()
