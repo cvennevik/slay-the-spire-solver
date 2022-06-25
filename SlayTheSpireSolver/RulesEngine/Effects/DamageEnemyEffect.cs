@@ -36,7 +36,7 @@ public record DamageEnemyEffect : IEffect
 
     private static Enemy DamageEnemy(Enemy enemy, Damage damage)
     {
-        if (damage <= enemy.Armor)
+        if (damage < enemy.Armor)
         {
             return enemy with { Armor = enemy.Armor - damage };
         }
