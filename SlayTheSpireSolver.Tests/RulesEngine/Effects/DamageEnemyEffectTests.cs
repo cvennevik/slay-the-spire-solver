@@ -14,8 +14,9 @@ public class DamageEnemyEffectTests
     public void DoesNothingWhenTargetEnemyIsMissing()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
-        var effect = new DamageEnemyEffect(EnemyId.Default, 5);
-        var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 5 }) };
+        var effect = new DamageEnemyEffect(EnemyId.New(), 5);
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        Assert.AreEqual(gameState, result);
     }
 
     [Test]

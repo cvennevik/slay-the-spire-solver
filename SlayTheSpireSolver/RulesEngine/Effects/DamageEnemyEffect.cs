@@ -16,6 +16,11 @@ public record DamageEnemyEffect : IEffect
 
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
+        if (!gameState.EnemyParty.Has(_targetId))
+        {
+            return gameState;
+        }
+
         var newGameState = gameState.ModifyEnemy(_targetId, enemy => DamageEnemy(enemy, _damage));
 
         if (newGameState.EnemyParty.Get(_targetId).Health.Amount <= 0)
