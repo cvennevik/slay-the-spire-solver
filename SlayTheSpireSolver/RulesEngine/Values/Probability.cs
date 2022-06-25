@@ -6,7 +6,11 @@ public record Probability
 
     public Probability(double value)
     {
-        if (value is > 1 or <= 0) throw new ArgumentException(nameof(value));
+        if (value is > 1 or < 0)
+        {
+            throw new ArgumentException("Probability value must be between 1 and 0", nameof(value));
+        }
+
         Value = value;
     }
 }
