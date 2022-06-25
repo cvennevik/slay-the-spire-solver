@@ -32,7 +32,7 @@ public class AddEnemyStrengthEffectTests
     }
 
     [Test]
-    public void Test()
+    public void AddsStrengthToTargetEnemy()
     {
         var targetId = EnemyId.New();
         var otherEnemyId = EnemyId.New();
