@@ -28,7 +28,7 @@ public record DamageEnemyEffect : IEffect
 
         if (newGameState.EnemyParty.Get(_target).Health.Amount <= 0)
         {
-            return new[] { newGameState.AsResolvable(new EffectStack(new KillEnemyEffect(_target))) };
+            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(_target))) };
         }
 
         return newGameState;

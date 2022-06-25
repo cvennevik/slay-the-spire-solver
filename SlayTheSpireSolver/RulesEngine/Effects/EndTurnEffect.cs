@@ -4,7 +4,7 @@ public record EndTurnEffect : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        return gameState.AsResolvable(new EffectStack(
+        return gameState.WithEffects(new EffectStack(
             new DrawCardEffect(),
             new DrawCardEffect(),
             new DrawCardEffect(),

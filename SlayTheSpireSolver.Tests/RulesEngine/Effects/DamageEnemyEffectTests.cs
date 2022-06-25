@@ -26,7 +26,7 @@ public class DamageEnemyEffectTests
         var effect = new DamageEnemyEffect(EnemyId.Default, 10);
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 0 }) };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(EnemyId.Default));
-        Assert.AreEqual(expectedGameState.AsResolvable(expectedEffectStack), effect.Resolve(gameState).Single());
+        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.Resolve(gameState).Single());
     }
 
     [Test]
@@ -75,7 +75,7 @@ public class DamageEnemyEffectTests
             )
         };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(id2));
-        Assert.AreEqual(expectedGameState.AsResolvable(expectedEffectStack), effect.Resolve(gameState).Single());
+        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.Resolve(gameState).Single());
     }
 
     [Test]

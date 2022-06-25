@@ -26,7 +26,7 @@ public class ResolveAllEnemyMovesEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveAllEnemyMovesEffect();
         var result = effect.Resolve(gameState).Single();
-        Assert.AreEqual(gameState.AsResolvable(new EffectStack(new ResolveEnemyMoveEffect(enemy.Id))), result);
+        Assert.AreEqual(gameState.WithEffects(new EffectStack(new ResolveEnemyMoveEffect(enemy.Id))), result);
     }
 
     [Test]
@@ -37,7 +37,7 @@ public class ResolveAllEnemyMovesEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveAllEnemyMovesEffect();
         var result = effect.Resolve(gameState).Single();
-        Assert.AreEqual(gameState.AsResolvable(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
+        Assert.AreEqual(gameState.WithEffects(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
 
     [Test]

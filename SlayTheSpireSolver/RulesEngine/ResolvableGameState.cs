@@ -43,7 +43,7 @@ public record ResolvableGameState
         var (effect, remainingEffectStack) = effectStack.Pop();
         var outcomes = effect.Resolve(gameState);
         return outcomes.Select(gameStateWithAddedEffects =>
-            gameStateWithAddedEffects.GameState.AsResolvable(
+            gameStateWithAddedEffects.GameState.WithEffects(
                 remainingEffectStack.Push(gameStateWithAddedEffects.EffectStack))).ToList();
     }
 

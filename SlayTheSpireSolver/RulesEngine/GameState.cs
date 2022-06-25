@@ -32,7 +32,7 @@ public record GameState
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
     }
 
-    public ResolvableGameState AsResolvable(EffectStack? effectStack = null)
+    public ResolvableGameState WithEffects(EffectStack? effectStack = null)
     {
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
     }
