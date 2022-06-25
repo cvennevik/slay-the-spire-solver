@@ -6,7 +6,7 @@ public record DrawCardEffect : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        return DrawCard(gameState).Select(x => x.WithEffects()).ToArray();
+        return DrawCard(gameState).ToArray();
     }
 
     public static IReadOnlyList<GameState> DrawCard(GameState gameState)
