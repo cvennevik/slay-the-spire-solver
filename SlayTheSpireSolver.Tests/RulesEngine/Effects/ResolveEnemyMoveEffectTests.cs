@@ -22,6 +22,12 @@ public class ResolveEnemyMoveEffectTests
     }
 
     [Test]
+    public void OnlyPlacesEffectsOfTargetEnemyOnEffectStack()
+    {
+        
+    }
+
+    [Test]
     public void DoesNothingWhenNoEnemyWithId()
     {
         var enemy = new JawWorm { IntendedMove = new Chomp() };
