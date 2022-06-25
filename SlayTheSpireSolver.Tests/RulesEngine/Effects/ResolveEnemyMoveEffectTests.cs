@@ -22,7 +22,7 @@ public class ResolveEnemyMoveEffectTests
     }
 
     [Test]
-    public void DoesNothingWhenNoEnemyWithId() // todo
+    public void DoesNothingWhenNoEnemyWithId()
     {
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
