@@ -13,7 +13,6 @@ public readonly record struct GainPlayerArmorEffect : IEffect
 
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        var result = new[] { gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain } };
-        return result.Select(x => new ResolvableGameState(x)).ToArray();
+        return gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain };
     }
 }
