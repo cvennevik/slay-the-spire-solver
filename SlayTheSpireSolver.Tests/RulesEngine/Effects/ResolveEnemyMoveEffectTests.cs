@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -14,7 +15,7 @@ public class ResolveEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }) };
         var effect = new ResolveEnemyMoveEffect(EnemyId.Default);
-        var result = effect.Resolve(gameState).SingleStableGameState();
+        var result = effect.Resolve(gameState).Single();
     }
 
     [Test]
