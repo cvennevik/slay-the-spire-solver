@@ -23,7 +23,10 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
     private ResolvablePossibilitySet ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = ResolvableGameState.EffectStack.Pop();
-        return effect.ResolveWithBaseEffectStack(ResolvableGameState.GameState, remainingEffectStack);
+        return effect
+            .ResolveWithBaseEffectStack(ResolvableGameState.GameState, remainingEffectStack)
+            .Select(resolvablePossibility => resolvablePossibility with {Probability = new Probability(resolvablePossibility.Probability.Value * Probability.Value)})
+            .ToArray();
     }
 
     public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
