@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ResolveAllEnemyMovesEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState();
         var effect = new ResolveAllEnemyMovesEffect();
