@@ -11,16 +11,22 @@ public record DrawCardEffect : IEffect
     {
         while (true)
         {
-            if (gameState.DrawPile.Cards.Count == 0)
+            if (gameState.DrawPile.Cards.Count != 0)
             {
-                if (gameState.DiscardPile.Cards.Any())
-                {
-                    gameState = ShuffleDiscardPileIntoDrawPile(gameState);
-                    continue;
-                }
-
-                return new[] { gameState };
+                return gameState.DrawPile.Cards
+                    .Select(card => gameState with
+                    {
+                        Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
+                    }).ToArray();
             }
+
+            if (gameState.DiscardPile.Cards.Any())
+            {
+                gameState = ShuffleDiscardPileIntoDrawPile(gameState);
+                continue;
+            }
+
+            return new[] { gameState };
 
             return gameState.DrawPile.Cards
                 .Select(card => gameState with
