@@ -13,4 +13,14 @@ public record Probability
 
         Value = value;
     }
+
+    public static implicit operator Probability(double value)
+    {
+        return value switch
+        {
+            < 0 => new Probability(0),
+            > 1 => new Probability(1),
+            _ => new Probability(value)
+        };
+    }
 }
