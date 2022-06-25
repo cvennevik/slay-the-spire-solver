@@ -4,7 +4,7 @@ using SlayTheSpireSolver.RulesEngine;
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
 [TestFixture]
-public class ResolvableGameStatePossibilitySetTests
+public class PossibilitySetTests
 {
     [Test]
     public void TestEmptyEquality()
