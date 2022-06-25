@@ -11,6 +11,6 @@ public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : IEffect
         var enemyStrength = gameState.EnemyParty.Get(EnemyId).Strength;
 
         return gameState.WithEffects(new EffectStack(
-            new DamagePlayerEffect(BaseDamage.Amount + gameState.EnemyParty.Get(EnemyId).Strength.Amount)));
+            new DamagePlayerEffect(BaseDamage.Amount + enemyStrength.Amount)));
     }
 }
