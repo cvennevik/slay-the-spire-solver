@@ -21,7 +21,7 @@ public record UnresolvedGameState
     public UnresolvedGameState(GameState gameState, params IEffect[] effects)
         : this(gameState, new EffectStack(effects)) { }
 
-    public IReadOnlyList<GameState> ResolveToPossibleStates()
+    public IReadOnlyList<GameState> Resolve()
     {
         return ResolveEffects(new UnresolvedGameState(GameState, EffectStack));
     }

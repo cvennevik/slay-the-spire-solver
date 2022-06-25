@@ -16,7 +16,7 @@ public class ActionWithEffectStackTests
     public void ResolvesZeroEffects()
     {
         var actionWithEffectStack = new Action(new GameState(), new EffectStack());
-        var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
+        var resolvedState = actionWithEffectStack.Resolve().Single();
         Assert.AreEqual(new GameState(), resolvedState);
     }
 
@@ -26,7 +26,7 @@ public class ActionWithEffectStackTests
         var gameState = new GameState { PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5));
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
+        var resolvedState = actionWithEffectStack.Resolve().Single();
         Assert.AreEqual(new GameState { PlayerArmor = 5 }, resolvedState);
     }
 
@@ -36,7 +36,7 @@ public class ActionWithEffectStackTests
         var gameState = new GameState { Energy = 2, PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5), new RemoveEnergyEffect(1));
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
+        var resolvedState = actionWithEffectStack.Resolve().Single();
         Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
     }
 
@@ -51,7 +51,7 @@ public class ActionWithEffectStackTests
         };
         var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
+        var resolvedState = actionWithEffectStack.Resolve().Single();
         var expectedGameState = gameState with { PlayerHealth = 6 };
         Assert.AreEqual(expectedGameState, resolvedState);
     }
@@ -65,7 +65,7 @@ public class ActionWithEffectStackTests
         };
         var effectStack = new EffectStack(new DrawCardEffect());
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var result = actionWithEffectStack.ResolveToPossibleStates();
+        var result = actionWithEffectStack.Resolve();
         var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -90,7 +90,7 @@ public class ActionWithEffectStackTests
         };
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var result = actionWithEffectStack.ResolveToPossibleStates();
+        var result = actionWithEffectStack.Resolve();
         var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),

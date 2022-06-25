@@ -26,7 +26,7 @@ public class EndTurnActionTests
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
 
@@ -38,7 +38,7 @@ public class EndTurnActionTests
                 EnemyParty = new EnemyParty(new JawWorm { Armor = 10 })
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Armor(0), resolvedStates.Single().EnemyParty.First().Armor);
         }
 
@@ -49,7 +49,7 @@ public class EndTurnActionTests
         {
             var gameState = CreateBasicGameState() with { Turn = initialTurn };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Turn(expectedTurn), resolvedStates.Single().Turn);
         }
 
@@ -63,7 +63,7 @@ public class EndTurnActionTests
                 DrawPile = new DrawPile()
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Hand(new Strike(), new Defend()), resolvedStates.Single().Hand);
             Assert.AreEqual(new DiscardPile(), resolvedStates.Single().DiscardPile);
             Assert.AreEqual(new DrawPile(), resolvedStates.Single().DrawPile);
@@ -80,7 +80,7 @@ public class EndTurnActionTests
                     new Strike(), new Strike(), new Strike())
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Strike()),
                 resolvedStates.Single().Hand);
             Assert.AreEqual(new DiscardPile(new Defend()), resolvedStates.Single().DiscardPile);
@@ -97,7 +97,7 @@ public class EndTurnActionTests
                 DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike())
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(2, resolvedStates.Count);
             Assert.AreEqual(1, resolvedStates.Count(x =>
                 x.Hand == new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Strike()) &&
@@ -118,7 +118,7 @@ public class EndTurnActionTests
                 Energy = 0
             };
             var endTurnAction = new Action(gameState, new EndTurnEffect());
-            var resolvedStates = endTurnAction.ResolveToPossibleStates();
+            var resolvedStates = endTurnAction.Resolve();
             Assert.AreEqual(new Energy(4), resolvedStates.Single().Energy);
         }
     }
