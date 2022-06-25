@@ -8,11 +8,11 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class DamagePlayerEffectTests
 {
     [Test]
-    [TestCase(20, 0, 10, 10)]
-    [TestCase(20, 0, 5, 15)]
-    [TestCase(20, 0, 0, 20)]
-    [TestCase(5, 0, 10, -5)]
-    public void Test(int initialHealth, int initialArmor, int damage, int expectedHealth)
+    [TestCase(20, 0, 10, 10, 0)]
+    [TestCase(20, 0, 5, 15, 0)]
+    [TestCase(20, 0, 0, 20, 0)]
+    [TestCase(5, 0, 10, -5, 0)]
+    public void Test(int initialHealth, int initialArmor, int damage, int expectedHealth, int expectedArmor)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
         var gameState = new GameState { PlayerHealth = initialHealth };
