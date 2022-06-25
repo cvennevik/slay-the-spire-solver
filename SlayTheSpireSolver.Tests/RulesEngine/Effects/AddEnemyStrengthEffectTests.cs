@@ -54,21 +54,16 @@ public class AddEnemyStrengthEffectTests
     [Test]
     public void AddsStrengthToEnemyWithExistingStrength()
     {
-        var targetId = EnemyId.New();
-        var otherEnemyId = EnemyId.New();
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Id = targetId },
-                new JawWorm { Id = otherEnemyId })
+            EnemyParty = new EnemyParty(new JawWorm {Strength = 4})
         };
-        var effect = new AddEnemyStrengthEffect(targetId, 5);
+        var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedResult = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Id = targetId, Strength = 5 },
-                new JawWorm { Id = otherEnemyId })
+            EnemyParty = new EnemyParty(new JawWorm {Strength = 9})
         };
-        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
