@@ -4,11 +4,8 @@ public record MoveHandToDiscardPileEffect : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var newDiscardPile = gameState.DiscardPile;
-        foreach (var card in gameState.Hand.Cards)
-        {
-            newDiscardPile = newDiscardPile.Add(card);
-        }
+        var newDiscardPile = gameState.Hand.Cards.Aggregate(
+            gameState.DiscardPile, (current, card) => current.Add(card));
 
         var result = gameState with { Hand = new Hand(), DiscardPile = newDiscardPile };
         return new[] { result.WithEffectStack() };
