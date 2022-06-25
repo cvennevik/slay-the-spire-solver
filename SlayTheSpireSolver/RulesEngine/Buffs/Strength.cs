@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Buffs;
 
 public record Strength
 {
-    private int Amount { get; }
+    public int Amount { get; }
 
     public Strength(int amount)
     {
