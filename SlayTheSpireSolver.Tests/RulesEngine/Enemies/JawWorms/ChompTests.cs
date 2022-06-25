@@ -44,6 +44,6 @@ public class ChompTests
     [Test]
     public void TestEffects()
     {
-        Assert.AreEqual(new EffectStack(new ReducePlayerHealthEffect(12)), Chomp.GetEffects(new JawWorm()));
+        Assert.AreEqual(new EffectStack(new DamagePlayerEffect(12)), Chomp.GetEffects(new JawWorm()));
     }
 }
