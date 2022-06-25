@@ -21,4 +21,11 @@ public class ResolvableGameStateSetTests
         Assert.AreNotEqual(new ResolvableGameStateSet(new GameState { Turn = 2 }),
             new ResolvableGameStateSet(new GameState { Turn = 3 }));
     }
+
+    [Test]
+    public void TestMultipleEquality()
+    {
+        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }),
+            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
+    }
 }
