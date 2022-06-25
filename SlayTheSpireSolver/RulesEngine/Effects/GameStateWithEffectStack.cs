@@ -21,6 +21,11 @@ public record GameStateWithEffectStack
     public GameStateWithEffectStack(GameState gameState, params IEffect[] effects)
         : this(gameState, new EffectStack(effects)) { }
 
+    public IReadOnlyList<GameState> ResolveToPossibleStates()
+    {
+        return ResolveEffects(new GameStateWithEffectStack(GameState, EffectStack));
+    }
+
     protected IReadOnlyList<GameState> ResolveEffects(GameStateWithEffectStack gameStateWithEffectStack)
     {
         if (gameStateWithEffectStack.EffectStack.IsEmpty())
