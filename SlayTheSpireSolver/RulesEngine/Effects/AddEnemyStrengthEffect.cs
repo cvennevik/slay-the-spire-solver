@@ -1,6 +1,9 @@
+using SlayTheSpireSolver.RulesEngine.Buffs;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record AddEnemyStrengthEffect : IEffect
+public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
