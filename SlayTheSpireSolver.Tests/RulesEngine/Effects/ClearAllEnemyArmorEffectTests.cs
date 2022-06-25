@@ -21,6 +21,8 @@ public class ClearAllEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemiesHaveArmor()
     {
+        var enemy1 = new JawWorm { Id = EnemyId.New() };
+        var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm(), new JawWorm()) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
@@ -30,8 +32,6 @@ public class ClearAllEnemyArmorEffectTests
     [Test]
     public void ClearsArmorFromSingleEnemy()
     {
-        var enemy1 = new JawWorm { Id = EnemyId.New() };
-        var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 5 }) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
