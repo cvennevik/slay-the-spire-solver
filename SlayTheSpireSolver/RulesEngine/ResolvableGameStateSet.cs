@@ -26,4 +26,10 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
     {
         return GetEnumerator();
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not ResolvableGameStateSet otherSet) return false;
+        return base.Equals(obj);
+    }
 }
