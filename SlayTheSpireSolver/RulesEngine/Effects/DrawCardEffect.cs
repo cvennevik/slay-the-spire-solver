@@ -9,24 +9,27 @@ public record DrawCardEffect : IEffect
 
     private static IReadOnlyList<GameState> DrawCard(GameState gameState)
     {
-        if (gameState.DrawPile.Cards.Count == 0)
+        while (true)
         {
-            return gameState.DiscardPile.Cards.Any()
-                ? DrawCard(ShuffleDiscardPileIntoDrawPile(gameState))
-                : new[] { gameState };
-        }
-
-        var possibleStates = new List<GameState>();
-        foreach (var card in gameState.DrawPile.Cards)
-        {
-            possibleStates.Add(gameState with
+            if (gameState.DrawPile.Cards.Count == 0)
             {
-                Hand = gameState.Hand.Add(card),
-                DrawPile = gameState.DrawPile.Remove(card)
-            });
-        }
+                if (gameState.DiscardPile.Cards.Any())
+                {
+                    gameState = ShuffleDiscardPileIntoDrawPile(gameState);
+                    continue;
+                }
 
-        return possibleStates.Distinct().ToArray();
+                return new[] { gameState };
+            }
+
+            var possibleStates = new List<GameState>();
+            foreach (var card in gameState.DrawPile.Cards)
+            {
+                possibleStates.Add(gameState with { Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card) });
+            }
+
+            return possibleStates.Distinct().ToArray();
+        }
     }
 
     public static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
