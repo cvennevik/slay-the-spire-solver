@@ -29,5 +29,8 @@ public class ResolvableGameStateSetTests
             new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
         Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 2 }, new GameState { Turn = 1 }),
             new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
+        Assert.AreNotEqual(new ResolvableGameStateSet(new GameState { Turn = 2 }, new GameState { Turn = 1 }),
+            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 },
+                new GameState { Turn = 3 }));
     }
 }
