@@ -120,20 +120,20 @@ public class DrawCardEffectTest
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState).Select(x => x.ResolvableGameState).ToArray();
-        var expectedState1 = new GameState
+        var result = new DrawCardEffect().Resolve(gameState);
+        var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
             DrawPile = new DrawPile(new Defend())
         };
-        var expectedState2 = new GameState
+        var expectedGameState2 = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedState1.WithEffects(), result.ToList());
-        Assert.Contains(expectedState2.WithEffects(), result.ToList());
+        Assert.Contains(expectedGameState1.WithEffects().WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState2.WithEffects().WithProbability(1), result.ToList());
     }
 
     [Test]
