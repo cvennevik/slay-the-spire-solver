@@ -4,27 +4,21 @@ public record DrawCardEffect : IEffect
 {
     public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
     {
-        GameState gameState1 = gameState;
-        IReadOnlyList<GameState> ret;
-        if (!gameState1.DrawPile.Cards.Any() && gameState1.DiscardPile.Cards.Any())
+        if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {
-            gameState1 = ShuffleDiscardPileIntoDrawPile(gameState1);
+            gameState = ShuffleDiscardPileIntoDrawPile(gameState);
         }
 
-        if (gameState1.DrawPile.Cards.Any())
+        if (gameState.DrawPile.Cards.Any())
         {
-            ret = gameState1.DrawPile.Cards
-                .Select(card => gameState1 with
+            return gameState.DrawPile.Cards
+                .Select(card => gameState with
                 {
-                    Hand = gameState1.Hand.Add(card), DrawPile = gameState1.DrawPile.Remove(card)
+                    Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
                 }).ToArray();
         }
-        else
-        {
-            ret = new[] { gameState1 };
-        }
 
-        return ret.ToArray();
+        return gameState;
     }
 
     private static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
