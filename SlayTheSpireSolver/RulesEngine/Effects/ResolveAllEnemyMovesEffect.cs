@@ -5,7 +5,7 @@ public record ResolveAllEnemyMovesEffect : IEffect
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
         var resolveEnemyMoveEffects =
-            gameState.EnemyParty.Select(enemy => (IEffect)new ResolveEnemyMoveEffect(enemy.Id)).Reverse();
+            gameState.EnemyParty.Select(enemy => new ResolveEnemyMoveEffect(enemy.Id)).Reverse();
         return gameState.AsResolvable(new EffectStack(resolveEnemyMoveEffects));
     }
 }
