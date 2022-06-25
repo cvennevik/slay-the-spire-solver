@@ -17,7 +17,10 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
             return new GameStatePossibility[] { ResolvableGameState.GameState };
         }
 
-        return new GameStatePossibility[] { ResolvableGameState.GameState };
+        return ResolveTopEffect()
+            .SelectMany(x => x.Resolve())
+            .Distinct()
+            .ToList();
     }
 
     public ResolvablePossibilitySet ResolveTopEffect()
