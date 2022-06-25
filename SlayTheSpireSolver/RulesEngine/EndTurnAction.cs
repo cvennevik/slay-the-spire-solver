@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record EndTurnAction : IAction
+public record EndTurnAction : ActionWithEffectStack
 {
     public GameState GameState { get; }
 
@@ -11,7 +11,7 @@ public record EndTurnAction : IAction
         return !gameState.IsCombatOver();
     }
 
-    public EndTurnAction(GameState gameState)
+    public EndTurnAction(GameState gameState) : base(gameState, new EffectStack(new EndTurnEffect()))
     {
         if (!IsLegal(gameState)) throw new ArgumentException("Illegal EndTurn action");
 
