@@ -43,7 +43,7 @@ public record GameState
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
     }
 
-    public Possibility WithProbability(Probability probability) => new(this, probability);
+    public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
 
     public override string ToString()
     {

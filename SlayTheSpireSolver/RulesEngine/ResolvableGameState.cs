@@ -23,7 +23,7 @@ public record ResolvableGameState
     {
         return new ResolvablePossibilitySet(
             ResolveEffects(new ResolvableGameState(GameState, EffectStack))
-                .Select(x => (Possibility) x)
+                .Select(x => (ResolvablePossibility) x)
                 .ToArray());
     }
 
@@ -51,5 +51,5 @@ public record ResolvableGameState
         return ResolveTopEffect(resolvableGameState.GameState, resolvableGameState.EffectStack);
     }
 
-    public Possibility WithProbability(Probability probability) => new(this, probability);
+    public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
 }

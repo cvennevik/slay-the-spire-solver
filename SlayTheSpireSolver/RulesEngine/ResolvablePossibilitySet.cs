@@ -2,11 +2,11 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class ResolvablePossibilitySet : IEnumerable<Possibility>, IEquatable<ResolvablePossibilitySet>
+public class ResolvablePossibilitySet : IEnumerable<ResolvablePossibility>, IEquatable<ResolvablePossibilitySet>
 {
-    private readonly List<Possibility> _possibilities;
+    private readonly List<ResolvablePossibility> _possibilities;
 
-    public ResolvablePossibilitySet(params Possibility[] possibilities)
+    public ResolvablePossibilitySet(params ResolvablePossibility[] possibilities)
     {
         _possibilities = possibilities.Distinct().ToList();
     }
@@ -15,21 +15,21 @@ public class ResolvablePossibilitySet : IEnumerable<Possibility>, IEquatable<Res
         new(gameState.WithEffects());
 
     public static implicit operator ResolvablePossibilitySet(GameState[] gameStates) =>
-        new(gameStates.Select(x => (Possibility)x.WithEffects()).ToArray());
+        new(gameStates.Select(x => (ResolvablePossibility)x.WithEffects()).ToArray());
 
     public static implicit operator ResolvablePossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
 
     public static implicit operator ResolvablePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
-        new(resolvableGameStates.Select(x => (Possibility)x).ToArray());
+        new(resolvableGameStates.Select(x => (ResolvablePossibility)x).ToArray());
 
     public static implicit operator ResolvablePossibilitySet(
-        Possibility resolvableGameState) => new(resolvableGameState);
+        ResolvablePossibility resolvableGameState) => new(resolvableGameState);
 
     public static implicit operator ResolvablePossibilitySet(
-        Possibility[] resolvableGameStates) => new(resolvableGameStates);
+        ResolvablePossibility[] resolvableGameStates) => new(resolvableGameStates);
 
-    public IEnumerator<Possibility> GetEnumerator()
+    public IEnumerator<ResolvablePossibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();
     }
