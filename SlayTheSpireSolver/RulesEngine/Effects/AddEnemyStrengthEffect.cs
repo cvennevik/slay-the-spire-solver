@@ -9,6 +9,8 @@ public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : I
     {
         if (gameState.EnemyParty.Has(EnemyId))
         {
+            var newEnemyParty =
+                gameState.EnemyParty.ModifyEnemy(EnemyId, enemy => enemy with { Strength = StrengthGain });
             return gameState;
         }
         return gameState;
