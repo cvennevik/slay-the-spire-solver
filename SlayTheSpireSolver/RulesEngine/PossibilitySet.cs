@@ -2,11 +2,11 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class PossibilitySet : IEnumerable<ResolvableGameStatePossibility>, IEquatable<PossibilitySet>
+public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySet>
 {
-    private readonly List<ResolvableGameStatePossibility> _possibilities;
+    private readonly List<Possibility> _possibilities;
 
-    public PossibilitySet(params ResolvableGameStatePossibility[] possibilities)
+    public PossibilitySet(params Possibility[] possibilities)
     {
         _possibilities = possibilities.Distinct().ToList();
     }
@@ -15,21 +15,21 @@ public class PossibilitySet : IEnumerable<ResolvableGameStatePossibility>, IEqua
         new(gameState.WithEffects());
 
     public static implicit operator PossibilitySet(GameState[] gameStates) =>
-        new(gameStates.Select(x => (ResolvableGameStatePossibility)x.WithEffects()).ToArray());
+        new(gameStates.Select(x => (Possibility)x.WithEffects()).ToArray());
 
     public static implicit operator PossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
 
     public static implicit operator PossibilitySet(ResolvableGameState[] resolvableGameStates) =>
-        new(resolvableGameStates.Select(x => (ResolvableGameStatePossibility)x).ToArray());
+        new(resolvableGameStates.Select(x => (Possibility)x).ToArray());
 
     public static implicit operator PossibilitySet(
-        ResolvableGameStatePossibility resolvableGameState) => new(resolvableGameState);
+        Possibility resolvableGameState) => new(resolvableGameState);
 
     public static implicit operator PossibilitySet(
-        ResolvableGameStatePossibility[] resolvableGameStates) => new(resolvableGameStates);
+        Possibility[] resolvableGameStates) => new(resolvableGameStates);
 
-    public IEnumerator<ResolvableGameStatePossibility> GetEnumerator()
+    public IEnumerator<Possibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();
     }
