@@ -27,18 +27,4 @@ public record DrawCardEffect : IEffect
 
         return gameState;
     }
-
-    private static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
-    {
-        if (gameState.DiscardPile.Cards.Count == 0) return gameState;
-
-        var newDrawPile = gameState.DiscardPile.Cards.Aggregate(gameState.DrawPile,
-            (current, card) => current.Add(card));
-
-        return gameState with
-        {
-            DiscardPile = new DiscardPile(),
-            DrawPile = newDrawPile
-        };
-    }
 }
