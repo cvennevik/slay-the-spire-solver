@@ -66,6 +66,7 @@ public class ActionWithEffectStackTests
         var effectStack = new EffectStack(new DrawCardEffect());
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
+        Assert.AreEqual(2, result.Count);
     }
 
     [Test]
