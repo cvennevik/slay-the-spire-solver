@@ -11,7 +11,7 @@ public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : I
         {
             var newEnemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId,
                 enemy => enemy with { Strength = StrengthGain });
-            return gameState;
+            return gameState with { EnemyParty = newEnemyParty };
         }
         return gameState;
     }
