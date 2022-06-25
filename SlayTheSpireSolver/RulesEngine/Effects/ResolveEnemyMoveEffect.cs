@@ -14,7 +14,7 @@ public record ResolveEnemyMoveEffect : IEffect
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(_enemyId)) return gameState;
-        var moveEffects = gameState.EnemyParty.Get(_enemyId).GetMoveEffects();
-        return gameState.WithEffects(moveEffects);
+        var enemyMoveEffects = gameState.EnemyParty.Get(_enemyId).GetMoveEffects();
+        return gameState.WithEffects(enemyMoveEffects);
     }
 }
