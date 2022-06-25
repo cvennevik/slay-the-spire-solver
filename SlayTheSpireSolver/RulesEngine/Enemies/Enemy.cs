@@ -16,15 +16,4 @@ public abstract record Enemy
     {
         return GetIntendedMove().GetEffects(this);
     }
-
-    public Enemy DealDamage(Damage damage)
-    {
-        if (damage > Armor)
-        {
-            var remainingDamage = damage - Armor;
-            return this with { Armor = 0, Health = Health - remainingDamage };
-        }
-
-        return this with { Armor = Armor - damage };
-    }
 }
