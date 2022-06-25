@@ -24,6 +24,7 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
         GameStateWithEffectStack gameStateWithEffectStack)
     {
         (var effect, var remainingEffectStack) = gameStateWithEffectStack.EffectStack.Pop();
+        var outcomes = effect.Resolve(gameStateWithEffectStack.GameState);
         return null;
     }
 }
