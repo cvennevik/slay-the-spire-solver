@@ -49,6 +49,7 @@ public class ActionWithEffectStackTests
         };
         var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
     }
 
     [Test]
