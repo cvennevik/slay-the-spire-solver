@@ -6,6 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
+using SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
@@ -16,7 +17,7 @@ public class ActionTests
     public void ResolvesZeroEffects()
     {
         var actionWithEffectStack = new Action(new GameState(), new EffectStack());
-        var resolvedState = actionWithEffectStack.Resolve().Single();
+        var resolvedState = actionWithEffectStack.Resolve().SingleResolvedState();
         Assert.AreEqual(new GameState(), resolvedState);
     }
 
@@ -26,7 +27,7 @@ public class ActionTests
         var gameState = new GameState { PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5));
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.Resolve().Single();
+        var resolvedState = actionWithEffectStack.Resolve().SingleResolvedState();
         Assert.AreEqual(new GameState { PlayerArmor = 5 }, resolvedState);
     }
 
@@ -36,7 +37,7 @@ public class ActionTests
         var gameState = new GameState { Energy = 2, PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5), new RemoveEnergyEffect(1));
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.Resolve().Single();
+        var resolvedState = actionWithEffectStack.Resolve().SingleResolvedState();
         Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
     }
 
@@ -51,7 +52,7 @@ public class ActionTests
         };
         var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
         var actionWithEffectStack = new Action(gameState, effectStack);
-        var resolvedState = actionWithEffectStack.Resolve().Single();
+        var resolvedState = actionWithEffectStack.Resolve().SingleResolvedState();
         var expectedGameState = gameState with { PlayerHealth = 6 };
         Assert.AreEqual(expectedGameState, resolvedState);
     }
@@ -61,7 +62,8 @@ public class ActionTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
+            Hand = new Hand(),
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Defend())
         };
         var effectStack = new EffectStack(new DrawCardEffect());
         var actionWithEffectStack = new Action(gameState, effectStack);
@@ -69,16 +71,16 @@ public class ActionTests
         var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike()),
-            DrawPile = new DrawPile(new Strike(), new Defend())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
         var expectedResult2 = new GameState
         {
             Hand = new Hand(new Defend()),
-            DrawPile = new DrawPile(new Strike(), new Strike())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
-        Assert.AreEqual(2, result.Count);
-        Assert.Contains(expectedResult1,result.ToList());
-        Assert.Contains(expectedResult2,result.ToList());
+        Assert.AreEqual(2, result.Count());
+        Assert.Contains(expectedResult1.WithProbability(1),result.ToList());
+        Assert.Contains(expectedResult2.WithProbability(1),result.ToList());
     }
 
     [Test]
@@ -101,9 +103,9 @@ public class ActionTests
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        Assert.AreEqual(2, result.Count);
-        Assert.Contains(expectedResult1, result.ToList());
-        Assert.Contains(expectedResult2, result.ToList());
+        Assert.AreEqual(2, result.Count());
+        Assert.Contains(expectedResult1.WithProbability(1), result.ToList());
+        Assert.Contains(expectedResult2.WithProbability(1), result.ToList());
     }
 
     [Test]
