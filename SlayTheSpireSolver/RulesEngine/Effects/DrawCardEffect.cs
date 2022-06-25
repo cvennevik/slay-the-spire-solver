@@ -27,12 +27,6 @@ public record DrawCardEffect : IEffect
             }
 
             return new[] { gameState };
-
-            return gameState.DrawPile.Cards
-                .Select(card => gameState with
-                {
-                    Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
-                }).ToArray();
         }
     }
 
