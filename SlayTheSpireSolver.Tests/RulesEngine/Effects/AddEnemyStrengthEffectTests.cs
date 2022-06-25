@@ -38,11 +38,16 @@ public class AddEnemyStrengthEffectTests
         var otherEnemyId = EnemyId.New();
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Id = targetId }, new JawWorm { Id = otherEnemyId })
+            EnemyParty = new EnemyParty(new JawWorm { Id = targetId },
+                new JawWorm { Id = otherEnemyId })
         };
         var effect = new AddEnemyStrengthEffect(targetId, 5);
         var result = effect.Resolve(gameState).SingleResolvedGameState();
-        var expectedResult = new GameState { EnemyParty = new EnemyParty(new JawWorm { Strength = 5 }) };
+        var expectedResult = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Id = targetId, Strength = 5 },
+                new JawWorm { Id = otherEnemyId })
+        };
     }
 
     [Test]
