@@ -5,30 +5,30 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamageEnemyEffect : IEffect
 {
-    private readonly EnemyId _target;
+    private readonly EnemyId _targetId;
     private readonly Damage _damage;
 
-    public DamageEnemyEffect(EnemyId target, Damage damage)
+    public DamageEnemyEffect(EnemyId targetId, Damage damage)
     {
-        _target = target;
+        _targetId = targetId;
         _damage = damage;
     }
 
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        if (!gameState.EnemyParty.Has(_target))
+        if (!gameState.EnemyParty.Has(_targetId))
         {
             return gameState;
         }
 
         var newGameState = new GameState
         {
-            EnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => DamageEnemy(enemy, _damage))
+            EnemyParty = gameState.EnemyParty.ModifyEnemy(_targetId, enemy => DamageEnemy(enemy, _damage))
         };
 
-        if (newGameState.EnemyParty.Get(_target).Health.Amount <= 0)
+        if (newGameState.EnemyParty.Get(_targetId).Health.Amount <= 0)
         {
-            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(_target))) };
+            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(_targetId))) };
         }
 
         return newGameState;
