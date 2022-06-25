@@ -26,4 +26,13 @@ public class ClearAllEnemyArmorEffectTests
         var result = effect.Resolve(gameState).SingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
+
+    [Test]
+    public void ClearsArmorFromSingleEnemy()
+    {
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
+        var effect = new ClearAllEnemyArmorEffect();
+        var result = effect.Resolve(gameState).SingleStableGameState();
+        Assert.AreEqual(gameState, result);
+    }
 }
