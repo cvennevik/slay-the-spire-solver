@@ -91,6 +91,16 @@ public class ActionWithEffectStackTests
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
+        var expectedResult1 = new GameState
+        {
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Strike(), new Defend())
+        };
+        var expectedResult2 = new GameState
+        {
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Strike())
+        };
     }
 
     [Test]
