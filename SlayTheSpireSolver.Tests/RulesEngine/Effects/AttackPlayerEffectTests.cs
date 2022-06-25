@@ -26,6 +26,7 @@ public class AttackPlayerEffectTests
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single();
+        var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(1)));
     }
 
     [Test]
