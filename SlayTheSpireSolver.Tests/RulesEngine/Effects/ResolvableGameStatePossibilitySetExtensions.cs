@@ -6,9 +6,9 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 public static class ResolvableGameStatePossibilitySetExtensions
 {
-    public static GameState SingleResolvedState(this ResolvableGameStatePossibilitySet resolvableGameStatePossibilitySet)
+    public static GameState SingleResolvedState(this ResolvableGameStatePossibilitySet possibilitySet)
     {
-        var unresolvedGameState = resolvableGameStatePossibilitySet.Single().ResolvableGameState;
+        var unresolvedGameState = possibilitySet.Single().ResolvableGameState;
         if (!unresolvedGameState.EffectStack.IsEmpty())
         {
             throw new ArgumentException("Game state is not resolved; effect stack is not empty");
@@ -17,9 +17,9 @@ public static class ResolvableGameStatePossibilitySetExtensions
         return unresolvedGameState.GameState;
     }
 
-    public static ResolvableGameState SingleUnresolvedState(this ResolvableGameStatePossibilitySet resolvableGameStatePossibilitySet)
+    public static ResolvableGameState SingleUnresolvedState(this ResolvableGameStatePossibilitySet possibilitySet)
     {
-        var resolvableGameState = resolvableGameStatePossibilitySet.Single().ResolvableGameState;
+        var resolvableGameState = possibilitySet.Single().ResolvableGameState;
         if (resolvableGameState.EffectStack.IsEmpty())
         {
             throw new ArgumentException("Game state is not unresolved; effect stack is empty");
