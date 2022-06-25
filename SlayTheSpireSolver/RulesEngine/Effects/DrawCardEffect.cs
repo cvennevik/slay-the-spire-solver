@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : IEffect
 {
-    public IReadOnlyCollection<UnresolvedGameState> Apply(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
     {
         return gameState.DrawCard().Select(x => x.WithEffectStack()).ToArray();
     }

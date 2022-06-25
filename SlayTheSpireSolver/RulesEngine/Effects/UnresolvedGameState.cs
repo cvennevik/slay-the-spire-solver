@@ -33,20 +33,20 @@ public record UnresolvedGameState
             return new[] { unresolvedGameState.GameState };
         }
 
-        return ApplyTopEffect(unresolvedGameState).SelectMany(ResolveEffects).Distinct().ToList();
+        return ResolveTopEffect(unresolvedGameState).SelectMany(ResolveEffects).Distinct().ToList();
     }
 
-    private IReadOnlyList<UnresolvedGameState> ApplyTopEffect(GameState gameState, EffectStack effectStack)
+    private IReadOnlyList<UnresolvedGameState> ResolveTopEffect(GameState gameState, EffectStack effectStack)
     {
         var (effect, remainingEffectStack) = effectStack.Pop();
-        var outcomes = effect.Apply(gameState);
+        var outcomes = effect.Resolve(gameState);
         return outcomes.Select(gameStateWithAddedEffects =>
             gameStateWithAddedEffects.GameState.WithEffectStack(
                 remainingEffectStack.Push(gameStateWithAddedEffects.EffectStack))).ToList();
     }
 
-    private IReadOnlyList<UnresolvedGameState> ApplyTopEffect(UnresolvedGameState unresolvedGameState)
+    private IReadOnlyList<UnresolvedGameState> ResolveTopEffect(UnresolvedGameState unresolvedGameState)
     {
-        return ApplyTopEffect(unresolvedGameState.GameState, unresolvedGameState.EffectStack);
+        return ResolveTopEffect(unresolvedGameState.GameState, unresolvedGameState.EffectStack);
     }
 }

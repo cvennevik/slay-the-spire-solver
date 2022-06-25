@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record EndTurnEffect : IEffect
 {
-    public IReadOnlyCollection<UnresolvedGameState> Apply(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
     {
         return new[]
         {

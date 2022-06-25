@@ -14,7 +14,7 @@ public record DamageEnemyEffect : IEffect
         _damage = damage;
     }
 
-    public IReadOnlyCollection<UnresolvedGameState> Apply(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(_target))
         {

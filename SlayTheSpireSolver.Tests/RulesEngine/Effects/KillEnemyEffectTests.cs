@@ -15,7 +15,7 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        Assert.AreEqual(new GameState().WithEffectStack(), effect.Apply(gameState).Single());
+        Assert.AreEqual(new GameState().WithEffectStack(), effect.Resolve(gameState).Single());
     }
 
     [Test]
@@ -31,7 +31,7 @@ public class KillEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id3 })
         };
-        Assert.AreEqual(expectedGameState.WithEffectStack(), effect.Apply(gameState).Single());
+        Assert.AreEqual(expectedGameState.WithEffectStack(), effect.Resolve(gameState).Single());
     }
 
     [Test]
@@ -39,6 +39,6 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.New());
-        Assert.AreEqual(gameState.WithEffectStack(), effect.Apply(gameState).Single());
+        Assert.AreEqual(gameState.WithEffectStack(), effect.Resolve(gameState).Single());
     }
 }
