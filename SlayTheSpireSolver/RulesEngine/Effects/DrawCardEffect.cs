@@ -18,6 +18,12 @@ public record DrawCardEffect : IEffect
 
         if (gameState.DrawPile.Cards.Any())
         {
+            var results = new List<ResolvableGameStatePossibility>();
+            var uniqueCards = gameState.DrawPile.Cards.Distinct();
+            foreach (var uniqueCard in uniqueCards)
+            {
+                
+            }
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
                 Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
