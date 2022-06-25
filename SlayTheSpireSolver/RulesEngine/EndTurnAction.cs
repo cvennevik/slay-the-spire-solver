@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
+﻿using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
@@ -20,6 +21,7 @@ public record EndTurnAction : IAction
 
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
+        var actionWithEffectStack = new ActionWithEffectStack(GameState, new EffectStack());
         return GameState
             .DiscardHand()
             .ClearEnemyArmor()
