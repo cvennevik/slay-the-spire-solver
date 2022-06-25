@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class AddEnemyStrengthEffectTests
 {
     [Test]
-    public void Test()
+    public void TestEquality()
     {
         
     }
