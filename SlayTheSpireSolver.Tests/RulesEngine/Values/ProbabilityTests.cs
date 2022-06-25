@@ -21,4 +21,10 @@ public class ProbabilityTests
     {
         Assert.Throws<ArgumentException>(() => new Probability(1.01));
     }
+
+    [Test]
+    public void ThrowsExceptionForValueBelowZero()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(-0.01));
+    }
 }
