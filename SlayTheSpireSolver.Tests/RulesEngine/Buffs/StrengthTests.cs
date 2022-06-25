@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Buffs;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Buffs;
 
@@ -8,6 +9,6 @@ public class StrengthTests
     [Test]
     public void Test()
     {
-        
+        var strength = new Strength();
     }
 }
