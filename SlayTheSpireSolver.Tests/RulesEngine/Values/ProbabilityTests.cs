@@ -8,8 +8,8 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Values;
 public class ProbabilityTests
 {
     [Test]
-    public void Test()
+    public void TestEquality()
     {
-        
+        Assert.AreEqual(new Probability(1, 1), new Probability(1, 1));
     }
 }
