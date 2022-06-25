@@ -13,8 +13,13 @@ public record ResolveEnemyMoveEffect : IEffect
 
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        var enemy = gameState.EnemyParty.Get(_enemyId);
-        var moveEffects = enemy.GetMoveEffects();
-        return new[] { gameState.WithEffectStack(moveEffects) };
+        if (gameState.EnemyParty.Has(_enemyId))
+        {
+            var enemy = gameState.EnemyParty.Get(_enemyId);
+            var moveEffects = enemy.GetMoveEffects();
+            return new[] { gameState.WithEffectStack(moveEffects) };
+        }
+
+        return new[] { gameState.WithEffectStack() };
     }
 }
