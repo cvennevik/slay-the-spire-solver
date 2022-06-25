@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 public static class SingleResolvedGameStateExtension
 {
-    public static GameState SingleResolvedGameState(this IReadOnlyCollection<UnresolvedGameState> collection)
+    public static GameState SingleResolvedGameState(this IReadOnlyCollection<ResolvableGameState> collection)
     {
         var unresolvedGameState = collection.Single();
         if (!unresolvedGameState.EffectStack.IsEmpty())
