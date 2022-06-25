@@ -6,6 +6,7 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
 {
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
+        var workingGameStates = new List<GameStateWithEffectStack>();
         var remainingEffectStack = EffectStack;
         var workingGameState = GameState;
         while (remainingEffectStack != new EffectStack())
