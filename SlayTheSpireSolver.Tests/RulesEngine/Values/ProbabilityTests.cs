@@ -7,4 +7,9 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Values;
 [TestFixture]
 public class ProbabilityTests
 {
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
