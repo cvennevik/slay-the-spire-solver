@@ -18,6 +18,12 @@ public class ProbabilityTests
     }
 
     [Test]
+    public void TestSimplification()
+    {
+        
+    }
+
+    [Test]
     public void ThrowsExceptionIfNumeratorGreaterThanDenominator()
     {
         Assert.Throws<ArgumentException>(() => new Probability(11, 10));
