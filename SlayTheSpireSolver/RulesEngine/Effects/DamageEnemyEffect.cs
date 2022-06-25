@@ -34,7 +34,7 @@ public record DamageEnemyEffect : IEffect
         return newGameState;
     }
 
-    private Enemy DamageEnemy(Enemy enemy, Damage damage)
+    private static Enemy DamageEnemy(Enemy enemy, Damage damage)
     {
         if (damage > enemy.Armor)
         {
