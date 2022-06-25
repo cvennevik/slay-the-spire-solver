@@ -14,9 +14,9 @@ public class AttackPlayerEffectTests
     [Test]
     public void DoesNothingWhenEnemyMissing()
     {
-        var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
+        var gameState = new GameState { PlayerHealth = 10 };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
     }
 
     [Test]
