@@ -26,7 +26,7 @@ public class ResolveEnemyMoveEffectTests
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
         var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() };
-        var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy) };
+        var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy, otherEnemy) };
         var effect = new ResolveEnemyMoveEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).Single();
         var expectedEffectStack = targetEnemy.GetMoveEffects();
