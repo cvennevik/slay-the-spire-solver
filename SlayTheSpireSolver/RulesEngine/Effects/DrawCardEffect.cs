@@ -14,16 +14,18 @@ public record DrawCardEffect : IEffect
             gameState = ShuffleDiscardPileIntoDrawPile(gameState);
         }
 
+        if (gameState.DrawPile.Cards.Any())
+        {
+            return gameState.DrawPile.Cards
+                .Select(card => gameState with
+                {
+                    Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
+                }).ToArray();
+        }
+
         while (true)
         {
-            if (gameState.DrawPile.Cards.Any())
-            {
-                return gameState.DrawPile.Cards
-                    .Select(card => gameState with
-                    {
-                        Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
-                    }).ToArray();
-            }
+            
 
             if (!gameState.DiscardPile.Cards.Any())
             {
