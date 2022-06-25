@@ -36,6 +36,24 @@ public class MoveHandToDiscardPileEffectTests
     }
 
     [Test]
+    public void AddsCardsInHandToExistingDiscardPile()
+    {
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike()),
+            DiscardPile = new DiscardPile(new Strike(), new Defend())
+        };
+        var effect = new MoveHandToDiscardPileEffect();
+        var result = effect.Resolve(gameState).SingleStableGameState();
+        var expectedGameState = new GameState
+        {
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new Strike(), new Strike(), new Defend())
+        };
+        Assert.AreEqual(expectedGameState, result);
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new MoveHandToDiscardPileEffect(), new MoveHandToDiscardPileEffect());
