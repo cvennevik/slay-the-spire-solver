@@ -93,13 +93,13 @@ public class ActionWithEffectStackTests
         var result = actionWithEffectStack.ResolveToPossibleStates();
         var expectedResult1 = new GameState
         {
-            Hand = new Hand(new Strike()),
-            DrawPile = new DrawPile(new Strike(), new Defend())
+            Hand = new Hand(new Strike(), new Strike()),
+            DrawPile = new DrawPile(new Defend())
         };
         var expectedResult2 = new GameState
         {
-            Hand = new Hand(new Defend()),
-            DrawPile = new DrawPile(new Strike(), new Strike())
+            Hand = new Hand(new Strike(), new Defend()),
+            DrawPile = new DrawPile(new Strike())
         };
     }
 
