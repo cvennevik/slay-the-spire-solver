@@ -9,6 +9,11 @@ public record DrawCardEffect : IEffect
 
     private static IReadOnlyList<GameState> DrawCard(GameState gameState)
     {
+        if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
+        {
+            gameState = ShuffleDiscardPileIntoDrawPile(gameState);
+        }
+
         while (true)
         {
             if (gameState.DrawPile.Cards.Any())
