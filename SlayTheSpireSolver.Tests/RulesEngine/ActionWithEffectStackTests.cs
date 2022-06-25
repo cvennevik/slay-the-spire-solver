@@ -70,7 +70,12 @@ public class ActionWithEffectStackTests
         {
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Strike(), new Defend())
-        }; 
+        };
+        var expectedResult2 = new GameState
+        {
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Strike())
+        };
         Assert.AreEqual(2, result.Count);
         Assert.Contains(expectedResult1,result.ToList());
     }
