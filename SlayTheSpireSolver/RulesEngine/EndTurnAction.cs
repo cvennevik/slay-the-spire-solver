@@ -2,4 +2,5 @@
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record EndTurnAction(GameState GameState) : ActionWithEffectStack(GameState, new EffectStack(new EndTurnEffect()));
+public record EndTurnAction(GameState GameState) : ActionWithEffectStack(GameState,
+    new EffectStack(new EndTurnEffect()));
