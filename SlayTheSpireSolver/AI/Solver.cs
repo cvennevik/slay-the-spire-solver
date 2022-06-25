@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.AI;
 
 public static class Solver
 {
-    public static IAction GetBestAction(GameState gameState)
+    public static Action GetBestAction(GameState gameState)
     {
         var legalActions = gameState.GetLegalActions();
         var endTurnAction = new Action(gameState, new EndTurnEffect());

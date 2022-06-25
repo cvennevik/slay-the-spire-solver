@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record Action(GameState GameState, EffectStack EffectStack) : IAction
+public record Action(GameState GameState, EffectStack EffectStack)
 {
     public Action(GameState gameState, params IEffect[] effects) : this(gameState,
         new EffectStack(effects)) { }

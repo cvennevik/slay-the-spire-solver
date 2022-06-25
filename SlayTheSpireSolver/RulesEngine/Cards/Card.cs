@@ -8,15 +8,15 @@ public abstract record Card
     public abstract Energy GetCost();
     public abstract IEffect GetEffect(GameState gameState);
 
-    public IReadOnlyCollection<IAction> GetLegalActions(GameState gameState)
+    public IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new IAction[] { new Action(gameState, new EffectStack(
+            ? new Action[] { new Action(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(this),
                 GetEffect(gameState),
                 new RemoveCardFromHandEffect(this),
                 new RemoveEnergyEffect(GetCost()))) }
-            : Array.Empty<IAction>();
+            : Array.Empty<Action>();
     }
 
     private bool CanBePlayed(GameState gameState)

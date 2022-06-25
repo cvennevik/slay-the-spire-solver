@@ -16,9 +16,9 @@ public record GameState
     public DrawPile DrawPile { get; init; } = new();
     public DiscardPile DiscardPile { get; init; } = new();
 
-    public IReadOnlyCollection<IAction> GetLegalActions()
+    public IReadOnlyCollection<Action> GetLegalActions()
     {
-        var legalActions = new List<IAction>();
+        var legalActions = new List<Action>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver())
         {

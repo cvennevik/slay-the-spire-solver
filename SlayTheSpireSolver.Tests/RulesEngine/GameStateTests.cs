@@ -88,7 +88,7 @@ public class GameStateTests
             Assert.True(gameState.IsCombatOver());
         }
 
-        private static void AssertLegalActions(GameState gameState, params IAction[] expectedActions)
+        private static void AssertLegalActions(GameState gameState, params Action[] expectedActions)
         {
             Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
         }
