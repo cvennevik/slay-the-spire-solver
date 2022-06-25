@@ -11,7 +11,8 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
         while (remainingEffectStack != new EffectStack())
         {
             (var effect, remainingEffectStack) = remainingEffectStack.Pop();
-            workingGameState = effect.Resolve(workingGameState).Select(x => x.GameState).Single();
+            var gameStateWithAddedEffects = effect.Resolve(workingGameState).Single();
+            workingGameState = gameStateWithAddedEffects.GameState;
         }
 
         return new[] { workingGameState };
