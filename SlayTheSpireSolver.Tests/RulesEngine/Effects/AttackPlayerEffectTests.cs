@@ -13,5 +13,7 @@ public class AttackPlayerEffectTests
     {
         Assert.AreEqual(new AttackPlayerEffect(EnemyId.Default, new Damage(1)),
             new AttackPlayerEffect(EnemyId.Default, new Damage(1)));
+        Assert.AreNotEqual(new AttackPlayerEffect(EnemyId.Default, new Damage(1)),
+            new AttackPlayerEffect(EnemyId.Default, new Damage(2)));
     }
 }
