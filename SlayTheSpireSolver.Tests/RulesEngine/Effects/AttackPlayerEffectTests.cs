@@ -18,6 +18,7 @@ public class AttackPlayerEffectTests
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single();
         var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(1)));
+        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
