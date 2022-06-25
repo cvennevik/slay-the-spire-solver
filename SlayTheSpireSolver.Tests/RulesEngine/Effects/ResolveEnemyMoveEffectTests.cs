@@ -11,5 +11,6 @@ public class ResolveEnemyMoveEffectTests
     public void EqualityTest()
     {
         Assert.AreEqual(new ResolveEnemyMoveEffect(EnemyId.Default), new ResolveEnemyMoveEffect(EnemyId.Default));
+        Assert.AreNotEqual(new ResolveEnemyMoveEffect(EnemyId.Default), new ResolveEnemyMoveEffect(EnemyId.New()));
     }
 }
