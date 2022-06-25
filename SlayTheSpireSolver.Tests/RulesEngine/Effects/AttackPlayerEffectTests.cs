@@ -12,7 +12,7 @@ public class AttackPlayerEffectTests
     [Test]
     public void Test()
     {
-        var gameState = new GameState();
+        var gameState = new GameState { PlayerHealth = 10 };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
