@@ -39,4 +39,10 @@ public class ResolveAllEnemyMovesEffectTests
         var result = effect.Resolve(gameState).Single();
         Assert.AreEqual(gameState.WithEffectStack(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        Assert.AreEqual(new ResolveAllEnemyMovesEffect(), new ResolveAllEnemyMovesEffect());
+    }
 }

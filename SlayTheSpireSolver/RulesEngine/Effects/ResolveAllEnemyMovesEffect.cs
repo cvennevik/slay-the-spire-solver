@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class ResolveAllEnemyMovesEffect : IEffect
+public record ResolveAllEnemyMovesEffect : IEffect
 {
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
