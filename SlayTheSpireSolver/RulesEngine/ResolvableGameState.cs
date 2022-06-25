@@ -31,7 +31,7 @@ public record ResolvableGameState
             return new GameStatePossibility[] { GameState };
         }
 
-        return ResolveTopEffect(this).SelectMany(x => x.ResolveEffects()).Distinct().ToList();
+        return ResolveTopEffect().SelectMany(x => x.ResolveEffects()).Distinct().ToList();
     }
 
     private IReadOnlyList<ResolvableGameState> ResolveTopEffect(GameState gameState, EffectStack effectStack)
@@ -43,9 +43,9 @@ public record ResolvableGameState
                 remainingEffectStack.Push(gameStateWithAddedEffects.ResolvableGameState.EffectStack))).ToList();
     }
 
-    private IReadOnlyList<ResolvableGameState> ResolveTopEffect(ResolvableGameState resolvableGameState)
+    private IReadOnlyList<ResolvableGameState> ResolveTopEffect()
     {
-        return ResolveTopEffect(resolvableGameState.GameState, resolvableGameState.EffectStack);
+        return ResolveTopEffect(GameState, EffectStack);
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
