@@ -10,5 +10,8 @@ public class ProbabilityTests
     public void TestEquality()
     {
         Assert.AreEqual(new Probability(1), new Probability(1));
+        Assert.AreEqual(new Probability(0), new Probability(0));
+        Assert.AreEqual(new Probability(0.5), new Probability(0.5));
+        Assert.AreNotEqual(new Probability(1), new Probability(0));
     }
 }
