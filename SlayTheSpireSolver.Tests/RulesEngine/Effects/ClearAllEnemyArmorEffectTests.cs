@@ -21,7 +21,7 @@ public class ClearAllEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemiesHaveArmor()
     {
-        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm(), new JawWorm()) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
         Assert.AreEqual(gameState, result);
