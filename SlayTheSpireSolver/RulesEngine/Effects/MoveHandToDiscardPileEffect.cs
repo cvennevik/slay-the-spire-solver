@@ -6,6 +6,10 @@ public record MoveHandToDiscardPileEffect : IEffect
     {
         var cardsInHand = gameState.Hand.Cards;
         var newDiscardPile = gameState.DiscardPile;
+        foreach (var card in cardsInHand)
+        {
+            newDiscardPile = newDiscardPile.Add(card);
+        }
         return new[] { gameState.WithEffectStack() };
     }
 }
