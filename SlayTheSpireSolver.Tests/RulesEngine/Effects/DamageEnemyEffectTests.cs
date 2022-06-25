@@ -11,6 +11,14 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class DamageEnemyEffectTests
 {
     [Test]
+    public void DoesNothingWhenTargetEnemyIsMissing()
+    {
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
+        var effect = new DamageEnemyEffect(EnemyId.Default, 5);
+        var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 5 }) };
+    }
+
+    [Test]
     public void DamagesSingleEnemy()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
