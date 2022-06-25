@@ -8,6 +8,8 @@ public class EnemyParty : IEnumerable<Enemy>
 
     private readonly Enemy[] _enemies;
 
+    public static implicit operator EnemyParty(Enemy[] enemies) => new(enemies);
+
     public EnemyParty(params Enemy[] enemies)
     {
         _enemies = enemies;
