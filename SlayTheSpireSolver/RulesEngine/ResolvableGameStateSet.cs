@@ -6,7 +6,6 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
 {
     private readonly List<ResolvableGameState> _resolvableGameStates;
 
-
     public static implicit operator ResolvableGameStateSet(GameState gameState) => new(gameState.AsResolvable());
     public static implicit operator ResolvableGameStateSet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
