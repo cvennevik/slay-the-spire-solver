@@ -17,4 +17,7 @@ public record GameStateWithEffectStack
         GameState = gameState;
         EffectStack = effectStack;
     }
+
+    public GameStateWithEffectStack(GameState gameState, params IEffect[] effects)
+        : this(gameState, new EffectStack(effects)) { }
 }
