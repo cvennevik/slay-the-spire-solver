@@ -28,7 +28,7 @@ public record Action(GameState GameState, EffectStack EffectStack)
 
     private IReadOnlyList<GameState> ResolveEffects(GameStateWithEffectStack gameStateWithEffectStack)
     {
-        if (gameStateWithEffectStack.EffectStack == new EffectStack())
+        if (gameStateWithEffectStack.EffectStack.IsEmpty())
         {
             return new[] { gameStateWithEffectStack.GameState };
         }
