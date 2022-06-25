@@ -20,7 +20,7 @@ public record GameState
     {
         var legalActions = new List<IAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
-        if (EndTurnAction.IsLegal(this))
+        if (!IsCombatOver())
         {
             legalActions.Add(new EndTurnAction(this));
         }
