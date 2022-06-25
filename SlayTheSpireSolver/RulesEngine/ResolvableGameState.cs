@@ -1,5 +1,4 @@
 using SlayTheSpireSolver.RulesEngine.Effects;
-using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
@@ -7,7 +6,6 @@ public record ResolvableGameState
 {
     public GameState GameState { get; }
     public EffectStack EffectStack { get; } = new();
-    public Probability Probability { get; init; } = new(1);
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
@@ -47,10 +45,5 @@ public record ResolvableGameState
     private IReadOnlyList<ResolvableGameState> ResolveTopEffect(ResolvableGameState resolvableGameState)
     {
         return ResolveTopEffect(resolvableGameState.GameState, resolvableGameState.EffectStack);
-    }
-
-    public ResolvableGameState WithProbability(Probability probability)
-    {
-        return this with { Probability = probability };
     }
 }
