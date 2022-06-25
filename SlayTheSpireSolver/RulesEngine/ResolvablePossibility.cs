@@ -12,6 +12,6 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
 
     public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
     {
-        return this;
+        return ResolvableGameState.GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack));
     }
 }
