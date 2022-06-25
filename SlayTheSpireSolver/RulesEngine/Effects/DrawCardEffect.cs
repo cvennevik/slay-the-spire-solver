@@ -18,11 +18,10 @@ public record DrawCardEffect : IEffect
 
         if (gameState.DrawPile.Cards.Any())
         {
-            return gameState.DrawPile.Cards
-                .Select(card => gameState with
-                {
-                    Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
-                }).ToArray();
+            return gameState.DrawPile.Cards.Select(card => gameState with
+            {
+                Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
+            }).ToArray();
         }
 
         return gameState;
