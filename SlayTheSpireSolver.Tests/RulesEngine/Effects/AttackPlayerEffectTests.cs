@@ -11,6 +11,7 @@ public class AttackPlayerEffectTests
     [Test]
     public void TestEquality()
     {
-        var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(10));
+        Assert.AreEqual(new AttackPlayerEffect(EnemyId.Default, new Damage(1)),
+            new AttackPlayerEffect(EnemyId.Default, new Damage(1)));
     }
 }
