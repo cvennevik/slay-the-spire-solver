@@ -9,7 +9,7 @@ public record DrawCardEffect : IEffect
         return DrawCard(gameState).ToArray();
     }
 
-    public static IReadOnlyList<GameState> DrawCard(GameState gameState)
+    private static IReadOnlyList<GameState> DrawCard(GameState gameState)
     {
         if (gameState.DrawPile.Cards.Count == 0)
         {
