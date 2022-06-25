@@ -2,20 +2,20 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatable<ResolvableGameStateSet>
+public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState>, IEquatable<ResolvableGameStatePossibilitySet>
 {
     private readonly List<ResolvableGameState> _resolvableGameStates;
 
-    public static implicit operator ResolvableGameStateSet(GameState gameState) => new(gameState.WithEffects());
+    public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
 
-    public static implicit operator ResolvableGameStateSet(GameState[] gameStates) =>
+    public static implicit operator ResolvableGameStatePossibilitySet(GameState[] gameStates) =>
         new(gameStates.Select(x => x.WithEffects()).ToArray());
-    public static implicit operator ResolvableGameStateSet(ResolvableGameState resolvableGameState) =>
+    public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
-    public static implicit operator ResolvableGameStateSet(ResolvableGameState[] resolvableGameStates) =>
+    public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
         new(resolvableGameStates);
 
-    public ResolvableGameStateSet(params ResolvableGameState[] resolvableGameStates)
+    public ResolvableGameStatePossibilitySet(params ResolvableGameState[] resolvableGameStates)
     {
         _resolvableGameStates = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
@@ -30,7 +30,7 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
         return GetEnumerator();
     }
 
-    public bool Equals(ResolvableGameStateSet? other)
+    public bool Equals(ResolvableGameStatePossibilitySet? other)
     {
         if (other == null) return false;
         return _resolvableGameStates.Count == other._resolvableGameStates.Count &&
@@ -39,7 +39,7 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
 
     public override bool Equals(object? obj)
     {
-        return Equals(obj as ResolvableGameStateSet);
+        return Equals(obj as ResolvableGameStatePossibilitySet);
     }
 
     public override int GetHashCode()

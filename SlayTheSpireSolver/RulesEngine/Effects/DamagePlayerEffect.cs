@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamagePlayerEffect(Damage Damage) : IEffect
 {
-    public ResolvableGameStateSet Resolve(GameState gameState)
+    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
     {
         if (Damage > gameState.PlayerArmor)
         {

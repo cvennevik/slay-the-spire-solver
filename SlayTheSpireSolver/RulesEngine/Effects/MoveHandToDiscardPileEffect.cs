@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record MoveHandToDiscardPileEffect : IEffect
 {
-    public ResolvableGameStateSet Resolve(GameState gameState)
+    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
     {
         var newDiscardPile = gameState.Hand.Cards.Aggregate(
             gameState.DiscardPile, (current, card) => current.Add(card));

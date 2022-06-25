@@ -9,35 +9,35 @@ public class ResolvableGameStateSetTests
     [Test]
     public void TestEmptyEquality()
     {
-        Assert.AreEqual(new ResolvableGameStateSet(), new ResolvableGameStateSet());
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(), new ResolvableGameStatePossibilitySet());
     }
 
     [Test]
     public void TestSingleEquality()
     {
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState()), new ResolvableGameStateSet(new GameState()));
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 3 }),
-            new ResolvableGameStateSet(new GameState { Turn = 3 }));
-        Assert.AreNotEqual(new ResolvableGameStateSet(new GameState { Turn = 2 }),
-            new ResolvableGameStateSet(new GameState { Turn = 3 }));
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState()), new ResolvableGameStatePossibilitySet(new GameState()));
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 3 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 3 }));
+        Assert.AreNotEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 2 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 3 }));
     }
 
     [Test]
     public void TestMultipleEquality()
     {
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }),
-            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 2 }, new GameState { Turn = 1 }),
-            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 2 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 2 }, new GameState { Turn = 1 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 2 }));
     }
 
     [Test]
     public void TestDuplicateEquality()
     {
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 1 }),
-            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 1 }));
-        Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 2 }),
-            new ResolvableGameStateSet(new GameState { Turn = 1 }, new GameState { Turn = 1 },
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 1 }));
+        Assert.AreEqual(new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 2 }),
+            new ResolvableGameStatePossibilitySet(new GameState { Turn = 1 }, new GameState { Turn = 1 },
                 new GameState { Turn = 2 }));
     }
 }
