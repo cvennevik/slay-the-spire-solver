@@ -9,6 +9,7 @@ public record Probability
     {
         if (numerator > denominator) throw new ArgumentException("Numerator cannot be larger than denominator");
         if (numerator < 0) throw new ArgumentException("Numerator must be non-negative");
+        if (denominator < 1) throw new ArgumentException("Denominator must be positive");
         Numerator = numerator;
         Denominator = denominator;
     }

@@ -28,4 +28,11 @@ public class ProbabilityTests
     {
         Assert.Throws<ArgumentException>(() => new Probability(-1, 10));
     }
+
+    [Test]
+    public void ThrowsExceptionIfDenominatorBelowOne()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(0, 0));
+        Assert.Throws<ArgumentException>(() => new Probability(0, -1));
+    }
 }
