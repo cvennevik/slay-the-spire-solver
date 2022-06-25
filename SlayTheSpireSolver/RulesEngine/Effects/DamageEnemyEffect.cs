@@ -33,4 +33,9 @@ public record DamageEnemyEffect : IEffect
 
         return newGameState;
     }
+
+    private Enemy DamageEnemy(Enemy enemy)
+    {
+        return enemy;
+    }
 }
