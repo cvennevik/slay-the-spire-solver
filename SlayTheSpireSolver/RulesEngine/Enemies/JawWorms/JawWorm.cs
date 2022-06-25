@@ -4,5 +4,5 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
-    public override IEnemyMove GetIntendedMove() => IntendedMove;
+    protected override IEnemyMove GetIntendedMove() => IntendedMove;
 }

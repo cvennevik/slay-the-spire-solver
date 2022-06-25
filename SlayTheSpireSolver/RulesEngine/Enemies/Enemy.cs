@@ -10,7 +10,7 @@ public abstract record Enemy
     public Health Health { get; init; } = 1;
     public Armor Armor { get; init; } = 0;
     public Strength Strength { get; init; } = 0;
-    public abstract IEnemyMove GetIntendedMove();
+    protected abstract IEnemyMove GetIntendedMove();
 
     public EffectStack GetMoveEffects()
     {
