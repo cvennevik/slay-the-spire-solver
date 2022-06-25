@@ -14,7 +14,7 @@ public record Probability
         Value = value;
     }
 
-    public static Probability operator *(Probability a, Probability b) => new Probability(a.Value * b.Value);
+    public static Probability operator *(Probability a, Probability b) => new(a.Value * b.Value);
 
     public static implicit operator Probability(double value)
     {
