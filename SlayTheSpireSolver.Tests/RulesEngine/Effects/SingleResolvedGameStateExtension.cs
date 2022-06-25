@@ -8,14 +8,14 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 public static class SingleResolvedGameStateExtension
 {
-    public static GameState SingleStableGameState(this IReadOnlyCollection<UnresolvedGameState> collection)
+    public static GameState SingleResolvedGameState(this IReadOnlyCollection<UnresolvedGameState> collection)
     {
-        var gameStateWithUnresolvedEffects = collection.Single();
-        if (!gameStateWithUnresolvedEffects.EffectStack.IsEmpty())
+        var unresolvedGameState = collection.Single();
+        if (!unresolvedGameState.EffectStack.IsEmpty())
         {
             throw new ArgumentException("Effect stack is not empty");
         }
 
-        return gameStateWithUnresolvedEffects.GameState;
+        return unresolvedGameState.GameState;
     }
 }

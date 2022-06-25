@@ -15,7 +15,7 @@ public class ResolveAllEnemyMovesEffectTests
     {
         var gameState = new GameState();
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Apply(gameState).SingleStableGameState();
+        var result = effect.Apply(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
     }
 

@@ -13,7 +13,7 @@ public class DrawCardEffectTest
     public void DoesNothingWhenDrawPileAndDiscardPileEmpty()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(), DiscardPile = new DiscardPile() };
-        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -21,7 +21,7 @@ public class DrawCardEffectTest
     public void DrawsCardWhenSingleCardInDrawPile()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(new Strike()) };
-        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DrawPile = new DrawPile() };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -82,7 +82,7 @@ public class DrawCardEffectTest
             Hand = new Hand(),
             DrawPile = new DrawPile(new Strike(), new Strike())
         };
-        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -99,7 +99,7 @@ public class DrawCardEffectTest
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Defend())
         };
-        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
@@ -136,7 +136,7 @@ public class DrawCardEffectTest
     public void ShufflesAndDrawsDiscardPileWithSingleCard()
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
-        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DiscardPile = new DiscardPile() };
         Assert.AreEqual(expectedGameState, result);
     }

@@ -14,7 +14,7 @@ public class IncrementTurnEffectTests
     {
         var gameState = new GameState { PlayerHealth = 21, Turn = initialTurn };
         var effect = new IncrementTurnEffect();
-        var newGameState = effect.Apply(gameState).SingleStableGameState();
+        var newGameState = effect.Apply(gameState).SingleResolvedGameState();
         var expectedGameState = gameState with { Turn = expectedTurn };
         Assert.AreEqual(expectedGameState, newGameState);
     }

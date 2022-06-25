@@ -39,7 +39,7 @@ public class ResolveEnemyMoveEffectTests
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveEnemyMoveEffect(EnemyId.New());
-        var result = effect.Apply(gameState).SingleStableGameState();
+        var result = effect.Apply(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
     }
 
