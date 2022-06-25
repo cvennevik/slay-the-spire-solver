@@ -2,15 +2,12 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public record Probability
 {
-    public double Value { get; }
+    public int Numerator { get; }
+    public int Denominator { get; }
 
-    public Probability(double value)
+    public Probability(int numerator, int denominator)
     {
-        if (value is > 1 or < 0)
-        {
-            throw new ArgumentException("Probability value must be between 1 and 0", nameof(value));
-        }
-
-        Value = value;
+        Numerator = numerator;
+        Denominator = denominator;
     }
 }
