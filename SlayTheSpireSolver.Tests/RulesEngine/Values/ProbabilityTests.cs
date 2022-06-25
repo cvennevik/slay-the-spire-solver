@@ -14,5 +14,6 @@ public class ProbabilityTests
         Assert.AreEqual(new Probability(0, 1), new Probability(0, 1));
         Assert.AreEqual(new Probability(3, 7), new Probability(3, 7));
         Assert.AreNotEqual(new Probability(3, 7), new Probability(3, 8));
+        Assert.AreNotEqual(new Probability(4, 7), new Probability(3, 7));
     }
 }
