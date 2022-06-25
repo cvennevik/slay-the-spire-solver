@@ -56,7 +56,7 @@ public class AddEnemyStrengthEffectTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm {Strength = 4})
+            EnemyParty = new[] { new JawWorm { Strength = 4 } }
         };
         var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
         var result = effect.Resolve(gameState).SingleResolvedGameState();
