@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
@@ -23,7 +24,7 @@ public class EndTurnActionTests
                 PlayerHealth = 50,
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
-            var endTurnAction = new EndTurnAction(gameState);
+            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
