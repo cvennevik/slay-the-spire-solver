@@ -21,10 +21,7 @@ public record DamageEnemyEffect : IEffect
             return gameState;
         }
 
-        var newGameState = new GameState
-        {
-            EnemyParty = gameState.EnemyParty.ModifyEnemy(_targetId, enemy => DamageEnemy(enemy, _damage))
-        };
+        var newGameState = gameState.ModifyEnemy(_targetId, enemy => DamageEnemy(enemy, _damage));
 
         if (newGameState.EnemyParty.Get(_targetId).Health.Amount <= 0)
         {
