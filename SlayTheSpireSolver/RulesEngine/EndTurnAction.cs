@@ -11,8 +11,5 @@ public record EndTurnAction : ActionWithEffectStack
 
     public EndTurnAction(GameState gameState) : base(gameState, new EffectStack(new EndTurnEffect()))
     {
-        if (!IsLegal(gameState)) throw new ArgumentException("Illegal EndTurn action");
-
-        GameState = gameState;
     }
 }
