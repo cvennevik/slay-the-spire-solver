@@ -66,10 +66,13 @@ public class ActionWithEffectStackTests
         var effectStack = new EffectStack(new DrawCardEffect());
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
+        var expectedResult1 = new GameState
+        {
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Strike(), new Defend())
+        }; 
         Assert.AreEqual(2, result.Count);
-        Assert.Contains(
-            new GameState { Hand = new Hand(new Strike()), DrawPile = new DrawPile(new Strike(), new Defend()) },
-            result.ToList());
+        Assert.Contains(expectedResult1,result.ToList());
     }
 
     [Test]
