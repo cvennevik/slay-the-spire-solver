@@ -8,6 +8,8 @@ public readonly struct EffectStack
 
     public EffectStack() : this(Array.Empty<IEffect>()) { }
 
+    public static implicit operator EffectStack(IEffect[] effects) => new(effects);
+
     public EffectStack(IEnumerable<IEffect> effects) : this(effects.ToArray()) { }
 
     public EffectStack(params IEffect[] effects)

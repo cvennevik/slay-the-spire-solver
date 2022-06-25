@@ -11,7 +11,10 @@ public record Bellow : IJawWormMove
 
     public EffectStack GetEffects(Enemy enemy)
     {
-        return new EffectStack(new GainEnemyArmorEffect(enemy.Id, ArmorGain),
-            new AddEnemyStrengthEffect(enemy.Id, StrengthGain));
+        return new IEffect[]
+        {
+            new GainEnemyArmorEffect(enemy.Id, ArmorGain),
+            new AddEnemyStrengthEffect(enemy.Id, StrengthGain)
+        };
     }
 }
