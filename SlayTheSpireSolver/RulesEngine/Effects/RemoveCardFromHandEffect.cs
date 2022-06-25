@@ -11,7 +11,7 @@ public readonly record struct RemoveCardFromHandEffect : IEffect
         _cardToRemove = cardToRemove;
     }
 
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
         cardsInHand.Remove(_cardToRemove);

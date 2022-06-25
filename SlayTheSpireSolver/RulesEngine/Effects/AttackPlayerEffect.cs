@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : IEffect
 {
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(EnemyId)) return gameState;
         var enemyStrength = gameState.EnemyParty.Get(EnemyId).Strength;

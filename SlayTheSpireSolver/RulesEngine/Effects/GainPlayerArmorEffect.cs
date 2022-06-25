@@ -11,7 +11,7 @@ public readonly record struct GainPlayerArmorEffect : IEffect
         _armorGain = armorGain;
     }
 
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain };
     }

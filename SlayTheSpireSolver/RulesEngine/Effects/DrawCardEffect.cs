@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : IEffect
 {
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {

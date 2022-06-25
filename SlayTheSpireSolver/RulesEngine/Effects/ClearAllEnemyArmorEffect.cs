@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ClearAllEnemyArmorEffect : IEffect
 {
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         var newEnemyParty = gameState.EnemyParty;
         foreach (var enemy in gameState.EnemyParty)

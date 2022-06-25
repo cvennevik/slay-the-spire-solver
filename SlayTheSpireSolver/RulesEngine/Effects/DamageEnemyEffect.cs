@@ -14,7 +14,7 @@ public record DamageEnemyEffect : IEffect
         _damage = damage;
     }
 
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(_targetId))
         {

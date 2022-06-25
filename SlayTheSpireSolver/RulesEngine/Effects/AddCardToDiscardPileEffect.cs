@@ -11,7 +11,7 @@ public readonly record struct AddCardToDiscardPileEffect : IEffect
         _cardToAdd = card;
     }
 
-    public ResolvableGameStatePossibilitySet Resolve(GameState gameState)
+    public PossibilitySet Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
         return gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) };
