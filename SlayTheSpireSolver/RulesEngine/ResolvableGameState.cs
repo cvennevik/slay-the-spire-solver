@@ -1,4 +1,6 @@
-namespace SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Effects;
+
+namespace SlayTheSpireSolver.RulesEngine;
 
 public record ResolvableGameState
 {
