@@ -22,7 +22,7 @@ public record GameState
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver())
         {
-            legalActions.Add(new EndTurnAction(this));
+            legalActions.Add(new ActionWithEffectStack(this, new EndTurnEffect()));
         }
         return legalActions;
     }

@@ -21,7 +21,7 @@ public class SolverTests
             EnemyParty = new EnemyParty(new JawWorm()),
         };
         var bestAction = Solver.GetBestAction(gameState);
-        Assert.AreEqual(new EndTurnAction(gameState), bestAction);
+        Assert.AreEqual(new ActionWithEffectStack(gameState, new EndTurnEffect()), bestAction);
     }
 
     [Test]

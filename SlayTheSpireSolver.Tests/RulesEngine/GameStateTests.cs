@@ -47,14 +47,14 @@ public class GameStateTests
                 strike.GetEffect(gameState),
                 new RemoveCardFromHandEffect(strike),
                 new RemoveEnergyEffect(strike.GetCost())));
-            AssertLegalActions(gameState, playStrikeAction, new EndTurnAction(gameState));
+            AssertLegalActions(gameState, playStrikeAction, new ActionWithEffectStack(gameState, new EndTurnEffect()));
         }
 
         [Test]
         public void EmptyHand()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            AssertLegalActions(gameState, new EndTurnAction(gameState));
+            AssertLegalActions(gameState, new ActionWithEffectStack(gameState, new EndTurnEffect()));
         }
 
         [Test]
