@@ -22,4 +22,10 @@ public class ProbabilityTests
     {
         Assert.Throws<ArgumentException>(() => new Probability(11, 10));
     }
+
+    [Test]
+    public void ThrowsExceptionIfNumeratorBelowZero()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(-1, 10));
+    }
 }
