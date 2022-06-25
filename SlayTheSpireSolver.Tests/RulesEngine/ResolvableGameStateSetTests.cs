@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine;
 public class ResolvableGameStateSetTests
 {
     [Test]
-    public void Test()
+    public void TestEquality()
     {
         
     }
