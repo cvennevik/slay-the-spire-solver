@@ -19,12 +19,11 @@ public record ResolvableGameState
         EffectStack = effectStack;
     }
 
-    public ResolvablePossibilitySet Resolve()
+    public IReadOnlyList<GameStatePossibility> Resolve()
     {
-        return new ResolvablePossibilitySet(
-            ResolveEffects(new ResolvableGameState(GameState, EffectStack))
-                .Select(x => (ResolvablePossibility) x)
-                .ToArray());
+        return ResolveEffects(new ResolvableGameState(GameState, EffectStack))
+            .Select(gameState => new GameStatePossibility(gameState, new Probability(1)))
+            .ToArray();
     }
 
     private IReadOnlyList<GameState> ResolveEffects(ResolvableGameState resolvableGameState)

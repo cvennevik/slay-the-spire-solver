@@ -45,8 +45,8 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(0.5), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState1.WithEffects().WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState2.WithEffects().WithProbability(0.5), result.ToList());
     }
 
     [Test]
@@ -72,8 +72,8 @@ public class DrawCardEffectTest
                 new Defend())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(0.6), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(0.4), result.ToList());
+        Assert.Contains(expectedGameState1.WithEffects().WithProbability(0.6), result.ToList());
+        Assert.Contains(expectedGameState2.WithEffects().WithProbability(0.4), result.ToList());
     }
 
     [Test]
@@ -130,8 +130,8 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(0.5), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState1.WithEffects().WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState2.WithEffects().WithProbability(0.5), result.ToList());
     }
 
     [Test]
@@ -166,8 +166,8 @@ public class DrawCardEffectTest
             DiscardPile = new DiscardPile()
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedState1.WithProbability(0.25), result.ToList());
-        Assert.Contains(expectedState2.WithProbability(0.75), result.ToList());
+        Assert.Contains(expectedState1.WithEffects().WithProbability(0.25), result.ToList());
+        Assert.Contains(expectedState2.WithEffects().WithProbability(0.75), result.ToList());
     }
 
     [Test]
