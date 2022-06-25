@@ -33,9 +33,4 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
         return _resolvableGameStates.Count == other._resolvableGameStates.Count &&
                _resolvableGameStates.All(other.Contains);
     }
-
-    public override int GetHashCode()
-    {
-        return _resolvableGameStates.GetHashCode();
-    }
 }
