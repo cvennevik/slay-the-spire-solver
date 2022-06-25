@@ -32,6 +32,11 @@ public record GameState
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
     }
 
+    public GameState ModifyEnemy(EnemyId id, Func<Enemy, Enemy> modifier)
+    {
+        return this with { EnemyParty = EnemyParty.ModifyEnemy(id, modifier) };
+    }
+
     public ResolvableGameState WithEffects(params IEffect[] effects) => WithEffects(new EffectStack(effects));
 
     public ResolvableGameState WithEffects(EffectStack? effectStack = null)
