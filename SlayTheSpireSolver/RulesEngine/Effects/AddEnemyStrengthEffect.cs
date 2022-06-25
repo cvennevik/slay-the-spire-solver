@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : IEffect
 {
-    public PossibilitySet Resolve(GameState gameState)
+    public ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState.ModifyEnemy(EnemyId,
             enemy => enemy with { Strength = enemy.Strength + StrengthGain });

@@ -11,7 +11,7 @@ public readonly record struct RemoveEnergyEffect : IEffect
         _energyToRemove = energyToRemove;
     }
 
-    public PossibilitySet Resolve(GameState gameState)
+    public ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Energy = gameState.Energy - _energyToRemove };
     }

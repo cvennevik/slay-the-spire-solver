@@ -11,7 +11,7 @@ public record KillEnemyEffect : IEffect
         _targetId = targetId;
     }
 
-    public PossibilitySet Resolve(GameState gameState)
+    public ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { EnemyParty = gameState.EnemyParty.Remove(_targetId) };
     }

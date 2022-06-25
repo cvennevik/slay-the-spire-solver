@@ -19,9 +19,9 @@ public record ResolvableGameState
         EffectStack = effectStack;
     }
 
-    public PossibilitySet Resolve()
+    public ResolvablePossibilitySet Resolve()
     {
-        return new PossibilitySet(
+        return new ResolvablePossibilitySet(
             ResolveEffects(new ResolvableGameState(GameState, EffectStack))
                 .Select(x => (Possibility) x)
                 .ToArray());

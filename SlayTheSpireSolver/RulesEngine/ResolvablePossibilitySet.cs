@@ -2,31 +2,31 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySet>
+public class ResolvablePossibilitySet : IEnumerable<Possibility>, IEquatable<ResolvablePossibilitySet>
 {
     private readonly List<Possibility> _possibilities;
 
-    public PossibilitySet(params Possibility[] possibilities)
+    public ResolvablePossibilitySet(params Possibility[] possibilities)
     {
         _possibilities = possibilities.Distinct().ToList();
     }
 
-    public static implicit operator PossibilitySet(GameState gameState) =>
+    public static implicit operator ResolvablePossibilitySet(GameState gameState) =>
         new(gameState.WithEffects());
 
-    public static implicit operator PossibilitySet(GameState[] gameStates) =>
+    public static implicit operator ResolvablePossibilitySet(GameState[] gameStates) =>
         new(gameStates.Select(x => (Possibility)x.WithEffects()).ToArray());
 
-    public static implicit operator PossibilitySet(ResolvableGameState resolvableGameState) =>
+    public static implicit operator ResolvablePossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
 
-    public static implicit operator PossibilitySet(ResolvableGameState[] resolvableGameStates) =>
+    public static implicit operator ResolvablePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
         new(resolvableGameStates.Select(x => (Possibility)x).ToArray());
 
-    public static implicit operator PossibilitySet(
+    public static implicit operator ResolvablePossibilitySet(
         Possibility resolvableGameState) => new(resolvableGameState);
 
-    public static implicit operator PossibilitySet(
+    public static implicit operator ResolvablePossibilitySet(
         Possibility[] resolvableGameStates) => new(resolvableGameStates);
 
     public IEnumerator<Possibility> GetEnumerator()
@@ -39,7 +39,7 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
         return GetEnumerator();
     }
 
-    public bool Equals(PossibilitySet? other)
+    public bool Equals(ResolvablePossibilitySet? other)
     {
         if (other == null) return false;
         return _possibilities.Count == other._possibilities.Count &&
@@ -48,7 +48,7 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
 
     public override bool Equals(object? obj)
     {
-        return Equals(obj as PossibilitySet);
+        return Equals(obj as ResolvablePossibilitySet);
     }
 
     public override int GetHashCode()
