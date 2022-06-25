@@ -20,6 +20,6 @@ public record ResolveEnemyMoveEffect : IEffect
             return gameState.AsResolvable(moveEffects);
         }
 
-        return new[] { gameState.AsResolvable() };
+        return gameState;
     }
 }
