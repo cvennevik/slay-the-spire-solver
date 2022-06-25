@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState>, IEquatable<ResolvableGameStatePossibilitySet>
 {
-    private readonly List<ResolvableGameState> _resolvableGameStates;
+    private readonly List<ResolvableGameState> _possibilities;
 
     public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
 
@@ -17,12 +17,12 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 
     public ResolvableGameStatePossibilitySet(params ResolvableGameState[] resolvableGameStates)
     {
-        _resolvableGameStates = new List<ResolvableGameState>(resolvableGameStates.Distinct());
+        _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
 
     public IEnumerator<ResolvableGameState> GetEnumerator()
     {
-        return _resolvableGameStates.GetEnumerator();
+        return _possibilities.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -33,8 +33,8 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
     public bool Equals(ResolvableGameStatePossibilitySet? other)
     {
         if (other == null) return false;
-        return _resolvableGameStates.Count == other._resolvableGameStates.Count &&
-               _resolvableGameStates.All(other.Contains);
+        return _possibilities.Count == other._possibilities.Count &&
+               _possibilities.All(other.Contains);
     }
 
     public override bool Equals(object? obj)
@@ -44,6 +44,6 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 
     public override int GetHashCode()
     {
-        return _resolvableGameStates.GetHashCode();
+        return _possibilities.GetHashCode();
     }
 }
