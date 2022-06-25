@@ -34,15 +34,6 @@ public record ResolvableGameState
         return ResolveTopEffect().SelectMany(x => x.ResolveEffects()).Distinct().ToList();
     }
 
-    private IReadOnlyList<ResolvableGameState> ResolveTopEffect(GameState gameState, EffectStack effectStack)
-    {
-        var (effect, remainingEffectStack) = effectStack.Pop();
-        var outcomes = effect.Resolve(gameState);
-        return outcomes.Select(gameStateWithAddedEffects =>
-            gameStateWithAddedEffects.ResolvableGameState.GameState.WithEffects(
-                remainingEffectStack.Push(gameStateWithAddedEffects.ResolvableGameState.EffectStack))).ToList();
-    }
-
     private IReadOnlyList<ResolvableGameState> ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
