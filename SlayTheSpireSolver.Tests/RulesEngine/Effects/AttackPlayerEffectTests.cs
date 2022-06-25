@@ -14,6 +14,7 @@ public class AttackPlayerEffectTests
     {
         var gameState = new GameState();
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
     }
 
     [Test]
