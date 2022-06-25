@@ -27,13 +27,6 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
         return GetEnumerator();
     }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is not ResolvableGameStateSet otherSet) return false;
-        return _resolvableGameStates.Count == otherSet._resolvableGameStates.Count &&
-               _resolvableGameStates.All(x => otherSet.Contains(x));
-    }
-
     bool IEquatable<ResolvableGameStateSet>.Equals(ResolvableGameStateSet? other)
     {
         if (other == null) return false;
