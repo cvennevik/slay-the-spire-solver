@@ -7,7 +7,6 @@ public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : I
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        if (!gameState.EnemyParty.Has(EnemyId)) return gameState;
         var newEnemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId,
             enemy => enemy with { Strength = enemy.Strength + StrengthGain });
         return gameState with { EnemyParty = newEnemyParty };
