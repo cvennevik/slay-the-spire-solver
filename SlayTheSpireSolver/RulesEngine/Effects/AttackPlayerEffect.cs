@@ -7,6 +7,8 @@ public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        return gameState.WithEffects(new EffectStack(new DamagePlayerEffect(BaseDamage)));
+        return gameState.EnemyParty.Has(EnemyId)
+            ? gameState.WithEffects(new EffectStack(new DamagePlayerEffect(BaseDamage)))
+            : gameState;
     }
 }
