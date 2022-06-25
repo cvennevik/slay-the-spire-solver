@@ -1,6 +1,7 @@
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -53,6 +54,17 @@ public class ActionWithEffectStackTests
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         var expectedGameState = gameState with { PlayerHealth = 6 };
         Assert.AreEqual(expectedGameState, resolvedState);
+    }
+
+    [Test]
+    public void ResolvesEffectWithMultipleOutcomes()
+    {
+        var gameState = new GameState
+        {
+            Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
+        };
+        var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
+        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
     }
 
     [Test]
