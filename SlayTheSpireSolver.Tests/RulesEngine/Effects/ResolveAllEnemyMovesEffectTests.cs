@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -24,7 +25,6 @@ public class ResolveAllEnemyMovesEffectTests
         var enemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).SingleStableGameState();
-        Assert.AreEqual(gameState, result);
+        var result = effect.Resolve(gameState).Single();
     }
 }
