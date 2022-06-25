@@ -7,6 +7,9 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatab
     private readonly List<ResolvableGameState> _resolvableGameStates;
 
     public static implicit operator ResolvableGameStateSet(GameState gameState) => new(gameState.WithEffects());
+
+    public static implicit operator ResolvableGameStateSet(GameState[] gameStates) =>
+        new(gameStates.Select(x => x.WithEffects()).ToArray());
     public static implicit operator ResolvableGameStateSet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
     public static implicit operator ResolvableGameStateSet(ResolvableGameState[] resolvableGameStates) =>
