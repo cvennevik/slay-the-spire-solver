@@ -10,6 +10,7 @@ public record Thrash : IJawWormMove
 
     public EffectStack GetEffects(Enemy enemy)
     {
-        return new EffectStack(new GainEnemyArmorEffect(enemy.Id, ArmorGain), new AttackPlayerEffect(enemy.Id, BaseDamage));
+        return new EffectStack(new GainEnemyArmorEffect(enemy.Id, ArmorGain),
+            new AttackPlayerEffect(enemy.Id, BaseDamage));
     }
 }
