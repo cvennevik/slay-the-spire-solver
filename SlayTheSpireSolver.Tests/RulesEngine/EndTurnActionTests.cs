@@ -13,28 +13,6 @@ namespace SlayTheSpireSolver.Tests.RulesEngine;
 public class EndTurnActionTests
 {
     [TestFixture]
-    public class LegalityTests : EndTurnActionTests
-    {
-        [Test]
-        public void CannotEndTurnAfterWinning()
-        {
-            var gameState = new GameState();
-            Assert.Throws<ArgumentException>(() => new EndTurnAction(gameState));
-        }
-
-        [Test]
-        public void CannotEndTurnWhenDefeated()
-        {
-            var gameState = new GameState
-            {
-                PlayerHealth = 0,
-                EnemyParty = new EnemyParty(new JawWorm())
-            };
-            Assert.Throws<ArgumentException>(() => new EndTurnAction(gameState));
-        }
-    }
-
-    [TestFixture]
     public class ResolveTests : EndTurnActionTests
     {
         [Test]
