@@ -40,7 +40,8 @@ public record ResolvableGameState
         var resolvablePossibilitySet = effect.Resolve(GameState);
         return resolvablePossibilitySet.Select(resolvablePossibility =>
             resolvablePossibility.ResolvableGameState.GameState.WithEffects(
-                remainingEffectStack.Push(resolvablePossibility.ResolvableGameState.EffectStack))).ToList();
+                remainingEffectStack.Push(resolvablePossibility.ResolvableGameState.EffectStack)))
+            .ToList();
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
