@@ -9,7 +9,6 @@ public record GainEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : IEffect
     {
         var enemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId,
             enemy => enemy with { Armor = enemy.Armor + ArmorGain });
-        var result = gameState with { EnemyParty = enemyParty };
-        return new[] { result.AsResolvable() };
+        return gameState with { EnemyParty = enemyParty };
     }
 }
