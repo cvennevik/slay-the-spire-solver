@@ -7,9 +7,14 @@ namespace SlayTheSpireSolver.Tests.RulesEngine;
 public class ResolvableGameStateSetTests
 {
     [Test]
-    public void TestEquality()
+    public void TestEmptyEquality()
     {
         Assert.AreEqual(new ResolvableGameStateSet(), new ResolvableGameStateSet());
+    }
+
+    [Test]
+    public void TestSingleEquality()
+    {
         Assert.AreEqual(new ResolvableGameStateSet(new GameState()), new ResolvableGameStateSet(new GameState()));
         Assert.AreEqual(new ResolvableGameStateSet(new GameState { Turn = 3 }),
             new ResolvableGameStateSet(new GameState { Turn = 3 }));
