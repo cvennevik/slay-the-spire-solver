@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record EndTurnAction : ActionWithEffectStack
 {
-    public static bool IsLegal(GameState gameState)
+    private static bool IsLegal(GameState gameState)
     {
         return !gameState.IsCombatOver();
     }
