@@ -38,7 +38,6 @@ public record GameState
     }
 
     public ResolvableGameState WithEffects(params IEffect[] effects) => WithEffects(new EffectStack(effects));
-
     public ResolvableGameState WithEffects(EffectStack? effectStack = null)
     {
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
