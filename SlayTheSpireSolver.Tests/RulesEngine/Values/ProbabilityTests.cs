@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Values;
 public class ProbabilityTests
 {
     [Test]
-    public void Test()
+    public void TestEquality()
     {
         
     }
