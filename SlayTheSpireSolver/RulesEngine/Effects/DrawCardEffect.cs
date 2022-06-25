@@ -24,7 +24,8 @@ public record DrawCardEffect : IEffect
             {
                 var newGameState = gameState with
                 {
-                    Hand = gameState.Hand.Add(uniqueCard)
+                    Hand = gameState.Hand.Add(uniqueCard),
+                    DrawPile = gameState.DrawPile.Remove(uniqueCard)
                 };
             }
             return gameState.DrawPile.Cards.Select(card => gameState with
