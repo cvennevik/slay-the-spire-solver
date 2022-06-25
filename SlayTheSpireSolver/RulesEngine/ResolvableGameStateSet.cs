@@ -1,11 +1,23 @@
+using System.Collections;
+
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class ResolvableGameStateSet
+public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
 {
-    private readonly ResolvableGameState[] _resolvableGameStates;
+    private readonly List<ResolvableGameState> _resolvableGameStates;
 
     public ResolvableGameStateSet(params ResolvableGameState[] resolvableGameStates)
     {
-        _resolvableGameStates = resolvableGameStates;
+        _resolvableGameStates = new List<ResolvableGameState>(resolvableGameStates);
+    }
+
+    public IEnumerator<ResolvableGameState> GetEnumerator()
+    {
+        return _resolvableGameStates.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
