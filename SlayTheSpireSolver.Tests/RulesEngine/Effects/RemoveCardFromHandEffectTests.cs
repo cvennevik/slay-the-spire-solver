@@ -14,7 +14,7 @@ public class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Defend());
-        Assert.AreEqual(gameState, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(gameState, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]
@@ -22,7 +22,7 @@ public class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Strike());
-        Assert.AreEqual(new GameState { Hand = new Hand() }, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(new GameState { Hand = new Hand() }, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]
@@ -30,7 +30,7 @@ public class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike(), new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Strike());
-        Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]

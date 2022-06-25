@@ -39,7 +39,7 @@ public record UnresolvedGameState
     private IReadOnlyList<UnresolvedGameState> ResolveTopEffect(GameState gameState, EffectStack effectStack)
     {
         var (effect, remainingEffectStack) = effectStack.Pop();
-        var outcomes = effect.Resolve(gameState);
+        var outcomes = effect.Apply(gameState);
         return outcomes.Select(gameStateWithAddedEffects =>
             gameStateWithAddedEffects.GameState.WithEffectStack(
                 remainingEffectStack.Push(gameStateWithAddedEffects.EffectStack))).ToList();

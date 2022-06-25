@@ -16,7 +16,7 @@ public class DamageEnemyEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
         var effect = new DamageEnemyEffect(EnemyId.Default, 5);
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 5 }) };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(expectedGameState, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]
@@ -26,7 +26,7 @@ public class DamageEnemyEffectTests
         var effect = new DamageEnemyEffect(EnemyId.Default, 10);
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 0 }) };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(EnemyId.Default));
-        Assert.AreEqual(expectedGameState.WithEffectStack(expectedEffectStack), effect.Resolve(gameState).Single());
+        Assert.AreEqual(expectedGameState.WithEffectStack(expectedEffectStack), effect.Apply(gameState).Single());
     }
 
     [Test]
@@ -50,7 +50,7 @@ public class DamageEnemyEffectTests
                 new JawWorm { Health = 10, Id = id3 }
             )
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(expectedGameState, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]
@@ -75,7 +75,7 @@ public class DamageEnemyEffectTests
             )
         };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(id2));
-        Assert.AreEqual(expectedGameState.WithEffectStack(expectedEffectStack), effect.Resolve(gameState).Single());
+        Assert.AreEqual(expectedGameState.WithEffectStack(expectedEffectStack), effect.Apply(gameState).Single());
     }
 
     [Test]
@@ -90,7 +90,7 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = 10, Armor = 5 })
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(expectedGameState, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]
@@ -105,7 +105,7 @@ public class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = 5 })
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleStableGameState());
+        Assert.AreEqual(expectedGameState, effect.Apply(gameState).SingleStableGameState());
     }
 
     [Test]

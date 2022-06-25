@@ -15,7 +15,7 @@ public class ResolveAllEnemyMovesEffectTests
     {
         var gameState = new GameState();
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).SingleStableGameState();
+        var result = effect.Apply(gameState).SingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -25,7 +25,7 @@ public class ResolveAllEnemyMovesEffectTests
         var enemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Apply(gameState).Single();
         Assert.AreEqual(gameState.WithEffectStack(new EffectStack(new ResolveEnemyMoveEffect(enemy.Id))), result);
     }
 
@@ -36,7 +36,7 @@ public class ResolveAllEnemyMovesEffectTests
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Apply(gameState).Single();
         Assert.AreEqual(gameState.WithEffectStack(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
 

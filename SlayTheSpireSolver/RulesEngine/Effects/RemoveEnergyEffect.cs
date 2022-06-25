@@ -11,7 +11,7 @@ public readonly record struct RemoveEnergyEffect : IEffect
         _energyToRemove = energyToRemove;
     }
 
-    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Apply(GameState gameState)
     {
         return new[] { new UnresolvedGameState(gameState with { Energy = gameState.Energy - _energyToRemove }) };
     }

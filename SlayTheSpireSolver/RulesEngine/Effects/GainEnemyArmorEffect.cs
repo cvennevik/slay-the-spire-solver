@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record GainEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : IEffect
 {
-    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Apply(GameState gameState)
     {
         var enemyParty = gameState.EnemyParty.ModifyEnemy(EnemyId,
             enemy => enemy with { Armor = enemy.Armor + ArmorGain });

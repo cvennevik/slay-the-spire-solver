@@ -13,7 +13,7 @@ public class DrawCardEffectTest
     public void DoesNothingWhenDrawPileAndDiscardPileEmpty()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(), DiscardPile = new DiscardPile() };
-        var result = new DrawCardEffect().Resolve(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -21,7 +21,7 @@ public class DrawCardEffectTest
     public void DrawsCardWhenSingleCardInDrawPile()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(new Strike()) };
-        var result = new DrawCardEffect().Resolve(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DrawPile = new DrawPile() };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -33,7 +33,7 @@ public class DrawCardEffectTest
         {
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState);
+        var result = new DrawCardEffect().Apply(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()), DrawPile = new DrawPile(new Defend())
@@ -56,7 +56,7 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                 new Defend(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState);
+        var result = new DrawCardEffect().Apply(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -82,7 +82,7 @@ public class DrawCardEffectTest
             Hand = new Hand(),
             DrawPile = new DrawPile(new Strike(), new Strike())
         };
-        var result = new DrawCardEffect().Resolve(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -99,7 +99,7 @@ public class DrawCardEffectTest
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
@@ -116,7 +116,7 @@ public class DrawCardEffectTest
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState);
+        var result = new DrawCardEffect().Apply(gameState);
         var expectedState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
@@ -136,7 +136,7 @@ public class DrawCardEffectTest
     public void ShufflesAndDrawsDiscardPileWithSingleCard()
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
-        var result = new DrawCardEffect().Resolve(gameState).SingleStableGameState();
+        var result = new DrawCardEffect().Apply(gameState).SingleStableGameState();
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DiscardPile = new DiscardPile() };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -150,7 +150,7 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(),
             DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState);
+        var result = new DrawCardEffect().Apply(gameState);
         var expectedState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
