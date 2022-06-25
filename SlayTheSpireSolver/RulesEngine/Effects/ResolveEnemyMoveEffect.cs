@@ -4,10 +4,10 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ResolveEnemyMoveEffect
 {
-    private readonly EnemyId Id;
+    private readonly EnemyId _enemyId;
 
     public ResolveEnemyMoveEffect(EnemyId enemyId)
     {
-        Id = enemyId;
+        _enemyId = enemyId;
     }
 }
