@@ -20,11 +20,10 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
         return new[] { workingGameState };
     }
 
-    private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(
-        GameStateWithEffectStack gameStateWithEffectStack)
+    private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(GameState gameState, EffectStack effectStack)
     {
-        (var effect, var remainingEffectStack) = gameStateWithEffectStack.EffectStack.Pop();
-        var outcomes = effect.Resolve(gameStateWithEffectStack.GameState);
+        (var effect, var remainingEffectStack) = effectStack.Pop();
+        var outcomes = effect.Resolve(gameState);
         return outcomes.Select(gameStateWithAddedEffects =>
             gameStateWithAddedEffects.GameState.WithEffectStack(
                 remainingEffectStack.Push(gameStateWithAddedEffects.EffectStack))).ToList();
