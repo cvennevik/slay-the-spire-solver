@@ -12,15 +12,6 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class AttackPlayerEffectTests
 {
     [Test]
-    public void Test()
-    {
-        var gameState = new GameState { PlayerHealth = 10 };
-        var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
-        Assert.AreEqual(gameState, result);
-    }
-
-    [Test]
     public void Test2()
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
