@@ -31,6 +31,6 @@ public record DamageEnemyEffect : IEffect
             return new[] { newGameState.AsResolvable(new EffectStack(new KillEnemyEffect(_target))) };
         }
 
-        return new[] { newGameState.AsResolvable() };
+        return newGameState;
     }
 }
