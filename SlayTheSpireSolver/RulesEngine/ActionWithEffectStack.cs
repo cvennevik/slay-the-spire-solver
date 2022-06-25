@@ -13,6 +13,8 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
             (var effect, remainingEffectStack) = remainingEffectStack.Pop();
             var gameStateWithAddedEffects = effect.Resolve(workingGameState).Single();
             workingGameState = gameStateWithAddedEffects.GameState;
+            var addedEffects = gameStateWithAddedEffects.EffectStack;
+            remainingEffectStack = remainingEffectStack.Push(addedEffects);
         }
 
         return new[] { workingGameState };
