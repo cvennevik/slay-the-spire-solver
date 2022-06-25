@@ -11,11 +11,6 @@ public record ResolvableGameState
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
-    public ResolvableGameState(GameState gameState)
-    {
-        GameState = gameState;
-    }
-
     public ResolvableGameState(GameState gameState, EffectStack effectStack)
     {
         GameState = gameState;
