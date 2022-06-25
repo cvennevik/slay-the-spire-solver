@@ -20,6 +20,18 @@ public class AddEnemyStrengthEffectTests
     }
 
     [Test]
+    public void DoesNothingWhenNoEnemyWithMatchingId()
+    {
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }, new JawWorm { Id = EnemyId.New() })
+        };
+        var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
+        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        Assert.AreEqual(gameState, result);
+    }
+
+    [Test]
     public void Test()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
