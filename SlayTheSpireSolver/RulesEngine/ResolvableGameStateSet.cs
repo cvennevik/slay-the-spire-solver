@@ -31,6 +31,6 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
     {
         if (obj is not ResolvableGameStateSet otherSet) return false;
         if (_resolvableGameStates.Count != otherSet._resolvableGameStates.Count) return false;
-        return base.Equals(obj);
+        return _resolvableGameStates.All(x => otherSet.Contains(x));
     }
 }
