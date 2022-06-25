@@ -14,7 +14,7 @@ public class DamagePlayerEffectTests
     [TestCase(10, 5, -5)]
     public void Test(int damage, int initialPlayerHealth, int expectedPlayerHealth)
     {
-        var damagePlayerEffect = new DamagePlayerEffect(damage);
+        var damagePlayerEffect = new ReducePlayerHealthEffect(damage);
         var gameState = new GameState { PlayerHealth = initialPlayerHealth };
         var result = damagePlayerEffect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(new GameState { PlayerHealth = expectedPlayerHealth }, result);
@@ -23,7 +23,7 @@ public class DamagePlayerEffectTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(10));
-        Assert.AreNotEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(5));
+        Assert.AreEqual(new ReducePlayerHealthEffect(10), new ReducePlayerHealthEffect(10));
+        Assert.AreNotEqual(new ReducePlayerHealthEffect(10), new ReducePlayerHealthEffect(5));
     }
 }
