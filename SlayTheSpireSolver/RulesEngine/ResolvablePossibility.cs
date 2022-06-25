@@ -25,7 +25,7 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
         var (effect, remainingEffectStack) = ResolvableGameState.EffectStack.Pop();
         return effect
             .ResolveWithBaseEffectStack(ResolvableGameState.GameState, remainingEffectStack)
-            .Select(resolvablePossibility => resolvablePossibility with {Probability = new Probability(resolvablePossibility.Probability.Value * Probability.Value)})
+            .Select(resolvablePossibility => resolvablePossibility with {Probability = resolvablePossibility.Probability * Probability})
             .ToArray();
     }
 
