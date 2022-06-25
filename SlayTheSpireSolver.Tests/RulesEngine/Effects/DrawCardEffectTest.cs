@@ -47,8 +47,8 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(1), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState1.WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState2.WithProbability(0.5), result.ToList());
     }
 
     [Test]
@@ -74,8 +74,8 @@ public class DrawCardEffectTest
                 new Defend())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(1), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState1.WithProbability(0.6), result.ToList());
+        Assert.Contains(expectedGameState2.WithProbability(0.4), result.ToList());
     }
 
     [Test]
@@ -132,8 +132,8 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(1), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState1.WithProbability(0.5), result.ToList());
+        Assert.Contains(expectedGameState2.WithProbability(0.5), result.ToList());
     }
 
     [Test]
@@ -152,24 +152,24 @@ public class DrawCardEffectTest
         {
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(),
-            DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend())
+            DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend(), new Defend())
         };
         var result = new DrawCardEffect().Resolve(gameState);
         var expectedState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
-            DrawPile = new DrawPile(new Defend(), new Defend()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend()),
             DiscardPile = new DiscardPile()
         };
         var expectedState2 = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
-            DrawPile = new DrawPile(new Strike(), new Defend()),
+            DrawPile = new DrawPile(new Strike(), new Defend(), new Defend()),
             DiscardPile = new DiscardPile()
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedState1.WithProbability(1), result.ToList());
-        Assert.Contains(expectedState2.WithProbability(1), result.ToList());
+        Assert.Contains(expectedState1.WithProbability(0.25), result.ToList());
+        Assert.Contains(expectedState2.WithProbability(0.75), result.ToList());
     }
 
     [Test]
