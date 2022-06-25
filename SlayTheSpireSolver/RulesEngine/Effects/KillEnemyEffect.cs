@@ -14,6 +14,6 @@ public record KillEnemyEffect : IEffect
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
         var newGameState = gameState with { EnemyParty = gameState.EnemyParty.Remove(_targetId) };
-        return new[] { newGameState.WithEffectStack() };
+        return new[] { newGameState.AsResolvable() };
     }
 }

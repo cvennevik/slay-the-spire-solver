@@ -6,6 +6,6 @@ public record RecoverBaseEnergyEffect : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
-        return new[] { gameState.RecoverBaseEnergy().WithEffectStack() };
+        return new[] { gameState.RecoverBaseEnergy().AsResolvable() };
     }
 }

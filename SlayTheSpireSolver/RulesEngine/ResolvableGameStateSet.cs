@@ -8,7 +8,7 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
 
 
     public static implicit operator ResolvableGameStateSet(GameState gameState) =>
-        new(gameState.WithEffectStack());
+        new(gameState.AsResolvable());
     public static implicit operator ResolvableGameStateSet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
     public static implicit operator ResolvableGameStateSet(ResolvableGameState[] resolvableGameStates) =>

@@ -12,6 +12,6 @@ public record ClearAllEnemyArmorEffect : IEffect
         }
 
         var result = gameState with { EnemyParty = newEnemyParty };
-        return new[] { result.WithEffectStack() };
+        return new[] { result.AsResolvable() };
     }
 }

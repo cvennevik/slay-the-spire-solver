@@ -6,7 +6,7 @@ public record EndTurnEffect : IEffect
     {
         return new[]
         {
-            gameState.WithEffectStack(new EffectStack(
+            gameState.AsResolvable(new EffectStack(
                 new DrawCardEffect(),
                 new DrawCardEffect(),
                 new DrawCardEffect(),
