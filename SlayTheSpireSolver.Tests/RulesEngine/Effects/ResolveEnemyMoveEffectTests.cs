@@ -5,7 +5,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 [TestFixture]
-public class ResolveEnemyEffectTests
+public class ResolveEnemyMoveEffectTests
 {
     [Test]
     public void EqualityTest()
