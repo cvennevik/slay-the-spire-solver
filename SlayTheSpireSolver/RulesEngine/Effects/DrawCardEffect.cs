@@ -26,8 +26,7 @@ public record DrawCardEffect : IEffect
                 .Select(card => gameState with
                 {
                     Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
-                })
-                .ToList();
+                }).ToArray();
         }
     }
 
