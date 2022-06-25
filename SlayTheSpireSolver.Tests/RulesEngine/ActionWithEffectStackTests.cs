@@ -44,6 +44,7 @@ public class ActionWithEffectStackTests
     {
         var gameState = new GameState
         {
+            PlayerHealth = 30,
             EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() },
                 new JawWorm { IntendedMove = new Chomp() })
         };
