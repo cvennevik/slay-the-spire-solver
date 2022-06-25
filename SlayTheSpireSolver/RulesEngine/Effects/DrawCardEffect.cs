@@ -23,17 +23,7 @@ public record DrawCardEffect : IEffect
                 }).ToArray();
         }
 
-        while (true)
-        {
-            
-
-            if (!gameState.DiscardPile.Cards.Any())
-            {
-                return new[] { gameState };
-            }
-
-            gameState = ShuffleDiscardPileIntoDrawPile(gameState);
-        }
+        return new[] { gameState };
     }
 
     private static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
