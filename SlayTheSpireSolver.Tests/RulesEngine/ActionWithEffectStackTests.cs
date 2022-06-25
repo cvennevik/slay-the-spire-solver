@@ -67,6 +67,9 @@ public class ActionWithEffectStackTests
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
         Assert.AreEqual(2, result.Count);
+        Assert.Contains(
+            new GameState { Hand = new Hand(new Strike()), DrawPile = new DrawPile(new Strike(), new Defend()) },
+            result.ToList());
     }
 
     [Test]
