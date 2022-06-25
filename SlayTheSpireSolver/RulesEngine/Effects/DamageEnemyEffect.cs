@@ -23,7 +23,7 @@ public record DamageEnemyEffect : IEffect
 
         var newGameState = new GameState
         {
-            EnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => enemy.DealDamage(_damage))
+            EnemyParty = gameState.EnemyParty.ModifyEnemy(_target, enemy => DamageEnemy(enemy, _damage))
         };
 
         if (newGameState.EnemyParty.Get(_target).Health.Amount <= 0)
