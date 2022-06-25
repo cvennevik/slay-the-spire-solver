@@ -23,7 +23,7 @@ public class RecoverBaseEnergyEffectTests
             BaseEnergy = baseEnergy,
             Energy = initialEnergy
         };
-        var nextGameState = new RecoverBaseEnergyEffect().Resolve(gameState).AsSingleStableGameState();
+        var nextGameState = new RecoverBaseEnergyEffect().Resolve(gameState).SingleStableGameState();
         var expectedGameState = gameState with { Energy = baseEnergy };
         Assert.AreEqual(expectedGameState, nextGameState);
     }
