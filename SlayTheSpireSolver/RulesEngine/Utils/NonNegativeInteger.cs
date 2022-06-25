@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Utils;
 
-public abstract class NonNegativeInteger<T>
+public abstract class NonNegativeInteger<T> where T : NonNegativeInteger<T>
 {
     public int Amount { get; }
 
