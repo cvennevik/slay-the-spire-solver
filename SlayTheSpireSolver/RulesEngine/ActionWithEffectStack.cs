@@ -23,6 +23,7 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
     private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(
         GameStateWithEffectStack gameStateWithEffectStack)
     {
+        (var effect, var remainingEffectStack) = gameStateWithEffectStack.EffectStack.Pop();
         return null;
     }
 }
