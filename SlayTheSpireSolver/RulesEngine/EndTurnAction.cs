@@ -23,17 +23,5 @@ public record EndTurnAction : IAction
     {
         var actionWithEffectStack = new ActionWithEffectStack(GameState, new EffectStack(new EndTurnEffect()));
         return actionWithEffectStack.ResolveToPossibleStates();
-        return GameState
-            .DiscardHand()
-            .ClearEnemyArmor()
-            .ResolveEnemyMoves()
-            .IncrementTurn()
-            .RecoverBaseEnergy()
-            .DrawCard()
-            .DrawCard()
-            .DrawCard()
-            .DrawCard()
-            .DrawCard()
-            .ToArray();
     }
 }
