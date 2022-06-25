@@ -32,9 +32,9 @@ public record GameState
         return PlayerHealth.Amount < 1 || !EnemyParty.Any();
     }
 
-    public GameStateWithEffectStack WithEffectStack(EffectStack? effectStack = null)
+    public UnresolvedGameState WithEffectStack(EffectStack? effectStack = null)
     {
-        return new GameStateWithEffectStack(this, effectStack ?? new EffectStack());
+        return new UnresolvedGameState(this, effectStack ?? new EffectStack());
     }
 
     public override string ToString()

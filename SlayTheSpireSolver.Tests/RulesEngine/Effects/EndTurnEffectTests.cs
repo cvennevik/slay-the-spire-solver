@@ -25,7 +25,7 @@ public class EndTurnEffectTests
             new ResolveAllEnemyMovesEffect(),
             new ClearAllEnemyArmorEffect(),
             new MoveHandToDiscardPileEffect());
-        var expectedResult = new GameStateWithEffectStack(gameState, expectedEffectStack);
+        var expectedResult = new UnresolvedGameState(gameState, expectedEffectStack);
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }
 

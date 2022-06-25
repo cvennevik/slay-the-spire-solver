@@ -11,10 +11,10 @@ public readonly record struct AddCardToDiscardPileEffect : IEffect
         _cardToAdd = card;
     }
 
-    public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
+    public IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
-        return new GameStateWithEffectStack[]
+        return new UnresolvedGameState[]
         {
             gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) }
         };

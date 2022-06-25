@@ -2,5 +2,5 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public interface IEffect
 {
-    IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState);
+    IReadOnlyCollection<UnresolvedGameState> Resolve(GameState gameState);
 }
