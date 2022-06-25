@@ -48,8 +48,8 @@ public class ClearAllEnemyArmorEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
-        var expectedGameState = new GameState
-            { EnemyParty = new EnemyParty(enemy1 with { Armor = 0 }, enemy2 with { Armor = 0 }) };
+        var expectedEnemyParty = new EnemyParty(enemy1 with { Armor = 0 }, enemy2 with { Armor = 0 });
+        var expectedGameState = new GameState { EnemyParty = expectedEnemyParty };
         Assert.AreEqual(expectedGameState, result);
     }
 }
