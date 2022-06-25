@@ -14,6 +14,7 @@ public class AddEnemyStrengthEffectTests
     public void Test()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
+        var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
     }
 
     [Test]
