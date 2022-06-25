@@ -6,19 +6,18 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 {
     private readonly List<ResolvableGameState> _possibilities;
 
-    public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
+    public ResolvableGameStatePossibilitySet(params ResolvableGameState[] resolvableGameStates)
+    {
+        _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
+    }
 
+    public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
     public static implicit operator ResolvableGameStatePossibilitySet(GameState[] gameStates) =>
         new(gameStates.Select(x => x.WithEffects()).ToArray());
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
         new(resolvableGameStates);
-
-    public ResolvableGameStatePossibilitySet(params ResolvableGameState[] resolvableGameStates)
-    {
-        _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
-    }
 
     public IEnumerator<ResolvableGameState> GetEnumerator()
     {
