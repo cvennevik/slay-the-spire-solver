@@ -34,10 +34,10 @@ public record ResolvableGameState
         return ResolveTopEffect().SelectMany(x => x.ResolvableGameState.ResolveEffects()).Distinct().ToList();
     }
 
-    private IReadOnlyList<ResolvablePossibility> ResolveTopEffect()
+    private ResolvablePossibilitySet ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
-        return effect.ResolveWithBaseEffectStack(GameState, remainingEffectStack);
+        return effect.ResolveWithBaseEffectStack(GameState, remainingEffectStack).ToArray();
     }
 
     public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
