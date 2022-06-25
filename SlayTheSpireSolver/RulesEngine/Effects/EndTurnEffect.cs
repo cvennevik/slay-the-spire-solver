@@ -14,7 +14,8 @@ public record EndTurnEffect : IEffect
                 new DrawCardEffect(),
                 new RecoverBaseEnergyEffect(),
                 new IncrementTurnEffect(),
-                new ResolveAllEnemyMovesEffect()))
+                new ResolveAllEnemyMovesEffect(),
+                new ClearAllEnemyArmorEffect()))
         };
     }
 }

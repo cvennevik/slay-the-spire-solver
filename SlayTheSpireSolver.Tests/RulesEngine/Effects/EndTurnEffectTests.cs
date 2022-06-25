@@ -22,7 +22,8 @@ public class EndTurnEffectTests
             new DrawCardEffect(),
             new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect(),
-            new ResolveAllEnemyMovesEffect());
+            new ResolveAllEnemyMovesEffect(),
+            new ClearAllEnemyArmorEffect());
         var expectedResult = new GameStateWithEffectStack(gameState, expectedEffectStack);
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }
