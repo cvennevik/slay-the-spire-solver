@@ -32,7 +32,7 @@ public record DrawCardEffect : IEffect
         }
     }
 
-    public static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
+    private static GameState ShuffleDiscardPileIntoDrawPile(GameState gameState)
     {
         if (gameState.DiscardPile.Cards.Count == 0) return gameState;
 
