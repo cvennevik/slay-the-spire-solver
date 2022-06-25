@@ -22,6 +22,17 @@ public class ResolveEnemyMoveEffectTests
     }
 
     [Test]
+    public void DoesNothingWhenNoEnemyWithId() // todo
+    {
+        var enemy = new JawWorm { IntendedMove = new Chomp() };
+        var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
+        var effect = new ResolveEnemyMoveEffect(enemy.Id);
+        var result = effect.Resolve(gameState).Single();
+        var expectedEffectStack = enemy.GetMoveEffects();
+        Assert.AreEqual(gameState.WithEffectStack(expectedEffectStack), result);
+    }
+
+    [Test]
     public void EqualityTest()
     {
         Assert.AreEqual(new ResolveEnemyMoveEffect(EnemyId.Default), new ResolveEnemyMoveEffect(EnemyId.Default));
