@@ -11,7 +11,7 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
         _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
 
-    public ResolvableGameStatePossibilitySet(ResolvableGameStatePossibility[] possibilities)
+    public ResolvableGameStatePossibilitySet(IEnumerable<ResolvableGameStatePossibility> possibilities)
     {
         _possibilities = possibilities.Select(x => x.ResolvableGameState).ToList();
     }
