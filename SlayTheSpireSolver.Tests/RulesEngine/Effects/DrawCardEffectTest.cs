@@ -36,11 +36,13 @@ public class DrawCardEffectTest
         var result = new DrawCardEffect().Resolve(gameState);
         var expectedGameState1 = new GameState
         {
-            Hand = new Hand(new Strike()), DrawPile = new DrawPile(new Defend())
+            Hand = new Hand(new Strike()),
+            DrawPile = new DrawPile(new Defend())
         };
         var expectedGameState2 = new GameState
         {
-            Hand = new Hand(new Defend()), DrawPile = new DrawPile(new Strike())
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
         Assert.Contains(expectedGameState1.WithEffects(), result.ToList());
