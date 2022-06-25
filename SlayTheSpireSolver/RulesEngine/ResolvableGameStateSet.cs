@@ -30,8 +30,8 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
     public override bool Equals(object? obj)
     {
         if (obj is not ResolvableGameStateSet otherSet) return false;
-        if (_resolvableGameStates.Count != otherSet._resolvableGameStates.Count) return false;
-        return _resolvableGameStates.All(x => otherSet.Contains(x));
+        return _resolvableGameStates.Count == otherSet._resolvableGameStates.Count &&
+               _resolvableGameStates.All(x => otherSet.Contains(x));
     }
 
     public override int GetHashCode()
