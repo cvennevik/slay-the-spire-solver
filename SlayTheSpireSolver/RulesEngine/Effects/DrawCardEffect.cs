@@ -36,11 +36,8 @@ public record DrawCardEffect : IEffect
     {
         if (gameState.DiscardPile.Cards.Count == 0) return gameState;
 
-        var newDrawPile = gameState.DrawPile;
-        foreach (var card in gameState.DiscardPile.Cards)
-        {
-            newDrawPile = newDrawPile.Add(card);
-        }
+        var newDrawPile = gameState.DiscardPile.Cards.Aggregate(gameState.DrawPile,
+            (current, card) => current.Add(card));
 
         return gameState with
         {
