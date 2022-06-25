@@ -30,4 +30,9 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
             gameStateWithAddedEffects.GameState.WithEffectStack(
                 remainingEffectStack.Push(gameStateWithAddedEffects.EffectStack))).ToList();
     }
+
+    private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(GameStateWithEffectStack gameStateWithEffectStack)
+    {
+        return ResolveTopEffect(gameStateWithEffectStack.GameState, gameStateWithEffectStack.EffectStack);
+    }
 }
