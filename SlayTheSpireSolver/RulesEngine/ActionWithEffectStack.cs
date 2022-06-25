@@ -7,20 +7,6 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
         return ResolveEffects(new GameStateWithEffectStack(GameState, EffectStack));
-        var remainingEffectStack = EffectStack;
-        var workingGameState = GameState;
-
-
-        while (remainingEffectStack != new EffectStack())
-        {
-            (var effect, remainingEffectStack) = remainingEffectStack.Pop();
-            var gameStateWithAddedEffects = effect.Resolve(workingGameState).Single();
-            workingGameState = gameStateWithAddedEffects.GameState;
-            var addedEffects = gameStateWithAddedEffects.EffectStack;
-            remainingEffectStack = remainingEffectStack.Push(addedEffects);
-        }
-
-        return new[] { workingGameState };
     }
 
     private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(GameState gameState, EffectStack effectStack)
