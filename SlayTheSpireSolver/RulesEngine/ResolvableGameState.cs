@@ -11,14 +11,14 @@ public record ResolvableGameState
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
+    public ResolvableGameState(GameState gameState, params IEffect[] effects)
+        : this(gameState, new EffectStack(effects)) { }
+
     public ResolvableGameState(GameState gameState, EffectStack effectStack)
     {
         GameState = gameState;
         EffectStack = effectStack;
     }
-
-    public ResolvableGameState(GameState gameState, params IEffect[] effects)
-        : this(gameState, new EffectStack(effects)) { }
 
     public IReadOnlyList<GameState> Resolve()
     {
