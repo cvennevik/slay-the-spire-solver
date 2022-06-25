@@ -32,6 +32,7 @@ public record DrawCardEffect : IEffect
                 var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
                                          gameState.DrawPile.Cards.Count;
                 var probability = new Probability(fractionOfDrawPile);
+                results.Add(new ResolvableGameStatePossibility(newGameState, probability));
             }
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
