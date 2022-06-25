@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -15,7 +14,7 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        Assert.AreEqual(new GameState().WithEffects(), effect.Resolve(gameState).Single());
+        Assert.AreEqual(new GameState(), effect.Resolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -31,7 +30,7 @@ public class KillEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id3 })
         };
-        Assert.AreEqual(expectedGameState.WithEffects(), effect.Resolve(gameState).Single());
+        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -39,6 +38,6 @@ public class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.New());
-        Assert.AreEqual(gameState.WithEffects(), effect.Resolve(gameState).Single());
+        Assert.AreEqual(gameState, effect.Resolve(gameState).SingleResolvedState());
     }
 }

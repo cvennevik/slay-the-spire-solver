@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -15,7 +14,7 @@ public class ResolveAllEnemyMovesEffectTests
     {
         var gameState = new GameState();
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -25,7 +24,7 @@ public class ResolveAllEnemyMovesEffectTests
         var enemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new EffectStack(new ResolveEnemyMoveEffect(enemy.Id))), result);
     }
 
@@ -36,7 +35,7 @@ public class ResolveAllEnemyMovesEffectTests
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveAllEnemyMovesEffect();
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
 

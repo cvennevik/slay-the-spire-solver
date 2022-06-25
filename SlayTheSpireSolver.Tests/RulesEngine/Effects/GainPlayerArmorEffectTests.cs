@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
-using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
@@ -18,7 +17,7 @@ public class GainPlayerArmorEffectTests
         var gameState = new GameState { PlayerArmor = initialPlayerArmor };
         var effect = new GainPlayerArmorEffect(effectAmount);
         Assert.AreEqual(new GameState { PlayerArmor = expectedPlayerArmor },
-            effect.Resolve(gameState).SingleResolvedGameState());
+            effect.Resolve(gameState).SingleResolvedState());
     }
 
     [Test]

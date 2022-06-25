@@ -13,7 +13,7 @@ public class MoveHandToDiscardPileEffectTests
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -26,7 +26,7 @@ public class MoveHandToDiscardPileEffectTests
             DiscardPile = new DiscardPile()
         };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(),
@@ -44,7 +44,7 @@ public class MoveHandToDiscardPileEffectTests
             DiscardPile = new DiscardPile(new Strike(), new Defend())
         };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedState();
         var expectedGameState = new GameState
         {
             Hand = new Hand(),

@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -16,7 +15,7 @@ public class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10 };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -25,7 +24,7 @@ public class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
         var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(1)));
         Assert.AreEqual(expectedResult, result);
     }
@@ -35,7 +34,7 @@ public class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm { Strength = 5}) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).Single();
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
         var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(6)));
         Assert.AreEqual(expectedResult, result);
     }

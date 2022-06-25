@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
@@ -13,7 +12,7 @@ public class EndTurnEffectTests
     {
         var gameState = new GameState { Turn = 2 };
         var effect = new EndTurnEffect();
-        var newGameStateWithEffectStack = effect.Resolve(gameState).Single();
+        var newGameStateWithEffectStack = effect.Resolve(gameState).SingleUnresolvedState();
         var expectedEffectStack = new EffectStack(
             new DrawCardEffect(),
             new DrawCardEffect(),

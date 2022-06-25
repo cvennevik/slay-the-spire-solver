@@ -2,13 +2,13 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState>, IEquatable<ResolvableGameStatePossibilitySet>
+public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameStatePossibility>, IEquatable<ResolvableGameStatePossibilitySet>
 {
-    private readonly List<ResolvableGameState> _possibilities;
+    private readonly List<ResolvableGameStatePossibility> _possibilities;
 
     public ResolvableGameStatePossibilitySet(params ResolvableGameStatePossibility[] possibilities)
     {
-        _possibilities = possibilities.Select(x => x.ResolvableGameState).Distinct().ToList();
+        _possibilities = possibilities.Distinct().ToList();
     }
 
     public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
@@ -19,7 +19,7 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
         new(resolvableGameStates.Select(x => (ResolvableGameStatePossibility)x).ToArray());
 
-    public IEnumerator<ResolvableGameState> GetEnumerator()
+    public IEnumerator<ResolvableGameStatePossibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();
     }
