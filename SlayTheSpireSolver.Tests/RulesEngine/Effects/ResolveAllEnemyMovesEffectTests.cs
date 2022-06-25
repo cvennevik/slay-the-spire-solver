@@ -15,4 +15,13 @@ public class ResolveAllEnemyMovesEffectTests
         var result = effect.Resolve(gameState).SingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
+
+    [Test]
+    public void ResolvesSingleEnemyEffect()
+    {
+        var gameState = new GameState();
+        var effect = new ResolveAllEnemyMovesEffect();
+        var result = effect.Resolve(gameState).SingleStableGameState();
+        Assert.AreEqual(gameState, result);
+    }
 }
