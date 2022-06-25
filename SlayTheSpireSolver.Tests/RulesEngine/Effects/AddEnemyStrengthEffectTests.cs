@@ -3,6 +3,7 @@ using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Buffs;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
@@ -12,7 +13,7 @@ public class AddEnemyStrengthEffectTests
     [Test]
     public void Test()
     {
-        var gameState = new GameState();
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
     }
 
     [Test]
