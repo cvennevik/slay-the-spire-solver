@@ -39,9 +39,13 @@ public record ResolvableGameState
         var (effect, remainingEffectStack) = EffectStack.Pop();
         var resolvablePossibilitySet = effect.Resolve(GameState);
         return resolvablePossibilitySet.Select(resolvablePossibility =>
-            resolvablePossibility.ResolvableGameState.GameState.WithEffects(
-                remainingEffectStack.Push(resolvablePossibility.ResolvableGameState.EffectStack)))
+            resolvablePossibility.ResolvableGameState.WithBaseEffectStack(remainingEffectStack))
             .ToList();
+    }
+
+    public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
+    {
+        return GameState.WithEffects(baseEffectStack.Push(EffectStack));
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
