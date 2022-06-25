@@ -64,6 +64,7 @@ public class AddEnemyStrengthEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm {Strength = 9})
         };
+        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
