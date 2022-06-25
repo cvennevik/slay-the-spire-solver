@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record Bellow : IJawWormMove
 {
-    private static readonly Strength StrengthGain = 9; 
+    private static readonly Strength StrengthGain = 5;
     private static readonly Armor ArmorGain = 9; 
 
     public EffectStack GetEffects(Enemy enemy)
