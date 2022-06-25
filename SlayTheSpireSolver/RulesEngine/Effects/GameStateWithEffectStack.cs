@@ -26,7 +26,7 @@ public record GameStateWithEffectStack
         return ResolveEffects(new GameStateWithEffectStack(GameState, EffectStack));
     }
 
-    protected IReadOnlyList<GameState> ResolveEffects(GameStateWithEffectStack gameStateWithEffectStack)
+    private IReadOnlyList<GameState> ResolveEffects(GameStateWithEffectStack gameStateWithEffectStack)
     {
         if (gameStateWithEffectStack.EffectStack.IsEmpty())
         {
