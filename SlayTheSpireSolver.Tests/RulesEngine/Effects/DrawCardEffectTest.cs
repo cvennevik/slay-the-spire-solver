@@ -33,7 +33,7 @@ public class DrawCardEffectTest
         {
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().Resolve(gameState).ToList();
+        var result = new DrawCardEffect().Resolve(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -44,9 +44,9 @@ public class DrawCardEffectTest
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        Assert.AreEqual(2, result.Count);
-        Assert.Contains(expectedGameState1.WithEffects().WithProbability(1), result);
-        Assert.Contains(expectedGameState2.WithEffects().WithProbability(1), result);
+        Assert.AreEqual(2, result.Count());
+        Assert.Contains(expectedGameState1.WithEffects().WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState2.WithEffects().WithProbability(1), result.ToList());
     }
 
     [Test]
