@@ -4,6 +4,10 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack) : IAction
 {
+    public ActionWithEffectStack(GameState gameState, params IEffect[] effects) : this(gameState, new EffectStack(effects)) {
+        
+    }
+
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
         return ResolveEffects(new GameStateWithEffectStack(GameState, EffectStack));
