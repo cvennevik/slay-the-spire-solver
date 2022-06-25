@@ -50,4 +50,9 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
     {
         return _possibilities.GetHashCode();
     }
+
+    public override string ToString()
+    {
+        return $"[{string.Join(",\n", _possibilities)}]";
+    }
 }
