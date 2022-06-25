@@ -18,7 +18,7 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 
     public static implicit operator ResolvableGameStatePossibilitySet(GameState gameState) => new(gameState.WithEffects());
     public static implicit operator ResolvableGameStatePossibilitySet(GameState[] gameStates) =>
-        new(gameStates.Select(x => x.WithEffects()).ToArray());
+        new(gameStates.Select(x => (ResolvableGameStatePossibility) x.WithEffects()).ToArray());
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState);
     public static implicit operator ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
