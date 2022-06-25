@@ -16,6 +16,11 @@ public readonly struct EffectStack
         return new EffectStack(_effects.Append(effect).ToArray());
     }
 
+    public object? Push(EffectStack addedEffectStack)
+    {
+        return new EffectStack(_effects.Concat(addedEffectStack._effects).ToArray());
+    }
+
     public (IEffect, EffectStack) Pop()
     {
         if (_effects.Length == 0)

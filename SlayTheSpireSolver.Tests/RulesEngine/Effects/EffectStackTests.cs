@@ -34,6 +34,7 @@ public class EffectStackTests
     {
         var effectStack1 = new EffectStack();
         var effectStack2 = new EffectStack(new RemoveEnergyEffect(1));
+        Assert.AreEqual(new EffectStack(new RemoveEnergyEffect(1)), effectStack1.Push(effectStack2));
     }
 
     [Test]
