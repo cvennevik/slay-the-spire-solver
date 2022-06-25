@@ -137,8 +137,8 @@ public class EndTurnActionTests
         [Test]
         public void TestEquality2()
         {
-            var action1 = new EndTurnAction(CreateBasicGameState());
-            var action2 = new EndTurnAction(CreateBasicGameState());
+            var action1 = new ActionWithEffectStack(CreateBasicGameState(), new EndTurnEffect());
+            var action2 = new ActionWithEffectStack(CreateBasicGameState(), new EndTurnEffect());
             Assert.AreEqual(action1, action2);
         }
 
