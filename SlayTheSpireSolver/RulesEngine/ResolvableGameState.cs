@@ -37,9 +37,10 @@ public record ResolvableGameState
     private IReadOnlyList<ResolvablePossibility> ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
-        var resolvablePossibilitySet = effect.Resolve(GameState);
-        return resolvablePossibilitySet.Select(resolvablePossibility =>
-            resolvablePossibility.WithBaseEffectStack(remainingEffectStack))
+        return effect
+            .Resolve(GameState)
+            .Select(resolvablePossibility =>
+                resolvablePossibility.WithBaseEffectStack(remainingEffectStack))
             .ToList();
     }
 
