@@ -21,7 +21,7 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
     }
 
     private IReadOnlyList<GameStateWithEffectStack> ResolveTopEffect(
-        IReadOnlyList<GameStateWithEffectStack> gameStatesWithEffectStacks)
+        GameStateWithEffectStack gameStateWithEffectStack)
     {
         return null;
     }
