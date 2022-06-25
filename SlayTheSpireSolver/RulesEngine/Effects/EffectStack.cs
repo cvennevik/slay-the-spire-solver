@@ -4,6 +4,8 @@ public readonly struct EffectStack
 {
     private readonly IEffect[] _effects;
 
+    public bool IsEmpty() => _effects.Length == 0;
+
     public EffectStack() : this(Array.Empty<IEffect>()) { }
 
     public EffectStack(params IEffect[] effects)
