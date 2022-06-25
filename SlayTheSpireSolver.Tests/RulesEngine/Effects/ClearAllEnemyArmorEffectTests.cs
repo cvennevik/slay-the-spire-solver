@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ClearAllEnemyArmorEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty() };
         var effect = new ClearAllEnemyArmorEffect();
