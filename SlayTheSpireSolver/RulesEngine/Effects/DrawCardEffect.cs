@@ -1,3 +1,5 @@
+using SlayTheSpireSolver.RulesEngine.Values;
+
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : IEffect
@@ -29,6 +31,7 @@ public record DrawCardEffect : IEffect
                 };
                 var instancesInDrawPile = gameState.DrawPile.Cards.Count(x => x == uniqueCard);
                 var probability = instancesInDrawPile / gameState.DrawPile.Cards.Count;
+                var realProbability = new Probability(probability);
             }
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
