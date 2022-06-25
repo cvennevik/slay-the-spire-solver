@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -15,5 +14,11 @@ public class ProbabilityTests
         Assert.AreEqual(new Probability(3, 7), new Probability(3, 7));
         Assert.AreNotEqual(new Probability(3, 7), new Probability(3, 8));
         Assert.AreNotEqual(new Probability(4, 7), new Probability(3, 7));
+    }
+
+    [Test]
+    public void ThrowsExceptionIfNumeratorGreaterThanDenominator()
+    {
+        
     }
 }
