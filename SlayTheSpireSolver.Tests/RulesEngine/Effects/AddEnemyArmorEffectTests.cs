@@ -13,7 +13,7 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void AddsEnemyArmor()
     {
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
+        var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 5 }) };
@@ -23,7 +23,7 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void AddsToExistingEnemyArmor()
     {
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
+        var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
@@ -35,7 +35,7 @@ public class GainEnemyArmorEffectTests
     {
         var targetEnemyId = EnemyId.New();
         var otherEnemyId = EnemyId.New();
-        var effect = new GainEnemyArmorEffect(targetEnemyId, new Armor(5));
+        var effect = new AddEnemyArmorEffect(targetEnemyId, new Armor(5));
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId },
@@ -53,7 +53,7 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemies()
     {
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
+        var effect = new AddEnemyArmorEffect(EnemyId.Default, 1);
         var gameState = new GameState { Turn = 2 };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
@@ -62,7 +62,7 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
-        var effect = new GainEnemyArmorEffect(EnemyId.Default, 5);
+        var effect = new AddEnemyArmorEffect(EnemyId.Default, 5);
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }) };
         var result = effect.Resolve(gameState).SingleResolvedGameState();
         Assert.AreEqual(gameState, result);
@@ -71,9 +71,9 @@ public class GainEnemyArmorEffectTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 10));
-        Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.Default, 5));
-        Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.Default, 10), new GainEnemyArmorEffect(EnemyId.New(), 10));
-        Assert.AreNotEqual(new GainEnemyArmorEffect(EnemyId.New(), 10), new GainEnemyArmorEffect(EnemyId.New(), 10));
+        Assert.AreEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.Default, 10));
+        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.Default, 5));
+        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.New(), 10));
+        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.New(), 10), new AddEnemyArmorEffect(EnemyId.New(), 10));
     }
 }

@@ -13,7 +13,7 @@ public record Bellow : IJawWormMove
     {
         return new IEffect[]
         {
-            new GainEnemyArmorEffect(enemy.Id, ArmorGain),
+            new AddEnemyArmorEffect(enemy.Id, ArmorGain),
             new AddEnemyStrengthEffect(enemy.Id, StrengthGain)
         };
     }

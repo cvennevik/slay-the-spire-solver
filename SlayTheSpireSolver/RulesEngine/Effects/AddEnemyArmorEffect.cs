@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record GainEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : IEffect
+public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : IEffect
 {
     public ResolvableGameStateSet Resolve(GameState gameState)
     {
