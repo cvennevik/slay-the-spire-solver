@@ -132,8 +132,8 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithEffects().WithProbability(1), result.ToList());
-        Assert.Contains(expectedGameState2.WithEffects().WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState1.WithProbability(1), result.ToList());
+        Assert.Contains(expectedGameState2.WithProbability(1), result.ToList());
     }
 
     [Test]
