@@ -11,7 +11,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ResolveEnemyMoveEffectTests
 {
     [Test]
-    public void Test()
+    public void PutsEnemyMoveEffectsOnEffectStack()
     {
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
