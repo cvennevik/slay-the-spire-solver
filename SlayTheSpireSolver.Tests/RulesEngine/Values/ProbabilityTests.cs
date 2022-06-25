@@ -35,4 +35,11 @@ public class ProbabilityTests
         Assert.Throws<ArgumentException>(() => new Probability(0, 0));
         Assert.Throws<ArgumentException>(() => new Probability(0, -1));
     }
+
+    [Test]
+    public void TestMultiplication()
+    {
+        var probability1 = new Probability(1, 2);
+        var probability2 = new Probability(2, 7);
+    }
 }
