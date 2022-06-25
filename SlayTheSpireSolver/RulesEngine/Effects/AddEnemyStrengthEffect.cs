@@ -1,6 +1,9 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public class AddEnemyStrengthEffect
+public record AddEnemyStrengthEffect : IEffect
 {
-    
+    public ResolvableGameStateSet Resolve(GameState gameState)
+    {
+        throw new NotImplementedException();
+    }
 }
