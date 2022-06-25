@@ -82,6 +82,17 @@ public class ActionWithEffectStackTests
     }
 
     [Test]
+    public void ResolvesMultipleEffectWithMultipleOutcomes()
+    {
+        var gameState = new GameState
+        {
+            Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
+        };
+        var effectStack = new EffectStack(new DrawCardEffect());
+        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+    }
+
+    [Test]
     public void EqualityTests()
     {
         var gameState1 = new GameState { Turn = 1 };
