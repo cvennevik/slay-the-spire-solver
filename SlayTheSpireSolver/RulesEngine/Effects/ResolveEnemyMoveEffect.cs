@@ -13,6 +13,6 @@ public record ResolveEnemyMoveEffect : IEffect
 
     public IReadOnlyCollection<GameStateWithEffectStack> Resolve(GameState gameState)
     {
-        throw new NotImplementedException();
+        return new[] { gameState.WithEffectStack() };
     }
 }
