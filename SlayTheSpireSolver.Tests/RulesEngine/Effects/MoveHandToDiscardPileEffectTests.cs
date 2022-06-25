@@ -12,6 +12,7 @@ public class MoveHandToDiscardPileEffectTests
     public void Test()
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
+        var effect = new MoveHandToDiscardPileEffect();
     }
 
     [Test]
