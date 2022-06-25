@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ResolveAllEnemyMovesEffect : IEffect
 {
-    public IReadOnlyCollection<ResolvableGameState> Resolve(GameState gameState)
+    public ResolvableGameStateSet Resolve(GameState gameState)
     {
         var resolveEnemyMoveEffects =
             gameState.EnemyParty.Select(enemy => (IEffect)new ResolveEnemyMoveEffect(enemy.Id)).Reverse();

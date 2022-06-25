@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RecoverBaseEnergyEffect : IEffect
 {
-    public IReadOnlyCollection<ResolvableGameState> Resolve(GameState gameState)
+    public ResolvableGameStateSet Resolve(GameState gameState)
     {
         return new[] { gameState.RecoverBaseEnergy().WithEffectStack() };
     }

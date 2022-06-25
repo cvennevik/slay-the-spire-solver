@@ -42,7 +42,7 @@ public class DrawCardEffectTest
         {
             Hand = new Hand(new Defend()), DrawPile = new DrawPile(new Strike())
         };
-        Assert.AreEqual(2, result.Count);
+        Assert.AreEqual(2, result.Count());
         Assert.Contains(expectedGameState1.WithEffectStack(), result.ToList());
         Assert.Contains(expectedGameState2.WithEffectStack(), result.ToList());
     }
@@ -69,7 +69,7 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                 new Defend())
         };
-        Assert.AreEqual(2, result.Count);
+        Assert.AreEqual(2, result.Count());
         Assert.Contains(expectedGameState1.WithEffectStack(), result.ToList());
         Assert.Contains(expectedGameState2.WithEffectStack(), result.ToList());
     }
@@ -127,7 +127,7 @@ public class DrawCardEffectTest
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        Assert.AreEqual(2, result.Count);
+        Assert.AreEqual(2, result.Count());
         Assert.Contains(expectedState1.WithEffectStack(), result.ToList());
         Assert.Contains(expectedState2.WithEffectStack(), result.ToList());
     }
@@ -163,7 +163,7 @@ public class DrawCardEffectTest
             DrawPile = new DrawPile(new Strike(), new Defend()),
             DiscardPile = new DiscardPile()
         };
-        Assert.AreEqual(2, result.Count);
+        Assert.AreEqual(2, result.Count());
         Assert.Contains(expectedState1.WithEffectStack(), result.ToList());
         Assert.Contains(expectedState2.WithEffectStack(), result.ToList());
     }

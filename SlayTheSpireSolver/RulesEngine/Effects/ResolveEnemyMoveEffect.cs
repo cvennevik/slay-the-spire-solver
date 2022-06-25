@@ -11,7 +11,7 @@ public record ResolveEnemyMoveEffect : IEffect
         _enemyId = enemyId;
     }
 
-    public IReadOnlyCollection<ResolvableGameState> Resolve(GameState gameState)
+    public ResolvableGameStateSet Resolve(GameState gameState)
     {
         if (gameState.EnemyParty.Has(_enemyId))
         {
