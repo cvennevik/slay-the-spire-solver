@@ -45,11 +45,11 @@ public class ClearAllEnemyArmorEffectTests
     {
         var enemy1 = new JawWorm { Id = EnemyId.New(), Armor = 5 };
         var enemy2 = new JawWorm { Id = EnemyId.New(), Armor = 7 };
-        var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
+        var gameState = new GameState { Turn = 2, EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).SingleStableGameState();
         var expectedEnemyParty = new EnemyParty(enemy1 with { Armor = 0 }, enemy2 with { Armor = 0 });
-        var expectedGameState = new GameState { EnemyParty = expectedEnemyParty };
+        var expectedGameState = gameState with { EnemyParty = expectedEnemyParty };
         Assert.AreEqual(expectedGameState, result);
     }
 }
