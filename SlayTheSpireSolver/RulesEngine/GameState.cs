@@ -37,6 +37,8 @@ public record GameState
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
     }
 
+    public ResolvableGameState WithEffects(params IEffect[] effects) => WithEffects(new EffectStack(effects));
+
     public override string ToString()
     {
         return $@"GameState {{
