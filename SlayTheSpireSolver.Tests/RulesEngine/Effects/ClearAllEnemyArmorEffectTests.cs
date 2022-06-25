@@ -14,6 +14,6 @@ public class ClearAllEnemyArmorEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty() };
         var effect = new ClearAllEnemyArmorEffect();
-        var result = effect.Resolve(gameState);
+        var result = effect.Resolve(gameState).SingleStableGameState();
     }
 }
