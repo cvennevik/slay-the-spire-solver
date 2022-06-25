@@ -34,8 +34,14 @@ public record DamageEnemyEffect : IEffect
         return newGameState;
     }
 
-    private Enemy DamageEnemy(Enemy enemy)
+    private Enemy DamageEnemy(Enemy enemy, Damage damage)
     {
-        return enemy;
+        if (damage > enemy.Armor)
+        {
+            var remainingDamage = damage - enemy.Armor;
+            return enemy with { Armor = 0, Health = enemy.Health - remainingDamage };
+        }
+
+        return enemy with { Armor = enemy.Armor - damage };
     }
 }
