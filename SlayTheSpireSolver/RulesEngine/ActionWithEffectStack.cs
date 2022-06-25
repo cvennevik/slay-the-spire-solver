@@ -39,6 +39,11 @@ public record ActionWithEffectStack(GameState GameState, EffectStack EffectStack
 
     private IReadOnlyList<GameStateWithEffectStack> ResolveEffects(GameStateWithEffectStack gameStateWithEffectStack)
     {
+        if (gameStateWithEffectStack.EffectStack == new EffectStack())
+        {
+            return new[] { gameStateWithEffectStack };
+        }
+
         return null;
     }
 }
