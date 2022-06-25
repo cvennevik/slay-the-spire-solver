@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -19,6 +20,6 @@ public class ProbabilityTests
     [Test]
     public void ThrowsExceptionIfNumeratorGreaterThanDenominator()
     {
-        
+        Assert.Throws<ArgumentException>(() => new Probability(11, 10));
     }
 }

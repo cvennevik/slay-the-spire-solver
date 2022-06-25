@@ -7,6 +7,7 @@ public record Probability
 
     public Probability(int numerator, int denominator)
     {
+        if (numerator > denominator) throw new ArgumentException("Numerator cannot be larger than denominator");
         Numerator = numerator;
         Denominator = denominator;
     }
