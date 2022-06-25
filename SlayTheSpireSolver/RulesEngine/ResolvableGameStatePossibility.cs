@@ -6,4 +6,6 @@ public record ResolvableGameStatePossibility(ResolvableGameState ResolvableGameS
 {
     public static implicit operator ResolvableGameStatePossibility(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState, new Probability(1));
+    public static implicit operator ResolvableGameStatePossibility(GameState gameState) =>
+        new(gameState, new Probability(1));
 }
