@@ -22,6 +22,7 @@ public record EndTurnAction : IAction
     public IReadOnlyList<GameState> ResolveToPossibleStates()
     {
         var actionWithEffectStack = new ActionWithEffectStack(GameState, new EffectStack(new EndTurnEffect()));
+        return actionWithEffectStack.ResolveToPossibleStates();
         return GameState
             .DiscardHand()
             .ClearEnemyArmor()
