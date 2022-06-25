@@ -31,6 +31,16 @@ public class AttackPlayerEffectTests
     }
 
     [Test]
+    public void AddsEnemyStrengthToDamagePlayerEffect()
+    {
+        var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm { Strength = 5}) };
+        var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
+        var result = effect.Resolve(gameState).Single();
+        var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(6)));
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new AttackPlayerEffect(EnemyId.Default, new Damage(1)),
