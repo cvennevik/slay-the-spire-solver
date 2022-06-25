@@ -103,6 +103,7 @@ public class ActionWithEffectStackTests
         };
         Assert.AreEqual(2, result.Count);
         Assert.Contains(expectedResult1, result.ToList());
+        Assert.Contains(expectedResult2, result.ToList());
     }
 
     [Test]
