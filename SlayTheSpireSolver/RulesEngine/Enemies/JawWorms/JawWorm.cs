@@ -10,6 +10,6 @@ public record JawWorm : Enemy
 
     public override EffectStack GetMoveEffects()
     {
-        throw new NotImplementedException();
+        return IntendedMove.GetEffects(this);
     }
 }
