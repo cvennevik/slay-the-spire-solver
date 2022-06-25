@@ -5,11 +5,11 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record Thrash : IJawWormMove
 {
-    private static readonly Damage Damage = 7;
+    private static readonly Damage BaseDamage = 7;
     private static readonly Armor ArmorGain = 5;
 
     public EffectStack GetEffects(Enemy enemy)
     {
-        return new EffectStack(new GainEnemyArmorEffect(enemy.Id, ArmorGain), new AttackPlayerEffect(enemy.Id, Damage));
+        return new EffectStack(new GainEnemyArmorEffect(enemy.Id, ArmorGain), new AttackPlayerEffect(enemy.Id, BaseDamage));
     }
 }
