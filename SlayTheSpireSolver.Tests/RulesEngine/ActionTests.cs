@@ -10,7 +10,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
 [TestFixture]
-public class ActionWithEffectStackTests
+public class ActionTests
 {
     [Test]
     public void ResolvesZeroEffects()
