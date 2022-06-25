@@ -11,7 +11,7 @@ public static class SingleResolvedGameStateExtension
     public static GameState SingleStableGameState(this IReadOnlyCollection<GameStateWithEffectStack> collection)
     {
         var gameStateWithUnresolvedEffects = collection.Single();
-        if (gameStateWithUnresolvedEffects.EffectStack != new EffectStack())
+        if (!gameStateWithUnresolvedEffects.EffectStack.IsEmpty())
         {
             throw new ArgumentException("Effect stack is not empty");
         }
