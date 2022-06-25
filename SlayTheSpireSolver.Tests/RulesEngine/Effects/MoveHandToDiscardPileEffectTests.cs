@@ -32,6 +32,7 @@ public class MoveHandToDiscardPileEffectTests
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Defend())
         };
+        Assert.AreEqual(expectedGameState, result);
     }
 
     [Test]
