@@ -12,7 +12,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class AttackPlayerEffectTests
 {
     [Test]
-    public void Test2()
+    public void DamagesPlayer()
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
