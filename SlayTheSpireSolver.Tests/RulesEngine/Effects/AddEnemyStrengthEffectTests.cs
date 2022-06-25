@@ -38,11 +38,7 @@ public class AddEnemyStrengthEffectTests
         var otherEnemyId = EnemyId.New();
         var gameState = new GameState
         {
-            EnemyParty = new[]
-            {
-                new JawWorm { Id = targetId },
-                new JawWorm { Id = otherEnemyId }
-            }
+            EnemyParty = new[] { new JawWorm { Id = targetId }, new JawWorm { Id = otherEnemyId } }
         };
         var effect = new AddEnemyStrengthEffect(targetId, 5);
         var result = effect.Resolve(gameState).SingleResolvedGameState();
