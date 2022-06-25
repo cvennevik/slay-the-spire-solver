@@ -23,7 +23,8 @@ public class EndTurnEffectTests
             new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect(),
             new ResolveAllEnemyMovesEffect(),
-            new ClearAllEnemyArmorEffect());
+            new ClearAllEnemyArmorEffect(),
+            new MoveHandToDiscardPileEffect());
         var expectedResult = new GameStateWithEffectStack(gameState, expectedEffectStack);
         Assert.AreEqual(expectedResult, newGameStateWithEffectStack);
     }

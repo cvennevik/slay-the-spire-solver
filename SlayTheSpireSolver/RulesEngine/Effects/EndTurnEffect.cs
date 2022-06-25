@@ -15,7 +15,8 @@ public record EndTurnEffect : IEffect
                 new RecoverBaseEnergyEffect(),
                 new IncrementTurnEffect(),
                 new ResolveAllEnemyMovesEffect(),
-                new ClearAllEnemyArmorEffect()))
+                new ClearAllEnemyArmorEffect(),
+                new MoveHandToDiscardPileEffect()))
         };
     }
 }
