@@ -34,6 +34,7 @@ public record DrawCardEffect : IEffect
                 var probability = new Probability(fractionOfDrawPile);
                 results.Add(new ResolvableGameStatePossibility(newGameState, probability));
             }
+
             return gameState.DrawPile.Cards.Select(card => gameState with
             {
                 Hand = gameState.Hand.Add(card), DrawPile = gameState.DrawPile.Remove(card)
