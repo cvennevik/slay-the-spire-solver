@@ -63,7 +63,7 @@ public class ActionWithEffectStackTests
         {
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
-        var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
+        var effectStack = new EffectStack(new DrawCardEffect());
         var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
     }
 
