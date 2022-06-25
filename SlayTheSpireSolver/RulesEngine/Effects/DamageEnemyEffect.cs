@@ -18,7 +18,7 @@ public record DamageEnemyEffect : IEffect
     {
         if (!gameState.EnemyParty.Has(_target))
         {
-            return new[] { gameState.AsResolvable() };
+            return gameState;
         }
 
         var newGameState = new GameState
