@@ -1,3 +1,5 @@
+using SlayTheSpireSolver.RulesEngine.Values;
+
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record ResolvableGameStatePossibility();
+public record ResolvableGameStatePossibility(ResolvableGameState ResolvableGameState, Probability Probability);
