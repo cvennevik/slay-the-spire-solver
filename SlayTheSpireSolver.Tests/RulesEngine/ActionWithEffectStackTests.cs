@@ -15,7 +15,7 @@ public class ActionWithEffectStackTests
     [Test]
     public void ResolvesZeroEffects()
     {
-        var actionWithEffectStack = new ActionWithEffectStack(new GameState(), new EffectStack());
+        var actionWithEffectStack = new Action(new GameState(), new EffectStack());
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         Assert.AreEqual(new GameState(), resolvedState);
     }
@@ -25,7 +25,7 @@ public class ActionWithEffectStackTests
     {
         var gameState = new GameState { PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5));
-        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var actionWithEffectStack = new Action(gameState, effectStack);
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         Assert.AreEqual(new GameState { PlayerArmor = 5 }, resolvedState);
     }
@@ -35,7 +35,7 @@ public class ActionWithEffectStackTests
     {
         var gameState = new GameState { Energy = 2, PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5), new RemoveEnergyEffect(1));
-        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var actionWithEffectStack = new Action(gameState, effectStack);
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
     }
@@ -50,7 +50,7 @@ public class ActionWithEffectStackTests
                 new JawWorm { IntendedMove = new Chomp() })
         };
         var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
-        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var actionWithEffectStack = new Action(gameState, effectStack);
         var resolvedState = actionWithEffectStack.ResolveToPossibleStates().Single();
         var expectedGameState = gameState with { PlayerHealth = 6 };
         Assert.AreEqual(expectedGameState, resolvedState);
@@ -64,7 +64,7 @@ public class ActionWithEffectStackTests
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
         var effectStack = new EffectStack(new DrawCardEffect());
-        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var actionWithEffectStack = new Action(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
         var expectedResult1 = new GameState
         {
@@ -89,7 +89,7 @@ public class ActionWithEffectStackTests
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
-        var actionWithEffectStack = new ActionWithEffectStack(gameState, effectStack);
+        var actionWithEffectStack = new Action(gameState, effectStack);
         var result = actionWithEffectStack.ResolveToPossibleStates();
         var expectedResult1 = new GameState
         {
@@ -113,13 +113,13 @@ public class ActionWithEffectStackTests
         var gameState2 = new GameState { Turn = 2 };
         var effectStack1 = new EffectStack(new RemoveEnergyEffect(1));
         var effectStack2 = new EffectStack(new RemoveEnergyEffect(2));
-        Assert.AreEqual(new ActionWithEffectStack(gameState1, effectStack1),
-            new ActionWithEffectStack(gameState1, effectStack1));
-        Assert.AreEqual(new ActionWithEffectStack(gameState2, effectStack2),
-            new ActionWithEffectStack(gameState2, effectStack2));
-        Assert.AreNotEqual(new ActionWithEffectStack(gameState1, effectStack1),
-            new ActionWithEffectStack(gameState1, effectStack2));
-        Assert.AreNotEqual(new ActionWithEffectStack(gameState1, effectStack1),
-            new ActionWithEffectStack(gameState2, effectStack1));
+        Assert.AreEqual(new Action(gameState1, effectStack1),
+            new Action(gameState1, effectStack1));
+        Assert.AreEqual(new Action(gameState2, effectStack2),
+            new Action(gameState2, effectStack2));
+        Assert.AreNotEqual(new Action(gameState1, effectStack1),
+            new Action(gameState1, effectStack2));
+        Assert.AreNotEqual(new Action(gameState1, effectStack1),
+            new Action(gameState2, effectStack1));
     }
 }

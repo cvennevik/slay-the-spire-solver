@@ -21,7 +21,7 @@ public class SolverTests
             EnemyParty = new EnemyParty(new JawWorm()),
         };
         var bestAction = Solver.GetBestAction(gameState);
-        Assert.AreEqual(new ActionWithEffectStack(gameState, new EndTurnEffect()), bestAction);
+        Assert.AreEqual(new Action(gameState, new EndTurnEffect()), bestAction);
     }
 
     [Test]
@@ -36,7 +36,7 @@ public class SolverTests
         };
         var bestAction = Solver.GetBestAction(gameState);
         var strike = new Strike();
-        var playStrikeAction = new ActionWithEffectStack(gameState, new EffectStack(
+        var playStrikeAction = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(strike),
             strike.GetEffect(gameState),
             new RemoveCardFromHandEffect(strike),

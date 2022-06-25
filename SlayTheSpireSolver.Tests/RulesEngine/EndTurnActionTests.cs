@@ -7,6 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
+using Action = SlayTheSpireSolver.RulesEngine.Action;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
@@ -24,7 +25,7 @@ public class EndTurnActionTests
                 PlayerHealth = 50,
                 EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() })
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Health(38), resolvedStates.Single().PlayerHealth);
         }
@@ -36,7 +37,7 @@ public class EndTurnActionTests
             {
                 EnemyParty = new EnemyParty(new JawWorm { Armor = 10 })
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Armor(0), resolvedStates.Single().EnemyParty.First().Armor);
         }
@@ -47,7 +48,7 @@ public class EndTurnActionTests
         public void TurnNumberIncreases(int initialTurn, int expectedTurn)
         {
             var gameState = CreateBasicGameState() with { Turn = initialTurn };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Turn(expectedTurn), resolvedStates.Single().Turn);
         }
@@ -61,7 +62,7 @@ public class EndTurnActionTests
                 DiscardPile = new DiscardPile(),
                 DrawPile = new DrawPile()
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Hand(new Strike(), new Defend()), resolvedStates.Single().Hand);
             Assert.AreEqual(new DiscardPile(), resolvedStates.Single().DiscardPile);
@@ -78,7 +79,7 @@ public class EndTurnActionTests
                 DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                     new Strike(), new Strike(), new Strike())
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Hand(new Strike(), new Strike(), new Strike(), new Strike(), new Strike()),
                 resolvedStates.Single().Hand);
@@ -95,7 +96,7 @@ public class EndTurnActionTests
                 DiscardPile = new DiscardPile(),
                 DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike())
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(2, resolvedStates.Count);
             Assert.AreEqual(1, resolvedStates.Count(x =>
@@ -116,7 +117,7 @@ public class EndTurnActionTests
                 BaseEnergy = 4,
                 Energy = 0
             };
-            var endTurnAction = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var endTurnAction = new Action(gameState, new EndTurnEffect());
             var resolvedStates = endTurnAction.ResolveToPossibleStates();
             Assert.AreEqual(new Energy(4), resolvedStates.Single().Energy);
         }
@@ -129,24 +130,24 @@ public class EndTurnActionTests
         public void TestEquality1()
         {
             var gameState = CreateBasicGameState();
-            var action1 = new ActionWithEffectStack(gameState, new EndTurnEffect());
-            var action2 = new ActionWithEffectStack(gameState, new EndTurnEffect());
+            var action1 = new Action(gameState, new EndTurnEffect());
+            var action2 = new Action(gameState, new EndTurnEffect());
             Assert.AreEqual(action1, action2);
         }
 
         [Test]
         public void TestEquality2()
         {
-            var action1 = new ActionWithEffectStack(CreateBasicGameState(), new EndTurnEffect());
-            var action2 = new ActionWithEffectStack(CreateBasicGameState(), new EndTurnEffect());
+            var action1 = new Action(CreateBasicGameState(), new EndTurnEffect());
+            var action2 = new Action(CreateBasicGameState(), new EndTurnEffect());
             Assert.AreEqual(action1, action2);
         }
 
         [Test]
         public void TestEquality3()
         {
-            var action1 = new ActionWithEffectStack(CreateBasicGameState(), new EndTurnEffect());
-            var action2 = new ActionWithEffectStack(CreateBasicGameState() with { Turn = 2 }, new EndTurnEffect());
+            var action1 = new Action(CreateBasicGameState(), new EndTurnEffect());
+            var action2 = new Action(CreateBasicGameState() with { Turn = 2 }, new EndTurnEffect());
             Assert.AreNotEqual(action1, action2);
         }
     }

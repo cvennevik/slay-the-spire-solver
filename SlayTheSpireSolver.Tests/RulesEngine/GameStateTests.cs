@@ -42,19 +42,19 @@ public class GameStateTests
         {
             var gameState = CreateBasicGameState();
             var strike = new Strike();
-            var playStrikeAction = new ActionWithEffectStack(gameState, new EffectStack(
+            var playStrikeAction = new Action(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(strike),
                 strike.GetEffect(gameState),
                 new RemoveCardFromHandEffect(strike),
                 new RemoveEnergyEffect(strike.GetCost())));
-            AssertLegalActions(gameState, playStrikeAction, new ActionWithEffectStack(gameState, new EndTurnEffect()));
+            AssertLegalActions(gameState, playStrikeAction, new Action(gameState, new EndTurnEffect()));
         }
 
         [Test]
         public void EmptyHand()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            AssertLegalActions(gameState, new ActionWithEffectStack(gameState, new EndTurnEffect()));
+            AssertLegalActions(gameState, new Action(gameState, new EndTurnEffect()));
         }
 
         [Test]

@@ -7,6 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
+using Action = SlayTheSpireSolver.RulesEngine.Action;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
 
@@ -61,7 +62,7 @@ public class CommonCardTests<TCard> where TCard : Card, new()
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new ActionWithEffectStack(BasicGameState, new EffectStack(
+        var expectedAction = new Action(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
             Card.GetEffect(BasicGameState),
             new RemoveCardFromHandEffect(Card),
