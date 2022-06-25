@@ -1,5 +1,4 @@
 ﻿using SlayTheSpireSolver.RulesEngine.Effects;
-using SlayTheSpireSolver.RulesEngine.GameStateExtensions;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
