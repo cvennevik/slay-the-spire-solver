@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
+public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>, IEquatable<ResolvableGameStateSet>
 {
     private readonly List<ResolvableGameState> _resolvableGameStates;
 
@@ -34,8 +34,13 @@ public class ResolvableGameStateSet : IEnumerable<ResolvableGameState>
                _resolvableGameStates.All(x => otherSet.Contains(x));
     }
 
+    bool IEquatable<ResolvableGameStateSet>.Equals(ResolvableGameStateSet? other)
+    {
+        return Equals(other);
+    }
+
     public override int GetHashCode()
     {
-        return 0;
+        return _resolvableGameStates.GetHashCode();
     }
 }
