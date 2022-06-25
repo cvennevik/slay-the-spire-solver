@@ -17,10 +17,4 @@ public record EndTurnAction : ActionWithEffectStack
 
         GameState = gameState;
     }
-
-    public IReadOnlyList<GameState> ResolveToPossibleStates()
-    {
-        var actionWithEffectStack = new ActionWithEffectStack(GameState, new EffectStack(new EndTurnEffect()));
-        return actionWithEffectStack.ResolveToPossibleStates();
-    }
 }
