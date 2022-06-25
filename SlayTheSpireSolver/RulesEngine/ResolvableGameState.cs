@@ -21,7 +21,7 @@ public record ResolvableGameState
 
     public IReadOnlyList<GameStatePossibility> Resolve()
     {
-        return ResolveEffects(new ResolvableGameState(GameState, EffectStack))
+        return ResolveEffects(this)
             .Select(gameState => new GameStatePossibility(gameState, new Probability(1)))
             .ToArray();
     }
