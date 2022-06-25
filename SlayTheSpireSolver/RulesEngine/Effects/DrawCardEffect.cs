@@ -20,7 +20,11 @@ public record DrawCardEffect : IEffect
                     }).ToArray();
             }
 
-            if (!gameState.DiscardPile.Cards.Any()) return new[] { gameState };
+            if (!gameState.DiscardPile.Cards.Any())
+            {
+                return new[] { gameState };
+            }
+
             gameState = ShuffleDiscardPileIntoDrawPile(gameState);
         }
     }
