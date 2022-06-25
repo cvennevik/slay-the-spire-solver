@@ -37,7 +37,7 @@ public record ResolvableGameState
     private ResolvablePossibilitySet ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
-        return effect.ResolveWithBaseEffectStack(GameState, remainingEffectStack).ToArray();
+        return effect.ResolveWithBaseEffectStack(GameState, remainingEffectStack);
     }
 
     public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
