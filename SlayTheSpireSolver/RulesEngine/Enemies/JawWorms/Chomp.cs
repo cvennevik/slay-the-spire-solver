@@ -21,6 +21,6 @@ public record Chomp : IJawWormMove
 
     public EffectStack GetEffects(Enemy enemy)
     {
-        return new EffectStack(new DamagePlayerEffect(12));
+        return new EffectStack(new AttackPlayerEffect(enemy.Id, 12));
     }
 }
