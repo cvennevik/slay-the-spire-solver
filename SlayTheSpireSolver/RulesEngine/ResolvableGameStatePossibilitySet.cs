@@ -6,12 +6,12 @@ public class ResolvableGameStatePossibilitySet : IEnumerable<ResolvableGameState
 {
     private readonly List<ResolvableGameState> _possibilities;
 
-    public ResolvableGameStatePossibilitySet(params ResolvableGameState[] resolvableGameStates)
+    public ResolvableGameStatePossibilitySet(ResolvableGameState[] resolvableGameStates)
     {
         _possibilities = new List<ResolvableGameState>(resolvableGameStates.Distinct());
     }
 
-    public ResolvableGameStatePossibilitySet(IEnumerable<ResolvableGameStatePossibility> possibilities)
+    public ResolvableGameStatePossibilitySet(params ResolvableGameStatePossibility[] possibilities)
     {
         _possibilities = possibilities.Select(x => x.ResolvableGameState).Distinct().ToList();
     }
