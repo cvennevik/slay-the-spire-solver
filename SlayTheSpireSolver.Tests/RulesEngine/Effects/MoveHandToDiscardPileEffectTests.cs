@@ -18,6 +18,12 @@ public class MoveHandToDiscardPileEffectTests
     }
 
     [Test]
+    public void PutsCardsInHandInEmptyDiscardPile()
+    {
+        
+    }
+
+    [Test]
     public void TestEquality()
     {
         Assert.AreEqual(new MoveHandToDiscardPileEffect(), new MoveHandToDiscardPileEffect());
