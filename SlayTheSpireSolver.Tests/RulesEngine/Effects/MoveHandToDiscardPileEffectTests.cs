@@ -20,7 +20,11 @@ public class MoveHandToDiscardPileEffectTests
     [Test]
     public void PutsCardsInHandInEmptyDiscardPile()
     {
-        
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike(), new Strike(), new Defend()),
+            DiscardPile = new DiscardPile()
+        };
     }
 
     [Test]
