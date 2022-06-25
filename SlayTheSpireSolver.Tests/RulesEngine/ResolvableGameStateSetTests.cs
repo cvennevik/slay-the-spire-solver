@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
@@ -8,6 +9,6 @@ public class ResolvableGameStateSetTests
     [Test]
     public void TestEquality()
     {
-        
+        Assert.AreEqual(new ResolvableGameStateSet(), new ResolvableGameStateSet());
     }
 }
