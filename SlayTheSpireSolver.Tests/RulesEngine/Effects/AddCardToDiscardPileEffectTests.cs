@@ -13,7 +13,7 @@ public class AddCardToDiscardPileEffectTests
     {
         var gameState = new GameState { DiscardPile = new DiscardPile() };
         var effect = new AddCardToDiscardPileEffect(new Strike());
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         Assert.AreEqual(new GameState { DiscardPile = new DiscardPile(new Strike()) }, result);
     }
 
@@ -25,7 +25,7 @@ public class AddCardToDiscardPileEffectTests
             DiscardPile = new DiscardPile(new Strike(), new Defend())
         };
         var effect = new AddCardToDiscardPileEffect(new Strike());
-        var resultingGameState = effect.Resolve(gameState).SingleResolvedGameState();
+        var resultingGameState = effect.Resolve(gameState).AsSingleStableGameState();
         var expectedGameState = new GameState
         {
             DiscardPile = new DiscardPile(new Strike(), new Defend(), new Strike())

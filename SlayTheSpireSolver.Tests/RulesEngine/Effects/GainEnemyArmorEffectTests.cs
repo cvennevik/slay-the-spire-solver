@@ -15,7 +15,7 @@ public class GainEnemyArmorEffectTests
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 5 }) };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -25,7 +25,7 @@ public class GainEnemyArmorEffectTests
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -41,7 +41,7 @@ public class GainEnemyArmorEffectTests
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId },
                 new JawWorm { Id = otherEnemyId })
         };
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId, Armor = new Armor(5) },
@@ -55,7 +55,7 @@ public class GainEnemyArmorEffectTests
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, 1);
         var gameState = new GameState { Turn = 2 };
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -64,7 +64,7 @@ public class GainEnemyArmorEffectTests
     {
         var effect = new GainEnemyArmorEffect(EnemyId.Default, 5);
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }) };
-        var result = effect.Resolve(gameState).SingleResolvedGameState();
+        var result = effect.Resolve(gameState).AsSingleStableGameState();
         Assert.AreEqual(gameState, result);
     }
 
