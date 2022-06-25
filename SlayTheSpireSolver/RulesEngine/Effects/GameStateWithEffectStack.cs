@@ -16,6 +16,5 @@ public record GameStateWithEffectStack
         EffectStack = effectStack;
     }
 
-    public static implicit operator GameStateWithEffectStack(GameState gameState) =>
-        new GameStateWithEffectStack(gameState);
+    public static implicit operator GameStateWithEffectStack(GameState gameState) => new(gameState);
 }
