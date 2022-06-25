@@ -80,7 +80,7 @@ public class ActionTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
-        Assert.AreEqual(2, result.Count());
+        Assert.AreEqual(2, result.Count);
         Assert.Contains(expectedResult1.WithProbability(1),result.ToList());
         Assert.Contains(expectedResult2.WithProbability(1),result.ToList());
     }
@@ -105,7 +105,7 @@ public class ActionTests
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        Assert.AreEqual(2, result.Count());
+        Assert.AreEqual(2, result.Count);
         Assert.Contains(expectedResult1.WithProbability(1), result.ToList());
         Assert.Contains(expectedResult2.WithProbability(1), result.ToList());
     }
