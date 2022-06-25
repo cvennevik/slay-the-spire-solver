@@ -48,4 +48,9 @@ public record ResolvableGameState
     {
         return ResolveTopEffect(resolvableGameState.GameState, resolvableGameState.EffectStack);
     }
+
+    public ResolvableGameState WithProbability(Probability probability)
+    {
+        return this with { Probability = probability };
+    }
 }
