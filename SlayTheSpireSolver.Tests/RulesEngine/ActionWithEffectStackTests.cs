@@ -101,6 +101,7 @@ public class ActionWithEffectStackTests
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
+        Assert.AreEqual(2, result.Count);
     }
 
     [Test]
