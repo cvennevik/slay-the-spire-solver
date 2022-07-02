@@ -42,6 +42,7 @@ public class ApplyToAllEnemiesEffectTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new ResolveAllEnemyMovesEffect(), new ResolveAllEnemyMovesEffect());
+        Assert.AreEqual(new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>(),
+            new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>());
     }
 }
