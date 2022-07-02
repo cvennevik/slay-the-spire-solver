@@ -53,7 +53,7 @@ public class EndTurnEffectTests
         };
         var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
         Assert.IsNotEmpty(result);
-        Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.00001);
+        Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.000000001);
     }
 
     [Test]
