@@ -20,7 +20,7 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
         return ResolveTopEffect()
             .SelectMany(x => x.Resolve())
             .GroupBy(x => x.GameState)
-            .Select(grouping => new Possibility(grouping.Key, grouping.Sum(x => x.Probability.Value)))
+            .Select(grouping => new Possibility(grouping.Key, grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
             .ToList();
     }
 
