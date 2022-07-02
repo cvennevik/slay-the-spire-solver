@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies;
 
@@ -8,6 +9,6 @@ public class JawWormTests
     [Test]
     public void Test()
     {
-        
+        var jawWorm = new JawWorm();
     }
 }
