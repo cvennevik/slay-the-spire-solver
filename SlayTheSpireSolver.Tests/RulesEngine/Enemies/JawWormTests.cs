@@ -22,9 +22,10 @@ public class JawWormTests
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
-        var expectedResult = new[]
+        var expectedResult = new (IEnemyMove, Probability)[]
         {
-            (new Chomp(), new Probability(0.25))
+            (new Chomp(), new Probability(0.25)),
+            (new Thrash(), new Probability(0.3))
         };
     }
 }
