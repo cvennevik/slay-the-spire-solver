@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyMoveHistory
 {
-    public int Count => _moves.Length;
+    public int Length => _moves.Length;
     private readonly IEnemyMove[] _moves;
 
     public EnemyMoveHistory(params IEnemyMove[] moves)
