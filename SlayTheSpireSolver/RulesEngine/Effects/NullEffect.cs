@@ -1,8 +1,8 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct NullEffect : IEffect
+public record NullEffect : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState;
     }
