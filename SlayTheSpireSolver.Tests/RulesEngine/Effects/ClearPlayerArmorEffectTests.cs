@@ -19,10 +19,10 @@ public class ClearPlayerArmorEffectTests
     [Test]
     public void ClearsPlayerArmor()
     {
-        var gameState = new GameState {PlayerArmor = 5};
+        var gameState = new GameState {PlayerArmor = 5, Turn = 3};
         var effect = new ClearPlayerArmorEffect();
         var result = effect.Resolve(gameState).SingleResolvedState();
-        Assert.AreEqual(new GameState {PlayerArmor = 0}, result);
+        Assert.AreEqual(gameState with {PlayerArmor = 0}, result);
     }
 
     [Test]
