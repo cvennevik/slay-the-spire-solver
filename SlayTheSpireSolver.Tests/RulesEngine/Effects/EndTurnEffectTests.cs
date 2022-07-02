@@ -2,6 +2,7 @@ using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
@@ -32,7 +33,7 @@ public class EndTurnEffectTests
     }
 
     [Test]
-    public void TestFullResolution()
+    public void TestResolvingFully()
     {
         var gameState = new GameState
         {
@@ -42,8 +43,8 @@ public class EndTurnEffectTests
             PlayerArmor = 15,
             EnemyParty = new[]
             {
-                new JawWorm { IntendedMove = new Chomp() },
-                new JawWorm { IntendedMove = new Thrash() }
+                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
+                new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() }
             },
             Hand = new Hand(new Strike(), new Defend()),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
