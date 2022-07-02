@@ -28,5 +28,6 @@ public class JawWormTests
             (new Thrash(), new Probability(0.3)),
             (new Bellow(), new Probability(0.45))
         };
+        Assert.AreEqual(3, nextPossibleMoves.Count);
     }
 }
