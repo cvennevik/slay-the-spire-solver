@@ -17,14 +17,13 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
         }
 
-        IEnemyMove thrash = new Thrash();
         if (PreviousMoves[^1] is Bellow)
         {
             const double remainingProbability = 1 - BellowProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (thrash, ThrashProbability / remainingProbability),
-                (chomp: new Chomp(), ChompProbability / remainingProbability)
+                (new Thrash(), ThrashProbability / remainingProbability),
+                (new Chomp(), ChompProbability / remainingProbability)
             };
         }
 
@@ -35,7 +34,7 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[]
             {
                 (bellow, BellowProbability / remainingProbability),
-                (thrash, ThrashProbability / remainingProbability)
+                (thrash: new Thrash(), ThrashProbability / remainingProbability)
             };
         }
 
