@@ -2,12 +2,12 @@ namespace SlayTheSpireSolver.RulesEngine.Debuffs;
 
 public record Vulnerable
 {
-    private readonly int Duration;
+    private readonly int _duration;
 
     public Vulnerable(int duration)
     {
         if (duration < 0) throw new ArgumentOutOfRangeException(nameof(duration));
-        Duration = duration;
+        _duration = duration;
     }
 
     public static implicit operator Vulnerable(int duration) =>
@@ -15,6 +15,6 @@ public record Vulnerable
 
     public Vulnerable Decrease()
     {
-        return new Vulnerable(Duration - 1);
+        return new Vulnerable(_duration - 1);
     }
 }
