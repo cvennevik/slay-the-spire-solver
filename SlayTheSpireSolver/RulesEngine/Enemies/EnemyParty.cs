@@ -11,6 +11,10 @@ public class EnemyParty : IEnumerable<Enemy>
     public EnemyParty(params Enemy[] enemies)
     {
         var uniqueIds = enemies.Select(x => x.Id).Distinct();
+        if (uniqueIds.Count() != enemies.Length)
+        {
+            throw new ArgumentException();
+        }
 
         _enemies = enemies;
     }
