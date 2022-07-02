@@ -8,6 +8,7 @@ public record JawWorm : Enemy
 
     private const double BaseChompProbability = 0.25;
     private const double BaseThrashProbability = 0.3;
+    private const double BaseBellowProbability = 0.45;
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
