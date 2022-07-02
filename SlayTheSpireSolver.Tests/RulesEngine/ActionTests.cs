@@ -103,6 +103,7 @@ public class ActionTests
             Hand = new Hand(new Strike(), new Strike()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
+        var expectedPossibility1 = new Possibility(expectedResult1, 0.6);
         var expectedResult2 = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
