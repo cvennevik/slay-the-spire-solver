@@ -4,16 +4,16 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public abstract record TargetEnemyEffect : IEffect
 {
-    public EnemyId Target { get; init; }
+    public EnemyId Target { get; init; } = EnemyId.Default;
 
     public TargetEnemyEffect()
     {
         
     }
     
-    public TargetEnemyEffect(EnemyId Target)
+    public TargetEnemyEffect(EnemyId target)
     {
-        this.Target = Target;
+        Target = target;
     }
 
     public abstract ResolvablePossibilitySet Resolve(GameState gameState);
