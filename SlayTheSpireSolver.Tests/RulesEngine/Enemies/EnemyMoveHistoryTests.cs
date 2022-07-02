@@ -13,4 +13,12 @@ public class EnemyMoveHistoryTests
         var enemyMoveHistory2 = new EnemyMoveHistory();
         Assert.AreEqual(enemyMoveHistory1, enemyMoveHistory2);
     }
+
+    [Test]
+    public void SingleMoveHistoriesAreEqual()
+    {
+        var enemyMoveHistory1 = new EnemyMoveHistory();
+        var enemyMoveHistory2 = new EnemyMoveHistory();
+        Assert.AreEqual(enemyMoveHistory1, enemyMoveHistory2);
+    }
 }
