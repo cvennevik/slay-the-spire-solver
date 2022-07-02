@@ -19,7 +19,8 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
 
         return ResolveTopEffect()
             .SelectMany(x => x.Resolve())
-            .Distinct()
+            .GroupBy(x => x.GameState)
+            .Select(grouping => new Possibility(grouping.Key, grouping.Sum(x => x.Probability.Value)))
             .ToList();
     }
 
