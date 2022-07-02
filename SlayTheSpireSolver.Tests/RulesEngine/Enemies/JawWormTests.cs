@@ -25,7 +25,8 @@ public class JawWormTests
         var expectedResult = new (IEnemyMove, Probability)[]
         {
             (new Chomp(), new Probability(0.25)),
-            (new Thrash(), new Probability(0.3))
+            (new Thrash(), new Probability(0.3)),
+            (new Bellow(), new Probability(0.45))
         };
     }
 }
