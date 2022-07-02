@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 public record ResolveEnemyMoveEffect : TargetEnemyEffect
 {
     public ResolveEnemyMoveEffect() { }
-    public ResolveEnemyMoveEffect(EnemyId Target) : base(Target) { }
+    public ResolveEnemyMoveEffect(EnemyId target) : base(target) { }
 
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
