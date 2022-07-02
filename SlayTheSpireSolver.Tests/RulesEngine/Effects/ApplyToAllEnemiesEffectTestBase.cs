@@ -42,7 +42,6 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>(),
-            new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>());
+        Assert.AreEqual(new ApplyToAllEnemiesEffect<T>(), new ApplyToAllEnemiesEffect<T>());
     }
 }
