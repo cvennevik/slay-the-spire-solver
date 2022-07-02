@@ -24,4 +24,5 @@ public class EnemyMoveHistory : List<IEnemyMove>
     }
 
     public IEnemyMove this[int index] => _moves[index];
+    public int Count => _moves.Length;
 }
