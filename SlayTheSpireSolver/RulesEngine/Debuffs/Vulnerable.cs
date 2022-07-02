@@ -15,6 +15,6 @@ public record Vulnerable
 
     public Vulnerable Decrease()
     {
-        return _duration == 0 ? this : new Vulnerable(_duration - 1) ;
+        return _duration - 1;
     }
 }
