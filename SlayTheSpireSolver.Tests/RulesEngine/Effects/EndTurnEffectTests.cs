@@ -50,6 +50,7 @@ public class EndTurnEffectTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
         var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
+        Assert.IsNotEmpty(result);
     }
 
     [Test]
