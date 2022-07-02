@@ -113,7 +113,7 @@ public class ActionTests
         const double tolerance = 0.000000000000001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedPossibility1, tolerance)));
-        Assert.AreEqual(1, result.Count(x =>
+        Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedPossibility2, tolerance) &&
                 x.GameState == expectedResult2 && x.Probability.IsEqualTo(0.4, tolerance)));
     }
 
