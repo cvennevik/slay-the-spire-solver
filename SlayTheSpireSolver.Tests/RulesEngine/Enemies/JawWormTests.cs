@@ -21,5 +21,6 @@ public class JawWormTests
     public void PicksAnyMoveAfterChomp()
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
+        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
     }
 }
