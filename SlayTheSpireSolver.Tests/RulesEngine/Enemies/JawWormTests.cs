@@ -33,5 +33,6 @@ public class JawWormTests
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Bellow() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
+        Assert.AreEqual(2, nextPossibleMoves.Count);
     }
 }
