@@ -34,9 +34,9 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
         var enemy1 = new JawWorm { Id = EnemyId.New() };
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
-        var effect = new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>();
+        var effect = new ApplyToAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).SingleUnresolvedState();
-        Assert.AreEqual(gameState.WithEffects(new EffectStack(new ResolveEnemyMoveEffect(enemy2.Id), new ResolveEnemyMoveEffect(enemy1.Id))), result);
+        Assert.AreEqual(gameState.WithEffects(new EffectStack(new T { Target = enemy2.Id }, new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
 
     [Test]
