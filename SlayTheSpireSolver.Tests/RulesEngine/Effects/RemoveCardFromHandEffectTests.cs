@@ -31,13 +31,4 @@ public class RemoveCardFromHandEffectTests
         var effect = new RemoveCardFromHandEffect(new Strike());
         Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, effect.Resolve(gameState).SingleResolvedState());
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new RemoveCardFromHandEffect(new Strike()), new RemoveCardFromHandEffect(new Strike()));
-        Assert.AreEqual(new RemoveCardFromHandEffect(new Defend()), new RemoveCardFromHandEffect(new Defend()));
-        Assert.AreNotEqual(new RemoveCardFromHandEffect(new Strike()),
-            new RemoveCardFromHandEffect(new Defend()));
-    }
 }
