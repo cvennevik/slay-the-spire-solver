@@ -22,4 +22,12 @@ public class EnemyMoveHistoryTests
         var enemyMoveHistory2 = new EnemyMoveHistory(new Chomp());
         Assert.AreEqual(enemyMoveHistory1, enemyMoveHistory2);
     }
+
+    [Test]
+    public void SingleMoveHistoriesAreDifferent()
+    {
+        var enemyMoveHistory1 = new EnemyMoveHistory(new Chomp());
+        var enemyMoveHistory2 = new EnemyMoveHistory(new Bellow());
+        Assert.AreNotEqual(enemyMoveHistory1, enemyMoveHistory2);
+    }
 }
