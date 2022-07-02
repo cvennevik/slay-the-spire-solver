@@ -9,14 +9,12 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ResolveForAllEnemiesEffectTests
 {
     [TestFixture]
-    public class ResolveAllEnemyMoveEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect> { }
+    public class ResolveAllEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect> { }
 
     [TestFixture]
     public class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect> { }
 }
 
-[TestFixture(typeof(ResolveEnemyMoveEffect))]
-[TestFixture(typeof(ChooseNewEnemyMoveEffect))]
 public class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
 {
     [Test]
