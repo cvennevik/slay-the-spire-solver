@@ -2,9 +2,9 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record DrawCardEffect : IEffect
+public record DrawCardEffect : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {
