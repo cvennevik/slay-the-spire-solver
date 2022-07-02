@@ -13,7 +13,7 @@ public class EnemyParty : IEnumerable<Enemy>
         var uniqueIds = enemies.Select(x => x.Id).Distinct();
         if (uniqueIds.Count() != enemies.Length)
         {
-            throw new ArgumentException();
+            throw new ArgumentException("Not all enemy IDs are unique");
         }
 
         _enemies = enemies;
