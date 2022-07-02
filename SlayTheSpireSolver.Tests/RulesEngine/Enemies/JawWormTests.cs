@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -19,6 +20,6 @@ public class JawWormTests
     [Test]
     public void PicksAnyMoveAfterChomp()
     {
-        var jawWorm = new JawWorm();
+        var jawWorm = new JawWorm { PreviousMoves = new EnemyMoveHistory(new Chomp()) };
     }
 }
