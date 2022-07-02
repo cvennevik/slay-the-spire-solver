@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
@@ -10,5 +11,6 @@ public class ClearPlayerArmorEffectTests
     public void Test()
     {
         var gameState = new GameState();
+        var effect = new ClearPlayerArmorEffect();
     }
 }
