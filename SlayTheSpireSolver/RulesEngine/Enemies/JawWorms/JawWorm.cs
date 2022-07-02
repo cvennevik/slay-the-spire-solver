@@ -37,7 +37,7 @@ public record JawWorm : Enemy
             };
         }
 
-        if (PreviousMoves.Count >= 2)
+        if (PreviousMoves.Count >= 2 && PreviousMoves[^1] is Thrash && PreviousMoves[^2] is Thrash)
         {
             
         }
