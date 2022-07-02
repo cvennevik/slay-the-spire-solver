@@ -1,8 +1,8 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ClearPlayerArmorEffect : IEffect
+public record ClearPlayerArmorEffect : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with {PlayerArmor = 0};
     }
