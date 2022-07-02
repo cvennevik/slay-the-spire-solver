@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies;
 
@@ -17,8 +18,8 @@ public class EnemyMoveHistoryTests
     [Test]
     public void SingleMoveHistoriesAreEqual()
     {
-        var enemyMoveHistory1 = new EnemyMoveHistory();
-        var enemyMoveHistory2 = new EnemyMoveHistory();
+        var enemyMoveHistory1 = new EnemyMoveHistory(new Chomp());
+        var enemyMoveHistory2 = new EnemyMoveHistory(new Chomp());
         Assert.AreEqual(enemyMoveHistory1, enemyMoveHistory2);
     }
 }
