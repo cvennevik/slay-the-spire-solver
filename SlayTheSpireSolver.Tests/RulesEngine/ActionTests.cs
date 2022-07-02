@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
@@ -7,6 +8,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 using SlayTheSpireSolver.Tests.RulesEngine.Effects;
+using Action = SlayTheSpireSolver.RulesEngine.Action;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
 
@@ -107,7 +109,7 @@ public class ActionTests
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
         Assert.AreEqual(2, result.Count);
-        Assert.AreEqual(1, result.Count(x => x.GameState == expectedResult1));
+        Assert.AreEqual(1, result.Count(x => x.GameState == expectedResult1 && Math.Abs(x.Probability.Value - 0.6) < 0.00001));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedResult2));
         // TODO: FIX
         // Assert.Contains(expectedResult1.WithProbability(1), result.ToList());
