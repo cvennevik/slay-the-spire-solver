@@ -8,7 +8,7 @@ public record JawWorm : Enemy
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
-        throw new NotImplementedException();
+        return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
     }
 
     protected override IEnemyMove GetIntendedMove() => IntendedMove;
