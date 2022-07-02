@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -52,6 +53,7 @@ public class EndTurnEffectTests
         };
         var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
         Assert.IsNotEmpty(result);
+        Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.00001);
     }
 
     [Test]
