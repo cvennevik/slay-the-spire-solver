@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Debuffs;
 
 public record Vulnerable
 {
-    public int Duration { get; }
+    private int Duration { get; }
 
     public Vulnerable(int duration)
     {
