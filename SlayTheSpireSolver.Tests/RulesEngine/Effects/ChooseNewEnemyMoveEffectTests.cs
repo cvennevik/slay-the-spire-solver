@@ -31,5 +31,6 @@ public class ChooseNewEnemyMoveEffectTests
             (gameState with { EnemyParty = new[] { bellowEnemy } }).WithProbability(0.45 / 0.75),
             (gameState with { EnemyParty = new[] { thrashEnemy } }).WithProbability(0.3 / 0.75)
         };
+        Assert.That(result, Is.EquivalentTo(expectedPossibilities));
     }
 }
