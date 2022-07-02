@@ -98,12 +98,12 @@ public class ActionTests
         var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
-            DrawPile = new DrawPile(new Defend())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         };
         var expectedResult2 = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
-            DrawPile = new DrawPile(new Strike())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
         Assert.AreEqual(2, result.Count);
         // TODO: FIX
