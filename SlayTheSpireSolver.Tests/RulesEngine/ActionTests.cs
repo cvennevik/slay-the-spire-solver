@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
@@ -6,8 +5,6 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
-using SlayTheSpireSolver.RulesEngine.Values;
-using SlayTheSpireSolver.Tests.RulesEngine.Effects;
 using Action = SlayTheSpireSolver.RulesEngine.Action;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine;
