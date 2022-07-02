@@ -1,8 +1,9 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ApplyVulnerableToEnemyEffect : Effect
+public record ApplyVulnerableToEnemyEffect(EnemyId Default) : TargetEnemyEffect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
@@ -18,6 +19,6 @@ internal class ApplyVulnerableToEnemyEffectTests
     public void Test()
     {
         var gameState = new GameState();
-        var effect = new ApplyVulnerableToEnemyEffect();
+        var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
     }
 }
