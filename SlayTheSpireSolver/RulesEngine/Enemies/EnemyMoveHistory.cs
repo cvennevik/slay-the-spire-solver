@@ -22,4 +22,6 @@ public class EnemyMoveHistory : List<IEnemyMove>
     {
         return 0;
     }
+
+    public IEnemyMove this[int index] => _moves[index];
 }
