@@ -113,7 +113,7 @@ public class ActionTests
         Assert.AreEqual(1, result.Count(x =>
                 x.GameState == expectedResult1 && x.Probability.IsEqualTo(0.6, tolerance)));
         Assert.AreEqual(1, result.Count(x =>
-                x.GameState == expectedResult2 && Math.Abs(x.Probability.Value - 0.4) < tolerance));
+                x.GameState == expectedResult2 && x.Probability.IsEqualTo(0.4, tolerance)));
     }
 
     [Test]
