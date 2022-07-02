@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct GainPlayerArmorEffect : IEffect
+public record GainPlayerArmorEffect : Effect
 {
     private readonly Armor _armorGain;
 
@@ -11,7 +11,7 @@ public readonly record struct GainPlayerArmorEffect : IEffect
         _armorGain = armorGain;
     }
 
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain };
     }
