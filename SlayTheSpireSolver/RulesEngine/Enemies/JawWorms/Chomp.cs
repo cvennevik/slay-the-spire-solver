@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
-public record Chomp : IJawWormMove
+public record Chomp : IEnemyMove
 {
     private static readonly Damage BaseDamage = new(12);
 

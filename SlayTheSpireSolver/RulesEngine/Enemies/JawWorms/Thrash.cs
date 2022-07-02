@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
-public record Thrash : IJawWormMove
+public record Thrash : IEnemyMove
 {
     private static readonly Damage BaseDamage = 7;
     private static readonly Armor ArmorGain = 5;
