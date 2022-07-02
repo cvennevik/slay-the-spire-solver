@@ -88,7 +88,7 @@ public class ActionTests
     }
 
     [Test]
-    public void ResolvesMultipleEffectWithMultipleOutcomes()
+    public void ResolvesMultipleEffectsWithMultipleOutcomes()
     {
         var gameState = new GameState
         {
