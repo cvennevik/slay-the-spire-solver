@@ -9,4 +9,7 @@ public record Vulnerable
         if (duration < 0) throw new ArgumentOutOfRangeException(nameof(duration));
         Duration = duration;
     }
+
+    public static implicit operator Vulnerable(int duration) =>
+        duration > 0 ? new Vulnerable(duration) : new Vulnerable(0);
 }
