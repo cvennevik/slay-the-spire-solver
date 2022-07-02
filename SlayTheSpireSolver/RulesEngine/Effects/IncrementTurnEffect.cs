@@ -1,8 +1,8 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record IncrementTurnEffect : IEffect
+public record IncrementTurnEffect : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Turn = gameState.Turn.Number + 1 };
     }
