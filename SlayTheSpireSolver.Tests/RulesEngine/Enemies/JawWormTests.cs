@@ -10,5 +10,6 @@ public class JawWormTests
     public void Test()
     {
         var jawWorm = new JawWorm();
+        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
     }
 }
