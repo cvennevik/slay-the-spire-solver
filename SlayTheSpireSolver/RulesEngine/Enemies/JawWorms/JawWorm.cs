@@ -31,7 +31,7 @@ public record JawWorm : Enemy
         {
             (new Bellow(), new Probability(BellowProbability)),
             (new Thrash(), new Probability(ThrashProbability)),
-            (new Chomp(), new Probability(ChompProbability))
+            (new Chomp(), ChompProbability)
         };
     }
 
