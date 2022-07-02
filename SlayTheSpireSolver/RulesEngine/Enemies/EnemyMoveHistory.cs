@@ -18,7 +18,7 @@ public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
 
     public override bool Equals(object? obj)
     {
-        return obj is EnemyMoveHistory otherHistory && this._moves.SequenceEqual(otherHistory._moves);
+        return obj is EnemyMoveHistory otherHistory && this.SequenceEqual(otherHistory);
     }
 
     public override int GetHashCode()
