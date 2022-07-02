@@ -47,4 +47,11 @@ public class JawWormTests
         Assert.Contains((new Thrash(), new Probability(0.3 / 0.75)), nextPossibleMoves.ToList());
         Assert.Contains((new Bellow(), new Probability(0.45 / 0.75)), nextPossibleMoves.ToList());
     }
+
+    [Test]
+    public void DoesNotPickThrashThreeTimesInARow()
+    {
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Thrash(), new Thrash() } };
+        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
+    }
 }
