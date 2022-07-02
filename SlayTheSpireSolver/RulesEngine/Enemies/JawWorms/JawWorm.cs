@@ -17,7 +17,7 @@ public record JawWorm : Enemy
         {
             return new (IEnemyMove, Probability)[]
             {
-                (new Thrash(), new Probability(6.0 / 11.0)),
+                (new Thrash(), new Probability(0.3 / 0.55)),
                 (new Chomp(), new Probability(5.0 / 11.0))
             };
         }
