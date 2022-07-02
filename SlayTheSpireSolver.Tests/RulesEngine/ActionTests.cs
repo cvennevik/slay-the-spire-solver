@@ -103,7 +103,7 @@ public class ActionTests
             Hand = new Hand(new Strike(), new Strike()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
         }.WithProbability(0.6);
-        var expectedPossibility2 = new Possibility(new GameState
+        var expectedResult2 = new Possibility(new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
@@ -111,7 +111,7 @@ public class ActionTests
         const double tolerance = 0.000000000000001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult1, tolerance)));
-        Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedPossibility2, tolerance)));
+        Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult2, tolerance)));
     }
 
     [Test]
