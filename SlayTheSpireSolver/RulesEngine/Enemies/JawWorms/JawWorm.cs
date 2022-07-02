@@ -6,9 +6,9 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
-    private readonly IEnemyMove bellow = new Bellow();
-    private readonly IEnemyMove thrash = new Thrash();
-    private readonly IEnemyMove chomp = new Chomp();
+    private readonly IEnemyMove _bellow = new Bellow();
+    private readonly IEnemyMove _thrash = new Thrash();
+    private readonly IEnemyMove _chomp = new Chomp();
     private const double BellowProbability = 0.45;
     private const double ThrashProbability = 0.3;
     private const double ChompProbability = 0.25;
@@ -17,7 +17,7 @@ public record JawWorm : Enemy
     {
         if (PreviousMoves.Count == 0)
         {
-            return new[] { (chomp, new Probability(1)) };
+            return new[] { (chomp: _chomp, new Probability(1)) };
         }
 
         if (PreviousMoves[^1] is Bellow)
