@@ -2,22 +2,22 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public readonly struct EffectStack
 {
-    private readonly IEffect[] _effects;
+    private readonly Effect[] _effects;
 
     public bool IsEmpty() => _effects.Length == 0;
 
-    public EffectStack() : this(Array.Empty<IEffect>()) { }
+    public EffectStack() : this(Array.Empty<Effect>()) { }
 
-    public static implicit operator EffectStack(IEffect[] effects) => new(effects);
+    public static implicit operator EffectStack(Effect[] effects) => new(effects);
 
-    public EffectStack(IEnumerable<IEffect> effects) : this(effects.ToArray()) { }
+    public EffectStack(IEnumerable<Effect> effects) : this(effects.ToArray()) { }
 
-    public EffectStack(params IEffect[] effects)
+    public EffectStack(params Effect[] effects)
     {
         _effects = effects;
     }
 
-    public EffectStack Push(IEffect effect)
+    public EffectStack Push(Effect effect)
     {
         return new EffectStack(_effects.Append(effect).ToArray());
     }
@@ -27,7 +27,7 @@ public readonly struct EffectStack
         return new EffectStack(_effects.Concat(addedEffectStack._effects).ToArray());
     }
 
-    public (IEffect, EffectStack) Pop()
+    public (Effect, EffectStack) Pop()
     {
         if (_effects.Length == 0)
         {
@@ -59,6 +59,6 @@ public readonly struct EffectStack
 
     public override string ToString()
     {
-        return $"[{string.Join<IEffect>(", ", _effects)}]";
+        return $"[{string.Join<Effect>(", ", _effects)}]";
     }
 }

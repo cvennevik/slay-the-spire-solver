@@ -11,7 +11,7 @@ public record Bellow : IEnemyMove
 
     public EffectStack GetEffects(Enemy enemy)
     {
-        return new IEffect[]
+        return new Effect[]
         {
             new AddEnemyArmorEffect(enemy.Id, ArmorGain),
             new AddEnemyStrengthEffect(enemy.Id, StrengthGain)

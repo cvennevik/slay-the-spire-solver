@@ -10,7 +10,7 @@ public record ResolvableGameState
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
-    public ResolvableGameState(GameState gameState, params IEffect[] effects)
+    public ResolvableGameState(GameState gameState, params Effect[] effects)
         : this(gameState, new EffectStack(effects)) { }
 
     public ResolvableGameState(GameState gameState, EffectStack effectStack)
