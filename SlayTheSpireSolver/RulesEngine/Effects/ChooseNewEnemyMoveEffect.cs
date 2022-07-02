@@ -8,7 +8,7 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
-        var possibleMoves = gameState.EnemyParty.Get(Target);
+        var possibleMoves = gameState.EnemyParty.Get(Target).GetNextPossibleMoves();
 
         return gameState;
     }
