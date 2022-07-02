@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ApplyVulnerableToEnemyEffect : Effect
@@ -6,5 +8,15 @@ public record ApplyVulnerableToEnemyEffect : Effect
     {
         // TODO
         throw new NotImplementedException();
+    }
+}
+
+[TestFixture]
+public class ApplyVulnerableToEnemyEffectTests
+{
+    [Test]
+    public void Test()
+    {
+        Assert.True(true);
     }
 }
