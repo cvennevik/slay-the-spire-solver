@@ -19,6 +19,11 @@ public record Probability
         return new Probability(Value + other.Value);
     }
 
+    public bool IsEqualTo(Probability other, double tolerance = double.Epsilon)
+    {
+        return Math.Abs(Value - other.Value) < tolerance;
+    }
+
     public static Probability operator *(Probability a, Probability b) => new(a.Value * b.Value);
 
     public static implicit operator Probability(double value)
