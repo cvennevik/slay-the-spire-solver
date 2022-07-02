@@ -33,4 +33,10 @@ public class ChooseNewEnemyMoveEffectTests
         };
         Assert.That(result, Is.EquivalentTo(expectedPossibilities));
     }
+
+    [Test]
+    public void TestEquality()
+    {
+        
+    }
 }
