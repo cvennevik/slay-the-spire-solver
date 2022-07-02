@@ -10,5 +10,6 @@ public class EnemyMoveHistoryTests
     public void Test()
     {
         var enemyMoveHistory1 = new EnemyMoveHistory();
+        var enemyMoveHistory2 = new EnemyMoveHistory();
     }
 }
