@@ -47,7 +47,7 @@ public class EndTurnEffectTests
             },
             Hand = new Hand(new Strike(), new Defend()),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Defend(), new Strike(), new Strike())
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
     }
 
