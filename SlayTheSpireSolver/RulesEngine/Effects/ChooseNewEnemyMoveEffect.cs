@@ -1,4 +1,5 @@
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
@@ -9,6 +10,9 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
         var possibleMoves = gameState.EnemyParty.Get(Target).GetNextPossibleMoves();
+        var result = possibleMoves.Select(moveAndProbability =>
+            gameState.ModifyEnemy(Target, enemy =>
+                enemy));
 
         return gameState;
     }
