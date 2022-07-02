@@ -29,5 +29,6 @@ public class JawWormTests
             (new Bellow(), new Probability(0.45))
         };
         Assert.AreEqual(3, nextPossibleMoves.Count);
+        Assert.Contains((new Chomp(), new Probability(0.25)), nextPossibleMoves.ToList());
     }
 }
