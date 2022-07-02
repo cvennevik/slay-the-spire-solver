@@ -12,10 +12,9 @@ public record JawWorm : Enemy
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
-        IEnemyMove chomp = new Chomp();
         if (PreviousMoves.Count == 0)
         {
-            return new[] { (chomp, new Probability(1)) };
+            return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
         }
 
         IEnemyMove thrash = new Thrash();
@@ -25,7 +24,7 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[]
             {
                 (thrash, ThrashProbability / remainingProbability),
-                (chomp, ChompProbability / remainingProbability)
+                (chomp: new Chomp(), ChompProbability / remainingProbability)
             };
         }
 
@@ -46,7 +45,7 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[]
             {
                 (bellow, BellowProbability / remainingProbability),
-                (chomp, ChompProbability / remainingProbability)
+                (chomp: new Chomp(), ChompProbability / remainingProbability)
             };
         }
 
