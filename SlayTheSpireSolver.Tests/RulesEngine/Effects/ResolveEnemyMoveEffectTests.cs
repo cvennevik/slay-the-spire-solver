@@ -23,8 +23,8 @@ public class ResolveEnemyMoveEffectTests
     [Test]
     public void OnlyPlacesEffectsOfTargetEnemyOnEffectStack()
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() };
+        var targetEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() };
+        var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy, otherEnemy) };
         var effect = new ResolveEnemyMoveEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).SingleUnresolvedState();
