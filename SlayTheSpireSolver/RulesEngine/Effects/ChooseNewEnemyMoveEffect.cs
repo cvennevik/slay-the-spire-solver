@@ -16,9 +16,9 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
                     IntendedMove = moveAndProbability.Item1,
                     PreviousMoves = enemy.PreviousMoves.Concat(new[] { enemy.IntendedMove }).ToArray()
                 }
-            ).WithProbability(moveAndProbability.Item2)
-        );
+            ).WithEffects().WithProbability(moveAndProbability.Item2)
+        ).ToArray();
 
-        return gameState;
+        return result;
     }
 }
