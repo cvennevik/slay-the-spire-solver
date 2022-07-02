@@ -6,9 +6,9 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
-    private const double BaseBellowProbability = 0.45;
-    private const double BaseThrashProbability = 0.3;
-    private const double BaseChompProbability = 0.25;
+    private const double BellowProbability = 0.45;
+    private const double ThrashProbability = 0.3;
+    private const double ChompProbability = 0.25;
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
