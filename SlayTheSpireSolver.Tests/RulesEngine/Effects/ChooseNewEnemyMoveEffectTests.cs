@@ -29,13 +29,7 @@ public class ChooseNewEnemyMoveEffectTests
         var expectedPossibilities = new ResolvablePossibility[]
         {
             (gameState with { EnemyParty = new[] { bellowEnemy } }).WithProbability(0.45 / 0.75),
-            (gameState with
-            {
-                EnemyParty = new[]
-                {
-                    new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } }
-                }
-            }).WithProbability(0.3 / 0.75)
+            (gameState with { EnemyParty = new[] { thrashEnemy } }).WithProbability(0.3 / 0.75)
         };
         
     }
