@@ -17,4 +17,12 @@ public class ChooseNewEnemyMoveEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
+
+    [Test]
+    public void AddsIntendedMoveToPreviousMovesAndSetsNewIntendedMove()
+    {
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
+        var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
+        var result = effect.Resolve(gameState);
+    }
 }
