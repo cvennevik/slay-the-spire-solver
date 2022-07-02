@@ -90,7 +90,8 @@ public class ActionTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
+            Hand = new Hand(),
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
         };
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
         var action = new Action(gameState, effectStack);
