@@ -38,4 +38,9 @@ public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
     {
         return _moves.GetEnumerator();
     }
+
+    public override string ToString()
+    {
+        return $"[{string.Join(",", _moves)}]";
+    }
 }
