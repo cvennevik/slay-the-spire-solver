@@ -67,13 +67,4 @@ public class GainEnemyArmorEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.Default, 10));
-        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.Default, 5));
-        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.Default, 10), new AddEnemyArmorEffect(EnemyId.New(), 10));
-        Assert.AreNotEqual(new AddEnemyArmorEffect(EnemyId.New(), 10), new AddEnemyArmorEffect(EnemyId.New(), 10));
-    }
 }
