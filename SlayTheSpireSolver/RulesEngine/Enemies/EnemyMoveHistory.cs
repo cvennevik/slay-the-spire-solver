@@ -9,6 +9,8 @@ public class EnemyMoveHistory
         _moves = moves;
     }
 
+    public static implicit operator EnemyMoveHistory(IEnemyMove[] moves) => new(moves);
+
     public static bool operator ==(EnemyMoveHistory a, EnemyMoveHistory b) => a.Equals(b);
     public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b) => !a.Equals(b);
     public override bool Equals(object? obj)
