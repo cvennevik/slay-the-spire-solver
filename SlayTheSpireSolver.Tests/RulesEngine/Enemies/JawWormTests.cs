@@ -30,5 +30,6 @@ public class JawWormTests
         };
         Assert.AreEqual(3, nextPossibleMoves.Count);
         Assert.Contains((new Chomp(), new Probability(0.25)), nextPossibleMoves.ToList());
+        Assert.Contains((new Thrash(), new Probability(0.3)), nextPossibleMoves.ToList());
     }
 }
