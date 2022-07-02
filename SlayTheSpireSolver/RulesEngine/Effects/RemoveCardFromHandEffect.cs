@@ -2,15 +2,8 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record RemoveCardFromHandEffect : Effect
+public record RemoveCardFromHandEffect(Card _cardToRemove) : Effect
 {
-    private readonly Card _cardToRemove;
-
-    public RemoveCardFromHandEffect(Card cardToRemove)
-    {
-        _cardToRemove = cardToRemove;
-    }
-
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
