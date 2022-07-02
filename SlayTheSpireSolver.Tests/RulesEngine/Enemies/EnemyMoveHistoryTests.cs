@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies;
 
@@ -8,6 +9,6 @@ public class EnemyMoveHistoryTests
     [Test]
     public void Test()
     {
-        
+        var enemyMoveHistory1 = new EnemyMoveHistory();
     }
 }
