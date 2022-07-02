@@ -29,12 +29,19 @@ public class JawWormTests
     }
 
     [Test]
-    public void DoesNotPickBellowAfterBellow()
+    public void DoesNotPickBellowTwiceInARow()
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Bellow() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
         Assert.AreEqual(2, nextPossibleMoves.Count);
         Assert.Contains((new Chomp(), new Probability(0.25 / 0.55)), nextPossibleMoves.ToList());
         Assert.Contains((new Thrash(), new Probability(0.3 / 0.55)), nextPossibleMoves.ToList());
+    }
+
+    [Test]
+    public void DoesNotPickChompTwiceInARow()
+    {
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Bellow() } };
+        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
     }
 }
