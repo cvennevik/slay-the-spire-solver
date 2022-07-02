@@ -115,13 +115,4 @@ public class DamageEnemyEffectTests
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        var id = EnemyId.New();
-        Assert.AreEqual(new DamageEnemyEffect(id, 10), new DamageEnemyEffect(id, 10));
-        Assert.AreNotEqual(new DamageEnemyEffect(id, 10), new DamageEnemyEffect(id, 5));
-        Assert.AreNotEqual(new DamageEnemyEffect(id, 10), new DamageEnemyEffect(EnemyId.New(), 10));
-    }
 }
