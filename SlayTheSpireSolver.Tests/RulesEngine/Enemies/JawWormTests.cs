@@ -41,7 +41,7 @@ public class JawWormTests
     [Test]
     public void DoesNotPickChompTwiceInARow()
     {
-        var jawWorm = new JawWorm { PreviousMoves = new[] { new Bellow() } };
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
     }
 }
