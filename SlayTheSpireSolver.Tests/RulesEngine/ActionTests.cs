@@ -110,7 +110,7 @@ public class ActionTests
         };
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(1, result.Count(x =>
-                x.GameState == expectedResult1 && Math.Abs(x.Probability.Value - 0.6) < 0.000000000000001));
+                x.GameState == expectedResult1 && x.Probability.IsEqualTo(0.6, 0.000000000000001)));
         Assert.AreEqual(1, result.Count(x =>
                 x.GameState == expectedResult2 && Math.Abs(x.Probability.Value - 0.4) < 0.000000000000001));
     }
