@@ -4,8 +4,6 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyParty : IEnumerable<Enemy>
 {
-    public Enemy GetEnemy(int enemyPosition) => _enemies[enemyPosition - 1];
-
     private readonly Enemy[] _enemies;
 
     public static implicit operator EnemyParty(Enemy[] enemies) => new(enemies);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
@@ -29,43 +28,6 @@ public class EnemyPartyTests
         var enemyParty1 = new EnemyParty(new JawWorm());
         var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm());
         Assert.AreNotEqual(enemyParty1, enemyParty2);
-    }
-
-    [Test]
-    public void TestGetEnemy1()
-    {
-        var enemyParty = new EnemyParty(new JawWorm());
-
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(3));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(2));
-        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(1));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
-    }
-
-    [Test]
-    public void TestGetEnemy2()
-    {
-        var enemyParty = new EnemyParty(new JawWorm(), new JawWorm());
-
-        Enemy _;
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(4));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(3));
-        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(2));
-        Assert.AreEqual(new JawWorm(), enemyParty.GetEnemy(1));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
-    }
-
-    [Test]
-    public void TestGetEnemy3()
-    {
-        var enemyParty = new EnemyParty();
-        Enemy _;
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(2));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(1));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(0));
-        Assert.Throws<IndexOutOfRangeException>(() => _ = enemyParty.GetEnemy(-1));
     }
 
     [Test]
