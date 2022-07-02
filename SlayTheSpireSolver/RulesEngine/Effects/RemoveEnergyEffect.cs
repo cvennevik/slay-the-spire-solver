@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record RemoveEnergyEffect : IEffect
+public record RemoveEnergyEffect : Effect
 {
     private readonly Energy _energyToRemove;
 
@@ -11,7 +11,7 @@ public record RemoveEnergyEffect : IEffect
         _energyToRemove = energyToRemove;
     }
 
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Energy = gameState.Energy - _energyToRemove };
     }
