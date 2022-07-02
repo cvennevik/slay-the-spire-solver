@@ -21,5 +21,6 @@ public class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState {PlayerArmor = 5};
         var effect = new ClearPlayerArmorEffect();
+        var result = effect.Resolve(gameState).SingleResolvedState();
     }
 }
