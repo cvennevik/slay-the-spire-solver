@@ -24,6 +24,8 @@ public class ChooseNewEnemyMoveEffectTests
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
         var result = effect.Resolve(gameState);
+        var bellowEnemy = new JawWorm { IntendedMove = new Bellow(), PreviousMoves = new[] { new Chomp() } };
+        var thrashEnemy = new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } };
         var expectedPossibilities = new ResolvablePossibility[]
         {
             (gameState with
