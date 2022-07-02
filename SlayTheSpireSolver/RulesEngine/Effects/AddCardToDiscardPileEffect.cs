@@ -2,15 +2,8 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record AddCardToDiscardPileEffect : Effect
+public record AddCardToDiscardPileEffect(Card _cardToAdd) : Effect
 {
-    private readonly Card _cardToAdd;
-
-    public AddCardToDiscardPileEffect(Card card)
-    {
-        _cardToAdd = card;
-    }
-
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
