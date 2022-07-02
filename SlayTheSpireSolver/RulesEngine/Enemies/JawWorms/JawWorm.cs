@@ -6,6 +6,9 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
+    private const double BaseChompProbability = 0.25;
+    private const double BaseThrashProbability = 0.3;
+
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
         if (PreviousMoves.Count == 0)
