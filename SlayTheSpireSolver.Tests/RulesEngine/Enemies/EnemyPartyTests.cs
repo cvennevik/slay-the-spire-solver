@@ -26,7 +26,7 @@ public class EnemyPartyTests
     public void TestEquality3()
     {
         var enemyParty1 = new EnemyParty(new JawWorm());
-        var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm());
+        var enemyParty2 = new EnemyParty(new JawWorm { Id = EnemyId.New() }, new JawWorm { Id = EnemyId.New() });
         Assert.AreNotEqual(enemyParty1, enemyParty2);
     }
 }
