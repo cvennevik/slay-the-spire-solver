@@ -54,6 +54,7 @@ public class EndTurnEffectTests
         var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
         Assert.AreEqual(12, result.Count);
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), double.Epsilon);
+        Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
     }
 
     [Test]
