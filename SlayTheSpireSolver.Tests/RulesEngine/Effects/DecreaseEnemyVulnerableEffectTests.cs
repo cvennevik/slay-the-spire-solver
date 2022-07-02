@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class DecreaseEnemyVulnerableEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
