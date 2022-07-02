@@ -12,7 +12,7 @@ public record ApplyVulnerableToEnemyEffect : Effect
 }
 
 [TestFixture]
-public class ApplyVulnerableToEnemyEffectTests
+internal class ApplyVulnerableToEnemyEffectTests
 {
     [Test]
     public void Test()
