@@ -11,6 +11,6 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
-        return gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = enemy.Vulnerable.Duration - 1 });
+        return gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = enemy.Vulnerable.Decrease() });
     }
 }
