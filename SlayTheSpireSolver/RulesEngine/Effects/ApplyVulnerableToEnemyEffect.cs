@@ -17,6 +17,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [Test]
     public void Test()
     {
-        Assert.True(true);
+        var gameState = new GameState();
+        var effect = new ApplyVulnerableToEnemyEffect();
     }
 }
