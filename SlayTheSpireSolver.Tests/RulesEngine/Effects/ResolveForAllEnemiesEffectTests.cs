@@ -6,6 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
+[TestFixture]
 public class ResolveForAllEnemiesEffectTests
 {
     [TestFixture]
