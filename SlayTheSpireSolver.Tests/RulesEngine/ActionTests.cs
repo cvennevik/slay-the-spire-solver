@@ -98,11 +98,11 @@ public class ActionTests
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
         var action = new Action(gameState, effectStack);
         var result = action.Resolve();
-        var expectedResult1 = new Possibility(new GameState
+        var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
-        }, new Probability(0.6));
+        }.WithProbability(0.6);
         var expectedPossibility2 = new Possibility(new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
