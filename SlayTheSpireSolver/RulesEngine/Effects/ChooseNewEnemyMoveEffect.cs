@@ -11,7 +11,11 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
         var possibleMoves = gameState.EnemyParty.Get(Target).GetNextPossibleMoves();
         var result = possibleMoves.Select(moveAndProbability =>
             gameState.ModifyEnemy(Target, enemy =>
-                enemy));
+                enemy with
+                {
+                    IntendedMove = moveAndProbability.Item1,
+                    PreviousMoves = enemy.PreviousMoves.Concat(new[] { enemy.IntendedMove }).ToArray()
+                }));
 
         return gameState;
     }
