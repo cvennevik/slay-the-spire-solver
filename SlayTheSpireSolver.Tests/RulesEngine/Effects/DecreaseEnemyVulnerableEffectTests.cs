@@ -32,7 +32,7 @@ public class DecreaseEnemyVulnerableEffectTests
     public void OnlyReducesVulnerableOfTargetEnemy()
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 3 };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 3 };
+        var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
         var gameState = new GameState
         {
             Turn = 2,
