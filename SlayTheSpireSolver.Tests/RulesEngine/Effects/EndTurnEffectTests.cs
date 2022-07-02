@@ -49,7 +49,7 @@ public class EndTurnEffectTests
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
-        gameState.WithEffects(new EndTurnEffect()).Resolve();
+        var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
     }
 
     [Test]
