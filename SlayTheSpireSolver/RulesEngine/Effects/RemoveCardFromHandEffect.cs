@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct RemoveCardFromHandEffect : IEffect
+public record RemoveCardFromHandEffect : Effect
 {
     private readonly Card _cardToRemove;
 
@@ -11,7 +11,7 @@ public readonly record struct RemoveCardFromHandEffect : IEffect
         _cardToRemove = cardToRemove;
     }
 
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
         cardsInHand.Remove(_cardToRemove);
