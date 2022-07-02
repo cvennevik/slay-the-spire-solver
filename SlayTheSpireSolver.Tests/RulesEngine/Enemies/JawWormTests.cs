@@ -44,5 +44,6 @@ public class JawWormTests
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
         Assert.AreEqual(2, nextPossibleMoves.Count);
+        Assert.Contains((new Thrash(), new Probability(0.3 / 0.75)), nextPossibleMoves.ToList());
     }
 }
