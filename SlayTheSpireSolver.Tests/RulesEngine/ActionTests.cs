@@ -11,9 +11,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine;
 
 [TestFixture]
 public class ActionTests
-{
-    // TODO: Fix probability
-    
+{    
     [Test]
     public void ResolvesZeroEffects()
     {
