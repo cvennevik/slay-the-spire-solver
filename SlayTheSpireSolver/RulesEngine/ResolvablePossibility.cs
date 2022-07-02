@@ -25,7 +25,7 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
             .ToList();
     }
 
-    public ResolvablePossibilitySet ResolveTopEffect()
+    private ResolvablePossibilitySet ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = ResolvableGameState.EffectStack.Pop();
         return effect
