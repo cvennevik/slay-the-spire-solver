@@ -2,12 +2,12 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyMoveHistory
 {
-    public int Count => _moves.Length;
-    public IEnemyMove[] _moves { get; }
+    public int Count => Moves.Length;
+    public IEnemyMove[] Moves { get; }
 
     public EnemyMoveHistory(params IEnemyMove[] moves)
     {
-        _moves = moves;
+        Moves = moves;
     }
 
     public static implicit operator EnemyMoveHistory(IEnemyMove[] moves) => new(moves);
@@ -16,7 +16,7 @@ public class EnemyMoveHistory
     public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b) => !a.Equals(b);
     public override bool Equals(object? obj)
     {
-        return obj is EnemyMoveHistory otherHistory && _moves.SequenceEqual(otherHistory._moves);
+        return obj is EnemyMoveHistory otherHistory && Moves.SequenceEqual(otherHistory.Moves);
     }
 
     public override int GetHashCode()
