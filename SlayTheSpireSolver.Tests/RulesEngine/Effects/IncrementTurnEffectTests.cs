@@ -18,10 +18,4 @@ public class IncrementTurnEffectTests
         var expectedGameState = gameState with { Turn = expectedTurn };
         Assert.AreEqual(expectedGameState, newGameState);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new IncrementTurnEffect(), new IncrementTurnEffect());
-    }
 }
