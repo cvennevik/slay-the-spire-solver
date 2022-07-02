@@ -10,8 +10,7 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public EnemyParty(params Enemy[] enemies)
     {
-        var uniqueIds = enemies.Select(x => x.Id).Distinct();
-        if (uniqueIds.Count() != enemies.Length)
+        if (enemies.Select(x => x.Id).Distinct().Count() != enemies.Length)
         {
             throw new ArgumentException("Not all enemy IDs are unique");
         }
