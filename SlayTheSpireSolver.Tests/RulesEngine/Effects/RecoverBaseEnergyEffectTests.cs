@@ -27,10 +27,4 @@ public class RecoverBaseEnergyEffectTests
         var expectedGameState = gameState with { Energy = baseEnergy };
         Assert.AreEqual(expectedGameState, nextGameState);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new RecoverBaseEnergyEffect(), new RecoverBaseEnergyEffect());
-    }
 }
