@@ -37,6 +37,8 @@ public class ChooseNewEnemyMoveEffectTests
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new ChooseNewEnemyMoveEffect(EnemyId.Default), new ChooseNewEnemyMoveEffect(EnemyId.Default));
+        var id1 = EnemyId.New();
+        var id2 = EnemyId.New();
+        Assert.AreEqual(new ChooseNewEnemyMoveEffect(id1), new ChooseNewEnemyMoveEffect(id1));
     }
 }
