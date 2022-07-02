@@ -98,18 +98,17 @@ public class ActionTests
         var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
         var action = new Action(gameState, effectStack);
         var result = action.Resolve();
-        var expectedResult1 = new GameState
+        var expectedPossibility1 = new Possibility(new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
-        };
-        var expectedPossibility1 = new Possibility(expectedResult1, 0.6);
+        }, new Probability(0.6));
         var expectedResult2 = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
-        var expectedPossibility2 = new Possibility(expectedResult2, 0.4);
+        var expectedPossibility2 = new Possibility(expectedResult2, new Probability(0.4));
         const double tolerance = 0.000000000000001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedPossibility1, tolerance)));
