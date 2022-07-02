@@ -52,10 +52,4 @@ public class MoveHandToDiscardPileEffectTests
         };
         Assert.AreEqual(expectedGameState, result);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new MoveHandToDiscardPileEffect(), new MoveHandToDiscardPileEffect());
-    }
 }
