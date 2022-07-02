@@ -6,6 +6,9 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
+    private readonly IEnemyMove bellow = new Bellow();
+    private readonly IEnemyMove thrash = new Thrash();
+    private readonly IEnemyMove chomp = new Chomp();
     private const double BellowProbability = 0.45;
     private const double ThrashProbability = 0.3;
     private const double ChompProbability = 0.25;
