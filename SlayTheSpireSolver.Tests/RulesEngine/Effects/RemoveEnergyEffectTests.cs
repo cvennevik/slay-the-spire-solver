@@ -20,12 +20,4 @@ public class RemoveEnergyEffectTests
         var expectedGameState = new GameState { Energy = expectedEnergy };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(0));
-        Assert.AreEqual(new RemoveEnergyEffect(1), new RemoveEnergyEffect(1));
-        Assert.AreNotEqual(new RemoveEnergyEffect(0), new RemoveEnergyEffect(1));
-    }
 }
