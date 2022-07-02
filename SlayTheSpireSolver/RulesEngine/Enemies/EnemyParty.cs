@@ -10,6 +10,8 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public EnemyParty(params Enemy[] enemies)
     {
+        var uniqueIds = enemies.Select(x => x.Id).Distinct();
+
         _enemies = enemies;
     }
 
