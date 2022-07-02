@@ -12,7 +12,7 @@ public record EndTurnEffect : IEffect
             new DrawCardEffect(),
             new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect(),
-            new ResolveAllEnemyMovesEffect(),
+            new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>(),
             new ClearAllEnemyArmorEffect(),
             new MoveHandToDiscardPileEffect()));
     }

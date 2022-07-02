@@ -49,7 +49,7 @@ public class ActionTests
             EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() },
                 new JawWorm { IntendedMove = new Chomp() })
         };
-        var effectStack = new EffectStack(new ResolveAllEnemyMovesEffect());
+        var effectStack = new EffectStack(new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>());
         var action = new Action(gameState, effectStack);
         var resolvedState = action.Resolve().Single().GameState;
         var expectedGameState = gameState with { PlayerHealth = 6 };

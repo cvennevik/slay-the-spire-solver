@@ -21,7 +21,7 @@ public class EndTurnEffectTests
             new DrawCardEffect(),
             new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect(),
-            new ResolveAllEnemyMovesEffect(),
+            new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>(),
             new ClearAllEnemyArmorEffect(),
             new MoveHandToDiscardPileEffect());
         var expectedResult = new ResolvableGameState(gameState, expectedEffectStack);
