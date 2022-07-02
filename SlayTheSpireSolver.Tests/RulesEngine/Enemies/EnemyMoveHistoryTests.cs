@@ -32,10 +32,18 @@ public class EnemyMoveHistoryTests
     }
 
     [Test]
-    public void DifferentLengthHistoriesAreDifferent()
+    public void DifferentLengthHistoriesAreDifferent1()
     {
         var enemyMoveHistory1 = new EnemyMoveHistory(new Chomp());
         var enemyMoveHistory2 = new EnemyMoveHistory();
+        Assert.AreNotEqual(enemyMoveHistory1, enemyMoveHistory2);
+    }
+
+    [Test]
+    public void DifferentLengthHistoriesAreDifferent2()
+    {
+        var enemyMoveHistory1 = new EnemyMoveHistory(new Chomp());
+        var enemyMoveHistory2 = new EnemyMoveHistory(new Chomp(), new Chomp());
         Assert.AreNotEqual(enemyMoveHistory1, enemyMoveHistory2);
     }
 }
