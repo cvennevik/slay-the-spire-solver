@@ -24,11 +24,4 @@ public class DamagePlayerEffectTests
         var result = damagePlayerEffect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(new GameState { PlayerHealth = expectedHealth, PlayerArmor = expectedArmor }, result);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(10));
-        Assert.AreNotEqual(new DamagePlayerEffect(10), new DamagePlayerEffect(5));
-    }
 }
