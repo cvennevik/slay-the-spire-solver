@@ -22,5 +22,9 @@ public class JawWormTests
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
+        var expectedResult = new[]
+        {
+            (new Chomp(), new Probability(0.25))
+        };
     }
 }
