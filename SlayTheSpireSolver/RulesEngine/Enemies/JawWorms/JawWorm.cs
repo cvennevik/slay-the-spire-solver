@@ -8,7 +8,11 @@ public record JawWorm : Enemy
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
-        if (PreviousMoves.Count == 0) return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
+        if (PreviousMoves.Count == 0)
+        {
+            return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
+        }
+
         return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
     }
 
