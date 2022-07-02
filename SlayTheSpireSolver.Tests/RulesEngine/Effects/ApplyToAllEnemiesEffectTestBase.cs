@@ -13,7 +13,7 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
     public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState();
-        var effect = new ApplyToAllEnemiesEffect<T>();
+        var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
@@ -23,7 +23,7 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
     {
         var enemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
-        var effect = new ApplyToAllEnemiesEffect<T>();
+        var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new EffectStack(new T { Target = enemy.Id })), result);
     }
@@ -34,7 +34,7 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
         var enemy1 = new JawWorm { Id = EnemyId.New() };
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
-        var effect = new ApplyToAllEnemiesEffect<T>();
+        var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new EffectStack(new T { Target = enemy2.Id }, new ResolveEnemyMoveEffect(enemy1.Id))), result);
     }
@@ -42,6 +42,6 @@ public class ApplyToAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new
     [Test]
     public void TestEquality()
     {
-        Assert.AreEqual(new ApplyToAllEnemiesEffect<T>(), new ApplyToAllEnemiesEffect<T>());
+        Assert.AreEqual(new ResolveForAllEnemiesEffect<T>(), new ResolveForAllEnemiesEffect<T>());
     }
 }
