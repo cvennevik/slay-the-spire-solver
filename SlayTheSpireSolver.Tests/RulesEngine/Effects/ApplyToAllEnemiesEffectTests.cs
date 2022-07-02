@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
 [TestFixture]
-public class ApplyToAllEnemiesEffectTests
+public class ApplyToAllEnemiesEffectTests<T> where T : TargetEnemyEffect, new()
 {
     [Test]
     public void DoesNothingWhenNoEnemies()
