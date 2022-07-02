@@ -14,5 +14,6 @@ public class ChooseNewEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
+        var result = effect.Resolve(gameState);
     }
 }
