@@ -169,10 +169,4 @@ public class DrawCardEffectTest
         Assert.Contains(expectedState1.WithEffects().WithProbability(0.25), result.ToList());
         Assert.Contains(expectedState2.WithEffects().WithProbability(0.75), result.ToList());
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new DrawCardEffect(), new DrawCardEffect());
-    }
 }
