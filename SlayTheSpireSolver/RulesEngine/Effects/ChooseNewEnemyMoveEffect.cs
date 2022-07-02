@@ -8,14 +8,12 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
+        gameState = gameState.ModifyEnemy(Target, enemy =>
+            enemy with { PreviousMoves = enemy.PreviousMoves.Concat(new[] { enemy.IntendedMove }).ToArray() });
         var possibleMoves = gameState.EnemyParty.Get(Target).GetNextPossibleMoves();
         var result = possibleMoves.Select(moveAndProbability =>
             gameState.ModifyEnemy(Target, enemy =>
-                enemy with
-                {
-                    IntendedMove = moveAndProbability.Item1,
-                    PreviousMoves = enemy.PreviousMoves.Concat(new[] { enemy.IntendedMove }).ToArray()
-                }
+                enemy with { IntendedMove = moveAndProbability.Item1 }
             ).WithEffects().WithProbability(moveAndProbability.Item2)
         ).ToArray();
 
