@@ -64,15 +64,4 @@ public class AddEnemyStrengthEffectTests
         };
         Assert.AreEqual(expectedResult, result);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new AddEnemyStrengthEffect(EnemyId.Default, new Strength(1)),
-            new AddEnemyStrengthEffect(EnemyId.Default, new Strength(1)));
-        Assert.AreNotEqual(new AddEnemyStrengthEffect(EnemyId.Default, new Strength(1)),
-            new AddEnemyStrengthEffect(EnemyId.Default, new Strength(2)));
-        Assert.AreNotEqual(new AddEnemyStrengthEffect(EnemyId.Default, new Strength(1)),
-            new AddEnemyStrengthEffect(EnemyId.New(), new Strength(1)));
-    }
 }
