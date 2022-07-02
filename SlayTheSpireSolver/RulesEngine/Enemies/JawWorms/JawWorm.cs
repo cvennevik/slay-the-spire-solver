@@ -13,7 +13,12 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
         }
 
-        return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
+        return new (IEnemyMove, Probability)[]
+        {
+            (new Chomp(), new Probability(0.25)),
+            (new Chomp(), new Probability(0.25)),
+            (new Chomp(), new Probability(0.25))
+        };
     }
 
     protected override IEnemyMove GetIntendedMove() => IntendedMove;
