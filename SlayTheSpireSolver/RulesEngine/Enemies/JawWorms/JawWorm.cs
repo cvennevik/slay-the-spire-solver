@@ -29,7 +29,7 @@ public record JawWorm : Enemy
 
         return new (IEnemyMove, Probability)[]
         {
-            (new Bellow(), new Probability(BellowProbability)),
+            (new Bellow(), BellowProbability),
             (new Thrash(), ThrashProbability),
             (new Chomp(), ChompProbability)
         };
