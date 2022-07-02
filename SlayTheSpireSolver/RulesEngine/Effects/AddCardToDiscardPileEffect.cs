@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct AddCardToDiscardPileEffect : IEffect
+public record AddCardToDiscardPileEffect : Effect
 {
     private readonly Card _cardToAdd;
 
@@ -11,7 +11,7 @@ public readonly record struct AddCardToDiscardPileEffect : IEffect
         _cardToAdd = card;
     }
 
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(_cardToAdd).ToArray();
         return gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) };
