@@ -11,6 +11,7 @@ public abstract record Enemy
     public Armor Armor { get; init; } = 0;
     public Strength Strength { get; init; } = 0;
     public EnemyMoveHistory PreviousMoves = new();
+    public abstract IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves();
     protected abstract IEnemyMove GetIntendedMove();
 
     public EffectStack GetMoveEffects()
