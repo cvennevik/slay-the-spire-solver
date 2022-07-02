@@ -3,9 +3,9 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : IEffect
+public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState.ModifyEnemy(EnemyId,
             enemy => enemy with { Strength = enemy.Strength + StrengthGain });
