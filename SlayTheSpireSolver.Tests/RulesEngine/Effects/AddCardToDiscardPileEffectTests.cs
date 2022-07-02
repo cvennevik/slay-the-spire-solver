@@ -32,15 +32,4 @@ public class AddCardToDiscardPileEffectTests
         };
         Assert.AreEqual(expectedGameState, resultingGameState);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new AddCardToDiscardPileEffect(new Strike()),
-            new AddCardToDiscardPileEffect(new Strike()));
-        Assert.AreEqual(new AddCardToDiscardPileEffect(new Defend()),
-            new AddCardToDiscardPileEffect(new Defend()));
-        Assert.AreNotEqual(new AddCardToDiscardPileEffect(new Strike()),
-            new AddCardToDiscardPileEffect(new Defend()));
-    }
 }
