@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public abstract record TargetEnemyEffect : IEffect
+public abstract record TargetEnemyEffect : Effect
 {
     public EnemyId Target { get; init; } = EnemyId.Default;
 
@@ -12,6 +12,4 @@ public abstract record TargetEnemyEffect : IEffect
     {
         Target = target;
     }
-
-    public abstract ResolvablePossibilitySet Resolve(GameState gameState);
 }
