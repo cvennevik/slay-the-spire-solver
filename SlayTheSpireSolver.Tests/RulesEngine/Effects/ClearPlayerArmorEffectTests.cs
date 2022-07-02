@@ -15,4 +15,10 @@ public class ClearPlayerArmorEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
+
+    [Test]
+    public void ClearsPlayerArmor()
+    {
+        
+    }
 }
