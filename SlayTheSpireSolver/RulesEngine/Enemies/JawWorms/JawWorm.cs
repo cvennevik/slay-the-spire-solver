@@ -22,8 +22,8 @@ public record JawWorm : Enemy
             const double remainingOdds = 1 - BellowProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (new Thrash(), new Probability(0.3 / remainingOdds)),
-                (new Chomp(), new Probability(0.25 / remainingOdds))
+                (new Thrash(), new Probability(ThrashProbability / remainingOdds)),
+                (new Chomp(), new Probability(ChompProbability / remainingOdds))
             };
         }
 
