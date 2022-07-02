@@ -20,6 +20,6 @@ public class JawWormTests
     [Test]
     public void PicksAnyMoveAfterChomp()
     {
-        var jawWorm = new JawWorm { PreviousMoves = new EnemyMoveHistory(new Chomp()) };
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
     }
 }
