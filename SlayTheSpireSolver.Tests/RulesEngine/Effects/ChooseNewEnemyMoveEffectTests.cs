@@ -29,13 +29,18 @@ public class ChooseNewEnemyMoveEffectTests
             (gameState with
             {
                 EnemyParty = new[]
-                    { new JawWorm { IntendedMove = new Bellow(), PreviousMoves = new[] { new Chomp() } } }
+                {
+                    new JawWorm { IntendedMove = new Bellow(), PreviousMoves = new[] { new Chomp() } }
+                }
             }).WithProbability(0.45 / 0.75),
             (gameState with
             {
                 EnemyParty = new[]
-                    { new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } } }
+                {
+                    new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } }
+                }
             }).WithProbability(0.3 / 0.75)
         };
+        
     }
 }
