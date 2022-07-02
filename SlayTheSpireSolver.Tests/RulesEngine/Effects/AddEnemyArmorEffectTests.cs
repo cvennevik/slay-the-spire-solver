@@ -4,6 +4,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
+using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
