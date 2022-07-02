@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies;
 public class JawWormTests
 {
     [Test]
-    public void Test()
+    public void AlwaysPicksChompWhenNoPreviousMoves()
     {
         var jawWorm = new JawWorm();
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
