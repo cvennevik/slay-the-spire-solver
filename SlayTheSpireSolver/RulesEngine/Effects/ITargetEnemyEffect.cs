@@ -10,8 +10,4 @@ public abstract record TargetEnemyEffect : IEffect
     }
     public abstract ResolvablePossibilitySet Resolve(GameState gameState);
     public EnemyId Target { get; init; }
-    public void Deconstruct(out EnemyId Target)
-    {
-        Target = this.Target;
-    }
 }
