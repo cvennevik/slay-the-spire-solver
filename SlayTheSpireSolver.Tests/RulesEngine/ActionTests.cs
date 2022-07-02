@@ -108,6 +108,7 @@ public class ActionTests
             Hand = new Hand(new Strike(), new Defend()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
         };
+        const double tolerance = 0.000000000000001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(1, result.Count(x =>
                 x.GameState == expectedResult1 && x.Probability.IsEqualTo(0.6, 0.000000000000001)));
