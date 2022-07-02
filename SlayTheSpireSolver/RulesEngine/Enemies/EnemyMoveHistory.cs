@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
-public class EnemyMoveHistory
+public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
 {
     private readonly List<IEnemyMove> _moves;
 
@@ -13,6 +15,7 @@ public class EnemyMoveHistory
 
     public static bool operator ==(EnemyMoveHistory a, EnemyMoveHistory b) => a.Equals(b);
     public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b) => !a.Equals(b);
+
     public override bool Equals(object? obj)
     {
         return obj is EnemyMoveHistory otherHistory && this._moves.SequenceEqual(otherHistory._moves);
@@ -21,6 +24,16 @@ public class EnemyMoveHistory
     public override int GetHashCode()
     {
         return 0;
+    }
+
+    public IEnumerator<IEnemyMove> GetEnumerator()
+    {
+        return _moves.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _moves.GetEnumerator();
     }
 
     public IEnemyMove this[int index] => _moves[index];
