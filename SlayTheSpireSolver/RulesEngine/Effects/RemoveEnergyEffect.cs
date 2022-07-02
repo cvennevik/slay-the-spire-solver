@@ -2,7 +2,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct RemoveEnergyEffect : IEffect
+public record RemoveEnergyEffect : IEffect
 {
     private readonly Energy _energyToRemove;
 
