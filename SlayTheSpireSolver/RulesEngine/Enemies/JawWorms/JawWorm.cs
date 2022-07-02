@@ -37,6 +37,11 @@ public record JawWorm : Enemy
             };
         }
 
+        if (PreviousMoves.Count >= 2)
+        {
+            
+        }
+
         return new (IEnemyMove, Probability)[]
         {
             (new Bellow(), BellowProbability),
