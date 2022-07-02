@@ -2,11 +2,11 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyMoveHistory : List<IEnemyMove>
 {
-    private readonly IEnemyMove[] _moves;
+    private readonly List<IEnemyMove> _moves;
 
     public EnemyMoveHistory(params IEnemyMove[] moves) : base(moves)
     {
-        _moves = moves;
+        _moves = moves.ToList();
     }
 
     public static implicit operator EnemyMoveHistory(IEnemyMove[] moves) => new(moves);
@@ -24,5 +24,5 @@ public class EnemyMoveHistory : List<IEnemyMove>
     }
 
     public IEnemyMove this[int index] => _moves[index];
-    public int Count => _moves.Length;
+    public int Count => _moves.Count;
 }
