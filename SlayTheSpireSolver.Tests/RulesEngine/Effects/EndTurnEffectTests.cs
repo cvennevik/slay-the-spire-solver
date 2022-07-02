@@ -52,7 +52,6 @@ public class EndTurnEffectTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
         var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
-        Assert.IsNotEmpty(result);
         Assert.AreEqual(12, result.Count);
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), double.Epsilon);
     }
