@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
@@ -35,13 +36,18 @@ public class EndTurnEffectTests
     {
         var gameState = new GameState
         {
+            BaseEnergy = 3,
+            Energy = 0,
             PlayerHealth = 50,
             PlayerArmor = 15,
             EnemyParty = new[]
             {
                 new JawWorm { IntendedMove = new Chomp() },
                 new JawWorm { IntendedMove = new Thrash() }
-            }
+            },
+            Hand = new Hand(new Strike(), new Defend()),
+            DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Defend(), new Strike(), new Strike())
         };
     }
 
