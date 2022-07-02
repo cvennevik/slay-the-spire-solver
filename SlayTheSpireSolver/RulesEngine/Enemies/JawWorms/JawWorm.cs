@@ -19,11 +19,11 @@ public record JawWorm : Enemy
 
         if (PreviousMoves[^1] is Bellow)
         {
-            const double remainingOdds = 1 - BellowProbability;
+            const double remainingProbability = 1 - BellowProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (new Thrash(), ThrashProbability / remainingOdds),
-                (new Chomp(), ChompProbability / remainingOdds)
+                (new Thrash(), ThrashProbability / remainingProbability),
+                (new Chomp(), ChompProbability / remainingProbability)
             };
         }
 
