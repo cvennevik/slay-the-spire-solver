@@ -9,6 +9,8 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
 
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        return gameState;
+        if (!gameState.EnemyParty.Has(Target)) return gameState;
+
+        return gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = enemy.Vulnerable.Duration - 1 });
     }
 }
