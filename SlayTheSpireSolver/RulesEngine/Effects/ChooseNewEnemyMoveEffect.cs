@@ -4,6 +4,6 @@ public record ChooseNewEnemyMoveEffect : IEffect
 {
     public ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        throw new NotImplementedException();
+        return gameState;
     }
 }
