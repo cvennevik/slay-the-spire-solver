@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies;
@@ -13,8 +14,7 @@ public class JawWormTests
     public void AlwaysPicksChompWhenNoPreviousMoves()
     {
         var jawWorm = new JawWorm();
-        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
-        Assert.AreEqual((new Chomp(), new Probability(1)), nextPossibleMoves.Single());
+        Assert.AreEqual((new Chomp(), new Probability(1)), jawWorm.GetNextPossibleMoves().Single());
     }
 
     [Test]
