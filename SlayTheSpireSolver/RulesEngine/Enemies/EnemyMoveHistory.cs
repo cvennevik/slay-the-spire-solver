@@ -4,6 +4,9 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
 public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
 {
+    public int Count => _moves.Count;
+    public IEnemyMove this[int index] => _moves[index];
+
     private readonly List<IEnemyMove> _moves;
 
     public EnemyMoveHistory(params IEnemyMove[] moves)
@@ -35,7 +38,4 @@ public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
     {
         return _moves.GetEnumerator();
     }
-
-    public IEnemyMove this[int index] => _moves[index];
-    public int Count => _moves.Count;
 }
