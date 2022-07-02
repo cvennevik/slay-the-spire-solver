@@ -18,7 +18,7 @@ public class ResolveForAllEnemiesEffectTests
     public class DecreaseAllEnemiesVulnerableEffectTest : ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect> { }
 }
 
-public class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
+public abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
 {
     [Test]
     public void DoesNothingWhenNoEnemies()
