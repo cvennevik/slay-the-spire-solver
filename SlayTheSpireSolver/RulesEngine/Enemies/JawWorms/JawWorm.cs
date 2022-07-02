@@ -27,6 +27,16 @@ public record JawWorm : Enemy
             };
         }
 
+        if (PreviousMoves[^1] is Chomp)
+        {
+            const double remainingProbability = 1 - ChompProbability;
+            return new (IEnemyMove, Probability)[]
+            {
+                (new Bellow(), BellowProbability / remainingProbability),
+                (new Thrash(), ThrashProbability / remainingProbability)
+            };
+        }
+
         return new (IEnemyMove, Probability)[]
         {
             (new Bellow(), BellowProbability),
