@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Enemies;
 public class EnemyMoveHistoryTests
 {
     [Test]
-    public void Test()
+    public void EmptyHistoriesAreEqual()
     {
         var enemyMoveHistory1 = new EnemyMoveHistory();
         var enemyMoveHistory2 = new EnemyMoveHistory();
