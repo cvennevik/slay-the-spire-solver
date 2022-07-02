@@ -2,9 +2,9 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record DamagePlayerEffect(Damage Damage) : IEffect
+public record DamagePlayerEffect(Damage Damage) : Effect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         if (Damage > gameState.PlayerArmor)
         {
