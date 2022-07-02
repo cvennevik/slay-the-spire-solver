@@ -33,13 +33,10 @@ public class DecreaseEnemyVulnerableEffectTests
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 3 };
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
-        var gameState = new GameState
-        {
-            Turn = 2,
-            EnemyParty = new[] { new JawWorm { Vulnerable = 2 } }
-        };
-        var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
+        var gameState = new GameState { Turn = 2, EnemyParty = new[] { targetEnemy, otherEnemy } };
+        var effect = new DecreaseEnemyVulnerableEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).SingleResolvedState();
-        Assert.AreEqual(gameState with { EnemyParty = new[] { new JawWorm { Vulnerable = 1 } } }, result);
+        var expectedResult = gameState with { EnemyParty = new[] { targetEnemy with { Vulnerable = 2 }, otherEnemy } };
+        Assert.AreEqual(expectedResult, result);
     }
 }
