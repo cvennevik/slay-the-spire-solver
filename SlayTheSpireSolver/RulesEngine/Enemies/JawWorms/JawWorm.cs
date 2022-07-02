@@ -6,37 +6,37 @@ public record JawWorm : Enemy
 {
     public IJawWormMove IntendedMove { get; init; } = new Chomp();
 
-    private readonly IEnemyMove _bellow = new Bellow();
-    private readonly IEnemyMove _thrash = new Thrash();
-    private readonly IEnemyMove _chomp = new Chomp();
     private const double BellowProbability = 0.45;
     private const double ThrashProbability = 0.3;
     private const double ChompProbability = 0.25;
 
     public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
     {
+        IEnemyMove chomp = new Chomp();
         if (PreviousMoves.Count == 0)
         {
-            return new[] { (_chomp, new Probability(1)) };
+            return new[] { (chomp, new Probability(1)) };
         }
 
+        IEnemyMove thrash = new Thrash();
         if (PreviousMoves[^1] is Bellow)
         {
             const double remainingProbability = 1 - BellowProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (_thrash, ThrashProbability / remainingProbability),
-                (_chomp, ChompProbability / remainingProbability)
+                (thrash, ThrashProbability / remainingProbability),
+                (chomp, ChompProbability / remainingProbability)
             };
         }
 
+        IEnemyMove bellow = new Bellow();
         if (PreviousMoves[^1] is Chomp)
         {
             const double remainingProbability = 1 - ChompProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (_bellow, BellowProbability / remainingProbability),
-                (_thrash, ThrashProbability / remainingProbability)
+                (bellow, BellowProbability / remainingProbability),
+                (thrash, ThrashProbability / remainingProbability)
             };
         }
 
@@ -45,8 +45,8 @@ public record JawWorm : Enemy
             const double remainingProbability = 1 - ThrashProbability;
             return new (IEnemyMove, Probability)[]
             {
-                (_bellow, BellowProbability / remainingProbability),
-                (_chomp, ChompProbability / remainingProbability)
+                (bellow, BellowProbability / remainingProbability),
+                (chomp, ChompProbability / remainingProbability)
             };
         }
 
