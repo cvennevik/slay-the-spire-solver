@@ -15,7 +15,6 @@ public record ResolveForAllEnemiesEffect<T> : Effect where T : TargetEnemyEffect
     }
 }
 
-
 [TestFixture]
 public class ResolveForAllEnemiesEffectTests
 {
