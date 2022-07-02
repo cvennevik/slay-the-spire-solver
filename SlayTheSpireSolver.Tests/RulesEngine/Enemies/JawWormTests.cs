@@ -22,12 +22,6 @@ public class JawWormTests
     {
         var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
-        var expectedResult = new (IEnemyMove, Probability)[]
-        {
-            (new Chomp(), new Probability(0.25)),
-            (new Thrash(), new Probability(0.3)),
-            (new Bellow(), new Probability(0.45))
-        };
         Assert.AreEqual(3, nextPossibleMoves.Count);
         Assert.Contains((new Chomp(), new Probability(0.25)), nextPossibleMoves.ToList());
         Assert.Contains((new Thrash(), new Probability(0.3)), nextPossibleMoves.ToList());
