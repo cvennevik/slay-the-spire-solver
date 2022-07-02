@@ -47,13 +47,4 @@ public class DecreaseEnemyVulnerableEffectTests
         var expectedResult = gameState with { EnemyParty = new[] { targetEnemy with { Vulnerable = 2 }, otherEnemy } };
         Assert.AreEqual(expectedResult, result);
     }
-
-    [Test]
-    public void EqualityTest()
-    {
-        Assert.AreEqual(new DecreaseEnemyVulnerableEffect(EnemyId.Default),
-            new DecreaseEnemyVulnerableEffect(EnemyId.Default));
-        Assert.AreNotEqual(new DecreaseEnemyVulnerableEffect(EnemyId.Default),
-            new DecreaseEnemyVulnerableEffect(EnemyId.New()));
-    }
 }
