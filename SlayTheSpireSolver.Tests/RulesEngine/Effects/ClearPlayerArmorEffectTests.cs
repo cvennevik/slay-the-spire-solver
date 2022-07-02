@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ClearPlayerArmorEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoPlayerArmor()
     {
         var gameState = new GameState();
         var effect = new ClearPlayerArmorEffect();
