@@ -58,10 +58,4 @@ public class EndTurnEffectTests
         Assert.AreEqual(12, result.Count(x => x.GameState.Turn == 2));
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == 46));
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new EndTurnEffect(), new EndTurnEffect());
-    }
 }
