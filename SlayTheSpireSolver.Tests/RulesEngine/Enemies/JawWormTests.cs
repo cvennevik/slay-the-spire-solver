@@ -18,9 +18,9 @@ public class JawWormTests
     }
 
     [Test]
-    public void PicksAnyMoveAfterChomp()
+    public void PicksAnyMoveAfterSingleThrash()
     {
-        var jawWorm = new JawWorm { PreviousMoves = new[] { new Chomp() } };
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Thrash() } };
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
         Assert.AreEqual(3, nextPossibleMoves.Count);
         Assert.Contains((new Chomp(), new Probability(0.25)), nextPossibleMoves.ToList());
