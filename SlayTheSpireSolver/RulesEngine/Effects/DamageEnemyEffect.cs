@@ -3,20 +3,20 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record DamageEnemyEffect(EnemyId _targetId, Damage _damage) : Effect
+public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        if (!gameState.EnemyParty.Has(_targetId))
+        if (!gameState.EnemyParty.Has(TargetId))
         {
             return gameState;
         }
 
-        var newGameState = gameState.ModifyEnemy(_targetId, enemy => DamageEnemy(enemy, _damage));
+        var newGameState = gameState.ModifyEnemy(TargetId, enemy => DamageEnemy(enemy, Damage));
 
-        if (newGameState.EnemyParty.Get(_targetId).Health.Amount <= 0)
+        if (newGameState.EnemyParty.Get(TargetId).Health.Amount <= 0)
         {
-            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(_targetId))) };
+            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(TargetId))) };
         }
 
         return newGameState;
