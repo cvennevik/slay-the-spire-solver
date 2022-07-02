@@ -29,27 +29,4 @@ public class EnemyPartyTests
         var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm());
         Assert.AreNotEqual(enemyParty1, enemyParty2);
     }
-
-    [Test]
-    public void TestEnumerator1()
-    {
-        var enemyParty = new EnemyParty();
-        Assert.AreEqual(0, enemyParty.Count());
-    }
-
-    [Test]
-    public void TestEnumerator2()
-    {
-        var enemyParty = new EnemyParty(new JawWorm());
-        Assert.AreEqual(1, enemyParty.Count());
-        Assert.True(enemyParty.All(enemy => enemy == new JawWorm()));
-    }
-
-    [Test]
-    public void TestEnumerator3()
-    {
-        var enemyParty = new EnemyParty(new JawWorm(), new JawWorm());
-        Assert.AreEqual(2, enemyParty.Count());
-        Assert.True(enemyParty.All(enemy => enemy == new JawWorm()));
-    }
 }
