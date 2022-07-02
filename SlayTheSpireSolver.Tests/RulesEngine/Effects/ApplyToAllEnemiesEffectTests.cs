@@ -13,7 +13,7 @@ public class ApplyToAllEnemiesEffectTests
     public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState();
-        var effect = new ResolveAllEnemyMovesEffect();
+        var effect = new ApplyToAllEnemiesEffect<ResolveEnemyMoveEffect>();
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
