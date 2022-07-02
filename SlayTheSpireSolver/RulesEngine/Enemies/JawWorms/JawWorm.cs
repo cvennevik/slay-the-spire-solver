@@ -17,7 +17,7 @@ public record JawWorm : Enemy
     {
         if (PreviousMoves.Count == 0)
         {
-            return new[] { (chomp: _chomp, new Probability(1)) };
+            return new[] { (_chomp, new Probability(1)) };
         }
 
         if (PreviousMoves[^1] is Bellow)
