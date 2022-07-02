@@ -3,17 +3,8 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record DamageEnemyEffect : Effect
+public record DamageEnemyEffect(EnemyId _targetId, Damage _damage) : Effect
 {
-    private readonly EnemyId _targetId;
-    private readonly Damage _damage;
-
-    public DamageEnemyEffect(EnemyId targetId, Damage damage)
-    {
-        _targetId = targetId;
-        _damage = damage;
-    }
-
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(_targetId))
