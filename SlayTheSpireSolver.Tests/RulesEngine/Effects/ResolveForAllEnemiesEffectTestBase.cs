@@ -6,6 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 
+[TestFixture]
 public class ResolveForAllEnemiesEffectTests
 {
     [TestFixture]
@@ -13,6 +14,9 @@ public class ResolveForAllEnemiesEffectTests
 
     [TestFixture]
     public class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect> { }
+
+    [TestFixture]
+    public class DecreaseAllEnemiesVulnerableEffectTest : ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect> { }
 }
 
 public class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
