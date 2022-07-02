@@ -6,6 +6,11 @@ public abstract record TargetEnemyEffect : IEffect
 {
     public EnemyId Target { get; init; }
 
+    public TargetEnemyEffect()
+    {
+        
+    }
+    
     public TargetEnemyEffect(EnemyId Target)
     {
         this.Target = Target;

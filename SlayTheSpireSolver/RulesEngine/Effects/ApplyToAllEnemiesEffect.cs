@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ApplyToAllEnemiesEffect<T> : IEffect where T : TargetEnemyEffect
+public record ApplyToAllEnemiesEffect<T> : IEffect where T : TargetEnemyEffect, new()
 {
     public ResolvablePossibilitySet Resolve(GameState gameState)
     {
