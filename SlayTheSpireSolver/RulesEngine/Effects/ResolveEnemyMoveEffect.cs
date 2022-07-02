@@ -13,9 +13,4 @@ public record ResolveEnemyMoveEffect : TargetEnemyEffect
         var enemyMoveEffects = gameState.EnemyParty.Get(Target).GetMoveEffects();
         return gameState.WithEffects(enemyMoveEffects);
     }
-
-    public void Deconstruct(out EnemyId Target)
-    {
-        Target = this.Target;
-    }
 }
