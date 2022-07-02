@@ -2,19 +2,12 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ResolveEnemyMoveEffect : IEffect
+public record ResolveEnemyMoveEffect(EnemyId Target) : TargetEnemyEffect(Target)
 {
-    private readonly EnemyId _enemyId;
-
-    public ResolveEnemyMoveEffect(EnemyId enemyId)
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        _enemyId = enemyId;
-    }
-
-    public ResolvablePossibilitySet Resolve(GameState gameState)
-    {
-        if (!gameState.EnemyParty.Has(_enemyId)) return gameState;
-        var enemyMoveEffects = gameState.EnemyParty.Get(_enemyId).GetMoveEffects();
+        if (!gameState.EnemyParty.Has(Target)) return gameState;
+        var enemyMoveEffects = gameState.EnemyParty.Get(Target).GetMoveEffects();
         return gameState.WithEffects(enemyMoveEffects);
     }
 }
