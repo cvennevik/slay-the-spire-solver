@@ -13,6 +13,8 @@ public record JawWorm : Enemy
             return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
         }
 
+        var test = PreviousMoves[^1];
+
         return new (IEnemyMove, Probability)[]
         {
             (new Bellow(), new Probability(0.45)),
