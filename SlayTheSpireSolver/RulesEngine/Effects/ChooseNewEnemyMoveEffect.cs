@@ -2,9 +2,12 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
+public record ChooseNewEnemyMoveEffect : TargetEnemyEffect
 {
-    public ResolvablePossibilitySet Resolve(GameState gameState)
+    public ChooseNewEnemyMoveEffect() { }
+    public ChooseNewEnemyMoveEffect(EnemyId target) : base(target) { }
+
+    public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
