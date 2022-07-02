@@ -10,6 +10,6 @@ public class ChooseNewEnemyMoveEffectTests
     [Test]
     public void Test()
     {
-        var gameState = new GameState { EnemyParty = new[] { new JawWorm() } };
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
     }
 }
