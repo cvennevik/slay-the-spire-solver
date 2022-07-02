@@ -52,10 +52,4 @@ public abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnem
             gameState.WithEffects(new EffectStack(new T { Target = enemy2.Id }, new T { Target = enemy1.Id })),
             result);
     }
-
-    [Test]
-    public void TestEquality()
-    {
-        Assert.AreEqual(new ResolveForAllEnemiesEffect<T>(), new ResolveForAllEnemiesEffect<T>());
-    }
 }
