@@ -1,5 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public interface ITargetEnemyEffect : IEffect
+public abstract record TargetEnemyEffect : IEffect
 {
+    public abstract ResolvablePossibilitySet Resolve(GameState gameState);
 }
