@@ -29,6 +29,11 @@ public class ResolvablePossibilitySet : IEnumerable<ResolvablePossibility>, IEqu
     public static implicit operator ResolvablePossibilitySet(
         ResolvablePossibility[] resolvableGameStates) => new(resolvableGameStates);
 
+    public static implicit operator ResolvablePossibilitySet(Possibility possibility) => new(possibility);
+
+    public static implicit operator ResolvablePossibilitySet(Possibility[] possibilities) =>
+        new(possibilities.Select(x => x.GameState.WithEffects().WithProbability(x.Probability)).ToArray());
+
     public IEnumerator<ResolvablePossibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();

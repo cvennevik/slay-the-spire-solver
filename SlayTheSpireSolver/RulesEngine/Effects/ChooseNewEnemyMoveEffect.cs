@@ -14,7 +14,7 @@ public record ChooseNewEnemyMoveEffect(EnemyId Target) : IEffect
         var result = possibleMoves.Select(moveAndProbability =>
             gameState.ModifyEnemy(Target, enemy =>
                     enemy with { IntendedMove = moveAndProbability.Item1 })
-                .WithEffects().WithProbability(moveAndProbability.Item2)
+                .WithProbability(moveAndProbability.Item2)
         ).ToArray();
 
         return result;
