@@ -39,7 +39,12 @@ public record JawWorm : Enemy
 
         if (PreviousMoves.Count >= 2 && PreviousMoves[^1] is Thrash && PreviousMoves[^2] is Thrash)
         {
-            
+            const double remainingProbability = 1 - ThrashProbability;
+            return new (IEnemyMove, Probability)[]
+            {
+                (new Bellow(), BellowProbability / remainingProbability),
+                (new Chomp(), ChompProbability / remainingProbability)
+            };
         }
 
         return new (IEnemyMove, Probability)[]
