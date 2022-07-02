@@ -13,5 +13,6 @@ public class DecreaseEnemyVulnerableEffectTests
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
+        var result = effect.Resolve(gameState);
     }
 }
