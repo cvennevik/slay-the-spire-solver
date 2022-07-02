@@ -27,4 +27,11 @@ public class JawWormTests
         Assert.Contains((new Thrash(), new Probability(0.3)), nextPossibleMoves.ToList());
         Assert.Contains((new Bellow(), new Probability(0.45)), nextPossibleMoves.ToList());
     }
+
+    [Test]
+    public void DoesNotPickBellowAfterBellow()
+    {
+        var jawWorm = new JawWorm { PreviousMoves = new[] { new Bellow() } };
+        var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
+    }
 }
