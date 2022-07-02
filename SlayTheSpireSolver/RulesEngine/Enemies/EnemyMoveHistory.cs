@@ -13,8 +13,7 @@ public class EnemyMoveHistory
     public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b) => !a.Equals(b);
     public override bool Equals(object? obj)
     {
-        if (obj is not EnemyMoveHistory otherHistory) return false;
-        return _moves.SequenceEqual(otherHistory._moves);
+        return obj is EnemyMoveHistory otherHistory && _moves.SequenceEqual(otherHistory._moves);
     }
 
     public override int GetHashCode()
