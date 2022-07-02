@@ -4,6 +4,6 @@ public record ClearPlayerArmorEffect : IEffect
 {
     public ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        return gameState;
+        return gameState with {PlayerArmor = 0};
     }
 }
