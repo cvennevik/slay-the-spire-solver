@@ -10,10 +10,10 @@ namespace SlayTheSpireSolver.Tests.RulesEngine.Effects;
 public class ChooseNewEnemyMoveEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoEnemyHasTargetId()
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
-        var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
+        var effect = new ChooseNewEnemyMoveEffect(EnemyId.New());
         var result = effect.Resolve(gameState);
     }
 }
