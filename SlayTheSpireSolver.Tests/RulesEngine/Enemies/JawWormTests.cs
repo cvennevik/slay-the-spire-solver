@@ -15,4 +15,10 @@ public class JawWormTests
         var nextPossibleMoves = jawWorm.GetNextPossibleMoves();
         Assert.AreEqual((new Chomp(), new Probability(1)), nextPossibleMoves.Single());
     }
+
+    [Test]
+    public void PicksAnyMoveAfterChomp()
+    {
+        var jawWorm = new JawWorm();
+    }
 }
