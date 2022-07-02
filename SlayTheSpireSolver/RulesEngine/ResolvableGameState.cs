@@ -19,7 +19,7 @@ public record ResolvableGameState
         EffectStack = effectStack;
     }
 
-    public IReadOnlyList<GameStatePossibility> Resolve()
+    public IReadOnlyList<Possibility> Resolve()
     {
         return WithProbability(1).Resolve();
     }
