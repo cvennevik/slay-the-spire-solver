@@ -12,5 +12,6 @@ public class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState();
         var effect = new ClearPlayerArmorEffect();
+        var result = effect.Resolve(gameState);
     }
 }
