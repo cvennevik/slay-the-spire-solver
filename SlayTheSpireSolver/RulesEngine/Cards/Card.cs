@@ -11,7 +11,7 @@ public abstract record Card
     public IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new Action[] { new Action(gameState, new EffectStack(
+            ? new[] { new Action(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(this),
                 GetEffect(gameState),
                 new RemoveCardFromHandEffect(this),
