@@ -12,7 +12,7 @@ public record Damage
         Amount = amount;
     }
 
-    public Damage ToVulnerableEnemy()
+    public Damage AgainstVulnerableEnemy()
     {
         return (int)(Amount * 1.5);
     }
