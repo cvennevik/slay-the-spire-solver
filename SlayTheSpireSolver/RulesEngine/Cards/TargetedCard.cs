@@ -45,9 +45,4 @@ public class TargetedCardTests
             new RemoveEnergyEffect(strike.GetCost())));
         Assert.AreEqual(playStrikeAction, strike.GetLegalActions(gameState).Single());
     }
-
-    private static void AssertLegalActions(GameState gameState, params Action[] expectedActions)
-    {
-        Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
-    }
 }
