@@ -22,5 +22,6 @@ public class AttackEnemyEffectTests
         var gameState = new GameState { Turn = 3 };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).SingleResolvedState();
+        Assert.AreEqual(result, gameState);
     }
 }
