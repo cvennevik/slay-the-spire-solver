@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 using SlayTheSpireSolver.TestHelpers;
 
@@ -28,8 +29,8 @@ public class AttackEnemyEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
-        var gameState = new GameState { Turn = 3 };
-        var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Health = 10 } } };
+        var effect = new AttackEnemyEffect(EnemyId.New(), new Damage(1));
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(result, gameState);
     }
