@@ -8,7 +8,7 @@ public record Defend : UntargetedCard
 {
     public override Energy GetCost() => 1;
     public override Effect GetEffect() => new GainPlayerArmorEffect(5);
-    public override string ToString() => "Defend";
+    public override string GetName() => "Defend";
 }
 
 [TestFixture]
