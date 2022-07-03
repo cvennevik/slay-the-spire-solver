@@ -66,7 +66,7 @@ public readonly struct EffectStack
 }
 
 [TestFixture]
-public class EffectStackTests
+internal class EffectStackTests
 {
     [Test]
     public void TestEquality()

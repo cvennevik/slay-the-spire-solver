@@ -13,7 +13,7 @@ public record RemoveEnergyEffect(Energy EnergyToRemove) : Effect
 }
 
 [TestFixture]
-public class RemoveEnergyEffectTests
+internal class RemoveEnergyEffectTests
 {
     [Test]
     [TestCase(0, 0, 0)]

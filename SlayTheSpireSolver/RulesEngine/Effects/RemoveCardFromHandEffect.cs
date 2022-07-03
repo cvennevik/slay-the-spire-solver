@@ -15,7 +15,7 @@ public record RemoveCardFromHandEffect(Card CardToRemove) : Effect
 }
 
 [TestFixture]
-public class RemoveCardFromHandEffectTests
+internal class RemoveCardFromHandEffectTests
 {
     [Test]
     public void DoesNothingWhenCardNotInHand()

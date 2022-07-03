@@ -26,7 +26,7 @@ public record EndTurnEffect : Effect
 }
 
 [TestFixture]
-public class EndTurnEffectTests
+internal class EndTurnEffectTests
 {
     [Test]
     public void Test()

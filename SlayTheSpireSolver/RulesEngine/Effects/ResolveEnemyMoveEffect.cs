@@ -19,7 +19,7 @@ public record ResolveEnemyMoveEffect : TargetEnemyEffect
 }
 
 [TestFixture]
-public class ResolveEnemyMoveEffectTests
+internal class ResolveEnemyMoveEffectTests
 {
     [Test]
     public void PutsEnemyMoveEffectsOnEffectStack()

@@ -16,7 +16,7 @@ public record MoveHandToDiscardPileEffect : Effect
 }
 
 [TestFixture]
-public class MoveHandToDiscardPileEffectTests
+internal class MoveHandToDiscardPileEffectTests
 {
     [Test]
     public void DoesNothingWhenHandIsEmpty()

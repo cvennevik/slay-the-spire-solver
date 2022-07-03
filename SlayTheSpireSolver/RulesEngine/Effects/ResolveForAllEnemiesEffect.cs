@@ -16,20 +16,20 @@ public record ResolveForAllEnemiesEffect<T> : Effect where T : TargetEnemyEffect
 }
 
 [TestFixture]
-public class ResolveForAllEnemiesEffectTests
+internal class ResolveForAllEnemiesEffectTests
 {
     [TestFixture]
-    public class ResolveAllEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect> { }
+    internal class ResolveAllEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect> { }
 
     [TestFixture]
-    public class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect> { }
+    internal class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect> { }
 
     [TestFixture]
-    public class DecreaseAllEnemiesVulnerableEffectTest :
+    internal class DecreaseAllEnemiesVulnerableEffectTest :
         ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect> { }
 }
 
-public abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
+internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()
 {
     [Test]
     public void DoesNothingWhenNoEnemies()
