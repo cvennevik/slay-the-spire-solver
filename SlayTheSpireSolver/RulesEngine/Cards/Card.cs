@@ -22,18 +22,18 @@ public abstract record Card
 
 internal class CommonCardTests<TCard> where TCard : Card, new()
 {
-    protected readonly TCard _card;
-    protected readonly GameState _basicGameState;
+    protected readonly TCard Card;
+    protected readonly GameState BasicGameState;
 
     protected CommonCardTests()
     {
-        _card = new TCard();
-        _basicGameState = new GameState
+        Card = new TCard();
+        BasicGameState = new GameState
         {
             PlayerHealth = 70,
             Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
-            Hand = new Hand(_card),
+            Hand = new Hand(Card),
             DiscardPile = new DiscardPile(),
         };
     }
@@ -47,24 +47,24 @@ internal class CommonCardTests<TCard> where TCard : Card, new()
     [Test]
     public void NoLegalActionsWhenNoEnemies()
     {
-        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { EnemyParty = new EnemyParty() }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { EnemyParty = new EnemyParty() }));
     }
 
     [Test]
     public void NoLegalActionsWhenCardNotInHand()
     {
-        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { Hand = new Hand() }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Hand = new Hand() }));
     }
 
     [Test]
     public void NoLegalActionsWhenPlayerDefeated()
     {
-        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { PlayerHealth = 0 }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = 0 }));
     }
 
     [Test]
     public void NoLegalActionsWhenNoEnergy()
     {
-        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { Energy = 0 }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = 0 }));
     }
 }

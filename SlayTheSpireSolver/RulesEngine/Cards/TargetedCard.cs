@@ -46,11 +46,11 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new Action(_basicGameState, new EffectStack(
-            new AddCardToDiscardPileEffect(_card),
-            _card.GetEffect(_basicGameState),
-            new RemoveCardFromHandEffect(_card),
-            new RemoveEnergyEffect(_card.GetCost())));
-        Assert.AreEqual(expectedAction, _card.GetLegalActions(_basicGameState).Single());
+        var expectedAction = new Action(BasicGameState, new EffectStack(
+            new AddCardToDiscardPileEffect(Card),
+            Card.GetEffect(BasicGameState),
+            new RemoveCardFromHandEffect(Card),
+            new RemoveEnergyEffect(Card.GetCost())));
+        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
     }
 }
