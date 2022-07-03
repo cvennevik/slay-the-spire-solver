@@ -121,8 +121,8 @@ public class StrengthTests
     [TestCase(5)]
     public void ImplicitlyConvertedStrengthEqualsExplicitStrength(int amount)
     {
-        Strength Strength = amount;
-        Assert.AreEqual(new Strength(amount), Strength);
+        Strength strength = amount;
+        Assert.AreEqual(new Strength(amount), strength);
         Assert.True(new Strength(amount) == amount);
         Assert.True(amount == new Strength(amount));
     }
