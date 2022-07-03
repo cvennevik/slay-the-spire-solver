@@ -15,7 +15,7 @@ public abstract record TargetedCard : Card
             : Array.Empty<Action>();
     }
 
-    private bool CanBePlayed(GameState gameState)
+    protected bool CanBePlayed(GameState gameState)
     {
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
