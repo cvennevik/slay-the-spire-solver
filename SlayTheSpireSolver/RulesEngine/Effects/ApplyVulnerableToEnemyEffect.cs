@@ -39,6 +39,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [Test]
     [TestCase(0)]
     [TestCase(1)]
+    [TestCase(2)]
     public void AppliesVulnerableToTargetEnemy(int vulnerableAmount)
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New() };
