@@ -13,5 +13,9 @@ public record AttackEnemyEffect : Effect
 [TestFixture]
 public class AttackEnemyEffectTests
 {
-
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
