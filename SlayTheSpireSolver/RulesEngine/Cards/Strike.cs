@@ -13,4 +13,4 @@ public record Strike : TargetedCard
 
 
 [TestFixture]
-internal class StrikeTests : CommonCardTests<Strike> { }
+internal class StrikeTests : TargetedCardTests<Strike> { }
