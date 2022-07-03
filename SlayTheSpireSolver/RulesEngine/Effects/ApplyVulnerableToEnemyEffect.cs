@@ -1,11 +1,12 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Debuffs;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ApplyVulnerableToEnemyEffect(EnemyId Target) : TargetEnemyEffect
+public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable VulnerableToApply) : TargetEnemyEffect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
@@ -21,7 +22,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState { Turn = 3 };
-        var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
+        var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
@@ -30,7 +31,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New() } } };
-        var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
+        var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
@@ -41,7 +42,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
-        var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id);
+        var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
         var result = effect.Resolve(gameState).SingleResolvedState();
         var expectedGameState = gameState with
         {
