@@ -1,15 +1,9 @@
-using System;
-using System.Linq;
 using NUnit.Framework;
-using SlayTheSpireSolver.RulesEngine;
-using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
-using SlayTheSpireSolver.RulesEngine.Values;
-using Action = SlayTheSpireSolver.RulesEngine.Action;
 
-namespace SlayTheSpireSolver.Tests.RulesEngine.Cards;
+namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public class CommonCardTests<TCard> where TCard : Card, new()
 {
