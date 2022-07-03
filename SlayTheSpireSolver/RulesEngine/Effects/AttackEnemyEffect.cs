@@ -39,6 +39,7 @@ public class AttackEnemyEffectTests
     public void AddsDamageEnemyEffect()
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10 };
+        var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, new Damage(1));
     }
