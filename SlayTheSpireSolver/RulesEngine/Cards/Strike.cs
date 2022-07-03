@@ -23,17 +23,17 @@ internal class StrikeTests : TargetedCardTests<Strike>
         var gameState = new GameState
         {
             Energy = 3,
-            Hand = new Hand(new Bash()),
+            Hand = new Hand(new Strike()),
             EnemyParty = new[] { new JawWorm { Health = 10 } } 
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
         var expectedGameState = new GameState
         {
-            Energy = 1,
+            Energy = 2,
             Hand = new Hand(),
-            DiscardPile = new DiscardPile(new Bash()),
-            EnemyParty = new[] { new JawWorm { Health = 2, Vulnerable = 2 } }
+            DiscardPile = new DiscardPile(new Strike()),
+            EnemyParty = new[] { new JawWorm { Health = 4 } }
         };
         Assert.AreEqual(expectedGameState.WithProbability(1), result);
     }
