@@ -27,7 +27,7 @@ public class TargetedCardTests
     {
         var gameState = new GameState
         {
-            Energy = 3,
+            Energy = 1,
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new Strike())
         };
