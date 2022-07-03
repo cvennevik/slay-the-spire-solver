@@ -5,6 +5,8 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record UntargetedCard : Card
 {
+    public abstract Effect GetEffect(GameState gameState);
+
     public override IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
