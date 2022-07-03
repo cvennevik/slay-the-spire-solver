@@ -6,10 +6,9 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Defend : Card
 {
-    private static readonly Energy Cost = 1;
     private static readonly Effect Effect = new GainPlayerArmorEffect(new Armor(5));
 
-    public override Energy GetCost() => Cost;
+    public override Energy GetCost() => 1;
     public override Effect GetEffect(GameState gameState) => Effect;
 
     public override string ToString() => "Defend";
