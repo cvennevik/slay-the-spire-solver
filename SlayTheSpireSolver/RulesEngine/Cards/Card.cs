@@ -7,9 +7,9 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record Card
 {
-    protected abstract string GetName();
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<Action> GetLegalActions(GameState gameState);
+    protected abstract string GetName();
 
     protected bool CanBePlayed(GameState gameState)
     {
