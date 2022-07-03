@@ -22,21 +22,16 @@ public abstract record TargetedCard : Card
 [TestFixture]
 public class TargetedCardTests
 {
-    private static GameState CreateBasicGameState()
+    [Test]
+    public void BasicGameState()
     {
-        return new()
+        var gameState = new GameState()
         {
             PlayerHealth = 70,
             Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
             Hand = new Hand(new Strike())
         };
-    }
-    
-    [Test]
-    public void BasicGameState()
-    {
-        var gameState = CreateBasicGameState();
         var strike = new Strike();
         var playStrikeAction = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(strike),
