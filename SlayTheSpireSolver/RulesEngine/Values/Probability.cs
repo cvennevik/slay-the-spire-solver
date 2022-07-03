@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public record Probability
@@ -34,5 +36,30 @@ public record Probability
             > 1 => new Probability(1),
             _ => new Probability(value)
         };
+    }
+}
+
+[TestFixture]
+public class ProbabilityTests
+{
+    [Test]
+    public void TestEquality()
+    {
+        Assert.AreEqual(new Probability(1), new Probability(1));
+        Assert.AreEqual(new Probability(0), new Probability(0));
+        Assert.AreEqual(new Probability(0.5), new Probability(0.5));
+        Assert.AreNotEqual(new Probability(1), new Probability(0));
+    }
+
+    [Test]
+    public void ThrowsExceptionForValueAboveOne()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(1.01));
+    }
+
+    [Test]
+    public void ThrowsExceptionForValueBelowZero()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(-0.01));
     }
 }
