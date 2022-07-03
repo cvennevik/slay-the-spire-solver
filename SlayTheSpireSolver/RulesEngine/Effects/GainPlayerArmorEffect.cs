@@ -4,15 +4,8 @@ using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record GainPlayerArmorEffect : Effect
+public record GainPlayerArmorEffect(Armor _armorGain) : Effect
 {
-    private readonly Armor _armorGain;
-
-    public GainPlayerArmorEffect(Armor armorGain)
-    {
-        _armorGain = armorGain;
-    }
-
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState with { PlayerArmor = gameState.PlayerArmor + _armorGain };
