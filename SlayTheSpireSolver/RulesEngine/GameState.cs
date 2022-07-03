@@ -86,7 +86,7 @@ internal class GameStateTests
         public void BasicGameState()
         {
             var gameState = CreateBasicGameState();
-            var expectedActions = new[]
+            var expectedActions = new PlayerAction[]
             {
                 new Strike().GetLegalActions(gameState).Single(),
                 new EndTurnAction(gameState)

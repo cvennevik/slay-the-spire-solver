@@ -10,11 +10,11 @@ public abstract record TargetedCard : Card
 {
     public abstract EffectStack GetTargetedEffects(EnemyId target);
 
-    public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
+    public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
             ? gameState.EnemyParty.Select(enemy => GetTargetedAction(gameState, enemy.Id)).ToArray()
-            : Array.Empty<PlayerAction>();
+            : Array.Empty<PlayCardAction>();
     }
 
     private PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)

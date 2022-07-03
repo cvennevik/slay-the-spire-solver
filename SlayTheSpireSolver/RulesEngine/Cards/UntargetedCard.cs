@@ -8,11 +8,11 @@ public abstract record UntargetedCard : Card
 {
     public abstract Effect GetEffect();
 
-    public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
+    public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
             ? new[] { new PlayUntargetedCardAction(gameState, this) }
-            : Array.Empty<PlayerAction>();
+            : Array.Empty<PlayCardAction>();
     }
 }
 
