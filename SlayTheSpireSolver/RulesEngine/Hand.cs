@@ -93,7 +93,7 @@ internal class HandTests
     }
 
     [TestFixture]
-    public class AddTests : HandTests
+    internal class AddTests : HandTests
     {
         [Test]
         public void AddsStrikeToEmptyHand()
@@ -129,7 +129,7 @@ internal class HandTests
     }
 
     [TestFixture]
-    public class RemoveTests : HandTests
+    internal class RemoveTests : HandTests
     {
         [Test]
         public void ThrowsExceptionWhenHandEmpty()
@@ -179,7 +179,7 @@ internal class HandTests
     }
 
     [TestFixture]
-    public class ContainsTests : HandTests
+    internal class ContainsTests : HandTests
     {
         [Test]
         public void TestSingleDefend()
