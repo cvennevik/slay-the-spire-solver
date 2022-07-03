@@ -86,12 +86,11 @@ internal class GameStateTests
         public void BasicGameState()
         {
             var gameState = CreateBasicGameState();
-            var expectedActions = new PlayerAction[]
+            var expectedActions = new[]
             {
                 new Strike().GetLegalActions(gameState).Single(),
                 new EndTurnAction(gameState)
             };
-            var cardActions = gameState.Hand.Cards.SelectMany(x => x.GetLegalActions(gameState));
             AssertLegalActions(gameState, expectedActions.ToArray());
         }
 
