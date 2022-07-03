@@ -41,5 +41,6 @@ internal class BashTests : TargetedCardTests<Bash>
             DiscardPile = new DiscardPile(new Bash()),
             EnemyParty = new[] { new JawWorm { Health = 2, Vulnerable = 2 } }
         };
+        Assert.AreEqual(expectedGameState, result);
     }
 }
