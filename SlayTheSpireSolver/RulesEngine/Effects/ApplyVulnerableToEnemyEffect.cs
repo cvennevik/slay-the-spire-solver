@@ -11,6 +11,7 @@ public record ApplyVulnerableToEnemyEffect(EnemyId Target) : TargetEnemyEffect
 
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
+        if (!gameState.EnemyParty.Has(Target)) return gameState;
         return gameState;
     }
 }
