@@ -23,7 +23,7 @@ public abstract record TargetedCard : Card
 public class TargetedCardTests
 {
     [Test]
-    public void BasicGameState()
+    public void TestGetLegalActions()
     {
         var gameState = new GameState
         {
