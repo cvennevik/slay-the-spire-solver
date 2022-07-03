@@ -35,4 +35,13 @@ internal class ApplyVulnerableToEnemyEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
+
+    [Test]
+    public void AppliesVulnerableToTargetEnemy()
+    {
+        var targetEnemy = new JawWorm { Id = EnemyId.New() };
+        var gameState = new GameState { EnemyParty = new[] { targetEnemy } };
+        var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id);
+        var result = effect.Resolve(gameState).SingleResolvedState();
+    }
 }
