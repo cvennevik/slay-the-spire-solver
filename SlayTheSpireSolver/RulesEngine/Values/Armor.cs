@@ -32,10 +32,10 @@ public record Armor
 }
 
 [TestFixture]
-public class ArmorTests
+internal class ArmorTests
 {
     [TestFixture]
-    public class SelfTests : ArmorTests
+    internal class SelfTests : ArmorTests
     {
         [Test]
         [TestCase(-1)]
@@ -168,7 +168,7 @@ public class ArmorTests
 
     
     [TestFixture]
-    public class ImplicitConversionTests : ArmorTests
+    internal class ImplicitConversionTests : ArmorTests
     {
         [Test]
         [TestCase(0)]
