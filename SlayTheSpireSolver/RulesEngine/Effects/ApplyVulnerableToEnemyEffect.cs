@@ -18,7 +18,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [Test]
     public void Test()
     {
-        var gameState = new GameState();
+        var gameState = new GameState { Turn = 3 };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
     }
 }
