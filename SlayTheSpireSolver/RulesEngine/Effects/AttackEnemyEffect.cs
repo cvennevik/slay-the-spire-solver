@@ -17,7 +17,7 @@ public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
 public class AttackEnemyEffectTests
 {
     [Test]
-    public void Test()
+    public void DoesNothingWhenNoEnemies()
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
