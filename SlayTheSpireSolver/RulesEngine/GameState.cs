@@ -69,7 +69,7 @@ public class GameStateTests
 {
     private static GameState CreateBasicGameState()
     {
-        return new()
+        return new GameState
         {
             PlayerHealth = 70,
             Energy = 3,
