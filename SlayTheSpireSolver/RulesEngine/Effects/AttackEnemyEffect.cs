@@ -6,7 +6,7 @@ public record AttackEnemyEffect : Effect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        throw new NotImplementedException();
+        return gameState;
     }
 }
 
