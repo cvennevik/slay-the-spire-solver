@@ -16,11 +16,11 @@ public abstract record TargetedCard : Card
             : Array.Empty<Action>();
     }
 
-    private Action GetTargetedAction(GameState gameState, EnemyId enemyId)
+    private Action GetTargetedAction(GameState gameState, EnemyId target)
     {
         return new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(this),
-            GetEffect(enemyId),
+            GetEffect(target),
             new RemoveCardFromHandEffect(this),
             new RemoveEnergyEffect(GetCost())));
     }
