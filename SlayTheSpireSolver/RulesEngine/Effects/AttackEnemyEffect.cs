@@ -40,7 +40,7 @@ public class AttackEnemyEffectTests
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10 };
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
-        var gameState = new GameState { EnemyParty = new[] { targetEnemy } };
+        var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, new Damage(1));
     }
 }
