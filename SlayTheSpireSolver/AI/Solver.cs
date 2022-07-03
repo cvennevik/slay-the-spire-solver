@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine;
+﻿using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 
 namespace SlayTheSpireSolver.AI;
@@ -15,4 +16,10 @@ public static class Solver
         }
         return legalActions.First();
     }
+}
+
+[TestFixture]
+public class SolverTests
+{
+    
 }
