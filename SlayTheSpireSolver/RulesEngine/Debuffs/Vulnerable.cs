@@ -13,6 +13,8 @@ public record Vulnerable
     public static implicit operator Vulnerable(int duration) =>
         duration > 0 ? new Vulnerable(duration) : new Vulnerable(0);
 
+    public bool Any() => _duration > 0;
+
     public Vulnerable Add(Vulnerable vulnerableToAdd)
     {
         return _duration + vulnerableToAdd._duration;
