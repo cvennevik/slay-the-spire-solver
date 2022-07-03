@@ -25,9 +25,8 @@ public class TargetedCardTests
     [Test]
     public void BasicGameState()
     {
-        var gameState = new GameState()
+        var gameState = new GameState
         {
-            PlayerHealth = 70,
             Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new Strike())
