@@ -43,5 +43,6 @@ internal class ApplyVulnerableToEnemyEffectTests
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).SingleResolvedState();
+        var expectedGameState = gameState with { EnemyParty = new[] { targetEnemy with { Vulnerable = 1 } } };
     }
 }
