@@ -26,7 +26,7 @@ public record GameState
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver())
         {
-            legalActions.Add(new PlayerAction(this, new EndTurnEffect()));
+            legalActions.Add(new EndTurnAction(this));
         }
         return legalActions;
     }
@@ -87,7 +87,7 @@ internal class GameStateTests
         {
             var gameState = CreateBasicGameState();
             var cardActions = gameState.Hand.Cards.SelectMany(x => x.GetLegalActions(gameState));
-            var expectedActions = cardActions.Append(new PlayerAction(gameState, new EndTurnEffect()));
+            var expectedActions = cardActions.Append(new EndTurnAction(gameState));
             AssertLegalActions(gameState, expectedActions.ToArray());
         }
 
@@ -95,7 +95,7 @@ internal class GameStateTests
         public void EmptyHand()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            AssertLegalActions(gameState, new PlayerAction(gameState, new EndTurnEffect()));
+            AssertLegalActions(gameState, new EndTurnAction(gameState));
         }
 
         [Test]
