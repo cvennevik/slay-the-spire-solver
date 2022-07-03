@@ -21,4 +21,8 @@
     <ProjectReference Include="..\SlayTheSpireSolver\SlayTheSpireSolver.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RulesEngine\Effects" />
+  </ItemGroup>
+
 </Project>
