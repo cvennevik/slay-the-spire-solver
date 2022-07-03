@@ -25,11 +25,7 @@ internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCar
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new PlayUntargetedCardAction(BasicGameState, new EffectStack(
-            new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(),
-            new RemoveCardFromHandEffect(Card),
-            new RemoveEnergyEffect(Card.GetCost())));
+        var expectedAction = new PlayUntargetedCardAction(BasicGameState, Card);
         Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
     }
 }
