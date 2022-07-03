@@ -65,7 +65,7 @@ public record GameState
 }
 
 [TestFixture]
-public class GameStateTests
+internal class GameStateTests
 {
     private static GameState CreateBasicGameState()
     {
@@ -79,7 +79,7 @@ public class GameStateTests
     }
 
     [TestFixture]
-    public class LegalActionTests : GameStateTests
+    internal class LegalActionTests : GameStateTests
     {
         [Test]
         public void BasicGameState()

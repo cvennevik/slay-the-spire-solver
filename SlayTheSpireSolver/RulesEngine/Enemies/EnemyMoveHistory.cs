@@ -48,7 +48,7 @@ public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
 }
 
 [TestFixture]
-public class EnemyMoveHistoryTests
+internal class EnemyMoveHistoryTests
 {
     [Test]
     public void EmptyHistoriesAreEqual()

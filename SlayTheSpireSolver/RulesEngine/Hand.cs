@@ -19,77 +19,77 @@ public class Hand : CardCollection<Hand>
 internal class HandTests
 {
     [TestFixture]
-    public class EqualityTests : HandTests
+    internal class EqualityTests : HandTests
     {
         [Test]
-            public void Test1()
-            {
-                Assert.AreEqual(new Hand(), new Hand());
-            }
-        
-            [Test]
-            public void Test2()
-            {
-                var hand1 = new Hand();
-                var hand2 = new Hand(new Strike());
-                Assert.AreNotEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test3()
-            {
-                var hand1 = new Hand(new Strike());
-                var hand2 = new Hand(new Strike());
-                Assert.AreEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test4()
-            {
-                var hand1 = new Hand(new Strike());
-                var hand2 = new Hand(new Strike(), new Strike());
-                Assert.AreNotEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test5()
-            {
-                var hand1 = new Hand(new Strike(), new Strike());
-                var hand2 = new Hand(new Strike(), new Strike());
-                Assert.AreEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test6()
-            {
-                var hand1 = new Hand(new Strike(), new Strike());
-                var hand2 = new Hand(new Strike(), new Defend());
-                Assert.AreNotEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test7()
-            {
-                var hand1 = new Hand(new Strike(), new Strike());
-                var hand2 = new Hand(new Strike(), new Strike(), new Defend());
-                Assert.AreNotEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void Test8()
-            {
-                var hand1 = new Hand(new Strike(), new Defend());
-                var hand2 = new Hand(new Strike(), new Defend());
-                Assert.AreEqual(hand1, hand2);
-            }
-        
-            [Test]
-            public void EqualityIgnoresOrder()
-            {
-                var hand1 = new Hand(new Defend(), new Strike());
-                var hand2 = new Hand(new Strike(), new Defend());
-                Assert.AreEqual(hand1, hand2);
-            }
+        public void Test1()
+        {
+            Assert.AreEqual(new Hand(), new Hand());
+        }
+    
+        [Test]
+        public void Test2()
+        {
+            var hand1 = new Hand();
+            var hand2 = new Hand(new Strike());
+            Assert.AreNotEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test3()
+        {
+            var hand1 = new Hand(new Strike());
+            var hand2 = new Hand(new Strike());
+            Assert.AreEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test4()
+        {
+            var hand1 = new Hand(new Strike());
+            var hand2 = new Hand(new Strike(), new Strike());
+            Assert.AreNotEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test5()
+        {
+            var hand1 = new Hand(new Strike(), new Strike());
+            var hand2 = new Hand(new Strike(), new Strike());
+            Assert.AreEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test6()
+        {
+            var hand1 = new Hand(new Strike(), new Strike());
+            var hand2 = new Hand(new Strike(), new Defend());
+            Assert.AreNotEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test7()
+        {
+            var hand1 = new Hand(new Strike(), new Strike());
+            var hand2 = new Hand(new Strike(), new Strike(), new Defend());
+            Assert.AreNotEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void Test8()
+        {
+            var hand1 = new Hand(new Strike(), new Defend());
+            var hand2 = new Hand(new Strike(), new Defend());
+            Assert.AreEqual(hand1, hand2);
+        }
+    
+        [Test]
+        public void EqualityIgnoresOrder()
+        {
+            var hand1 = new Hand(new Defend(), new Strike());
+            var hand2 = new Hand(new Strike(), new Defend());
+            Assert.AreEqual(hand1, hand2);
+        }
     }
 
     [TestFixture]

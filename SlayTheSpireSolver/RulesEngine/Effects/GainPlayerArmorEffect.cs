@@ -13,7 +13,7 @@ public record GainPlayerArmorEffect(Armor ArmorGain) : Effect
 }
 
 [TestFixture]
-public class GainPlayerArmorEffectTests
+internal class GainPlayerArmorEffectTests
 {
     [Test]
     [TestCase(0, 0, 0)]

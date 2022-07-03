@@ -58,7 +58,7 @@ public record JawWorm : Enemy
 }
 
 [TestFixture]
-public class JawWormTests
+internal class JawWormTests
 {
     [Test]
     public void AlwaysPicksChompWhenNoPreviousMoves()

@@ -12,7 +12,7 @@ public record IncrementTurnEffect : Effect
 }
 
 [TestFixture]
-public class IncrementTurnEffectTests
+internal class IncrementTurnEffectTests
 {
     [Test]
     [TestCase(1, 2)]
