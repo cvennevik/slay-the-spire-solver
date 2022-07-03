@@ -16,6 +16,4 @@ public record Defend : Card
 }
 
 [TestFixture]
-public class DefendTests : CommonCardTests<Defend>
-{
-}
+public class DefendTests : CommonCardTests<Defend> { }
