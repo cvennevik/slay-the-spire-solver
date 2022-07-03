@@ -6,9 +6,9 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Defend : UntargetedCard
 {
-    protected override string GetName() => "Defend";
     public override Energy GetCost() => 1;
     public override Effect GetEffect() => new GainPlayerArmorEffect(5);
+    protected override string GetName() => "Defend";
 }
 
 [TestFixture]
