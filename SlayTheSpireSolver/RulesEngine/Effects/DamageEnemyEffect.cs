@@ -34,7 +34,6 @@ public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 
         var remainingDamage = damage - enemy.Armor;
         return enemy with { Armor = 0, Health = enemy.Health - remainingDamage };
-
     }
 }
 
