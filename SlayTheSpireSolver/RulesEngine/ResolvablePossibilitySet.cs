@@ -69,7 +69,7 @@ public class ResolvablePossibilitySet : IEnumerable<ResolvablePossibility>, IEqu
 }
 
 [TestFixture]
-public class PossibilitySetTests
+internal class PossibilitySetTests
 {
     [Test]
     public void TestEmptyEquality()
