@@ -27,6 +27,10 @@ public class ResolveForAllEnemiesEffectTests
     [TestFixture]
     public class DecreaseAllEnemiesVulnerableEffectTest :
         ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect> { }
+
+    [TestFixture]
+    public class ApplyVulnerableToAllEnemiesEffectTest :
+        ResolveForAllEnemiesEffectTestBase<ApplyVulnerableToEnemyEffect> { }
 }
 
 public abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()

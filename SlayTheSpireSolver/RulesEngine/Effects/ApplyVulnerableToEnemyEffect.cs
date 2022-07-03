@@ -7,6 +7,8 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ApplyVulnerableToEnemyEffect(EnemyId Target) : TargetEnemyEffect
 {
+    public ApplyVulnerableToEnemyEffect() : this(EnemyId.Default) { }
+
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         return gameState;
