@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
@@ -19,5 +20,6 @@ internal class ApplyVulnerableToEnemyEffectTests
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
+        var result = effect.Resolve(gameState).SingleResolvedState();
     }
 }
