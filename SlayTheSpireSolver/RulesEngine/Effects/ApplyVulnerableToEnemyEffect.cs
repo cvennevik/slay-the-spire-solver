@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ApplyVulnerableToEnemyEffect(EnemyId Default) : TargetEnemyEffect
+public record ApplyVulnerableToEnemyEffect(EnemyId Target) : TargetEnemyEffect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
