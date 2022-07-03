@@ -25,14 +25,6 @@ public abstract record TargetedCard : Card
 
 internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, new()
 {
-    private EffectStack GetExpectedEffectStack(EnemyId target)
-    {
-        return new EffectStack(new AddCardToDiscardPileEffect(Card))
-            .Push(Card.GetTargetedEffects(target))
-            .Push(new RemoveCardFromHandEffect(Card))
-            .Push(new RemoveEnergyEffect(Card.GetCost()));
-    }
-
     [Test]
     public void OneLegalActionForBasicGameState()
     {
