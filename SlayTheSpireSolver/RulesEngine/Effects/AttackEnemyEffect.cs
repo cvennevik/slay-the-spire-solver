@@ -24,4 +24,13 @@ public class AttackEnemyEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(result, gameState);
     }
+
+    [Test]
+    public void DoesNothingWhenNoEnemyWithTargetId()
+    {
+        var gameState = new GameState { Turn = 3 };
+        var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
+        var result = effect.Resolve(gameState).SingleResolvedState();
+        Assert.AreEqual(result, gameState);
+    }
 }
