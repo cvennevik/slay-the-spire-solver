@@ -67,15 +67,4 @@ internal class CommonCardTests<TCard> where TCard : Card, new()
     {
         Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { Energy = 0 }));
     }
-
-    [Test]
-    public void OneLegalActionForBasicGameState()
-    {
-        var expectedAction = new Action(_basicGameState, new EffectStack(
-            new AddCardToDiscardPileEffect(_card),
-            _card.GetEffect(_basicGameState),
-            new RemoveCardFromHandEffect(_card),
-            new RemoveEnergyEffect(_card.GetCost())));
-        Assert.AreEqual(expectedAction, _card.GetLegalActions(_basicGameState).Single());
-    }
 }
