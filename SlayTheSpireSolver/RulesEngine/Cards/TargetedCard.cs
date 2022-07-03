@@ -12,12 +12,17 @@ public abstract record TargetedCard : Card
     public override IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new[] { new Action(gameState, new EffectStack(
-                new AddCardToDiscardPileEffect(this),
-                GetEffect(gameState.EnemyParty.First().Id),
-                new RemoveCardFromHandEffect(this),
-                new RemoveEnergyEffect(GetCost()))) }
+            ? gameState.EnemyParty.Select(enemy => GetTargetedAction(gameState, enemy.Id)).ToArray()
             : Array.Empty<Action>();
+    }
+
+    private Action GetTargetedAction(GameState gameState, EnemyId enemyId)
+    {
+        return new Action(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(this),
+            GetEffect(enemyId),
+            new RemoveCardFromHandEffect(this),
+            new RemoveEnergyEffect(GetCost())));
     }
 }
 
@@ -47,6 +52,17 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
             Card.GetEffect(enemy1.Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
-        Assert.AreEqual(expectedAction1, Card.GetLegalActions(gameState).Single());
+        var expectedAction2 = new Action(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(Card),
+            Card.GetEffect(enemy2.Id),
+            new RemoveCardFromHandEffect(Card),
+            new RemoveEnergyEffect(Card.GetCost())));
+        var expectedAction3 = new Action(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(Card),
+            Card.GetEffect(enemy3.Id),
+            new RemoveCardFromHandEffect(Card),
+            new RemoveEnergyEffect(Card.GetCost())));
+        var expectedActions = new[] { expectedAction1, expectedAction2, expectedAction3 };
+        Assert.That(Card.GetLegalActions(gameState), Is.EquivalentTo(expectedActions));
     }
 }
