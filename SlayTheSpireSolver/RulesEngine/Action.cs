@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record PlayerAction : ResolvableGameState
 {
-    public string Description { get; init; } = "Hello";
+    public string Description { get; init; } = "MISSING DESCRIPTION";
 
     public PlayerAction(GameState gameState, EffectStack effectStack) : base(gameState, effectStack) { }
     public PlayerAction(GameState gameState, params Effect[] effects) : base(gameState, effects) { }
