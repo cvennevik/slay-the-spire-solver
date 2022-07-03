@@ -30,14 +30,14 @@ public class UntargetedCardTests
         {
             Energy = 1,
             EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new Strike())
+            Hand = new Hand(new Defend())
         };
-        var strike = new Strike();
-        var playStrikeAction = new Action(gameState, new EffectStack(
-            new AddCardToDiscardPileEffect(strike),
-            strike.GetEffect(gameState),
-            new RemoveCardFromHandEffect(strike),
-            new RemoveEnergyEffect(strike.GetCost())));
-        Assert.AreEqual(playStrikeAction, strike.GetLegalActions(gameState).Single());
+        var defend = new Defend();
+        var playDefendAction = new Action(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(defend),
+            defend.GetEffect(gameState),
+            new RemoveCardFromHandEffect(defend),
+            new RemoveEnergyEffect(defend.GetCost())));
+        Assert.AreEqual(playDefendAction, defend.GetLegalActions(gameState).Single());
     }
 }
