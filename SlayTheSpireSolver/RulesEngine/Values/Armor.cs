@@ -87,7 +87,7 @@ public class ArmorTests
     }
 
     [TestFixture]
-    public class DamageOperatorTests : ArmorTests
+    internal class DamageOperatorTests : ArmorTests
     {
         [Test]
         [TestCase(0, 0, 0)]

@@ -12,7 +12,7 @@ public record ClearPlayerArmorEffect : Effect
 }
 
 [TestFixture]
-public class ClearPlayerArmorEffectTests
+internal class ClearPlayerArmorEffectTests
 {
     [Test]
     public void DoesNothingWhenNoPlayerArmor()

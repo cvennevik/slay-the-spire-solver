@@ -19,7 +19,7 @@ public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : Effect
 }
 
 [TestFixture]
-public class AttackPlayerEffectTests
+internal class AttackPlayerEffectTests
 {
     [Test]
     public void DoesNothingWhenEnemyMissing()

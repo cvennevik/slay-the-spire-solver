@@ -17,7 +17,7 @@ public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
 }
 
 [TestFixture]
-public class AttackEnemyEffectTests
+internal class AttackEnemyEffectTests
 {
     [Test]
     public void DoesNothingWhenNoEnemies()

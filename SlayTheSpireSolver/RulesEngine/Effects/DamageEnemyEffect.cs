@@ -39,7 +39,7 @@ public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 
 
 [TestFixture]
-public class DamageEnemyEffectTests
+internal class DamageEnemyEffectTests
 {
     [Test]
     public void DoesNothingWhenTargetEnemyIsMissing()

@@ -19,7 +19,7 @@ public record DamagePlayerEffect(Damage Damage) : Effect
 }
 
 [TestFixture]
-public class DamagePlayerEffectTests
+internal class DamagePlayerEffectTests
 {
     [Test]
     [TestCase(20, 0, 10, 10, 0)]

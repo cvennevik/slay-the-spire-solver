@@ -28,7 +28,7 @@ public record ChooseNewEnemyMoveEffect : TargetEnemyEffect
 }
 
 [TestFixture]
-public class ChooseNewEnemyMoveEffectTests
+internal class ChooseNewEnemyMoveEffectTests
 {
     [Test]
     public void DoesNothingWhenNoEnemyHasTargetId()

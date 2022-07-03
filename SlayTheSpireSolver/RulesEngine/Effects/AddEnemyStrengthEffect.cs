@@ -16,7 +16,7 @@ public record AddEnemyStrengthEffect(EnemyId EnemyId, Strength StrengthGain) : E
 }
 
 [TestFixture]
-public class AddEnemyStrengthEffectTests
+internal class AddEnemyStrengthEffectTests
 {
     [Test]
     public void DoesNothingWhenNoEnemies()

@@ -20,7 +20,7 @@ public record ClearAllEnemyArmorEffect : Effect
 }
 
 [TestFixture]
-public class ClearAllEnemyArmorEffectTests
+internal class ClearAllEnemyArmorEffectTests
 {
     [Test]
     public void DoesNothingWhenNoEnemies()
