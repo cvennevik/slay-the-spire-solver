@@ -41,7 +41,7 @@ internal class EndTurnEffectTests
     }
 
     [Test]
-    public void TestResolvingFullyWithLotsOfArmor()
+    public void BroadTestWithLotsOfArmor()
     {
         var gameState = new GameState
         {
