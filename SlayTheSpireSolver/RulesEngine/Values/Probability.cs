@@ -40,7 +40,7 @@ public record Probability
 }
 
 [TestFixture]
-public class ProbabilityTests
+internal class ProbabilityTests
 {
     [Test]
     public void TestEquality()

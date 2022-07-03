@@ -38,10 +38,10 @@ public record Damage
 }
 
 [TestFixture]
-public class DamageTests
+internal class DamageTests
 {
     [TestFixture]
-    public class BasicTests : DamageTests
+    internal class BasicTests : DamageTests
     {
         [Test]
         [TestCase(-1)]
@@ -63,7 +63,7 @@ public class DamageTests
     }
 
     [TestFixture]
-    public class ArmorOperatorTests : DamageTests
+    internal class ArmorOperatorTests : DamageTests
     {
         [Test]
         [TestCase(0, 0, 0)]
@@ -143,7 +143,7 @@ public class DamageTests
     }
 
     [TestFixture]
-    public class ImplicitConversionTests : DamageTests
+    internal class ImplicitConversionTests : DamageTests
     {
         [Test]
         [TestCase(0)]

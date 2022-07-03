@@ -28,7 +28,7 @@ public record Energy
 }
 
 [TestFixture]
-public class EnergyTests
+internal class EnergyTests
 {
     [Test]
     [TestCase(-1)]

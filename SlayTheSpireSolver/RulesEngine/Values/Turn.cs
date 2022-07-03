@@ -22,7 +22,7 @@ public record Turn
 }
 
 [TestFixture]
-public class TurnTests
+internal class TurnTests
 {
     [Test]
     [TestCase(0)]

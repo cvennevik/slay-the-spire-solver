@@ -14,7 +14,7 @@ public record Health(int Amount)
 }
 
 [TestFixture]
-public class HealthTests
+internal class HealthTests
 {
     [Test]
     [TestCase(0, 0, 0)]
