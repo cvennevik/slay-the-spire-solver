@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -40,13 +41,9 @@ public class GameStateTests
         public void BasicGameState()
         {
             var gameState = CreateBasicGameState();
-            var strike = new Strike();
-            var playStrikeAction = new Action(gameState, new EffectStack(
-                new AddCardToDiscardPileEffect(strike),
-                strike.GetEffect(gameState),
-                new RemoveCardFromHandEffect(strike),
-                new RemoveEnergyEffect(strike.GetCost())));
-            AssertLegalActions(gameState, playStrikeAction, new Action(gameState, new EndTurnEffect()));
+            var cardActions = gameState.Hand.Cards.SelectMany(x => x.GetLegalActions(gameState));
+            var expectedActions = cardActions.Append(new Action(gameState, new EndTurnEffect()));
+            AssertLegalActions(gameState, expectedActions.ToArray());
         }
 
         [Test]
