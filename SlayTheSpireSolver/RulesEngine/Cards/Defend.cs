@@ -18,9 +18,4 @@ public record Defend : Card
 [TestFixture]
 public class DefendTests : CommonCardTests<Defend>
 {
-    [Test]
-    public void TestEffect()
-    {
-        Assert.AreEqual(new GainPlayerArmorEffect(5), Card.GetEffect(BasicGameState));
-    }
 }
