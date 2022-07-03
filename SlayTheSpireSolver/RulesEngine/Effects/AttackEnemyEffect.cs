@@ -1,8 +1,10 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record AttackEnemyEffect : Effect
+public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
