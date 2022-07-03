@@ -11,9 +11,7 @@ public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
-        return gameState.EnemyParty.Has(Target)
-            ? gameState.WithEffects(new DamageEnemyEffect(Target, Damage))
-            : gameState;
+        return gameState.WithEffects(new DamageEnemyEffect(Target, Damage));
     }
 }
 
