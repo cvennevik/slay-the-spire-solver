@@ -41,11 +41,12 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var enemy3 = new JawWorm { Id = EnemyId.New() };
         var gameState = BasicGameState with { EnemyParty = new[] { enemy1, enemy2, enemy3 } };
-        var expectedAction = new Action(BasicGameState, new EffectStack(
+
+        var expectedAction1 = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(BasicGameState.EnemyParty.First().Id),
+            Card.GetEffect(enemy1.Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
-        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
+        Assert.AreEqual(expectedAction1, Card.GetLegalActions(gameState).Single());
     }
 }
