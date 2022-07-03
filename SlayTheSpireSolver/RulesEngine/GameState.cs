@@ -79,18 +79,6 @@ public class GameStateTests
     }
 
     [TestFixture]
-    public class EqualityTests : GameStateTests
-    {
-        [Test]
-        public void TestEquality()
-        {
-            var gameState1 = CreateBasicGameState();
-            var gameState2 = CreateBasicGameState();
-            Assert.AreEqual(gameState1, gameState2);
-        }
-    }
-
-    [TestFixture]
     public class LegalActionTests : GameStateTests
     {
         [Test]
