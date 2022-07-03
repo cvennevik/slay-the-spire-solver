@@ -19,13 +19,13 @@ public record GameState
     public DrawPile DrawPile { get; init; } = new();
     public DiscardPile DiscardPile { get; init; } = new();
 
-    public IReadOnlyCollection<Action> GetLegalActions()
+    public IReadOnlyCollection<PlayerAction> GetLegalActions()
     {
-        var legalActions = new List<Action>();
+        var legalActions = new List<PlayerAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver())
         {
-            legalActions.Add(new Action(this, new EndTurnEffect()));
+            legalActions.Add(new PlayerAction(this, new EndTurnEffect()));
         }
         return legalActions;
     }
@@ -86,7 +86,7 @@ internal class GameStateTests
         {
             var gameState = CreateBasicGameState();
             var cardActions = gameState.Hand.Cards.SelectMany(x => x.GetLegalActions(gameState));
-            var expectedActions = cardActions.Append(new Action(gameState, new EndTurnEffect()));
+            var expectedActions = cardActions.Append(new PlayerAction(gameState, new EndTurnEffect()));
             AssertLegalActions(gameState, expectedActions.ToArray());
         }
 
@@ -94,7 +94,7 @@ internal class GameStateTests
         public void EmptyHand()
         {
             var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            AssertLegalActions(gameState, new Action(gameState, new EndTurnEffect()));
+            AssertLegalActions(gameState, new PlayerAction(gameState, new EndTurnEffect()));
         }
 
         [Test]
@@ -128,7 +128,7 @@ internal class GameStateTests
             Assert.True(gameState.IsCombatOver());
         }
 
-        private static void AssertLegalActions(GameState gameState, params Action[] expectedActions)
+        private static void AssertLegalActions(GameState gameState, params PlayerAction[] expectedActions)
         {
             Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
         }

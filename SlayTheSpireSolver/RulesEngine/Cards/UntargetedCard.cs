@@ -7,15 +7,15 @@ public abstract record UntargetedCard : Card
 {
     public abstract Effect GetEffect();
 
-    public override IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
+    public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new[] { new Action(gameState, new EffectStack(
+            ? new[] { new PlayerAction(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(this),
                 GetEffect(),
                 new RemoveCardFromHandEffect(this),
                 new RemoveEnergyEffect(GetCost()))) }
-            : Array.Empty<Action>();
+            : Array.Empty<PlayerAction>();
     }
 }
 
@@ -24,7 +24,7 @@ internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCar
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new Action(BasicGameState, new EffectStack(
+        var expectedAction = new PlayerAction(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
             Card.GetEffect(),
             new RemoveCardFromHandEffect(Card),

@@ -1,6 +1,5 @@
 ﻿using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Effects;
-using PlayerAction = SlayTheSpireSolver.RulesEngine.Action;
 
 namespace SlayTheSpireSolver.AI;
 
