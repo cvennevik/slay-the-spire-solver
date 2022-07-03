@@ -43,7 +43,7 @@ public class TargetedCardTests
             strike.GetEffect(gameState),
             new RemoveCardFromHandEffect(strike),
             new RemoveEnergyEffect(strike.GetCost())));
-        AssertLegalActions(gameState, playStrikeAction, new Action(gameState, new EndTurnEffect()));
+        Assert.AreEqual(playStrikeAction, strike.GetLegalActions(gameState).Single());
     }
 
     private static void AssertLegalActions(GameState gameState, params Action[] expectedActions)
