@@ -28,7 +28,8 @@ internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard 
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new PlayTargetedCardAction(BasicGameState, Card, BasicGameState.EnemyParty.First().Id);
+        var target = BasicGameState.EnemyParty.First().Id;
+        var expectedAction = new PlayTargetedCardAction(BasicGameState, Card, target);
         Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
     }
 
