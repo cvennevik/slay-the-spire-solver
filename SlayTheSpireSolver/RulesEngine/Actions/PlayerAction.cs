@@ -1,3 +1,5 @@
+using SlayTheSpireSolver.RulesEngine.Effects;
+
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public abstract record PlayerAction
@@ -7,6 +9,11 @@ public abstract record PlayerAction
     protected PlayerAction(ResolvableGameState resolvableGameState)
     {
         _resolvableGameState = resolvableGameState;
+    }
+
+    protected PlayerAction(GameState gameState, EffectStack effectStack)
+    {
+        _resolvableGameState = new ResolvableGameState(gameState, effectStack);
     }
 
     public IReadOnlyCollection<Possibility> Resolve() => _resolvableGameState.Resolve();
