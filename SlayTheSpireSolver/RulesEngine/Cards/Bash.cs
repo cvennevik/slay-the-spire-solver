@@ -11,7 +11,7 @@ public record Bash : TargetedCard
         throw new NotImplementedException();
     }
 
-    public override string GetName()
+    protected override string GetName()
     {
         throw new NotImplementedException();
     }
