@@ -16,7 +16,7 @@ public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
 }
 
 [TestFixture]
-public class GainEnemyArmorEffectTests
+public class AddEnemyArmorEffectTests
 {
     [Test]
     public void AddsEnemyArmor()
