@@ -37,6 +37,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     }
 
     [Test]
+    [TestCase(0)]
     [TestCase(1)]
     public void AppliesVulnerableToTargetEnemy(int vulnerableAmount)
     {
