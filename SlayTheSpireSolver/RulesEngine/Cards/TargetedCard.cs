@@ -26,14 +26,6 @@ public abstract record TargetedCard : Card
 internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, new()
 {
     [Test]
-    public void OneLegalActionForBasicGameState()
-    {
-        var target = BasicGameState.EnemyParty.First().Id;
-        var expectedAction = new PlayTargetedCardAction(BasicGameState, Card, target);
-        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
-    }
-
-    [Test]
     public void OneLegalActionPerEnemy()
     {
         var enemy1 = new JawWorm { Id = EnemyId.New() };
