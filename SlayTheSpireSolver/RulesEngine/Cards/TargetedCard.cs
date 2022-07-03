@@ -29,7 +29,7 @@ public class TargetedCardTests
         {
             PlayerHealth = 70,
             Energy = 3,
-            EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
+            EnemyParty = new EnemyParty(new JawWorm()),
             Hand = new Hand(new Strike())
         };
         var strike = new Strike();
