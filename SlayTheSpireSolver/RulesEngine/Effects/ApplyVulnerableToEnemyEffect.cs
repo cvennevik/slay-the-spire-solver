@@ -6,7 +6,7 @@ using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable VulnerableToApply) : TargetEnemyEffect
+public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable VulnerableToApply) : Effect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
