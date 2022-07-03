@@ -21,5 +21,9 @@ public static class Solver
 [TestFixture]
 public class SolverTests
 {
-    
+    [Test]
+    public void Test()
+    {
+        // todo
+    }
 }
