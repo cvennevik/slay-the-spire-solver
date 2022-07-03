@@ -140,7 +140,7 @@ internal class GameStateTests
     }
 
     [TestFixture]
-    public class IsCombatOverTests : GameStateTests
+    internal class IsCombatOverTests : GameStateTests
     {
         [Test]
         public void BasicGameState()

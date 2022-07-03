@@ -12,7 +12,7 @@ public record RecoverBaseEnergyEffect : Effect
 }
 
 [TestFixture]
-public class RecoverBaseEnergyEffectTests
+internal class RecoverBaseEnergyEffectTests
 {
     [Test]
     [TestCase(3, 0)]
