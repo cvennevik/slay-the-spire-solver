@@ -1,4 +1,5 @@
-﻿using SlayTheSpireSolver.RulesEngine.Effects;
+﻿using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
@@ -12,4 +13,14 @@ public record Defend : Card
     public override Effect GetEffect(GameState gameState) => Effect;
 
     public override string ToString() => "Defend";
+}
+
+[TestFixture]
+public class DefendTests : CommonCardTests<Defend>
+{
+    [Test]
+    public void TestEffect()
+    {
+        Assert.AreEqual(new GainPlayerArmorEffect(5), Card.GetEffect(BasicGameState));
+    }
 }
