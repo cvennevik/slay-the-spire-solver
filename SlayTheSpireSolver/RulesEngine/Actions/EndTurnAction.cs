@@ -15,7 +15,7 @@ public record EndTurnAction : PlayerAction
 internal class EndTurnEffectTests
 {
     [Test]
-    public void BroadTest()
+    public void Test()
     {
         var gameState = new GameState
         {
@@ -41,7 +41,7 @@ internal class EndTurnEffectTests
     }
 
     [Test]
-    public void BroadTestWithLotsOfArmor()
+    public void TestWithLotsOfArmor()
     {
         var gameState = new GameState
         {
