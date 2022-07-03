@@ -16,7 +16,7 @@ public record Strike : Card
 
 
 [TestFixture]
-public class StrikeTests : CommonCardTests<Strike>
+internal class StrikeTests : CommonCardTests<Strike>
 {
     [Test]
     public void TestEffect()

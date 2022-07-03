@@ -5,7 +5,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public class CommonCardTests<TCard> where TCard : Card, new()
+internal class CommonCardTests<TCard> where TCard : Card, new()
 {
     protected readonly TCard Card;
     protected readonly GameState BasicGameState;
