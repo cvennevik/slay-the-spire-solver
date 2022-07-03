@@ -19,28 +19,6 @@ public abstract record TargetedCard : Card
     }
 }
 
-[TestFixture]
-public class TargetedCardTests
-{
-    [Test]
-    public void TestGetLegalActions()
-    {
-        var gameState = new GameState
-        {
-            Energy = 1,
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new Strike())
-        };
-        var strike = new Strike();
-        var playStrikeAction = new Action(gameState, new EffectStack(
-            new AddCardToDiscardPileEffect(strike),
-            strike.GetEffect(gameState),
-            new RemoveCardFromHandEffect(strike),
-            new RemoveEnergyEffect(strike.GetCost())));
-        Assert.AreEqual(playStrikeAction, strike.GetLegalActions(gameState).Single());
-    }
-}
-
 internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : TargetedCard, new()
 {
     [Test]
