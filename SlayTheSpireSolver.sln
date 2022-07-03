@@ -5,11 +5,6 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlayTheSpireSolver", "SlayTheSpireSolver\SlayTheSpireSolver.csproj", "{4C44BCF0-D998-4E1C-8447-D939C7FC1206}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlayTheSpireSolver.Tests", "SlayTheSpireSolver.Tests\SlayTheSpireSolver.Tests.csproj", "{9E1B4327-A0E3-4F23-86D1-FC3B3BA172EE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4C44BCF0-D998-4E1C-8447-D939C7FC1206} = {4C44BCF0-D998-4E1C-8447-D939C7FC1206}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,10 +15,6 @@ Global
 		{4C44BCF0-D998-4E1C-8447-D939C7FC1206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C44BCF0-D998-4E1C-8447-D939C7FC1206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C44BCF0-D998-4E1C-8447-D939C7FC1206}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E1B4327-A0E3-4F23-86D1-FC3B3BA172EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E1B4327-A0E3-4F23-86D1-FC3B3BA172EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E1B4327-A0E3-4F23-86D1-FC3B3BA172EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E1B4327-A0E3-4F23-86D1-FC3B3BA172EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
