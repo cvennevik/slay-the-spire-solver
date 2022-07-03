@@ -6,10 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Bash : TargetedCard
 {
-    public override Energy GetCost()
-    {
-        throw new NotImplementedException();
-    }
+    public override Energy GetCost() => 2;
 
     public override Effect GetTargetedEffect(EnemyId target)
     {
