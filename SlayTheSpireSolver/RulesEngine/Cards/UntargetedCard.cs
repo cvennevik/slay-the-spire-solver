@@ -11,11 +11,7 @@ public abstract record UntargetedCard : Card
     public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new[] { new PlayUntargetedCardAction(gameState, new EffectStack(
-                new AddCardToDiscardPileEffect(this),
-                GetEffect(),
-                new RemoveCardFromHandEffect(this),
-                new RemoveEnergyEffect(GetCost()))) }
+            ? new[] { new PlayUntargetedCardAction(gameState, this) }
             : Array.Empty<PlayerAction>();
     }
 }
