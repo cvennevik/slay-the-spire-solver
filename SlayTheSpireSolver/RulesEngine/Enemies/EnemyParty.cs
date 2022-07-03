@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
@@ -50,5 +52,31 @@ public class EnemyParty : IEnumerable<Enemy>
     public override string ToString()
     {
         return $"[{string.Join(",\n\t\t", _enemies.ToList())}]";
+    }
+}
+
+[TestFixture]
+public class EnemyPartyTests
+{
+    [Test]
+    public void TestEquality1()
+    {
+        Assert.AreEqual(new EnemyParty(), new EnemyParty());
+    }
+
+    [Test]
+    public void TestEquality2()
+    {
+        var enemyParty1 = new EnemyParty(new JawWorm());
+        var enemyParty2 = new EnemyParty(new JawWorm());
+        Assert.AreEqual(enemyParty1, enemyParty2);
+    }
+
+    [Test]
+    public void TestEquality3()
+    {
+        var enemyParty1 = new EnemyParty(new JawWorm());
+        var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm { Id = EnemyId.New() });
+        Assert.AreNotEqual(enemyParty1, enemyParty2);
     }
 }
