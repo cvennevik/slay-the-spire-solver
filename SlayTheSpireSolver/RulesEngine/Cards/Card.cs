@@ -18,10 +18,7 @@ public abstract record Card
                && gameState.Energy >= GetCost();
     }
 
-    public override string ToString()
-    {
-        return GetName();
-    }
+    public override string ToString() => GetName();
 }
 
 internal abstract class CardTests<TCard> where TCard : Card, new()
