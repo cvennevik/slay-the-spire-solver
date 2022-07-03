@@ -12,6 +12,11 @@ public record Damage
         Amount = amount;
     }
 
+    public Damage ToVulnerableEnemy()
+    {
+        return (int)(Amount * 1.5);
+    }
+
     public static bool operator >(Damage damage, Armor armor) => damage.Amount > armor.Amount;
     public static bool operator >=(Damage damage, Armor armor) => damage.Amount >= armor.Amount;
     public static bool operator <(Damage damage, Armor armor) => damage.Amount < armor.Amount;
