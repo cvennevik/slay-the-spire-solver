@@ -15,6 +15,7 @@ public record EndTurnEffect : Effect
             new DrawCardEffect(),
             new DrawCardEffect(),
             new DrawCardEffect(),
+            new ClearPlayerArmorEffect(),
             new RecoverBaseEnergyEffect(),
             new IncrementTurnEffect(),
             new ResolveForAllEnemiesEffect<ChooseNewEnemyMoveEffect>(),
@@ -77,5 +78,6 @@ internal class EndTurnEffectTests
         Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
         Assert.AreEqual(12, result.Count(x => x.GameState.Turn == 2));
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == 50));
+        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerArmor == 0));
     }
 }
