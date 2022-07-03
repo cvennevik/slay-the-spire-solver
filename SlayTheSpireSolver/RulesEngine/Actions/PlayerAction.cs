@@ -2,12 +2,12 @@ namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public abstract record PlayerAction
 {
-    private readonly ResolvableGameState ResolvableGameState;
+    private readonly ResolvableGameState _resolvableGameState;
 
     protected PlayerAction(ResolvableGameState resolvableGameState)
     {
-        ResolvableGameState = resolvableGameState;
+        _resolvableGameState = resolvableGameState;
     }
 
-    public IReadOnlyCollection<Possibility> Resolve() => ResolvableGameState.Resolve();
+    public IReadOnlyCollection<Possibility> Resolve() => _resolvableGameState.Resolve();
 }
