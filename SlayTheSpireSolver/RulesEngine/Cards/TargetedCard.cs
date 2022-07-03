@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record TargetedCard : Card
 {
-    public abstract EffectStack GetTargetedEffect(EnemyId target);
+    public abstract EffectStack GetTargetedEffects(EnemyId target);
 
     public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
     {
@@ -19,7 +19,7 @@ public abstract record TargetedCard : Card
     private PlayerAction GetTargetedAction(GameState gameState, EnemyId target)
     {
         return new PlayerAction(gameState, new EffectStack(new AddCardToDiscardPileEffect(this))
-            .Push(GetTargetedEffect(target))
+            .Push(GetTargetedEffects(target))
             .Push(new RemoveCardFromHandEffect(this))
             .Push(new RemoveEnergyEffect(GetCost())));
     }
@@ -30,7 +30,7 @@ internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard 
     private EffectStack GetExpectedEffectStack(EnemyId target)
     {
         return new EffectStack(new AddCardToDiscardPileEffect(Card))
-            .Push(Card.GetTargetedEffect(target))
+            .Push(Card.GetTargetedEffects(target))
             .Push(new RemoveCardFromHandEffect(Card))
             .Push(new RemoveEnergyEffect(Card.GetCost()));
     }

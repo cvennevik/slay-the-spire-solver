@@ -11,7 +11,7 @@ public record Bash : TargetedCard
 {
     public override Energy GetCost() => 2;
 
-    public override EffectStack GetTargetedEffect(EnemyId target) => new Effect[]
+    public override EffectStack GetTargetedEffects(EnemyId target) => new Effect[]
     {
         new ApplyVulnerableToEnemyEffect(target, new Vulnerable(2)),
         new AttackEnemyEffect(target, new Damage(8))
