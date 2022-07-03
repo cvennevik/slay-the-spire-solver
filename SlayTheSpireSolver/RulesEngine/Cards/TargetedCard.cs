@@ -14,11 +14,4 @@ public abstract record TargetedCard : Card
                 new RemoveEnergyEffect(GetCost()))) }
             : Array.Empty<Action>();
     }
-
-    protected bool CanBePlayed(GameState gameState)
-    {
-        return !gameState.IsCombatOver()
-               && gameState.Hand.Contains(this)
-               && gameState.Energy >= GetCost();
-    }
 }
