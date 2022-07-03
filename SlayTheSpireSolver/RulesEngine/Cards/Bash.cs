@@ -11,12 +11,12 @@ public record Bash : TargetedCard
         throw new NotImplementedException();
     }
 
-    protected override string GetName()
+    public override Effect GetTargetedEffect(EnemyId target)
     {
         throw new NotImplementedException();
     }
 
-    public override Effect GetTargetedEffect(EnemyId target)
+    protected override string GetName()
     {
         throw new NotImplementedException();
     }
