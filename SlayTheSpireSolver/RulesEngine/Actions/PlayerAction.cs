@@ -4,7 +4,7 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
-namespace SlayTheSpireSolver.RulesEngine;
+namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public record PlayerAction : ResolvableGameState
 {
