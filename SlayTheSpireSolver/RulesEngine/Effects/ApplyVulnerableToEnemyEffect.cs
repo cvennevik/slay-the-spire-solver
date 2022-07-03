@@ -59,13 +59,13 @@ internal class ApplyVulnerableToEnemyEffectTests
     [TestCase(2)]
     public void AddsVulnerableToEnemyWithVulnerable(int vulnerableAmount)
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New() };
+        var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
         var result = effect.Resolve(gameState).SingleResolvedState();
         var expectedGameState = gameState with
         {
-            EnemyParty = new[] { targetEnemy with { Vulnerable = vulnerableAmount } }
+            EnemyParty = new[] { targetEnemy with { Vulnerable = 2 + vulnerableAmount } }
         };
         Assert.AreEqual(expectedGameState, result);
     }
