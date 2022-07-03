@@ -8,8 +8,6 @@ namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public record PlayerAction : ResolvableGameState
 {
-    public string Description { get; init; } = "Do undescribed action";
-
     public PlayerAction(GameState gameState, EffectStack effectStack) : base(gameState, effectStack) { }
     public PlayerAction(GameState gameState, params Effect[] effects) : base(gameState, effects) { }
 }
