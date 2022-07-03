@@ -8,7 +8,7 @@ public record Bash : TargetedCard
 {
     public override Energy GetCost() => 2;
 
-    public override Effect GetTargetedEffect(EnemyId target)
+    public override EffectStack GetTargetedEffect(EnemyId target)
     {
         throw new NotImplementedException();
     }

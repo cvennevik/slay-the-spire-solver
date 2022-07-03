@@ -9,7 +9,8 @@ public readonly struct EffectStack
     public bool IsEmpty() => _effects.Length == 0;
 
     public EffectStack() : this(Array.Empty<Effect>()) { }
-
+    
+    public static implicit operator EffectStack(Effect effect) => new(effect);
     public static implicit operator EffectStack(Effect[] effects) => new(effects);
 
     public EffectStack(IEnumerable<Effect> effects) : this(effects.ToArray()) { }
