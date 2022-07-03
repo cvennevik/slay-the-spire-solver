@@ -34,4 +34,12 @@ public class AttackEnemyEffectTests
         var result = effect.Resolve(gameState).SingleResolvedState();
         Assert.AreEqual(result, gameState);
     }
+
+    [Test]
+    public void AddsDamageEnemyEffect()
+    {
+        var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10 };
+        var gameState = new GameState { EnemyParty = new[] { targetEnemy } };
+        var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
+    }
 }
