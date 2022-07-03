@@ -7,8 +7,7 @@ public record ApplyVulnerableToEnemyEffect(EnemyId Target) : TargetEnemyEffect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        // TODO
-        throw new NotImplementedException();
+        return gameState;
     }
 }
 
