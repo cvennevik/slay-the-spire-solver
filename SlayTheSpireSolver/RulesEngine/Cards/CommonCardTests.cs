@@ -7,18 +7,18 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 internal class CommonCardTests<TCard> where TCard : Card, new()
 {
-    protected readonly TCard Card;
-    protected readonly GameState BasicGameState;
+    private readonly TCard _card;
+    private readonly GameState _basicGameState;
 
     protected CommonCardTests()
     {
-        Card = new TCard();
-        BasicGameState = new GameState
+        _card = new TCard();
+        _basicGameState = new GameState
         {
             PlayerHealth = 70,
             Energy = 3,
             EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
-            Hand = new Hand(Card),
+            Hand = new Hand(_card),
             DiscardPile = new DiscardPile(),
         };
     }
@@ -32,35 +32,35 @@ internal class CommonCardTests<TCard> where TCard : Card, new()
     [Test]
     public void NoLegalActionsWhenNoEnemies()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { EnemyParty = new EnemyParty() }));
+        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { EnemyParty = new EnemyParty() }));
     }
 
     [Test]
     public void NoLegalActionsWhenCardNotInHand()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Hand = new Hand() }));
+        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { Hand = new Hand() }));
     }
 
     [Test]
     public void NoLegalActionsWhenPlayerDefeated()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = 0 }));
+        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { PlayerHealth = 0 }));
     }
 
     [Test]
     public void NoLegalActionsWhenNoEnergy()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Energy = 0 }));
+        Assert.IsEmpty(_card.GetLegalActions(_basicGameState with { Energy = 0 }));
     }
 
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new Action(BasicGameState, new EffectStack(
-            new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(BasicGameState),
-            new RemoveCardFromHandEffect(Card),
-            new RemoveEnergyEffect(Card.GetCost())));
-        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
+        var expectedAction = new Action(_basicGameState, new EffectStack(
+            new AddCardToDiscardPileEffect(_card),
+            _card.GetEffect(_basicGameState),
+            new RemoveCardFromHandEffect(_card),
+            new RemoveEnergyEffect(_card.GetCost())));
+        Assert.AreEqual(expectedAction, _card.GetLegalActions(_basicGameState).Single());
     }
 }
