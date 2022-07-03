@@ -21,5 +21,6 @@ internal class ApplyVulnerableToEnemyEffectTests
         var gameState = new GameState { Turn = 3 };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default);
         var result = effect.Resolve(gameState).SingleResolvedState();
+        Assert.AreEqual(gameState, result);
     }
 }
