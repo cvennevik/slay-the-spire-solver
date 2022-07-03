@@ -13,7 +13,7 @@ public record PlayerAction : ResolvableGameState
 }
 
 [TestFixture]
-internal class ActionTests
+internal class PlayerActionTests
 {    
     [Test]
     public void ResolvesZeroEffects()
