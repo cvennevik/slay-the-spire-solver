@@ -33,5 +33,6 @@ internal class BashTests : TargetedCardTests<Bash>
             EnemyParty = new[] { new JawWorm { Health = 10 } } 
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
+        var result = action.Resolve().Single().GameState;
     }
 }
