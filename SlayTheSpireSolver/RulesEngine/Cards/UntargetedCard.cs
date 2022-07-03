@@ -41,3 +41,17 @@ public class UntargetedCardTests
         Assert.AreEqual(playDefendAction, defend.GetLegalActions(gameState).Single());
     }
 }
+
+internal class UntargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : UntargetedCard, new()
+{
+    [Test]
+    public void OneLegalActionForBasicGameState()
+    {
+        var expectedAction = new Action(_basicGameState, new EffectStack(
+            new AddCardToDiscardPileEffect(_card),
+            _card.GetEffect(_basicGameState),
+            new RemoveCardFromHandEffect(_card),
+            new RemoveEnergyEffect(_card.GetCost())));
+        Assert.AreEqual(expectedAction, _card.GetLegalActions(_basicGameState).Single());
+    }
+}

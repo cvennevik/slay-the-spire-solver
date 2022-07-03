@@ -22,8 +22,8 @@ public abstract record Card
 
 internal class CommonCardTests<TCard> where TCard : Card, new()
 {
-    private readonly TCard _card;
-    private readonly GameState _basicGameState;
+    protected readonly TCard _card;
+    protected readonly GameState _basicGameState;
 
     protected CommonCardTests()
     {
