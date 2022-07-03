@@ -32,4 +32,22 @@ public class TargetedCardTests
             Hand = new Hand(new Strike())
         };
     }
+    
+    [Test]
+    public void BasicGameState()
+    {
+        var gameState = CreateBasicGameState();
+        var strike = new Strike();
+        var playStrikeAction = new Action(gameState, new EffectStack(
+            new AddCardToDiscardPileEffect(strike),
+            strike.GetEffect(gameState),
+            new RemoveCardFromHandEffect(strike),
+            new RemoveEnergyEffect(strike.GetCost())));
+        AssertLegalActions(gameState, playStrikeAction, new Action(gameState, new EndTurnEffect()));
+    }
+
+    private static void AssertLegalActions(GameState gameState, params Action[] expectedActions)
+    {
+        Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
+    }
 }
