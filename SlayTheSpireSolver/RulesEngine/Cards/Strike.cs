@@ -16,12 +16,4 @@ public record Strike : Card
 
 
 [TestFixture]
-internal class StrikeTests : CommonCardTests<Strike>
-{
-    [Test]
-    public void TestEffect()
-    {
-        Assert.AreEqual(new AttackEnemyEffect(BasicGameState.EnemyParty.First().Id, 6),
-            Card.GetEffect(BasicGameState));
-    }
-}
+internal class StrikeTests : CommonCardTests<Strike> { }
