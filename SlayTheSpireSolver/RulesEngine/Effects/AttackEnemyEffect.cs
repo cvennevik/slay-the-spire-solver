@@ -10,7 +10,8 @@ public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        return gameState;
+        if (!gameState.EnemyParty.Has(Target)) return gameState;
+        return gameState.WithEffects(new DamageEnemyEffect(Target, Damage));
     }
 }
 
@@ -42,5 +43,7 @@ public class AttackEnemyEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, new Damage(1));
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, 1)), result);
     }
 }
