@@ -10,7 +10,8 @@ public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable Vulnerable
 {
     public override ResolvablePossibilitySet Resolve(GameState gameState)
     {
-        return gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = VulnerableToApply });
+        return gameState.ModifyEnemy(Target, enemy =>
+            enemy with { Vulnerable = enemy.Vulnerable.Add(VulnerableToApply) });
     }
 }
 
