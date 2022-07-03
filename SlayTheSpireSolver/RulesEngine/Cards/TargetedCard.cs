@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record TargetedCard : Card
 {
-    public abstract Effect GetEffect(EnemyId target);
+    public abstract Effect GetTargetedEffect(EnemyId target);
 
     public override IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
@@ -20,7 +20,7 @@ public abstract record TargetedCard : Card
     {
         return new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(this),
-            GetEffect(target),
+            GetTargetedEffect(target),
             new RemoveCardFromHandEffect(this),
             new RemoveEnergyEffect(GetCost())));
     }
@@ -33,7 +33,7 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
     {
         var expectedAction = new Action(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(BasicGameState.EnemyParty.First().Id),
+            Card.GetTargetedEffect(BasicGameState.EnemyParty.First().Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
         Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
@@ -49,17 +49,17 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
 
         var expectedAction1 = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(enemy1.Id),
+            Card.GetTargetedEffect(enemy1.Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
         var expectedAction2 = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(enemy2.Id),
+            Card.GetTargetedEffect(enemy2.Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
         var expectedAction3 = new Action(gameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(enemy3.Id),
+            Card.GetTargetedEffect(enemy3.Id),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
         var expectedActions = new[] { expectedAction1, expectedAction2, expectedAction3 };
