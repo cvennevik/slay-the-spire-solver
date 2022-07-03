@@ -19,7 +19,7 @@ public abstract record UntargetedCard : Card
     }
 }
 
-internal class UntargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : UntargetedCard, new()
+internal class UntargetedCardTests<TCard> : CardTests<TCard> where TCard : UntargetedCard, new()
 {
     [Test]
     public void OneLegalActionForBasicGameState()

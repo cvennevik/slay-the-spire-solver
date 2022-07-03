@@ -18,12 +18,12 @@ public abstract record Card
     }
 }
 
-internal class CommonCardTests<TCard> where TCard : Card, new()
+internal abstract class CardTests<TCard> where TCard : Card, new()
 {
     protected readonly TCard Card;
     protected readonly GameState BasicGameState;
 
-    protected CommonCardTests()
+    protected CardTests()
     {
         Card = new TCard();
         BasicGameState = new GameState

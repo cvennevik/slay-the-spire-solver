@@ -26,7 +26,7 @@ public abstract record TargetedCard : Card
     }
 }
 
-internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : TargetedCard, new()
+internal class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, new()
 {
     [Test]
     public void OneLegalActionForBasicGameState()
