@@ -8,7 +8,6 @@ public record Defend : Card
 {
     public override Energy GetCost() => 1;
     public override Effect GetEffect(GameState gameState) => new GainPlayerArmorEffect(new Armor(5));
-
     public override string ToString() => "Defend";
 }
 
