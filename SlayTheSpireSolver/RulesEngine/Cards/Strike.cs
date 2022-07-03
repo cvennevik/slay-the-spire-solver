@@ -13,7 +13,6 @@ public record Strike : TargetedCard
     protected override string GetName() => "Strike";
 }
 
-
 [TestFixture]
 internal class StrikeTests : TargetedCardTests<Strike>
 {
