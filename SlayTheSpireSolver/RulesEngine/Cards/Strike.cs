@@ -4,7 +4,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public record Strike : Card
+public record Strike : TargetedCard
 {
     public override Energy GetCost() => 1;
     public override Effect GetEffect(GameState gameState) => new AttackEnemyEffect(gameState.EnemyParty.First().Id, 6);
