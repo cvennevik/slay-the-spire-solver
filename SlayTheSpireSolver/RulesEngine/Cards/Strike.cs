@@ -9,7 +9,7 @@ public record Strike : Card
     private static readonly Energy Cost = 1;
 
     public override Energy GetCost() => Cost;
-    public override Effect GetEffect(GameState gameState) => new DamageEnemyEffect(gameState.EnemyParty.First().Id, 6);
+    public override Effect GetEffect(GameState gameState) => new AttackEnemyEffect(gameState.EnemyParty.First().Id, 6);
 
     public override string ToString() => "Strike";
 }
@@ -21,7 +21,7 @@ internal class StrikeTests : CommonCardTests<Strike>
     [Test]
     public void TestEffect()
     {
-        Assert.AreEqual(new DamageEnemyEffect(BasicGameState.EnemyParty.First().Id, 6),
+        Assert.AreEqual(new AttackEnemyEffect(BasicGameState.EnemyParty.First().Id, 6),
             Card.GetEffect(BasicGameState));
     }
 }
