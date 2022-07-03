@@ -17,4 +17,9 @@ public record Vulnerable
     {
         return _duration - 1;
     }
+
+    public override string ToString()
+    {
+        return $"{_duration}";
+    }
 }
