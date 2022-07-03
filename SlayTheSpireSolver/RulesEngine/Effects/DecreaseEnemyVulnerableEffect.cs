@@ -19,7 +19,7 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
 }
 
 [TestFixture]
-public class DecreaseEnemyVulnerableEffectTests
+internal class DecreaseEnemyVulnerableEffectTests
 {
     [Test]
     public void DoesNothingWhenNoEnemyHasTargetId()

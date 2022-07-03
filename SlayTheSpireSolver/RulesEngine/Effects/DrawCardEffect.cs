@@ -46,7 +46,7 @@ public record DrawCardEffect : Effect
 }
 
 [TestFixture]
-public class DrawCardEffectTest
+internal class DrawCardEffectTests
 {
     [Test]
     public void DoesNothingWhenDrawPileAndDiscardPileEmpty()
