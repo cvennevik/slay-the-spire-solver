@@ -8,7 +8,6 @@ public record Strike : Card
 {
     public override Energy GetCost() => 1;
     public override Effect GetEffect(GameState gameState) => new AttackEnemyEffect(gameState.EnemyParty.First().Id, 6);
-
     public override string ToString() => "Strike";
 }
 
