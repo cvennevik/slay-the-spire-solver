@@ -56,7 +56,7 @@ public class EnemyParty : IEnumerable<Enemy>
 }
 
 [TestFixture]
-public class EnemyPartyTests
+internal class EnemyPartyTests
 {
     [Test]
     public void TestEquality1()

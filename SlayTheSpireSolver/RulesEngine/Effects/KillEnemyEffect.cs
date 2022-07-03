@@ -14,7 +14,7 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
 }
 
 [TestFixture]
-public class KillEnemyEffectTests
+internal class KillEnemyEffectTests
 {
     [Test]
     public void KillsSingleEnemy()

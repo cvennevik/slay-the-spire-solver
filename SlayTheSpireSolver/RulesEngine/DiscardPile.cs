@@ -16,7 +16,7 @@ public class DiscardPile : CardCollection<DiscardPile>
 }
 
 [TestFixture]
-public class DiscardPileTests
+internal class DiscardPileTests
 {
     [Test]
     public void TestEquality1()

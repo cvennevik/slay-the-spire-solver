@@ -16,7 +16,7 @@ public class DrawPile : CardCollection<DrawPile>
 }
 
 [TestFixture]
-public class DrawPileTests
+internal class DrawPileTests
 {
     [TestFixture]
     public class EqualityTests : DrawPileTests
