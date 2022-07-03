@@ -5,14 +5,14 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record UntargetedCard : Card
 {
-    public abstract Effect GetEffect(GameState gameState);
+    public abstract Effect GetEffect();
 
     public override IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
             ? new[] { new Action(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(this),
-                GetEffect(gameState),
+                GetEffect(),
                 new RemoveCardFromHandEffect(this),
                 new RemoveEnergyEffect(GetCost()))) }
             : Array.Empty<Action>();
@@ -26,7 +26,7 @@ internal class UntargetedCardTests<TCard> : CommonCardTests<TCard> where TCard :
     {
         var expectedAction = new Action(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
-            Card.GetEffect(BasicGameState),
+            Card.GetEffect(),
             new RemoveCardFromHandEffect(Card),
             new RemoveEnergyEffect(Card.GetCost())));
         Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
