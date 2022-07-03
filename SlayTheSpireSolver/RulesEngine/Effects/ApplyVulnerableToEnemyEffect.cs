@@ -48,7 +48,6 @@ internal class ApplyVulnerableToEnemyEffectTests
         {
             EnemyParty = new[] { targetEnemy with { Vulnerable = vulnerableAmount } }
         };
-        //TODO: I need to add a magnitude parameter, and that won't work with ResolveForAllEnemiesEffect
         Assert.AreEqual(expectedGameState, result);
     }
 }
