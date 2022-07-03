@@ -8,7 +8,7 @@ public abstract record Card
     public abstract Energy GetCost();
     public abstract Effect GetEffect(GameState gameState);
 
-    public IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
+    public virtual IReadOnlyCollection<Action> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
             ? new[] { new Action(gameState, new EffectStack(
