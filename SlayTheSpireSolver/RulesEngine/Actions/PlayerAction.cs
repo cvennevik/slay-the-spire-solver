@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public abstract record PlayerAction
 {
-    protected readonly ResolvableGameState ResolvableGameState;
+    private readonly ResolvableGameState ResolvableGameState;
 
     protected PlayerAction(ResolvableGameState resolvableGameState)
     {
