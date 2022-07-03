@@ -19,29 +19,6 @@ public abstract record UntargetedCard : Card
     }
 }
 
-
-[TestFixture]
-public class UntargetedCardTests
-{
-    [Test]
-    public void TestGetLegalActions()
-    {
-        var gameState = new GameState
-        {
-            Energy = 1,
-            EnemyParty = new EnemyParty(new JawWorm()),
-            Hand = new Hand(new Defend())
-        };
-        var defend = new Defend();
-        var playDefendAction = new Action(gameState, new EffectStack(
-            new AddCardToDiscardPileEffect(defend),
-            defend.GetEffect(gameState),
-            new RemoveCardFromHandEffect(defend),
-            new RemoveEnergyEffect(defend.GetCost())));
-        Assert.AreEqual(playDefendAction, defend.GetLegalActions(gameState).Single());
-    }
-}
-
 internal class UntargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : UntargetedCard, new()
 {
     [Test]
