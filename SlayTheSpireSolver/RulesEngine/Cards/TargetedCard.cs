@@ -19,10 +19,7 @@ public abstract record TargetedCard : Card
 
     private PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)
     {
-        return new PlayTargetedCardAction(gameState, new EffectStack(new AddCardToDiscardPileEffect(this))
-            .Push(GetTargetedEffects(target))
-            .Push(new RemoveCardFromHandEffect(this))
-            .Push(new RemoveEnergyEffect(GetCost())));
+        return new PlayTargetedCardAction(gameState, this, target);
     }
 }
 

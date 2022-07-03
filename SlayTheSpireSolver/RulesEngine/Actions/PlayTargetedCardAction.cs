@@ -10,5 +10,5 @@ public record PlayTargetedCardAction : PlayCardAction
         new ResolvableGameState(gameState, effectStack)) { }
 
     public PlayTargetedCardAction(GameState gameState, TargetedCard card, EnemyId target)
-        : base(new ResolvableGameState(gameState, new EffectStack())) { }
+        : base(gameState, card, card.GetTargetedEffects(target)) { }
 }
