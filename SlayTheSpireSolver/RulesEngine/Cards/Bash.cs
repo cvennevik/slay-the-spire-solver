@@ -8,15 +8,12 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Bash : TargetedCard
 {
-    private readonly Damage _damage = 8;
-    private readonly Vulnerable _vulnerable = 2;
-
     public override Energy GetCost() => 2;
 
     public override EffectStack GetTargetedEffect(EnemyId target) => new Effect[]
     {
-        new ApplyVulnerableToEnemyEffect(target, _vulnerable),
-        new AttackEnemyEffect(target, _damage)
+        new ApplyVulnerableToEnemyEffect(target, new Vulnerable(2)),
+        new AttackEnemyEffect(target, new Damage(8))
     };
 
     protected override string GetName() => "Bash";
