@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
@@ -25,6 +26,20 @@ internal class TargetedCardTests<TCard> : CommonCardTests<TCard> where TCard : T
     [Test]
     public void OneLegalActionForBasicGameState()
     {
+        var expectedAction = new Action(BasicGameState, new EffectStack(
+            new AddCardToDiscardPileEffect(Card),
+            Card.GetEffect(BasicGameState.EnemyParty.First().Id),
+            new RemoveCardFromHandEffect(Card),
+            new RemoveEnergyEffect(Card.GetCost())));
+        Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
+    }
+
+    [Test]
+    public void OneLegalActionPerEnemy()
+    {
+        var enemy1 = new JawWorm { Id = EnemyId.New() };
+        var enemy2 = new JawWorm { Id = EnemyId.New() };
+        var enemy3 = new JawWorm { Id = EnemyId.New() };
         var expectedAction = new Action(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
             Card.GetEffect(BasicGameState.EnemyParty.First().Id),
