@@ -47,4 +47,15 @@ public class AttackEnemyEffectTests
         var result = effect.Resolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, 1)), result);
     }
+
+    [Test]
+    public void AddsDamageEnemyEffectWithExtraDamageAgainstVulnerableEnemy()
+    {
+        var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10, Vulnerable = 1 };
+        var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
+        var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
+        var effect = new AttackEnemyEffect(targetEnemy.Id, new Damage(2));
+        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, 3)), result);
+    }
 }
