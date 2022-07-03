@@ -19,7 +19,7 @@ public abstract record TargetedCard : Card
 
     private PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)
     {
-        return new PlayCardAction(gameState, new EffectStack(new AddCardToDiscardPileEffect(this))
+        return new PlayTargetedCardAction(gameState, new EffectStack(new AddCardToDiscardPileEffect(this))
             .Push(GetTargetedEffects(target))
             .Push(new RemoveCardFromHandEffect(this))
             .Push(new RemoveEnergyEffect(GetCost())));
@@ -40,7 +40,7 @@ internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard 
     public void OneLegalActionForBasicGameState()
     {
         var expectedEffectStack = GetExpectedEffectStack(BasicGameState.EnemyParty.First().Id);
-        var expectedAction = new PlayCardAction(BasicGameState, expectedEffectStack);
+        var expectedAction = new PlayTargetedCardAction(BasicGameState, expectedEffectStack);
         Assert.AreEqual(expectedAction, Card.GetLegalActions(BasicGameState).Single());
     }
 
@@ -52,9 +52,9 @@ internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard 
         var enemy3 = new JawWorm { Id = EnemyId.New() };
         var gameState = BasicGameState with { EnemyParty = new[] { enemy1, enemy2, enemy3 } };
 
-        var expectedAction1 = new PlayCardAction(gameState, GetExpectedEffectStack(enemy1.Id));
-        var expectedAction2 = new PlayCardAction(gameState, GetExpectedEffectStack(enemy2.Id));
-        var expectedAction3 = new PlayCardAction(gameState, GetExpectedEffectStack(enemy3.Id));
+        var expectedAction1 = new PlayTargetedCardAction(gameState, GetExpectedEffectStack(enemy1.Id));
+        var expectedAction2 = new PlayTargetedCardAction(gameState, GetExpectedEffectStack(enemy2.Id));
+        var expectedAction3 = new PlayTargetedCardAction(gameState, GetExpectedEffectStack(enemy3.Id));
         var expectedActions = new[] { expectedAction1, expectedAction2, expectedAction3 };
         Assert.That(Card.GetLegalActions(gameState), Is.EquivalentTo(expectedActions));
     }

@@ -11,7 +11,7 @@ public abstract record UntargetedCard : Card
     public override IReadOnlyCollection<PlayerAction> GetLegalActions(GameState gameState)
     {
         return CanBePlayed(gameState)
-            ? new[] { new PlayerAction(gameState, new EffectStack(
+            ? new[] { new PlayUntargetedCardAction(gameState, new EffectStack(
                 new AddCardToDiscardPileEffect(this),
                 GetEffect(),
                 new RemoveCardFromHandEffect(this),
@@ -25,7 +25,7 @@ internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCar
     [Test]
     public void OneLegalActionForBasicGameState()
     {
-        var expectedAction = new PlayerAction(BasicGameState, new EffectStack(
+        var expectedAction = new PlayUntargetedCardAction(BasicGameState, new EffectStack(
             new AddCardToDiscardPileEffect(Card),
             Card.GetEffect(),
             new RemoveCardFromHandEffect(Card),
