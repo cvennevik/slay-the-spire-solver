@@ -12,4 +12,4 @@ public record Defend : UntargetedCard
 }
 
 [TestFixture]
-internal class DefendTests : CommonCardTests<Defend> { }
+internal class DefendTests : UntargetedCardTests<Defend> { }
