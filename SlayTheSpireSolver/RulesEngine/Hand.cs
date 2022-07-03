@@ -16,7 +16,7 @@ public class Hand : CardCollection<Hand>
 }
 
 [TestFixture]
-public class HandTests
+internal class HandTests
 {
     [TestFixture]
     public class EqualityTests : HandTests

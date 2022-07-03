@@ -28,7 +28,7 @@ public record Strength
 }
 
 [TestFixture]
-public class StrengthTests
+internal class StrengthTests
 {
     [Test]
     [TestCase(-1)]

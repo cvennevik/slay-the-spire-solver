@@ -14,7 +14,7 @@ public record AddCardToDiscardPileEffect(Card CardToAdd) : Effect
 }
 
 [TestFixture]
-public class AddCardToDiscardPileEffectTests
+internal class AddCardToDiscardPileEffectTests
 {
     [Test]
     public void AddsToEmptyDiscardPile()

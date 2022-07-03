@@ -31,7 +31,7 @@ public class EnemyId
 }
 
 [TestFixture]
-public class EnemyIdTests
+internal class EnemyIdTests
 {
     [Test]
     public void TestEquality()

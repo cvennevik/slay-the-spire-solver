@@ -19,7 +19,7 @@ public class DrawPile : CardCollection<DrawPile>
 internal class DrawPileTests
 {
     [TestFixture]
-    public class EqualityTests : DrawPileTests
+    internal class EqualityTests : DrawPileTests
     {
         [Test]
         public void Test1()
@@ -93,7 +93,7 @@ internal class DrawPileTests
     }
 
     [TestFixture]
-    public class RemoveTests : DrawPileTests
+    internal class RemoveTests : DrawPileTests
     {
         [Test]
         public void ThrowsExceptionWhenDrawPileEmpty()
@@ -135,7 +135,7 @@ internal class DrawPileTests
     }
     
     [TestFixture]
-    public class AddTests : DrawPileTests
+    internal class AddTests : DrawPileTests
     {
         [Test]
         public void AddsStrikeToEmptyDrawPile()
