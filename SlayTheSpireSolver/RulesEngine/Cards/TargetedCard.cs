@@ -21,7 +21,7 @@ public abstract record TargetedCard : Card
         return new Action(gameState, new EffectStack(new AddCardToDiscardPileEffect(this))
             .Push(GetTargetedEffect(target))
             .Push(new RemoveCardFromHandEffect(this))
-            .Push(new RemoveEnergyEffect(this.GetCost())));
+            .Push(new RemoveEnergyEffect(GetCost())));
     }
 }
 
