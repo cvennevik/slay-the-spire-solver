@@ -34,5 +34,12 @@ internal class BashTests : TargetedCardTests<Bash>
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single().GameState;
+        var expectedGameState = new GameState
+        {
+            Energy = 1,
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new Bash()),
+            EnemyParty = new[] { new JawWorm { Health = 2, Vulnerable = 2 } }
+        };
     }
 }
