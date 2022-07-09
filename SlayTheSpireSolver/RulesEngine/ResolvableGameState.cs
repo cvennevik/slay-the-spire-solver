@@ -21,16 +21,6 @@ public record ResolvableGameState : GameState
     {
         GameState = gameState;
         EffectStack = effectStack;
-
-        PlayerHealth = gameState.PlayerHealth;
-        PlayerArmor = gameState.PlayerArmor;
-        BaseEnergy = gameState.BaseEnergy;
-        Energy = gameState.Energy;
-        EnemyParty = gameState.EnemyParty;
-        Turn = gameState.Turn;
-        Hand = gameState.Hand;
-        DrawPile = gameState.DrawPile;
-        DiscardPile = gameState.DiscardPile;
     }
 
     public IReadOnlyList<Possibility> Resolve()
