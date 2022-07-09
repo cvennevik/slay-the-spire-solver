@@ -23,7 +23,7 @@ internal class DefendTests : UntargetedCardTests<Defend>
             Energy = 3,
             Hand = new Hand(new Defend()),
             EnemyParty = new[] { new JawWorm() },
-            PlayerArmor = 2, 
+            PlayerArmor = 2
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
