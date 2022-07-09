@@ -12,6 +12,7 @@ public record ResolvablePossibility
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
     {
         this.ResolvableGameState = ResolvableGameState;
+        GameState = ResolvableGameState.GameState;
         this.Probability = Probability;
     }
 
