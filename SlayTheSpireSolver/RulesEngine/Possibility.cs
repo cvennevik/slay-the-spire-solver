@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -35,4 +36,10 @@ public record Possibility(GameState GameState, Probability Probability)
             .Select(resolvablePossibility => resolvablePossibility with {Probability = resolvablePossibility.Probability * Probability})
             .ToArray();
     }
+}
+
+[TestFixture]
+internal class PossibilityTests
+{
+    
 }
