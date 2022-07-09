@@ -8,8 +8,7 @@ public abstract record PlayerAction
 
     protected PlayerAction(GameState gameState)
     {
-        _resolvableGameState =
-            new ResolvableGameState(gameState with { EffectStack = new EffectStack() }, gameState.EffectStack);
+        _resolvableGameState = new ResolvableGameState(gameState);
     }
 
     public IReadOnlyCollection<Possibility> Resolve() => _resolvableGameState.Resolve();
