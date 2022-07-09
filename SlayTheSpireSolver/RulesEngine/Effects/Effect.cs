@@ -14,11 +14,4 @@ public abstract record Effect
             x with { GameState = x.GameState with { EffectStack = originalEffectStack.Push(x.GameState.EffectStack) } });
         return possibilities.ToList();
     }
-
-    public ResolvablePossibilitySet ResolveWithBaseEffectStack(GameState gameState, EffectStack effectStack)
-    {
-        return Resolve(gameState)
-            .Select(resolvablePossibility => resolvablePossibility.WithBaseEffectStack(effectStack))
-            .ToArray();
-    }
 }
