@@ -55,7 +55,7 @@ internal class ResolvableGameStateTests
     {
         var gameState = new GameState { PlayerArmor = 0 };
         var effectStack = new EffectStack(new GainPlayerArmorEffect(5));
-        var action = new ResolvableGameState(gameState, effectStack);
+        var action = new ResolvableGameState(gameState with {EffectStack = effectStack});
         var resolvedState = action.Resolve().Single().GameState;
         Assert.AreEqual(new GameState { PlayerArmor = 5 }, resolvedState);
     }
