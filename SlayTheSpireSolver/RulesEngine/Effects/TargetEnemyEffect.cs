@@ -6,9 +6,9 @@ public abstract record TargetEnemyEffect : Effect
 {
     public EnemyId Target { get; init; } = EnemyId.Default;
 
-    public TargetEnemyEffect() { }
+    protected TargetEnemyEffect() { }
 
-    public TargetEnemyEffect(EnemyId target)
+    protected TargetEnemyEffect(EnemyId target)
     {
         Target = target;
     }
