@@ -11,9 +11,9 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
 
     public override PossibilitySet Resolve(GameState gameState)
     {
-        if (!gameState.EnemyParty.Has(Target)) return gameState;
-
-        return gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = enemy.Vulnerable.Decrease() });
+        return gameState.EnemyParty.Has(Target)
+            ? gameState.ModifyEnemy(Target, enemy => enemy with { Vulnerable = enemy.Vulnerable.Decrease() })
+            : gameState;
     }
 }
 
