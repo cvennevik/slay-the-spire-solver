@@ -50,5 +50,6 @@ internal class PossibilityTests
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
         };
         var possibility = new Possibility(gameState, new Probability(0.5));
+        var result = possibility.Resolve();
     }
 }
