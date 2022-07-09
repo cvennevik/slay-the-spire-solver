@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
