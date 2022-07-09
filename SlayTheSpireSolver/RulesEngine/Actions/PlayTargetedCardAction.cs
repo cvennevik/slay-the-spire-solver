@@ -25,5 +25,12 @@ internal class PlayTargetedCardActionTests
         };
         var action = new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default);
         var result = action.Resolve().Single().GameState;
+        var expectedGameState = new GameState
+        {
+            Energy = 2,
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new Strike()),
+            EnemyParty = new[] { new JawWorm { Health = 7 } }
+        };
     }
 }
