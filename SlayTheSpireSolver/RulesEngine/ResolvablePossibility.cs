@@ -48,9 +48,7 @@ public record ResolvablePossibility
 
     public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
     {
-        return this with
-        {
-            ResolvableGameState = GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack))
-        };
+        return new ResolvablePossibility(GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack)),
+            Probability);
     }
 }
