@@ -23,7 +23,10 @@ internal class PlayUntargetedCardActionTests
         var result = action.Resolve().Single().GameState;
         var expectedGameState = new GameState
         {
-            Energy = 2, Hand = new Hand(), DiscardPile = new DiscardPile(new Defend())
+            Energy = 2,
+            PlayerArmor = 5,
+            Hand = new Hand(),
+            DiscardPile = new DiscardPile(new Defend())
         };
     }
 }
