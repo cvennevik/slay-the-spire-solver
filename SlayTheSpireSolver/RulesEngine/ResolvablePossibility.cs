@@ -23,15 +23,6 @@ public record ResolvablePossibility
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
         new(possibility.GameState.WithEffects(), possibility.Probability);
 
-    private ResolvablePossibilitySet ResolveTopEffect()
-    {
-        var (effect, remainingEffectStack) = ResolvableGameState.EffectStack.Pop();
-        return effect
-            .ResolveWithBaseEffectStack(GameState, remainingEffectStack)
-            .Select(resolvablePossibility => resolvablePossibility with {Probability = resolvablePossibility.Probability * Probability})
-            .ToArray();
-    }
-
     public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
     {
         return new ResolvablePossibility(GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack)),
