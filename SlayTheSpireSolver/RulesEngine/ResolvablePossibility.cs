@@ -13,6 +13,12 @@ public record ResolvablePossibility
         this.Probability = Probability;
     }
 
+    public ResolvablePossibility(GameState GameState, Probability Probability)
+    {
+        this.GameState = GameState;
+        this.Probability = Probability;
+    }
+
     public static implicit operator ResolvablePossibility(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState, new Probability(1));
     public static implicit operator ResolvablePossibility(GameState gameState) =>
