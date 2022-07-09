@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable VulnerableToApply) : Effect
 {
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
+    public override PossibilitySet NewResolve(GameState gameState)
     {
         return gameState.ModifyEnemy(Target, enemy =>
             enemy with { Vulnerable = enemy.Vulnerable.Add(VulnerableToApply) });
