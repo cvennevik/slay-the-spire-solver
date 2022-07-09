@@ -7,8 +7,13 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record ResolvableGameState(GameState GameState, EffectStack EffectStack)
+public record ResolvableGameState
 {
+    public ResolvableGameState(GameState GameState, EffectStack EffectStack)
+    {
+        this.GameState = GameState;
+        this.EffectStack = EffectStack;
+    }
     // GOAL: Add EffectStack to GameState, get rid of this class
     // PLAN:
     //  1. Add EffectStack to GameState
@@ -20,6 +25,13 @@ public record ResolvableGameState(GameState GameState, EffectStack EffectStack)
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
+    public GameState GameState { get; init; }
+    public EffectStack EffectStack { get; init; }
+    public void Deconstruct(out GameState GameState, out EffectStack EffectStack)
+    {
+        GameState = this.GameState;
+        EffectStack = this.EffectStack;
+    }
 }
 
 [TestFixture]
