@@ -48,7 +48,8 @@ internal class PossibilityTests
     public void TestEmptyEffectStack()
     {
         var gameState = new GameState { Turn = 3 };
-        var possibility = new Possibility(gameState, 1);
+        var possibility = new Possibility(gameState, 0.7);
+        var result = possibility.Resolve().Single();
     }
 
     [Test]
