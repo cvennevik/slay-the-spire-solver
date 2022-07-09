@@ -11,6 +11,9 @@ public record Possibility(GameState GameState, Probability Probability)
 {
     public static implicit operator Possibility(GameState gameState) => new(gameState, new Probability(1));
 
+    public static Possibility operator *(Possibility possibility, Probability probability) =>
+        possibility with { Probability = possibility.Probability * probability };
+
     public bool IsEqualTo(Possibility other, double tolerance = double.Epsilon)
     {
         return GameState == other.GameState && Probability.IsEqualTo(other.Probability, tolerance);
