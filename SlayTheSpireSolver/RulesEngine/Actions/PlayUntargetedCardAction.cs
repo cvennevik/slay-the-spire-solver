@@ -12,5 +12,9 @@ public record PlayUntargetedCardAction : PlayCardAction
 [TestFixture]
 internal class PlayUntargetedCardActionTests
 {
-    
+    [Test]
+    public void Test()
+    {
+        var action = new PlayUntargetedCardAction(new GameState(), new Defend());
+    }
 }
