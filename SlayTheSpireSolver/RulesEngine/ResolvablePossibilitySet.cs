@@ -67,13 +67,3 @@ public class ResolvablePossibilitySet : IEnumerable<ResolvablePossibility>, IEqu
         return $"[{string.Join(",\n", _possibilities)}]";
     }
 }
-
-[TestFixture]
-internal class ResolvablePossibilitySetTests
-{
-    [Test]
-    public void TestEmptyEquality()
-    {
-        Assert.AreEqual(new ResolvablePossibilitySet(), new ResolvablePossibilitySet());
-    }
-}
