@@ -52,5 +52,6 @@ internal class PossibilityTests
         };
         var possibility = new Possibility(gameState, new Probability(0.5));
         var result = possibility.Resolve();
+        Assert.AreEqual(2, result.Count);
     }
 }
