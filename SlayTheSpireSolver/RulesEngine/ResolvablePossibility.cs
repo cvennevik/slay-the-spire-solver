@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 public record ResolvablePossibility
 {
     public ResolvableGameState ResolvableGameState { get; init; }
-    public GameState GameState { get; init; }
+    public GameState GameState => ResolvableGameState.GameState;
     public Probability Probability { get; init; }
 
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
