@@ -61,7 +61,7 @@ internal class PossibilityTests
             Hand = new Hand(new Strike()),
             EnemyParty = new EnemyParty(new JawWorm { Health = 2 })
         };
-        var possibility = new Possibility(gameState, 1);
+        var possibility = new Possibility(gameState, 0.8);
         var result = possibility.Resolve();
     }
 
