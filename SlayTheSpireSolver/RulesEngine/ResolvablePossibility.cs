@@ -23,21 +23,6 @@ public record ResolvablePossibility
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
         new(possibility.GameState.WithEffects(), possibility.Probability);
 
-    public IReadOnlyList<Possibility> Resolve()
-    {
-        if (ResolvableGameState.EffectStack.IsEmpty())
-        {
-            return new[] { GameState.WithProbability(Probability) };
-        }
-
-        return ResolveTopEffect()
-            .SelectMany(x => x.Resolve())
-            .GroupBy(x => x.GameState)
-            .Select(grouping => new Possibility(grouping.Key,
-                grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
-            .ToList();
-    }
-
     private ResolvablePossibilitySet ResolveTopEffect()
     {
         var (effect, remainingEffectStack) = ResolvableGameState.EffectStack.Pop();
