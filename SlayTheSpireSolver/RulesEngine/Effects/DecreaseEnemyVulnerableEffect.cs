@@ -10,7 +10,7 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
     public DecreaseEnemyVulnerableEffect() { }
     public DecreaseEnemyVulnerableEffect(EnemyId enemyId) : base(enemyId) { }
 
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
+    public override PossibilitySet NewResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
