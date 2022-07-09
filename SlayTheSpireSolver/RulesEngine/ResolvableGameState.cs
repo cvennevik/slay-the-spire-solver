@@ -1,5 +1,4 @@
 using SlayTheSpireSolver.RulesEngine.Effects;
-using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
@@ -13,7 +12,4 @@ public record ResolvableGameState
         GameState = gameState with { EffectStack = new EffectStack() };
         EffectStack = gameState.EffectStack;
     }
-
-    public ResolvablePossibility WithProbability(Probability probability) =>
-        new(GameState with { EffectStack = EffectStack }, probability);
 }
