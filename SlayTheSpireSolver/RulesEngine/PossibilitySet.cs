@@ -75,6 +75,6 @@ internal class PossibilitySetTests
     [Test]
     public void TestEmptyEquality()
     {
-        Assert.AreEqual(new ResolvablePossibilitySet(), new ResolvablePossibilitySet());
+        Assert.AreEqual(new PossibilitySet(), new PossibilitySet());
     }
 }
