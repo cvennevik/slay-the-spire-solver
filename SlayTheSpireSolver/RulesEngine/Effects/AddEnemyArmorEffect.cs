@@ -33,7 +33,7 @@ internal class AddEnemyArmorEffectTests
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
         Assert.AreEqual(expectedGameState, result);
     }
