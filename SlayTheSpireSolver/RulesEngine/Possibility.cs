@@ -53,6 +53,6 @@ internal class PossibilityTests
         var possibility = new Possibility(gameState, new Probability(0.5));
         var result = possibility.Resolve();
         Assert.AreEqual(2, result.Count);
-        Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value), 0.001);
+        Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value), 0.00000000001);
     }
 }
