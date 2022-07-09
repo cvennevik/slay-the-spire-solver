@@ -63,6 +63,7 @@ internal class PossibilityTests
             Hand = new Hand(new Strike(), new Strike())
         };
         var expectedPossibility1 = new Possibility(expectedGameState1, new Probability(0.3));
+        var tolerance = 0.00000000001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedGameState1));
