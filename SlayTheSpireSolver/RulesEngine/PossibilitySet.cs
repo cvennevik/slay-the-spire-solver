@@ -3,39 +3,40 @@ using NUnit.Framework;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public class PossibilitySet : IEnumerable<ResolvablePossibility>, IEquatable<PossibilitySet>
+public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySet>
 {
-    private readonly List<ResolvablePossibility> _possibilities;
+    private readonly List<Possibility> _possibilities;
 
-    public PossibilitySet(params ResolvablePossibility[] possibilities)
+    public PossibilitySet(params Possibility[] possibilities)
     {
         _possibilities = possibilities.Distinct().ToList();
     }
 
     public static implicit operator PossibilitySet(GameState gameState) =>
-        new(gameState.WithEffects().WithProbability(1));
+        new(gameState.WithProbability(1));
 
     public static implicit operator PossibilitySet(GameState[] gameStates) =>
-        new(gameStates.Select(x => x.WithEffects().WithProbability(1)).ToArray());
+        new(gameStates.Select(x => x.WithProbability(1)).ToArray());
 
     public static implicit operator PossibilitySet(ResolvableGameState resolvableGameState) =>
-        new(resolvableGameState.WithProbability(1));
+        new((resolvableGameState.GameState with { EffectStack = resolvableGameState.EffectStack }).WithProbability(1));
 
     public static implicit operator PossibilitySet(ResolvableGameState[] resolvableGameStates) =>
-        new(resolvableGameStates.Select(x => x.WithProbability(1)).ToArray());
+        new(resolvableGameStates
+            .Select(x => (x.GameState with { EffectStack = x.GameState.EffectStack }).WithProbability(1)).ToArray());
 
-    public static implicit operator PossibilitySet(
-        ResolvablePossibility resolvableGameState) => new(resolvableGameState);
+    public static implicit operator PossibilitySet(ResolvablePossibility resolvablePossibility) =>
+        new Possibility(resolvablePossibility.GameState, resolvablePossibility.Probability);
 
-    public static implicit operator PossibilitySet(
-        ResolvablePossibility[] resolvableGameStates) => new(resolvableGameStates);
+    public static implicit operator PossibilitySet(ResolvablePossibility[] resolvablePossibilities) =>
+        resolvablePossibilities.Select(x => new Possibility(x.GameState, x.Probability)).ToArray();
 
     public static implicit operator PossibilitySet(Possibility possibility) => new(possibility);
 
     public static implicit operator PossibilitySet(Possibility[] possibilities) =>
-        new(possibilities.Select(x => x.GameState.WithEffects().WithProbability(x.Probability)).ToArray());
+        new(possibilities);
 
-    public IEnumerator<ResolvablePossibility> GetEnumerator()
+    public IEnumerator<Possibility> GetEnumerator()
     {
         return _possibilities.GetEnumerator();
     }
