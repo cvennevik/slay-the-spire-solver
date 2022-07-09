@@ -19,7 +19,7 @@ public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 
         if (newGameState.EnemyParty.Get(TargetId).Health.Amount <= 0)
         {
-            return new[] { newGameState.WithEffects(new EffectStack(new KillEnemyEffect(TargetId))) };
+            return newGameState.WithEffects(new EffectStack(new KillEnemyEffect(TargetId)));
         }
 
         return newGameState;
