@@ -23,5 +23,6 @@ internal class PlayTargetedCardActionTests
             Hand = new Hand(new Strike()),
             EnemyParty = new[] { new JawWorm { Health = 7 } }
         };
+        var action = new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default);
     }
 }
