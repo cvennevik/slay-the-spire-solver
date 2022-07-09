@@ -44,10 +44,10 @@ internal class ChooseNewEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
-        var result = effect.OldResolve(gameState);
+        var result = effect.NewResolve(gameState);
         var bellowEnemy = new JawWorm { IntendedMove = new Bellow(), PreviousMoves = new[] { new Chomp() } };
         var thrashEnemy = new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } };
-        var expectedPossibilities = new ResolvablePossibility[]
+        var expectedPossibilities = new[]
         {
             (gameState with { EnemyParty = new[] { bellowEnemy } }).WithProbability(0.45 / 0.75),
             (gameState with { EnemyParty = new[] { thrashEnemy } }).WithProbability(0.3 / 0.75)
