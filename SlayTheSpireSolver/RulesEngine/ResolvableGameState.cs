@@ -14,5 +14,6 @@ public record ResolvableGameState
         EffectStack = gameState.EffectStack;
     }
 
-    public ResolvablePossibility WithProbability(Probability probability) => new(GameState, probability);
+    public ResolvablePossibility WithProbability(Probability probability) =>
+        new(GameState with { EffectStack = EffectStack }, probability);
 }
