@@ -125,10 +125,10 @@ internal class ResolvableGameStateTests
         var gameState = new GameState
         {
             Hand = new Hand(),
-            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend()),
+            EffectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect())
         };
-        var effectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect());
-        var action = new ResolvableGameState(gameState, effectStack);
+        var action = new ResolvableGameState(gameState);
         var result = action.Resolve();
         var expectedResult1 = new GameState
         {
