@@ -13,5 +13,9 @@ public record PlayTargetedCardAction : PlayCardAction
 [TestFixture]
 internal class PlayTargetedCardActionTests
 {
-    
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
