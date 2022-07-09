@@ -35,8 +35,8 @@ internal class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.OldResolve(gameState).SingleUnresolvedState();
-        var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(1)));
+        var result = effect.NewResolve(gameState).Single().GameState;
+        var expectedResult = gameState.WithAddedEffects(new EffectStack(new DamagePlayerEffect(1)));
         Assert.AreEqual(expectedResult, result);
     }
 
