@@ -10,13 +10,6 @@ public record ResolveEnemyMoveEffect : TargetEnemyEffect
     public ResolveEnemyMoveEffect() { }
     public ResolveEnemyMoveEffect(EnemyId target) : base(target) { }
 
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
-    {
-        if (!gameState.EnemyParty.Has(Target)) return gameState;
-        var enemyMoveEffects = gameState.EnemyParty.Get(Target).GetMoveEffects();
-        return gameState.WithEffects(enemyMoveEffects);
-    }
-
     public override PossibilitySet NewResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
