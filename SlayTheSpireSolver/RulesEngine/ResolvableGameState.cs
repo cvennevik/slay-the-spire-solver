@@ -18,6 +18,12 @@ public record ResolvableGameState
         this.EffectStack = EffectStack;
     }
 
+    public ResolvableGameState(GameState GameState)
+    {
+        this.GameState = GameState with { EffectStack = new EffectStack() };
+        EffectStack = GameState.EffectStack;
+    }
+
     // GOAL: Add EffectStack to GameState, get rid of this class
     // PLAN:
     //  1. Add EffectStack to GameState
