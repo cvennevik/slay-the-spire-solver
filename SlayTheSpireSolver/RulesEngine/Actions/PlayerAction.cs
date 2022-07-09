@@ -6,11 +6,6 @@ public abstract record PlayerAction
 {
     private readonly ResolvableGameState _resolvableGameState;
 
-    protected PlayerAction(GameState gameState, EffectStack effectStack)
-    {
-        _resolvableGameState = new ResolvableGameState(gameState, effectStack);
-    }
-
     protected PlayerAction(GameState gameState)
     {
         _resolvableGameState =
