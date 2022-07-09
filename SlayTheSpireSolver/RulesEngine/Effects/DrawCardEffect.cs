@@ -22,7 +22,7 @@ public record DrawCardEffect : Effect
 
         if (gameState.DrawPile.Cards.Any())
         {
-            var results = new List<ResolvablePossibility>();
+            var results = new List<Possibility>();
             var uniqueCards = gameState.DrawPile.Cards.Distinct();
             foreach (var uniqueCard in uniqueCards)
             {
@@ -34,7 +34,7 @@ public record DrawCardEffect : Effect
                 var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
                                          gameState.DrawPile.Cards.Count;
                 var probability = new Probability(fractionOfDrawPile);
-                results.Add(new ResolvablePossibility(newGameState, probability));
+                results.Add(new Possibility(newGameState, probability));
             }
 
             return results.ToArray();
