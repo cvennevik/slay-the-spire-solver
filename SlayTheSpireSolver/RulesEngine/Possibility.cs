@@ -63,7 +63,7 @@ internal class PossibilityTests
             EffectStack = new AttackEnemyEffect(EnemyId.Default, 3)
         };
         var possibility = new Possibility(gameState, 0.8);
-        var result = possibility.Resolve();
+        var result = possibility.Resolve().Single();
         var expectedGameState = new GameState
         {
             Turn = 2,
