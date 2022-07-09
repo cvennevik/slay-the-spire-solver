@@ -32,12 +32,9 @@ public readonly struct EffectStack
 
     public (Effect, EffectStack) Pop()
     {
-        if (_effects.Length == 0)
-        {
-            return (new NullEffect(), this);
-        }
-
-        return (_effects[^1], new EffectStack(_effects.Take(_effects.Length - 1).ToArray()));
+        return _effects.Length == 0
+            ? (new NullEffect(), this)
+            : (_effects[^1], new EffectStack(_effects.Take(_effects.Length - 1).ToArray()));
     }
 
     public override bool Equals(object? obj)
