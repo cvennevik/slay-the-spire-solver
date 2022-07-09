@@ -20,5 +20,5 @@ public record ResolvablePossibility
     }
 
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
-        new(possibility.GameState.WithEffects(), possibility.Probability);
+        new(possibility.GameState, possibility.Probability);
 }
