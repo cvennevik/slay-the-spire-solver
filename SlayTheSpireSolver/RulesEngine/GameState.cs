@@ -194,4 +194,10 @@ internal class GameStateTests
             Assert.True(gameState.IsCombatOver());
         }
     }
+
+    [TestFixture]
+    internal class ResolveTests : GameStateTests
+    {
+        
+    }
 }
