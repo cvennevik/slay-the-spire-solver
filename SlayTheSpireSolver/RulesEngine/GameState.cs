@@ -42,6 +42,12 @@ public record GameState
         return this with { EnemyParty = EnemyParty.ModifyEnemy(id, modifier) };
     }
 
+    public (Effect, GameState) PopEffect()
+    {
+        var (effect, remainingEffectStack) = EffectStack.Pop();
+        return (effect, this with { EffectStack = remainingEffectStack });
+    }
+
     public GameState WithAddedEffects(EffectStack effectStack)
     {
         return this with { EffectStack = EffectStack.Push(effectStack) };
