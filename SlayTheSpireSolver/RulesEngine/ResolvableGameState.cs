@@ -10,7 +10,6 @@ namespace SlayTheSpireSolver.RulesEngine;
 public record ResolvableGameState : GameState
 {
     public GameState GameState { get; }
-    public EffectStack EffectStack { get; } = new();
 
     // GOAL: Add EffectStack to GameState, get rid of this class
     // PLAN:
