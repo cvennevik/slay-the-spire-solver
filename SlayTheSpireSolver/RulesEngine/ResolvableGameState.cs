@@ -28,13 +28,8 @@ public record ResolvableGameState
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
-    public GameState GameState { get; init; }
-    public EffectStack EffectStack { get; init; }
-    public void Deconstruct(out GameState GameState, out EffectStack EffectStack)
-    {
-        GameState = this.GameState;
-        EffectStack = this.EffectStack;
-    }
+    public GameState GameState { get; }
+    public EffectStack EffectStack { get; }
 }
 
 [TestFixture]
