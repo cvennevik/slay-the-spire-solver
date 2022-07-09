@@ -50,7 +50,7 @@ public record GameState
 
     public IReadOnlyList<Possibility> Resolve()
     {
-        return new ResolvableGameState(this).WithProbability(1).Resolve();
+        return WithProbability(1).Resolve();
     }
 
     public Possibility WithProbability(Probability probability) => new(this, probability);
