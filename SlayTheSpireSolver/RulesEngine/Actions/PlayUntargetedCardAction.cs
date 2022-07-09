@@ -16,6 +16,6 @@ internal class PlayUntargetedCardActionTests
     public void Test()
     {
         var action = new PlayUntargetedCardAction(new GameState(), new Defend());
-        var result = action.Resolve();
+        var result = action.Resolve().Single().GameState;
     }
 }
