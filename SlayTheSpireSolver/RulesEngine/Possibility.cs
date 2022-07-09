@@ -71,6 +71,7 @@ internal class PossibilityTests
             EffectStack = new EffectStack()
         };
         var expectedPossibility = new Possibility(expectedGameState, 0.8);
+        Assert.AreEqual(expectedPossibility, result);
     }
 
     [Test]
