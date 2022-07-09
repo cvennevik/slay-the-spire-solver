@@ -89,7 +89,7 @@ internal class ResolvableGameStateTests
         var effectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>());
         var action = new ResolvableGameState(gameState, effectStack);
         var resolvedState = action.Resolve().Single().GameState;
-        var expectedGameState = gameState with { PlayerHealth = 6 };
+        var expectedGameState = gameState with { PlayerHealth = 6, EffectStack = new EffectStack() };
         Assert.AreEqual(expectedGameState, resolvedState);
     }
 
