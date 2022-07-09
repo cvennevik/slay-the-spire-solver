@@ -11,5 +11,5 @@ public abstract record PlayerAction
         _resolvableGameState = new ResolvableGameState(gameState);
     }
 
-    public IReadOnlyCollection<Possibility> Resolve() => _resolvableGameState.Resolve();
+    public IReadOnlyCollection<Possibility> Resolve() => _unresolvedGameState.Resolve();
 }
