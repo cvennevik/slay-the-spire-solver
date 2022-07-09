@@ -228,5 +228,21 @@ internal class GameStateTests
             var resolvedState = gameState.Resolve().Single().GameState;
             Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
         }
+
+        
+        [Test]
+        public void ResolvesEffectThatAddNewEffects()
+        {
+            var gameState = new GameState
+            {
+                PlayerHealth = 30,
+                EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
+                    new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }),
+                EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>()) 
+            };
+            var resolvedState = gameState.Resolve().Single().GameState;
+            var expectedGameState = gameState with { PlayerHealth = 6, EffectStack = new EffectStack() };
+            Assert.AreEqual(expectedGameState, resolvedState);
+        }
     }
 }
