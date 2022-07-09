@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -44,6 +45,10 @@ internal class PossibilityTests
     [Test]
     public void Test()
     {
-        
+        var gameState = new GameState
+        {
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
+        };
+        var possibility = new Possibility(gameState, new Probability(0.5));
     }
 }
