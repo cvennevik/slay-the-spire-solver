@@ -11,6 +11,12 @@ public record ResolvableGameState
 {
     public GameState GameState { get; }
     public EffectStack EffectStack { get; } = new();
+    
+    // GOAL: Add EffectStack to GameState, get rid of this class
+    // PLAN:
+    //  1. Make ResolvableGameState inherit from GameState
+    //  2. Add EffectStack to GameState
+    //  3. Replace ResolvableGameState use with GameState use
 
     public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
