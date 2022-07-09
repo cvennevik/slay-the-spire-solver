@@ -14,17 +14,5 @@ public record ResolvableGameState
         EffectStack = gameState.EffectStack;
     }
 
-    // GOAL: Add EffectStack to GameState, get rid of this class
-    // PLAN:
-    //  1. Add EffectStack to GameState
-    //  2. Replace passing separate EffectStack to ResolvableGameState
-    //  3a. Replace using ResolvableGameState.EffectStack with using GameState.EffectStack
-    //  3b. Replace using ResolvableGameState with using GameState 
-
-    public IReadOnlyList<Possibility> Resolve()
-    {
-        return WithProbability(1).Resolve();
-    }
-
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
 }
