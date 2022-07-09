@@ -25,6 +25,6 @@ internal class GainPlayerArmorEffectTests
         var gameState = new GameState { PlayerArmor = initialPlayerArmor };
         var effect = new GainPlayerArmorEffect(effectAmount);
         Assert.AreEqual(new GameState { PlayerArmor = expectedPlayerArmor },
-            effect.OldResolve(gameState).SingleResolvedState());
+            effect.NewResolve(gameState).Single().GameState);
     }
 }
