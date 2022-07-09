@@ -21,7 +21,7 @@ internal class AddCardToDiscardPileEffectTests
     {
         var gameState = new GameState { DiscardPile = new DiscardPile() };
         var effect = new AddCardToDiscardPileEffect(new Strike());
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(new GameState { DiscardPile = new DiscardPile(new Strike()) }, result);
     }
 
