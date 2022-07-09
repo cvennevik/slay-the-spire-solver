@@ -12,10 +12,10 @@ public record ResolvableGameState
     public GameState GameState { get; }
     public EffectStack EffectStack { get; }
 
-    public ResolvableGameState(GameState GameState)
+    public ResolvableGameState(GameState gameState)
     {
-        this.GameState = GameState with { EffectStack = new EffectStack() };
-        EffectStack = GameState.EffectStack;
+        this.GameState = gameState with { EffectStack = new EffectStack() };
+        EffectStack = gameState.EffectStack;
     }
 
     // GOAL: Add EffectStack to GameState, get rid of this class
