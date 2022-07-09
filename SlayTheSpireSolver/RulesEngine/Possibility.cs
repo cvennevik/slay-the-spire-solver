@@ -59,7 +59,8 @@ internal class PossibilityTests
         var gameState = new GameState
         {
             Hand = new Hand(new Strike()),
-            EnemyParty = new EnemyParty(new JawWorm { Health = 2 })
+            EnemyParty = new EnemyParty(new JawWorm { Health = 2 }),
+            EffectStack = new Strike().GetTargetedEffects(EnemyId.Default)
         };
         var possibility = new Possibility(gameState, 0.8);
         var result = possibility.Resolve();
