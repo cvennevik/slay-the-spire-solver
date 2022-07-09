@@ -28,5 +28,6 @@ internal class PlayUntargetedCardActionTests
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Defend())
         };
+        Assert.AreEqual(expectedGameState, result);
     }
 }
