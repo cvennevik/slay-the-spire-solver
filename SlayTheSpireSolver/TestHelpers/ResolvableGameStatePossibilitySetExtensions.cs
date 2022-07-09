@@ -6,13 +6,13 @@ internal static class ResolvableGameStatePossibilitySetExtensions
 {
     internal static GameState SingleResolvedState(this ResolvablePossibilitySet resolvablePossibilitySet)
     {
-        var unresolvedGameState = resolvablePossibilitySet.Single().ResolvableGameState;
-        if (!unresolvedGameState.EffectStack.IsEmpty())
+        var gameState = resolvablePossibilitySet.Single().GameState;
+        if (!gameState.EffectStack.IsEmpty())
         {
             throw new ArgumentException("Game state is not resolved; effect stack is not empty");
         }
 
-        return unresolvedGameState.GameState;
+        return gameState;
     }
 
     internal static ResolvableGameState SingleUnresolvedState(this ResolvablePossibilitySet resolvablePossibilitySet)
