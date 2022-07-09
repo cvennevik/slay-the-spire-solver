@@ -19,7 +19,7 @@ internal class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState {PlayerArmor = 0, Turn = 3};
         var effect = new ClearPlayerArmorEffect();
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -28,7 +28,7 @@ internal class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState {PlayerArmor = 5, Turn = 3};
         var effect = new ClearPlayerArmorEffect();
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState with {PlayerArmor = 0}, result);
     }
 }

@@ -35,7 +35,7 @@ internal class DamagePlayerEffectTests
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
         var gameState = new GameState { PlayerHealth = initialHealth, PlayerArmor = initialArmor};
-        var result = damagePlayerEffect.OldResolve(gameState).SingleResolvedState();
+        var result = damagePlayerEffect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(new GameState { PlayerHealth = expectedHealth, PlayerArmor = expectedArmor }, result);
     }
 }
