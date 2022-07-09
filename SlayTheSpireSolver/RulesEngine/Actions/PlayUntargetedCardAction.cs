@@ -19,7 +19,7 @@ internal class PlayUntargetedCardActionTests
         {
             Energy = 3, Hand = new Hand(new Defend())
         };
-        var action = new PlayUntargetedCardAction(new GameState(), new Defend());
+        var action = new PlayUntargetedCardAction(gameState, new Defend());
         var result = action.Resolve().Single().GameState;
     }
 }
