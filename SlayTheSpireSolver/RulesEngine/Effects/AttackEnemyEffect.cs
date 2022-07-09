@@ -14,6 +14,13 @@ public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
         var damage = gameState.EnemyParty.Get(Target).Vulnerable.Any() ? Damage.AgainstVulnerableEnemy() : Damage;
         return gameState.WithEffects(new DamageEnemyEffect(Target, damage));
     }
+
+    public override PossibilitySet NewResolve(GameState gameState)
+    {
+        if (!gameState.EnemyParty.Has(Target)) return gameState;
+        var damage = gameState.EnemyParty.Get(Target).Vulnerable.Any() ? Damage.AgainstVulnerableEnemy() : Damage;
+        return gameState.WithAddedEffects(new DamageEnemyEffect(Target, damage));
+    }
 }
 
 [TestFixture]
