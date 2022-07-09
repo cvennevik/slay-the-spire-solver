@@ -8,13 +8,13 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : Effect
 {
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
+    public override PossibilitySet NewResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(EnemyId)) return gameState;
         var enemyStrength = gameState.EnemyParty.Get(EnemyId).Strength;
         var damagePlayerEffect = new DamagePlayerEffect(BaseDamage + enemyStrength);
 
-        return gameState.WithEffects(damagePlayerEffect);
+        return gameState.WithAddedEffects(damagePlayerEffect);
     }
 }
 
