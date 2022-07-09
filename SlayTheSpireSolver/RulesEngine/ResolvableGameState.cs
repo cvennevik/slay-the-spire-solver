@@ -29,9 +29,3 @@ public record ResolvableGameState
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
 }
-
-[TestFixture]
-internal class ResolvableGameStateTests
-{    
-
-}
