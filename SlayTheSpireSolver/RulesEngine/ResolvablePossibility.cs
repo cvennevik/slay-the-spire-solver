@@ -5,6 +5,9 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record ResolvablePossibility
 {
+    public ResolvableGameState ResolvableGameState { get; init; }
+    public Probability Probability { get; init; }
+
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
     {
         this.ResolvableGameState = ResolvableGameState;
@@ -17,9 +20,6 @@ public record ResolvablePossibility
         new(gameState.WithEffects(), new Probability(1));
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
         new(possibility.GameState.WithEffects(), possibility.Probability);
-
-    public ResolvableGameState ResolvableGameState { get; init; }
-    public Probability Probability { get; init; }
 
     public IReadOnlyList<Possibility> Resolve()
     {
