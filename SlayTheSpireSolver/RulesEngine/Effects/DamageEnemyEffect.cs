@@ -115,10 +115,10 @@ internal class DamageEnemyEffectTests
                 new JawWorm { Health = 10, Id = id1 },
                 new JawWorm { Health = 0, Id = id2 },
                 new JawWorm { Health = 10, Id = id3 }
-            )
+            ),
+            EffectStack = new KillEnemyEffect(id2)
         };
-        var expectedEffectStack = new EffectStack(new KillEnemyEffect(id2));
-        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.OldResolve(gameState).SingleUnresolvedState());
+        Assert.AreEqual(expectedGameState, effect.NewResolve(gameState).Single().GameState);
     }
 
     [Test]
