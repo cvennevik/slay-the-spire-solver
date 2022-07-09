@@ -48,6 +48,11 @@ public record GameState
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
     }
 
+    public IReadOnlyList<Possibility> Resolve()
+    {
+        return WithEffects().WithProbability(1).Resolve();
+    }
+
     public Possibility WithProbability(Probability probability) => new(this, probability);
 
     public override string ToString()
