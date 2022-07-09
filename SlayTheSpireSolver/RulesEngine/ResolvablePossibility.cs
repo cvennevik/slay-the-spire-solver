@@ -26,7 +26,7 @@ public record ResolvablePossibility
     {
         if (ResolvableGameState.EffectStack.IsEmpty())
         {
-            return new[] { ResolvableGameState.GameState.WithProbability(Probability) };
+            return new[] { GameState.WithProbability(Probability) };
         }
 
         return ResolveTopEffect()
