@@ -1,4 +1,3 @@
-using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
@@ -22,10 +21,4 @@ public record ResolvablePossibility
         new(gameState.WithEffects(), new Probability(1));
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
         new(possibility.GameState.WithEffects(), possibility.Probability);
-
-    public ResolvablePossibility WithBaseEffectStack(EffectStack baseEffectStack)
-    {
-        return new ResolvablePossibility(GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack)),
-            Probability);
-    }
 }
