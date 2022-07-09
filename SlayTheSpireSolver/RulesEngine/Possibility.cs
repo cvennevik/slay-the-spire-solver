@@ -19,7 +19,7 @@ public record Possibility(GameState GameState, Probability Probability)
         return GameState == other.GameState && Probability.IsEqualTo(other.Probability, tolerance);
     }
 
-    public IReadOnlyList<Possibility> Resolve()
+    public PossibilitySet Resolve()
     {
         if (GameState.EffectStack.IsEmpty())
         {
@@ -31,7 +31,7 @@ public record Possibility(GameState GameState, Probability Probability)
             .GroupBy(x => x.GameState)
             .Select(grouping => new Possibility(grouping.Key,
                 grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
-            .ToList();
+            .ToArray();
     }
 
     private PossibilitySet ResolveTopEffect()
@@ -100,7 +100,7 @@ internal class PossibilityTests
         var expectedPossibility1 = new Possibility(expectedGameState1, new Probability(0.2));
         var expectedPossibility2 = new Possibility(expectedGameState2, new Probability(0.3));
         const double tolerance = 0.0000000000000001;
-        Assert.AreEqual(2, result.Count);
+        Assert.AreEqual(2, result.Count());
         Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedGameState1));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedGameState2));
