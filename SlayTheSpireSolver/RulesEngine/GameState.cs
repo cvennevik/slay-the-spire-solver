@@ -45,7 +45,7 @@ public record GameState
     public ResolvableGameState WithEffects(params Effect[] effects) => WithEffects(new EffectStack(effects));
     public ResolvableGameState WithEffects(EffectStack? effectStack = null)
     {
-        return new ResolvableGameState(this, effectStack ?? new EffectStack());
+        return new ResolvableGameState(this with { EffectStack = effectStack ?? new EffectStack() });
     }
 
     public IReadOnlyList<Possibility> Resolve()
