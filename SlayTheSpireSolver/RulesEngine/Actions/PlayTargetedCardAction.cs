@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
@@ -16,6 +17,11 @@ internal class PlayTargetedCardActionTests
     [Test]
     public void Test()
     {
-        
+        var gameState = new GameState
+        {
+            Energy = 3,
+            Hand = new Hand(new Strike()),
+            EnemyParty = new[] { new JawWorm { Health = 7 } }
+        };
     }
 }
