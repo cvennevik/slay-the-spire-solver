@@ -229,7 +229,6 @@ internal class GameStateTests
             Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
         }
 
-        
         [Test]
         public void ResolvesEffectThatAddNewEffects()
         {
