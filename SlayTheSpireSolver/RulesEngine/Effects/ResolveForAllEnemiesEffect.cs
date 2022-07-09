@@ -57,9 +57,9 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveForAllEnemiesEffect<T>();
-        var result = effect.OldResolve(gameState).SingleUnresolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(
-            gameState.WithEffects(new EffectStack(new T { Target = enemy2.Id }, new T { Target = enemy1.Id })),
+            gameState.WithAddedEffects(new EffectStack(new T { Target = enemy2.Id }, new T { Target = enemy1.Id })),
             result);
     }
 }
