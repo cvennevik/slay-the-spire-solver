@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
 {
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
+    public override PossibilitySet NewResolve(GameState gameState)
     {
         return gameState.ModifyEnemy(EnemyId,
             enemy => enemy with { Armor = enemy.Armor + ArmorGain });
