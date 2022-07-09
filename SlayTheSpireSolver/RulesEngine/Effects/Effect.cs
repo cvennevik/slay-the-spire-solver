@@ -2,7 +2,10 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public abstract record Effect
 {
-    public abstract ResolvablePossibilitySet Resolve(GameState gameState);
+    public virtual ResolvablePossibilitySet Resolve(GameState gameState)
+    {
+        return gameState;
+    }
 
     public virtual PossibilitySet NewResolve(GameState gameState)
     {
