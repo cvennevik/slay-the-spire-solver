@@ -35,7 +35,7 @@ internal class ChooseNewEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.New());
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
