@@ -4,13 +4,11 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record ResolvablePossibility
 {
-    private ResolvableGameState ResolvableGameState { get; }
     public GameState GameState { get; }
     public Probability Probability { get; }
 
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
     {
-        this.ResolvableGameState = ResolvableGameState;
         this.GameState = ResolvableGameState.GameState with {EffectStack = ResolvableGameState.EffectStack};
         this.Probability = Probability;
     }
