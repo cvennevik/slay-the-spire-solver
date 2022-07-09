@@ -42,11 +42,6 @@ public record GameState
         return this with { EnemyParty = EnemyParty.ModifyEnemy(id, modifier) };
     }
 
-    public ResolvableGameState WithEffects(EffectStack? effectStack = null)
-    {
-        return new ResolvableGameState(this with { EffectStack = effectStack ?? new EffectStack() });
-    }
-
     public GameState WithAddedEffects(EffectStack effectStack)
     {
         return this with { EffectStack = EffectStack.Push(effectStack) };
