@@ -243,5 +243,30 @@ internal class GameStateTests
             var expectedGameState = gameState with { PlayerHealth = 6, EffectStack = new EffectStack() };
             Assert.AreEqual(expectedGameState, resolvedState);
         }
+
+        [Test]
+        public void ResolvesEffectWithMultipleOutcomes()
+        {
+            var gameState = new GameState
+            {
+                Hand = new Hand(),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Defend()),
+                EffectStack = new EffectStack(new DrawCardEffect())
+            };
+            var result = gameState.Resolve();
+            var expectedResult1 = new GameState
+            {
+                Hand = new Hand(new Strike()),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
+            };
+            var expectedResult2 = new GameState
+            {
+                Hand = new Hand(new Defend()),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
+            };
+            Assert.AreEqual(2, result.Count);
+            Assert.Contains(expectedResult1.WithProbability(0.75),result.ToList());
+            Assert.Contains(expectedResult2.WithProbability(0.25),result.ToList());
+        }
     }
 }
