@@ -10,14 +10,9 @@ public abstract record Effect
         var resolvablePossibilities = Resolve(gameState with { EffectStack = new EffectStack() }).ToList();
         var possibilitiesWithoutOriginalEffectStack = resolvablePossibilities.Select(x =>
             new Possibility(x.GameState with { EffectStack = x.ResolvableGameState.EffectStack }, x.Probability));
-        return Resolve(gameState with {EffectStack = new EffectStack()})
-            .Select(resolvablePossibility =>
-                new Possibility(
-                    resolvablePossibility.GameState with
-                    {
-                        EffectStack = originalEffectStack.Push(resolvablePossibility.GameState.EffectStack)
-                    }, resolvablePossibility.Probability))
-            .ToList();
+        var possibilities = possibilitiesWithoutOriginalEffectStack.Select(x =>
+            x with { GameState = x.GameState with { EffectStack = originalEffectStack.Push(x.GameState.EffectStack) } });
+        return possibilities.ToList();
     }
 
     public ResolvablePossibilitySet ResolveWithBaseEffectStack(GameState gameState, EffectStack effectStack)
