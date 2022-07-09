@@ -62,7 +62,8 @@ internal class PossibilityTests
             DrawPile = new DrawPile(new Strike(), new Strike(), new Defend()),
             Hand = new Hand(new Strike(), new Strike())
         };
-        var expectedPossibility1 = new Possibility(expectedGameState1, new Probability(0.3));
+        var expectedPossibility1 = new Possibility(expectedGameState1, new Probability(0.2));
+        var expectedPossibility2 = new Possibility(expectedGameState2, new Probability(0.3));
         var tolerance = 0.00001;
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value));
