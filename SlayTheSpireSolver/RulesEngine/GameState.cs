@@ -215,5 +215,18 @@ internal class GameStateTests
             var resolvedState = gameState.Resolve().Single().GameState;
             Assert.AreEqual(new GameState { PlayerArmor = 5 }, resolvedState);
         }
+
+        [Test]
+        public void ResolvesTwoEffects()
+        {
+            var gameState = new GameState
+            {
+                Energy = 2,
+                PlayerArmor = 0,
+                EffectStack = new EffectStack(new GainPlayerArmorEffect(5), new RemoveEnergyEffect(1))
+            };;
+            var resolvedState = gameState.Resolve().Single().GameState;
+            Assert.AreEqual(new GameState { Energy = 1, PlayerArmor = 5 }, resolvedState);
+        }
     }
 }
