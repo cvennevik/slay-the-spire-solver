@@ -41,7 +41,7 @@ internal class ArmorTests
         [TestCase(-1)]
         [TestCase(-2)]
         [TestCase(-999)]
-        public void AmmountCannotBeNegative(int amount)
+        public void AmountCannotBeNegative(int amount)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Armor(amount));
         }
