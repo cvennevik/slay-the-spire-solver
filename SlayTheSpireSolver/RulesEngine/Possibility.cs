@@ -53,6 +53,7 @@ internal class PossibilityTests
             EnemyParty = new EnemyParty(new JawWorm { Health = 2 })
         };
         var possibility = new Possibility(gameState, 1);
+        var result = possibility.Resolve();
     }
 
     [Test]
