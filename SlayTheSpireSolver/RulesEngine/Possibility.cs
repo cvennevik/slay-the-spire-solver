@@ -58,11 +58,19 @@ internal class PossibilityTests
     {
         var gameState = new GameState
         {
+            Turn = 2,
             EnemyParty = new EnemyParty(new JawWorm { Health = 2 }),
             EffectStack = new AttackEnemyEffect(EnemyId.Default, 3)
         };
         var possibility = new Possibility(gameState, 0.8);
         var result = possibility.Resolve();
+        var expectedGameState = new GameState
+        {
+            Turn = 2,
+            EnemyParty = new EnemyParty(),
+            EffectStack = new EffectStack()
+        };
+        var expectedPossibility = new Possibility(expectedGameState, 0.8);
     }
 
     [Test]
