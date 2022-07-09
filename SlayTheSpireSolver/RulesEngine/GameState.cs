@@ -48,6 +48,11 @@ public record GameState
         return new ResolvableGameState(this with { EffectStack = effectStack ?? new EffectStack() });
     }
 
+    public GameState WithAddedEffects(EffectStack effectStack)
+    {
+        return this with { EffectStack = EffectStack.Push(effectStack) };
+    }
+
     public IReadOnlyList<Possibility> Resolve()
     {
         return WithProbability(1).Resolve();
