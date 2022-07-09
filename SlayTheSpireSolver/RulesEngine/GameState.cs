@@ -198,6 +198,12 @@ internal class GameStateTests
     [TestFixture]
     internal class ResolveTests : GameStateTests
     {
-        
+        [Test]
+        public void ResolvesZeroEffects()
+        {
+            var gameState = new GameState();
+            var resolvedState = gameState.Resolve().Single().GameState;
+            Assert.AreEqual(new GameState(), resolvedState);
+        }
     }
 }
