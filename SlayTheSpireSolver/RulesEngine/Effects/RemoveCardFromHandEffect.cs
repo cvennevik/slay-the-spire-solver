@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
-using SlayTheSpireSolver.TestHelpers;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
