@@ -54,7 +54,7 @@ public class PossibilitySet : IEnumerable<ResolvablePossibility>, IEquatable<Pos
 
     public override bool Equals(object? obj)
     {
-        return Equals(obj as ResolvablePossibilitySet);
+        return Equals(obj as PossibilitySet);
     }
 
     public override int GetHashCode()
