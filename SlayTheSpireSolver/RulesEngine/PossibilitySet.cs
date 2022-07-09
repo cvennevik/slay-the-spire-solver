@@ -18,8 +18,6 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
     public static implicit operator PossibilitySet(GameState[] gameStates) =>
         new(gameStates.Select(x => x.WithProbability(1)).ToArray());
 
-    public static implicit operator PossibilitySet(Possibility possibility) => new(possibility);
-
     public static implicit operator PossibilitySet(Possibility[] possibilities) =>
         new(possibilities);
 
