@@ -7,12 +7,6 @@ public record ResolvablePossibility
     public GameState GameState { get; }
     public Probability Probability { get; }
 
-    private ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
-    {
-        GameState = ResolvableGameState.GameState with {EffectStack = ResolvableGameState.EffectStack};
-        this.Probability = Probability;
-    }
-
     public ResolvablePossibility(GameState GameState, Probability Probability)
     {
         this.GameState = GameState;
