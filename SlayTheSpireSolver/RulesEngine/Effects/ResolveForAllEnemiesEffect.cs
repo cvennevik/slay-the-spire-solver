@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ResolveForAllEnemiesEffect<T> : Effect where T : TargetEnemyEffect, new()
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         var resolveEnemyMoveEffects =
             gameState.EnemyParty.Select(enemy => new T {Target = enemy.Id}).Reverse();
@@ -36,7 +36,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
     {
         var gameState = new GameState();
         var effect = new ResolveForAllEnemiesEffect<T>();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -46,7 +46,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
         var enemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveForAllEnemiesEffect<T>();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState.WithAddedEffects(new T { Target = enemy.Id }), result);
     }
 
@@ -57,7 +57,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
         var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveForAllEnemiesEffect<T>();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(
             gameState.WithAddedEffects(new EffectStack(new T { Target = enemy2.Id }, new T { Target = enemy1.Id })),
             result);

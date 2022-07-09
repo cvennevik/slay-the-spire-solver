@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RecoverBaseEnergyEffect : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Energy = gameState.BaseEnergy };
     }
@@ -30,7 +30,7 @@ internal class RecoverBaseEnergyEffectTests
             BaseEnergy = baseEnergy,
             Energy = initialEnergy
         };
-        var nextGameState = new RecoverBaseEnergyEffect().NewResolve(gameState).Single().GameState;
+        var nextGameState = new RecoverBaseEnergyEffect().Resolve(gameState).Single().GameState;
         var expectedGameState = gameState with { Energy = baseEnergy };
         Assert.AreEqual(expectedGameState, nextGameState);
     }

@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record IncrementTurnEffect : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Turn = gameState.Turn.Number + 1 };
     }
@@ -21,7 +21,7 @@ internal class IncrementTurnEffectTests
     {
         var gameState = new GameState { PlayerHealth = 21, Turn = initialTurn };
         var effect = new IncrementTurnEffect();
-        var newGameState = effect.NewResolve(gameState).Single().GameState;
+        var newGameState = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = gameState with { Turn = expectedTurn };
         Assert.AreEqual(expectedGameState, newGameState);
     }

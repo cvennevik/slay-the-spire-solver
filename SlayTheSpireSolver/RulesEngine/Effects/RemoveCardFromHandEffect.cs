@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RemoveCardFromHandEffect(Card CardToRemove) : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
         cardsInHand.Remove(CardToRemove);
@@ -22,7 +22,7 @@ internal class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Defend());
-        Assert.AreEqual(gameState, effect.NewResolve(gameState).Single().GameState);
+        Assert.AreEqual(gameState, effect.Resolve(gameState).Single().GameState);
     }
 
     [Test]
@@ -30,7 +30,7 @@ internal class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Strike());
-        Assert.AreEqual(new GameState { Hand = new Hand() }, effect.NewResolve(gameState).Single().GameState);
+        Assert.AreEqual(new GameState { Hand = new Hand() }, effect.Resolve(gameState).Single().GameState);
     }
 
     [Test]
@@ -38,6 +38,6 @@ internal class RemoveCardFromHandEffectTests
     {
         var gameState = new GameState { Hand = new Hand(new Strike(), new Strike()) };
         var effect = new RemoveCardFromHandEffect(new Strike());
-        Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, effect.NewResolve(gameState).Single().GameState);
+        Assert.AreEqual(new GameState { Hand = new Hand(new Strike()) }, effect.Resolve(gameState).Single().GameState);
     }
 }

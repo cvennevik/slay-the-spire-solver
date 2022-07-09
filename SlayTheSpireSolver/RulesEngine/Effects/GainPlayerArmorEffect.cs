@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record GainPlayerArmorEffect(Armor ArmorGain) : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { PlayerArmor = gameState.PlayerArmor + ArmorGain };
     }
@@ -25,6 +25,6 @@ internal class GainPlayerArmorEffectTests
         var gameState = new GameState { PlayerArmor = initialPlayerArmor };
         var effect = new GainPlayerArmorEffect(effectAmount);
         Assert.AreEqual(new GameState { PlayerArmor = expectedPlayerArmor },
-            effect.NewResolve(gameState).Single().GameState);
+            effect.Resolve(gameState).Single().GameState);
     }
 }

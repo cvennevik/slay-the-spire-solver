@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState.ModifyEnemy(EnemyId,
             enemy => enemy with { Armor = enemy.Armor + ArmorGain });
@@ -23,7 +23,7 @@ internal class AddEnemyArmorEffectTests
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 5 }) };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -33,7 +33,7 @@ internal class AddEnemyArmorEffectTests
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -49,7 +49,7 @@ internal class AddEnemyArmorEffectTests
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId },
                 new JawWorm { Id = otherEnemyId })
         };
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = targetEnemyId, Armor = new Armor(5) },
@@ -63,7 +63,7 @@ internal class AddEnemyArmorEffectTests
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, 1);
         var gameState = new GameState { Turn = 2 };
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -72,7 +72,7 @@ internal class AddEnemyArmorEffectTests
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, 5);
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }) };
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 }

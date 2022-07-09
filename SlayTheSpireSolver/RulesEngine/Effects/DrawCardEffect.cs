@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {
@@ -52,7 +52,7 @@ internal class DrawCardEffectTests
     public void DoesNothingWhenDrawPileAndDiscardPileEmpty()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(), DiscardPile = new DiscardPile() };
-        var result = new DrawCardEffect().NewResolve(gameState).Single().GameState;
+        var result = new DrawCardEffect().Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -60,7 +60,7 @@ internal class DrawCardEffectTests
     public void DrawsCardWhenSingleCardInDrawPile()
     {
         var gameState = new GameState { Hand = new Hand(), DrawPile = new DrawPile(new Strike()) };
-        var result = new DrawCardEffect().NewResolve(gameState).Single().GameState;
+        var result = new DrawCardEffect().Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DrawPile = new DrawPile() };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -72,7 +72,7 @@ internal class DrawCardEffectTests
         {
             Hand = new Hand(), DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().NewResolve(gameState);
+        var result = new DrawCardEffect().Resolve(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -97,7 +97,7 @@ internal class DrawCardEffectTests
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                 new Defend(), new Defend())
         };
-        var result = new DrawCardEffect().NewResolve(gameState);
+        var result = new DrawCardEffect().Resolve(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -123,7 +123,7 @@ internal class DrawCardEffectTests
             Hand = new Hand(),
             DrawPile = new DrawPile(new Strike(), new Strike())
         };
-        var result = new DrawCardEffect().NewResolve(gameState).Single().GameState;
+        var result = new DrawCardEffect().Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -140,7 +140,7 @@ internal class DrawCardEffectTests
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Defend())
         };
-        var result = new DrawCardEffect().NewResolve(gameState).Single().GameState;
+        var result = new DrawCardEffect().Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
@@ -157,7 +157,7 @@ internal class DrawCardEffectTests
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Strike(), new Defend())
         };
-        var result = new DrawCardEffect().NewResolve(gameState);
+        var result = new DrawCardEffect().Resolve(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),
@@ -177,7 +177,7 @@ internal class DrawCardEffectTests
     public void ShufflesAndDrawsDiscardPileWithSingleCard()
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
-        var result = new DrawCardEffect().NewResolve(gameState).Single().GameState;
+        var result = new DrawCardEffect().Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState { Hand = new Hand(new Strike()), DiscardPile = new DiscardPile() };
         Assert.AreEqual(expectedGameState, result);
     }
@@ -191,7 +191,7 @@ internal class DrawCardEffectTests
             DrawPile = new DrawPile(),
             DiscardPile = new DiscardPile(new Strike(), new Defend(), new Defend(), new Defend())
         };
-        var result = new DrawCardEffect().NewResolve(gameState);
+        var result = new DrawCardEffect().Resolve(gameState);
         var expectedState1 = new GameState
         {
             Hand = new Hand(new Strike(), new Strike()),

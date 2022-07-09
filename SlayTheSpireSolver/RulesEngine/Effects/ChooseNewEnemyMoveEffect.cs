@@ -10,7 +10,7 @@ public record ChooseNewEnemyMoveEffect : TargetEnemyEffect
     public ChooseNewEnemyMoveEffect() { }
     public ChooseNewEnemyMoveEffect(EnemyId target) : base(target) { }
 
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
@@ -35,7 +35,7 @@ internal class ChooseNewEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.New());
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -44,7 +44,7 @@ internal class ChooseNewEnemyMoveEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
         var effect = new ChooseNewEnemyMoveEffect(EnemyId.Default);
-        var result = effect.NewResolve(gameState);
+        var result = effect.Resolve(gameState);
         var bellowEnemy = new JawWorm { IntendedMove = new Bellow(), PreviousMoves = new[] { new Chomp() } };
         var thrashEnemy = new JawWorm { IntendedMove = new Thrash(), PreviousMoves = new[] { new Chomp() } };
         var expectedPossibilities = new[]

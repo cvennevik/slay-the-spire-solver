@@ -10,7 +10,7 @@ public record ResolveEnemyMoveEffect : TargetEnemyEffect
     public ResolveEnemyMoveEffect() { }
     public ResolveEnemyMoveEffect(EnemyId target) : base(target) { }
 
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
         var enemyMoveEffects = gameState.EnemyParty.Get(Target).GetMoveEffects();
@@ -27,7 +27,7 @@ internal class ResolveEnemyMoveEffectTests
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveEnemyMoveEffect(enemy.Id);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedEffectStack = enemy.GetMoveEffects();
         Assert.AreEqual(gameState with { EffectStack = expectedEffectStack }, result);
     }
@@ -39,7 +39,7 @@ internal class ResolveEnemyMoveEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy, otherEnemy) };
         var effect = new ResolveEnemyMoveEffect(targetEnemy.Id);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedEffectStack = targetEnemy.GetMoveEffects();
         Assert.AreEqual(gameState with { EffectStack = expectedEffectStack }, result);
     }
@@ -50,7 +50,7 @@ internal class ResolveEnemyMoveEffectTests
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveEnemyMoveEffect(EnemyId.New());
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 }

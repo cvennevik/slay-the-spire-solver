@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record MoveHandToDiscardPileEffect : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         var newDiscardPile = gameState.Hand.Cards.Aggregate(
             gameState.DiscardPile, (current, card) => current.Add(card));
@@ -23,7 +23,7 @@ internal class MoveHandToDiscardPileEffectTests
     {
         var gameState = new GameState { Hand = new Hand(), DiscardPile = new DiscardPile(new Strike()) };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -36,7 +36,7 @@ internal class MoveHandToDiscardPileEffectTests
             DiscardPile = new DiscardPile()
         };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState
         {
             Hand = new Hand(),
@@ -54,7 +54,7 @@ internal class MoveHandToDiscardPileEffectTests
             DiscardPile = new DiscardPile(new Strike(), new Defend())
         };
         var effect = new MoveHandToDiscardPileEffect();
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState
         {
             Hand = new Hand(),

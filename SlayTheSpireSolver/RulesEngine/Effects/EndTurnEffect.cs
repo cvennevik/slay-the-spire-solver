@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record EndTurnEffect : Effect
 {
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState.WithEffects(new EffectStack(
             new DrawCardEffect(),

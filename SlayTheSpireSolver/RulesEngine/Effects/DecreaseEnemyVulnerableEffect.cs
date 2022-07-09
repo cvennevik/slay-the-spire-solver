@@ -10,7 +10,7 @@ public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
     public DecreaseEnemyVulnerableEffect() { }
     public DecreaseEnemyVulnerableEffect(EnemyId enemyId) : base(enemyId) { }
 
-    public override PossibilitySet NewResolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
@@ -26,7 +26,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New(), Vulnerable = 2 } } };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -35,7 +35,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     {
         var gameState = new GameState { Turn = 2, EnemyParty = new[] { new JawWorm { Vulnerable = 2 } } };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState with { EnemyParty = new[] { new JawWorm { Vulnerable = 1 } } }, result);
     }
 
@@ -44,7 +44,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     {
         var gameState = new GameState { Turn = 2, EnemyParty = new[] { new JawWorm { Vulnerable = 0 } } };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -55,7 +55,7 @@ internal class DecreaseEnemyVulnerableEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
         var gameState = new GameState { Turn = 2, EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new DecreaseEnemyVulnerableEffect(targetEnemy.Id);
-        var result = effect.NewResolve(gameState).Single().GameState;
+        var result = effect.Resolve(gameState).Single().GameState;
         var expectedResult = gameState with { EnemyParty = new[] { targetEnemy with { Vulnerable = 2 }, otherEnemy } };
         Assert.AreEqual(expectedResult, result);
     }
