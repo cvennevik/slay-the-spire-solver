@@ -69,5 +69,6 @@ internal class PossibilityTests
         Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedGameState1));
         Assert.AreEqual(1, result.Count(x => x.GameState == expectedGameState2));
+        Assert.Contains(expectedPossibility1, result.ToList());
     }
 }
