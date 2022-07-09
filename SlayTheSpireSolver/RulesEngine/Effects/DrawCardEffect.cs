@@ -97,7 +97,7 @@ internal class DrawCardEffectTests
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                 new Defend(), new Defend())
         };
-        var result = new DrawCardEffect().OldResolve(gameState);
+        var result = new DrawCardEffect().NewResolve(gameState);
         var expectedGameState1 = new GameState
         {
             Hand = new Hand(new Strike()),
@@ -111,8 +111,8 @@ internal class DrawCardEffectTests
                 new Defend())
         };
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithEffects().WithProbability(0.6), result.ToList());
-        Assert.Contains(expectedGameState2.WithEffects().WithProbability(0.4), result.ToList());
+        Assert.Contains(expectedGameState1.WithProbability(0.6), result.ToList());
+        Assert.Contains(expectedGameState2.WithProbability(0.4), result.ToList());
     }
 
     [Test]
