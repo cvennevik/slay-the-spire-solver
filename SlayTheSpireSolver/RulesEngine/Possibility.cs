@@ -47,7 +47,8 @@ internal class PossibilityTests
     {
         var gameState = new GameState
         {
-            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend())
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend()),
+            EffectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect())
         };
         var possibility = new Possibility(gameState, new Probability(0.5));
         var result = possibility.Resolve();
