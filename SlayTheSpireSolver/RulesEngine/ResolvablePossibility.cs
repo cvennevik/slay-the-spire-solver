@@ -8,9 +8,9 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
     public static implicit operator ResolvablePossibility(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState, new Probability(1));
     public static implicit operator ResolvablePossibility(GameState gameState) =>
-        new(gameState, new Probability(1));
+        new(gameState.WithEffects(), new Probability(1));
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
-        new(possibility.GameState, possibility.Probability);
+        new(possibility.GameState.WithEffects(), possibility.Probability);
 
     public IReadOnlyList<Possibility> Resolve()
     {

@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record ResolvableGameState
+public record ResolvableGameState : GameState
 {
     public GameState GameState { get; }
     public EffectStack EffectStack { get; } = new();
@@ -17,8 +17,6 @@ public record ResolvableGameState
     //  1. Make ResolvableGameState inherit from GameState
     //  2. Add EffectStack to GameState
     //  3. Replace ResolvableGameState use with GameState use
-
-    public static implicit operator ResolvableGameState(GameState gameState) => new(gameState);
 
     public ResolvableGameState(GameState gameState, params Effect[] effects)
         : this(gameState, new EffectStack(effects)) { }
