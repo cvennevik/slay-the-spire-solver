@@ -43,7 +43,7 @@ public record Possibility(GameState GameState, Probability Probability)
 internal class PossibilityTests
 {
     [Test]
-    public void Test()
+    public void TestMultipleResults()
     {
         var gameState = new GameState
         {
