@@ -12,12 +12,6 @@ public record ResolvableGameState
     public GameState GameState { get; }
     public EffectStack EffectStack { get; }
 
-    public ResolvableGameState(GameState GameState, EffectStack EffectStack)
-    {
-        this.GameState = GameState;
-        this.EffectStack = EffectStack;
-    }
-
     public ResolvableGameState(GameState GameState)
     {
         this.GameState = GameState with { EffectStack = new EffectStack() };
