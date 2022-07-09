@@ -9,6 +9,9 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record ResolvableGameState
 {
+    public GameState GameState { get; }
+    public EffectStack EffectStack { get; }
+
     public ResolvableGameState(GameState GameState, EffectStack EffectStack)
     {
         this.GameState = GameState;
@@ -28,8 +31,6 @@ public record ResolvableGameState
     }
 
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
-    public GameState GameState { get; }
-    public EffectStack EffectStack { get; }
 }
 
 [TestFixture]
