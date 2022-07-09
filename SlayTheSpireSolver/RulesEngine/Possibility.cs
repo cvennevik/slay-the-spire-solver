@@ -34,7 +34,7 @@ public record Possibility(GameState GameState, Probability Probability)
             .ToList();
     }
 
-    private IReadOnlyCollection<Possibility> ResolveTopEffect()
+    private PossibilitySet ResolveTopEffect()
     {
         var (effect, gameState) = GameState.PopEffect();
         return effect
