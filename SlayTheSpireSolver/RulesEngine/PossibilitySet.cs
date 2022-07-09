@@ -25,9 +25,6 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
         new(resolvableGameStates
             .Select(x => (x.GameState with { EffectStack = x.GameState.EffectStack }).WithProbability(1)).ToArray());
 
-    public static implicit operator PossibilitySet(ResolvablePossibility[] resolvablePossibilities) =>
-        resolvablePossibilities.Select(x => new Possibility(x.GameState, x.Probability)).ToArray();
-
     public static implicit operator PossibilitySet(Possibility possibility) => new(possibility);
 
     public static implicit operator PossibilitySet(Possibility[] possibilities) =>
