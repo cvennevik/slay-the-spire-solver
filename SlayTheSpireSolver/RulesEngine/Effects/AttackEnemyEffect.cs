@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AttackEnemyEffect(EnemyId Target, Damage Damage) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
         var damage = gameState.EnemyParty.Get(Target).Vulnerable.Any() ? Damage.AgainstVulnerableEnemy() : Damage;
@@ -24,7 +24,7 @@ internal class AttackEnemyEffectTests
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(result, gameState);
     }
 
@@ -33,7 +33,7 @@ internal class AttackEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New(), Health = 10 } } };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(result, gameState);
     }
 
@@ -47,7 +47,7 @@ internal class AttackEnemyEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, damage);
-        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        var result = effect.OldResolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, damage)), result);
     }
 
@@ -63,7 +63,7 @@ internal class AttackEnemyEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, attackDamage);
-        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        var result = effect.OldResolve(gameState).SingleUnresolvedState();
         Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, dealtDamage)), result);
     }
 }

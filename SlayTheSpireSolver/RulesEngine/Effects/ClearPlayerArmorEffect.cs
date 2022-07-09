@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ClearPlayerArmorEffect : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         return gameState with {PlayerArmor = 0};
     }
@@ -19,7 +19,7 @@ internal class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState {PlayerArmor = 0, Turn = 3};
         var effect = new ClearPlayerArmorEffect();
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -28,7 +28,7 @@ internal class ClearPlayerArmorEffectTests
     {
         var gameState = new GameState {PlayerArmor = 5, Turn = 3};
         var effect = new ClearPlayerArmorEffect();
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState with {PlayerArmor = 0}, result);
     }
 }

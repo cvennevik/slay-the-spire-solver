@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record NullEffect : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         return gameState;
     }

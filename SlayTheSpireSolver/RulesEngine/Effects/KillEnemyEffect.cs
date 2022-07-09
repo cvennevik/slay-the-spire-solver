@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record KillEnemyEffect(EnemyId TargetId) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         return gameState with { EnemyParty = gameState.EnemyParty.Remove(TargetId) };
     }
@@ -21,7 +21,7 @@ internal class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        Assert.AreEqual(new GameState(), effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(new GameState(), effect.OldResolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -37,7 +37,7 @@ internal class KillEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id3 })
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -45,6 +45,6 @@ internal class KillEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.New());
-        Assert.AreEqual(gameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(gameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 }

@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RemoveEnergyEffect(Energy EnergyToRemove) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         return gameState with { Energy = gameState.Energy - EnergyToRemove };
     }
@@ -26,6 +26,6 @@ internal class RemoveEnergyEffectTests
         var gameState = new GameState { Energy = initialEnergy };
         var effect = new RemoveEnergyEffect(effectAmount);
         var expectedGameState = new GameState { Energy = expectedEnergy };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 }

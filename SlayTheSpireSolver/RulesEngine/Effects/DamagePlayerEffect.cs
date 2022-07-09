@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamagePlayerEffect(Damage Damage) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         if (Damage > gameState.PlayerArmor)
         {
@@ -35,7 +35,7 @@ internal class DamagePlayerEffectTests
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
         var gameState = new GameState { PlayerHealth = initialHealth, PlayerArmor = initialArmor};
-        var result = damagePlayerEffect.Resolve(gameState).SingleResolvedState();
+        var result = damagePlayerEffect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(new GameState { PlayerHealth = expectedHealth, PlayerArmor = expectedArmor }, result);
     }
 }

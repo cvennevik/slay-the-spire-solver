@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ApplyVulnerableToEnemyEffect(EnemyId Target, Vulnerable VulnerableToApply) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         return gameState.ModifyEnemy(Target, enemy =>
             enemy with { Vulnerable = enemy.Vulnerable.Add(VulnerableToApply) });
@@ -23,7 +23,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -32,7 +32,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New() } } };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -45,7 +45,7 @@ internal class ApplyVulnerableToEnemyEffectTests
         var targetEnemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         var expectedGameState = gameState with
         {
             EnemyParty = new[] { targetEnemy with { Vulnerable = vulnerableAmount } }
@@ -62,7 +62,7 @@ internal class ApplyVulnerableToEnemyEffectTests
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         var expectedGameState = gameState with
         {
             EnemyParty = new[] { targetEnemy with { Vulnerable = 2 + vulnerableAmount } }

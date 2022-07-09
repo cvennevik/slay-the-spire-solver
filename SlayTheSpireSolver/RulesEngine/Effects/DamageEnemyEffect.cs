@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(TargetId))
         {
@@ -46,7 +46,7 @@ internal class DamageEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
         var effect = new DamageEnemyEffect(EnemyId.New(), 5);
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -56,7 +56,7 @@ internal class DamageEnemyEffectTests
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
         var effect = new DamageEnemyEffect(EnemyId.Default, 5);
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 5 }) };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -66,7 +66,7 @@ internal class DamageEnemyEffectTests
         var effect = new DamageEnemyEffect(EnemyId.Default, 10);
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 0 }) };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(EnemyId.Default));
-        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.Resolve(gameState).SingleUnresolvedState());
+        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.OldResolve(gameState).SingleUnresolvedState());
     }
 
     [Test]
@@ -90,7 +90,7 @@ internal class DamageEnemyEffectTests
                 new JawWorm { Health = 10, Id = id3 }
             )
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -115,7 +115,7 @@ internal class DamageEnemyEffectTests
             )
         };
         var expectedEffectStack = new EffectStack(new KillEnemyEffect(id2));
-        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.Resolve(gameState).SingleUnresolvedState());
+        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.OldResolve(gameState).SingleUnresolvedState());
     }
 
     [Test]
@@ -130,7 +130,7 @@ internal class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = 10, Armor = 5 })
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 
     [Test]
@@ -145,6 +145,6 @@ internal class DamageEnemyEffectTests
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = 5 })
         };
-        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
     }
 }

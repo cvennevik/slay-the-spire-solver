@@ -8,7 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AttackPlayerEffect(EnemyId EnemyId, Damage BaseDamage) : Effect
 {
-    public override ResolvablePossibilitySet Resolve(GameState gameState)
+    public override ResolvablePossibilitySet OldResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(EnemyId)) return gameState;
         var enemyStrength = gameState.EnemyParty.Get(EnemyId).Strength;
@@ -26,7 +26,7 @@ internal class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10 };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleResolvedState();
+        var result = effect.OldResolve(gameState).SingleResolvedState();
         Assert.AreEqual(gameState, result);
     }
 
@@ -35,7 +35,7 @@ internal class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        var result = effect.OldResolve(gameState).SingleUnresolvedState();
         var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(1)));
         Assert.AreEqual(expectedResult, result);
     }
@@ -45,7 +45,7 @@ internal class AttackPlayerEffectTests
     {
         var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm { Strength = 5}) };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
-        var result = effect.Resolve(gameState).SingleUnresolvedState();
+        var result = effect.OldResolve(gameState).SingleUnresolvedState();
         var expectedResult = gameState.WithEffects(new EffectStack(new DamagePlayerEffect(6)));
         Assert.AreEqual(expectedResult, result);
     }
