@@ -18,9 +18,6 @@ public record ResolvableGameState : GameState
     //  2. Add EffectStack to GameState
     //  3. Replace ResolvableGameState use with GameState use
 
-    public ResolvableGameState(GameState gameState, params Effect[] effects)
-        : this(gameState, new EffectStack(effects)) { }
-
     public ResolvableGameState(GameState gameState, EffectStack effectStack)
     {
         GameState = gameState;
