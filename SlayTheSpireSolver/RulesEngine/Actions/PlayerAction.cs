@@ -1,5 +1,3 @@
-using SlayTheSpireSolver.RulesEngine.Effects;
-
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
 public abstract record PlayerAction
