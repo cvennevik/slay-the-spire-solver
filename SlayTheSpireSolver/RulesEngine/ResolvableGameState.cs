@@ -45,7 +45,7 @@ internal class ResolvableGameStateTests
     [Test]
     public void ResolvesZeroEffects()
     {
-        var action = new ResolvableGameState(new GameState(), new EffectStack());
+        var action = new ResolvableGameState(new GameState());
         var resolvedState = action.Resolve().Single().GameState;
         Assert.AreEqual(new GameState(), resolvedState);
     }
