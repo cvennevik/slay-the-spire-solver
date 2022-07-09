@@ -39,9 +39,9 @@ internal class ResolveEnemyMoveEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy, otherEnemy) };
         var effect = new ResolveEnemyMoveEffect(targetEnemy.Id);
-        var result = effect.OldResolve(gameState).SingleUnresolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         var expectedEffectStack = targetEnemy.GetMoveEffects();
-        Assert.AreEqual(gameState.WithEffects(expectedEffectStack), result);
+        Assert.AreEqual(gameState with { EffectStack = expectedEffectStack }, result);
     }
 
     [Test]
