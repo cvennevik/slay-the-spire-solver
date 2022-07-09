@@ -39,7 +39,7 @@ public record Possibility(GameState GameState, Probability Probability)
         var (effect, gameState) = GameState.PopEffect();
         return effect
             .Resolve(gameState)
-            .Select(possibility => possibility with {Probability = possibility.Probability * Probability})
+            .Select(possibility => possibility * Probability)
             .ToArray();
     }
 }
