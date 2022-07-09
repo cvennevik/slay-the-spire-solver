@@ -30,7 +30,8 @@ internal class PlayTargetedCardActionTests
             Energy = 2,
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Strike()),
-            EnemyParty = new[] { new JawWorm { Health = 7 } }
+            EnemyParty = new[] { new JawWorm { Health = 1 } }
         };
+        Assert.AreEqual(expectedGameState, result);
     }
 }
