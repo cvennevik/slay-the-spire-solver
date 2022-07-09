@@ -130,21 +130,4 @@ internal class ResolvableGameStateTests
         Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult1, tolerance)));
         Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult2, tolerance)));
     }
-
-    [Test]
-    public void EqualityTests()
-    {
-        var gameState1 = new GameState { Turn = 1 };
-        var gameState2 = new GameState { Turn = 2 };
-        var effectStack1 = new EffectStack(new RemoveEnergyEffect(1));
-        var effectStack2 = new EffectStack(new RemoveEnergyEffect(2));
-        Assert.AreEqual(new ResolvableGameState(gameState1, effectStack1),
-            new ResolvableGameState(gameState1, effectStack1));
-        Assert.AreEqual(new ResolvableGameState(gameState2, effectStack2),
-            new ResolvableGameState(gameState2, effectStack2));
-        Assert.AreNotEqual(new ResolvableGameState(gameState1, effectStack1),
-            new ResolvableGameState(gameState1, effectStack2));
-        Assert.AreNotEqual(new ResolvableGameState(gameState1, effectStack1),
-            new ResolvableGameState(gameState2, effectStack1));
-    }
 }
