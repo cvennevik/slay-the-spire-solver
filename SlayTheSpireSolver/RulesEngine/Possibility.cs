@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Enemies;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
@@ -45,7 +47,11 @@ internal class PossibilityTests
     [Test]
     public void TestEffectsProducingNewEffects()
     {
-        
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike()),
+            EnemyParty = new EnemyParty(new JawWorm { Health = 2 })
+        };
     }
 
     [Test]
