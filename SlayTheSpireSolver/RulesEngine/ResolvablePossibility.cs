@@ -3,14 +3,23 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
+public record ResolvablePossibility
 {
+    public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
+    {
+        this.ResolvableGameState = ResolvableGameState;
+        this.Probability = Probability;
+    }
+
     public static implicit operator ResolvablePossibility(ResolvableGameState resolvableGameState) =>
         new(resolvableGameState, new Probability(1));
     public static implicit operator ResolvablePossibility(GameState gameState) =>
         new(gameState.WithEffects(), new Probability(1));
     public static implicit operator ResolvablePossibility(Possibility possibility) =>
         new(possibility.GameState.WithEffects(), possibility.Probability);
+
+    public ResolvableGameState ResolvableGameState { get; init; }
+    public Probability Probability { get; init; }
 
     public IReadOnlyList<Possibility> Resolve()
     {
@@ -42,5 +51,5 @@ public record ResolvablePossibility(ResolvableGameState ResolvableGameState, Pro
         {
             ResolvableGameState = ResolvableGameState.GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack))
         };
-    }    
+    }
 }
