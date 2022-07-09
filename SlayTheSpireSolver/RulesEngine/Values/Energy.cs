@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public record Energy
 {
-    public int Amount { get; }
+    private int Amount { get; }
 
     public Energy(int amount)
     {
