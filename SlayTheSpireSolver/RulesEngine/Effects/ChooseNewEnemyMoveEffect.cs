@@ -10,7 +10,7 @@ public record ChooseNewEnemyMoveEffect : TargetEnemyEffect
     public ChooseNewEnemyMoveEffect() { }
     public ChooseNewEnemyMoveEffect(EnemyId target) : base(target) { }
 
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
+    public override PossibilitySet NewResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(Target)) return gameState;
 
