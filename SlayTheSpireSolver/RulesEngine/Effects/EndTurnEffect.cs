@@ -44,9 +44,10 @@ internal class EndTurnEffectTests
             },
             Hand = new Hand(new Strike(), new Defend()),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike()),
+            EffectStack = new EndTurnEffect()
         };
-        var result = gameState.WithEffects(new EndTurnEffect()).Resolve();
+        var result = gameState.Resolve();
         Assert.AreEqual(12, result.Count);
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), double.Epsilon);
         Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
