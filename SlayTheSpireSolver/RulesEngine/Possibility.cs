@@ -52,6 +52,11 @@ internal class PossibilityTests
         };
         var possibility = new Possibility(gameState, new Probability(0.5));
         var result = possibility.Resolve();
+        var expectedGameState1 = new GameState
+        {
+            DrawPile = new DrawPile(new Strike(), new Strike(), new Strike()),
+            Hand = new Hand(new Strike(), new Defend())
+        };
         Assert.AreEqual(2, result.Count);
         Assert.AreEqual(0.5, result.Sum(x => x.Probability.Value));
     }
