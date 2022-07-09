@@ -45,6 +45,12 @@ public record Possibility(GameState GameState, Probability Probability)
 internal class PossibilityTests
 {
     [Test]
+    public void TestEmptyEffectStack()
+    {
+        var gameState = new GameState { Turn = 3 };
+    }
+
+    [Test]
     public void TestEffectsProducingNewEffects()
     {
         var gameState = new GameState
