@@ -11,7 +11,7 @@ public record ResolvableGameState : GameState
 {
     public GameState GameState { get; }
     public EffectStack EffectStack { get; } = new();
-    
+
     // GOAL: Add EffectStack to GameState, get rid of this class
     // PLAN:
     //  1. Make ResolvableGameState inherit from GameState
@@ -22,6 +22,16 @@ public record ResolvableGameState : GameState
     {
         GameState = gameState;
         EffectStack = effectStack;
+
+        PlayerHealth = gameState.PlayerHealth;
+        PlayerArmor = gameState.PlayerArmor;
+        BaseEnergy = gameState.BaseEnergy;
+        Energy = gameState.Energy;
+        EnemyParty = gameState.EnemyParty;
+        Turn = gameState.Turn;
+        Hand = gameState.Hand;
+        DrawPile = gameState.DrawPile;
+        DiscardPile = gameState.DiscardPile;
     }
 
     public IReadOnlyList<Possibility> Resolve()
