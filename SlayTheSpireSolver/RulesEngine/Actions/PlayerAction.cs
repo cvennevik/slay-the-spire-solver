@@ -4,9 +4,9 @@ public abstract record PlayerAction
 {
     private readonly GameState _unresolvedGameState;
 
-    protected PlayerAction(GameState gameState)
+    protected PlayerAction(GameState unresolvedGameState)
     {
-        _unresolvedGameState = gameState;
+        _unresolvedGameState = unresolvedGameState;
     }
 
     public IReadOnlyCollection<Possibility> Resolve() => _unresolvedGameState.Resolve();
