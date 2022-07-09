@@ -84,10 +84,10 @@ internal class ResolvableGameStateTests
         {
             PlayerHealth = 30,
             EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() })
+                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }),
+            EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>()) 
         };
-        var effectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>());
-        var action = new ResolvableGameState(gameState, effectStack);
+        var action = new ResolvableGameState(gameState);
         var resolvedState = action.Resolve().Single().GameState;
         var expectedGameState = gameState with { PlayerHealth = 6, EffectStack = new EffectStack() };
         Assert.AreEqual(expectedGameState, resolvedState);
