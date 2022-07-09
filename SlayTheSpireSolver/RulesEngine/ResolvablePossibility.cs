@@ -9,7 +9,7 @@ public record ResolvablePossibility
 
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
     {
-        this.GameState = ResolvableGameState.GameState with {EffectStack = ResolvableGameState.EffectStack};
+        GameState = ResolvableGameState.GameState with {EffectStack = ResolvableGameState.EffectStack};
         this.Probability = Probability;
     }
 
