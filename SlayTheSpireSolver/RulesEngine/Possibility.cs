@@ -32,7 +32,7 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         var (effect, remainingEffectStack) = GameState.EffectStack.Pop();
         return effect
-            .NewResolve(GameState)
+            .NewResolve(GameState with {EffectStack = remainingEffectStack})
             .Select(resolvablePossibility => resolvablePossibility with {Probability = resolvablePossibility.Probability * Probability})
             .ToArray();
     }
