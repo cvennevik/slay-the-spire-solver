@@ -50,7 +50,7 @@ public record ResolvablePossibility
     {
         return this with
         {
-            ResolvableGameState = ResolvableGameState.GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack))
+            ResolvableGameState = GameState.WithEffects(baseEffectStack.Push(ResolvableGameState.EffectStack))
         };
     }
 }
