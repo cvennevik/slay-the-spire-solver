@@ -47,7 +47,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.NewResolve(gameState).Single().GameState;
-        Assert.AreEqual(gameState with {EffectStack = new EffectStack(new T { Target = enemy.Id })}, result);
+        Assert.AreEqual(gameState with {EffectStack = new T { Target = enemy.Id }}, result);
     }
 
     [Test]
