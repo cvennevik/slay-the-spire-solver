@@ -41,5 +41,9 @@ public record Possibility(GameState GameState, Probability Probability)
 [TestFixture]
 internal class PossibilityTests
 {
-    
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
