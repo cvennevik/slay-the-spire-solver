@@ -50,6 +50,7 @@ internal class PossibilityTests
         var gameState = new GameState { Turn = 3 };
         var possibility = new Possibility(gameState, 0.7);
         var result = possibility.Resolve().Single();
+        Assert.AreEqual(possibility, result);
     }
 
     [Test]
