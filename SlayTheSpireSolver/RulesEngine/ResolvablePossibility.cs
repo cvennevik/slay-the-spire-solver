@@ -6,7 +6,7 @@ public record ResolvablePossibility
 {
     public ResolvableGameState ResolvableGameState { get; }
     public GameState GameState { get; }
-    public Probability Probability { get; init; }
+    public Probability Probability { get; }
 
     public ResolvablePossibility(ResolvableGameState ResolvableGameState, Probability Probability)
     {
