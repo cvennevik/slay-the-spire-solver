@@ -38,11 +38,6 @@ public record ResolvableGameState : GameState
         return WithProbability(1).Resolve();
     }
 
-    public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
-    {
-        return GameState.WithEffects(baseEffectStack.Push(EffectStack));
-    }
-
     public ResolvablePossibility WithProbability(Probability probability) => new(this, probability);
 }
 

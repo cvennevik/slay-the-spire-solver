@@ -48,6 +48,11 @@ public record GameState
         return new ResolvableGameState(this, effectStack ?? new EffectStack());
     }
 
+    public ResolvableGameState WithBaseEffectStack(EffectStack baseEffectStack)
+    {
+        return WithEffects(baseEffectStack.Push(EffectStack));
+    }
+
     public Possibility WithProbability(Probability probability) => new(this, probability);
 
     public override string ToString()
