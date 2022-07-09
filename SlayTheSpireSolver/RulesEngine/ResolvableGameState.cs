@@ -7,21 +7,12 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public record ResolvableGameState : GameState
+public record ResolvableGameState(GameState GameState, EffectStack EffectStack)
 {
-    public GameState GameState { get; }
-
     // GOAL: Add EffectStack to GameState, get rid of this class
     // PLAN:
-    //  1. Make ResolvableGameState inherit from GameState
-    //  2. Add EffectStack to GameState
-    //  3. Replace ResolvableGameState use with GameState use
-
-    public ResolvableGameState(GameState gameState, EffectStack effectStack)
-    {
-        GameState = gameState;
-        EffectStack = effectStack;
-    }
+    //  1. Add EffectStack to GameState
+    //  2. Replace ResolvableGameState use with GameState use
 
     public IReadOnlyList<Possibility> Resolve()
     {
