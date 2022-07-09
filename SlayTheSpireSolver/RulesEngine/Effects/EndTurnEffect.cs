@@ -9,7 +9,7 @@ public record EndTurnEffect : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
-        return gameState.WithEffects(new EffectStack(
+        return gameState.WithAddedEffects(new EffectStack(
             new DrawCardEffect(),
             new DrawCardEffect(),
             new DrawCardEffect(),
