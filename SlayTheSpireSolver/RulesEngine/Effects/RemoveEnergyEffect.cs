@@ -26,6 +26,6 @@ internal class RemoveEnergyEffectTests
         var gameState = new GameState { Energy = initialEnergy };
         var effect = new RemoveEnergyEffect(effectAmount);
         var expectedGameState = new GameState { Energy = expectedEnergy };
-        Assert.AreEqual(expectedGameState, effect.OldResolve(gameState).SingleResolvedState());
+        Assert.AreEqual(expectedGameState, effect.NewResolve(gameState).Single().GameState);
     }
 }

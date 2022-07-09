@@ -36,7 +36,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
     {
         var gameState = new GameState();
         var effect = new ResolveForAllEnemiesEffect<T>();
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
