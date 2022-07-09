@@ -64,9 +64,12 @@ internal class DamageEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
         var effect = new DamageEnemyEffect(EnemyId.Default, 10);
-        var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 0 }) };
-        var expectedEffectStack = new EffectStack(new KillEnemyEffect(EnemyId.Default));
-        Assert.AreEqual(expectedGameState.WithEffects(expectedEffectStack), effect.OldResolve(gameState).SingleUnresolvedState());
+        var expectedGameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Health = 0 }),
+            EffectStack = new KillEnemyEffect(EnemyId.Default)
+        };
+        Assert.AreEqual(expectedGameState, effect.NewResolve(gameState).Single().GameState);
     }
 
     [Test]
