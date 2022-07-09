@@ -268,5 +268,32 @@ internal class GameStateTests
             Assert.Contains(expectedResult1.WithProbability(0.75),result.ToList());
             Assert.Contains(expectedResult2.WithProbability(0.25),result.ToList());
         }
+
+        
+        [Test]
+        public void ResolvesMultipleEffectsWithMultipleOutcomes()
+        {
+            var gameState = new GameState
+            {
+                Hand = new Hand(),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(), new Strike(), new Defend()),
+                EffectStack = new EffectStack(new DrawCardEffect(), new DrawCardEffect())
+            };
+            var result = gameState.Resolve();
+            var expectedResult1 = new GameState
+            {
+                Hand = new Hand(new Strike(), new Strike()),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Defend())
+            }.WithProbability(0.6);
+            var expectedResult2 = new GameState
+            {
+                Hand = new Hand(new Strike(), new Defend()),
+                DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
+            }.WithProbability(0.4);
+            const double tolerance = 0.000000000000001;
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult1, tolerance)));
+            Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult2, tolerance)));
+        }
     }
 }
