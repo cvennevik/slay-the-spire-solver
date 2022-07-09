@@ -8,23 +8,6 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 {
-    public override ResolvablePossibilitySet OldResolve(GameState gameState)
-    {
-        if (!gameState.EnemyParty.Has(TargetId))
-        {
-            return gameState;
-        }
-
-        var newGameState = gameState.ModifyEnemy(TargetId, enemy => DamageEnemy(enemy, Damage));
-
-        if (newGameState.EnemyParty.Get(TargetId).Health.Amount <= 0)
-        {
-            return newGameState.WithEffects(new EffectStack(new KillEnemyEffect(TargetId)));
-        }
-
-        return newGameState;
-    }
-
     public override PossibilitySet NewResolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(TargetId))
