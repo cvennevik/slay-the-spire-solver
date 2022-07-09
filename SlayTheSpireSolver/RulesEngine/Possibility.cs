@@ -33,9 +33,9 @@ public record Possibility(GameState GameState, Probability Probability)
 
     private IReadOnlyCollection<Possibility> ResolveTopEffect()
     {
-        var (effect, remainingEffectStack) = GameState.EffectStack.Pop();
+        var (effect, gameState) = GameState.PopEffect();
         return effect
-            .Resolve(GameState with {EffectStack = remainingEffectStack})
+            .Resolve(gameState)
             .Select(possibility => possibility with {Probability = possibility.Probability * Probability})
             .ToArray();
     }
