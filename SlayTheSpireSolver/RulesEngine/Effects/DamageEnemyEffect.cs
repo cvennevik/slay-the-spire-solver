@@ -25,6 +25,23 @@ public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
         return newGameState;
     }
 
+    public override PossibilitySet NewResolve(GameState gameState)
+    {
+        if (!gameState.EnemyParty.Has(TargetId))
+        {
+            return gameState;
+        }
+
+        var newGameState = gameState.ModifyEnemy(TargetId, enemy => DamageEnemy(enemy, Damage));
+
+        if (newGameState.EnemyParty.Get(TargetId).Health.Amount <= 0)
+        {
+            return newGameState.WithAddedEffects(new EffectStack(new KillEnemyEffect(TargetId)));
+        }
+
+        return newGameState;
+    }
+
     private static Enemy DamageEnemy(Enemy enemy, Damage damage)
     {
         if (damage < enemy.Armor)
