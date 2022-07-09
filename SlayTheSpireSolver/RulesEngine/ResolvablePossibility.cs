@@ -12,7 +12,4 @@ public record ResolvablePossibility
         this.GameState = GameState;
         this.Probability = Probability;
     }
-
-    public static implicit operator ResolvablePossibility(Possibility possibility) =>
-        new(possibility.GameState, possibility.Probability);
 }
