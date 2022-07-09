@@ -23,7 +23,7 @@ internal class AddEnemyStrengthEffectTests
     {
         var gameState = new GameState { EnemyParty = new EnemyParty() };
         var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -35,7 +35,7 @@ internal class AddEnemyStrengthEffectTests
             EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }, new JawWorm { Id = EnemyId.New() })
         };
         var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
 
@@ -49,7 +49,7 @@ internal class AddEnemyStrengthEffectTests
             EnemyParty = new[] { new JawWorm { Id = targetId }, new JawWorm { Id = otherEnemyId } }
         };
         var effect = new AddEnemyStrengthEffect(targetId, 5);
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         var expectedResult = new GameState
         {
             EnemyParty = new[] { new JawWorm { Id = targetId, Strength = 5 }, new JawWorm { Id = otherEnemyId } }
@@ -65,7 +65,7 @@ internal class AddEnemyStrengthEffectTests
             EnemyParty = new[] { new JawWorm { Strength = 4 } }
         };
         var effect = new AddEnemyStrengthEffect(EnemyId.Default, 5);
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         var expectedResult = new GameState
         {
             EnemyParty = new[] { new JawWorm { Strength = 9 } }
