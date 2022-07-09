@@ -54,8 +54,8 @@ internal class AttackEnemyEffectTests
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, damage);
-        var result = effect.OldResolve(gameState).SingleUnresolvedState();
-        Assert.AreEqual(gameState.WithEffects(new DamageEnemyEffect(targetEnemy.Id, damage)), result);
+        var result = effect.NewResolve(gameState).Single().GameState;
+        Assert.AreEqual(gameState with { EffectStack = new DamageEnemyEffect(targetEnemy.Id, damage) }, result);
     }
 
     [Test]
