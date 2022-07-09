@@ -7,7 +7,7 @@ public abstract record Effect
     public virtual IReadOnlyCollection<Possibility> NewResolve(GameState gameState)
     {
         var originalEffectStack = gameState.EffectStack;
-        var resolvablePossibilities = Resolve(gameState with { EffectStack = new EffectStack() });
+        var resolvablePossibilities = Resolve(gameState with { EffectStack = new EffectStack() }).ToList();
         return Resolve(gameState with {EffectStack = new EffectStack()})
             .Select(resolvablePossibility =>
                 new Possibility(
