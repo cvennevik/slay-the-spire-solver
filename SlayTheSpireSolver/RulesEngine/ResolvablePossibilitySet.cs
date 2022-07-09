@@ -13,16 +13,16 @@ public class ResolvablePossibilitySet : IEnumerable<ResolvablePossibility>, IEqu
     }
 
     public static implicit operator ResolvablePossibilitySet(GameState gameState) =>
-        new(gameState.WithEffects());
+        new(gameState.WithEffects().WithProbability(1));
 
     public static implicit operator ResolvablePossibilitySet(GameState[] gameStates) =>
-        new(gameStates.Select(x => (ResolvablePossibility)x.WithEffects()).ToArray());
+        new(gameStates.Select(x => x.WithEffects().WithProbability(1)).ToArray());
 
     public static implicit operator ResolvablePossibilitySet(ResolvableGameState resolvableGameState) =>
-        new(resolvableGameState);
+        new(resolvableGameState.WithProbability(1));
 
     public static implicit operator ResolvablePossibilitySet(ResolvableGameState[] resolvableGameStates) =>
-        new(resolvableGameStates.Select(x => (ResolvablePossibility)x).ToArray());
+        new(resolvableGameStates.Select(x => x.WithProbability(1)).ToArray());
 
     public static implicit operator ResolvablePossibilitySet(
         ResolvablePossibility resolvableGameState) => new(resolvableGameState);
