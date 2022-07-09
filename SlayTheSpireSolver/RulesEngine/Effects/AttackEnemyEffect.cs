@@ -24,7 +24,7 @@ internal class AttackEnemyEffectTests
     {
         var gameState = new GameState { Turn = 3 };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(result, gameState);
     }
 
@@ -33,7 +33,7 @@ internal class AttackEnemyEffectTests
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New(), Health = 10 } } };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
-        var result = effect.OldResolve(gameState).SingleResolvedState();
+        var result = effect.NewResolve(gameState).Single().GameState;
         Assert.AreEqual(result, gameState);
     }
 
