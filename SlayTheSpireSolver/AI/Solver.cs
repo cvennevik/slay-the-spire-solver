@@ -112,6 +112,11 @@ internal class SolverTests
     [Test]
     public void TestFullJawWormFight()
     {
-        
+        var gameState = new GameState
+        {
+            PlayerHealth = 80,
+            BaseEnergy = 3,
+            Energy = 3
+        };
     }
 }
