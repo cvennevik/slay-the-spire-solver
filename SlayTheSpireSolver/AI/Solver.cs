@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.AI;
 
@@ -42,6 +43,7 @@ internal class SolverTests
         var nonTerminalGameState = new GameState
         {
             PlayerHealth = playerHealth,
+            EnemyParty = new[] { new JawWorm() }
         };
     }
 }
