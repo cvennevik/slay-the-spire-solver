@@ -101,9 +101,11 @@ internal class SolverTests
         {
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            Energy = 1,
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 }
