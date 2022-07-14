@@ -16,7 +16,7 @@ public static class Solver
 
     public static double GetOutcomeValue(GameState gameState)
     {
-        return gameState.PlayerHealth.Amount;
+        return Math.Max(gameState.PlayerHealth.Amount, 0);
     }
 }
 
@@ -26,6 +26,7 @@ internal class SolverTests
     [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
+    [TestCase(-10, 0)]
     public void GetOutcomeValueReturnsPlayerHealth(int playerHealth, int expectedOutcomeValue)
     {
         var gameState = new GameState { PlayerHealth = playerHealth };
