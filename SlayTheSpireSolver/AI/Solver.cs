@@ -20,16 +20,16 @@ public static class Solver
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
-        var playerActions = gameState.GetLegalActions();
-        var bestPlayerActionValue = double.NegativeInfinity;
-        foreach (var playerAction in playerActions)
+        var actions = gameState.GetLegalActions();
+        var bestActionValue = double.NegativeInfinity;
+        foreach (var playerAction in actions)
         {
             var possibleResultsOfAction = playerAction.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
-            if (actionValue > bestPlayerActionValue) bestPlayerActionValue = actionValue;
+            if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
-        return bestPlayerActionValue;
+        return bestActionValue;
     }
 }
 
