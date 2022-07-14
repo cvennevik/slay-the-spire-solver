@@ -36,6 +36,14 @@ internal class SolverTests
     }
 
     [Test]
+    [TestCase(-10, 0)]
+    public void ReturnsZeroWhenPlayerDead(int playerHealth, int expectedOutcomeValue)
+    {
+        var terminalGameState = new GameState { PlayerHealth = playerHealth };
+        Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
+    }
+
+    [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
     public void ReturnsPlayerHealthWhenPlayerCanWinImmediately(int playerHealth, int expectedOutcomeValue)
