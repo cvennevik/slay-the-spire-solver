@@ -39,7 +39,10 @@ internal class SolverTests
     [TestCase(-10, 0)]
     public void ReturnsZeroWhenPlayerDead(int playerHealth, int expectedOutcomeValue)
     {
-        var terminalGameState = new GameState { PlayerHealth = playerHealth };
+        var terminalGameState = new GameState
+        {
+            PlayerHealth = playerHealth
+        };
         Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
     }
 
@@ -51,7 +54,7 @@ internal class SolverTests
         var nonTerminalGameState = new GameState
         {
             PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm { Health = 3 } },
+            EnemyParty = new[] { new JawWorm() },
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
