@@ -48,5 +48,6 @@ internal class SolverTests
             Hand = new Hand(new Strike(), new Defend())
         };
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 }
