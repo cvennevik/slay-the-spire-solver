@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine;
 
 namespace SlayTheSpireSolver.AI;
 
@@ -11,15 +12,20 @@ public static class Solver
     //
     // Action -> GameStates
     // Non-terminal GameState -> Actions
-    // Terminal GameState -> Value
+    // Terminal GameState -> OutcomeValue
+
+    public static double GetOutcomeValue(GameState gameState)
+    {
+        return 0;
+    }
 }
 
 [TestFixture]
 internal class SolverTests
 {
     [Test]
-    public void Test()
+    public void TestGetOutcomeValue()
     {
-        // todo
+        
     }
 }
