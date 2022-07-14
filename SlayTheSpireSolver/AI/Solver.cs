@@ -41,7 +41,8 @@ internal class SolverTests
     {
         var terminalGameState = new GameState
         {
-            PlayerHealth = playerHealth
+            PlayerHealth = playerHealth,
+            EnemyParty = new[] { new JawWorm() }
         };
         Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
     }
