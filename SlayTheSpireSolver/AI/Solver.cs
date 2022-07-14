@@ -32,4 +32,10 @@ internal class SolverTests
         var gameState = new GameState { PlayerHealth = playerHealth };
         Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(gameState));
     }
+
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
