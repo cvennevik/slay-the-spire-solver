@@ -38,7 +38,7 @@ internal class SolverTests
     [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
-    public void ReturnsHighestExpectedPlayerHealthOfNonTerminalGameState(int playerHealth, int expectedOutcomeValue)
+    public void ReturnsPlayerHealthWhenPlayerCanWinImmediately(int playerHealth, int expectedOutcomeValue)
     {
         var nonTerminalGameState = new GameState
         {
