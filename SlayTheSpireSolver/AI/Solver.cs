@@ -122,7 +122,8 @@ internal class SolverTests
             PlayerHealth = 80,
             BaseEnergy = 3,
             Energy = 3,
-            EnemyParty = new[] { jawWorm }
+            EnemyParty = new[] { jawWorm },
+            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend())
         };
     }
 }
