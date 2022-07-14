@@ -34,7 +34,7 @@ public static class Solver
             }
         }
 
-        return Math.Max(gameState.PlayerHealth.Amount, 0);
+        return bestPlayerActionValue;
     }
 }
 
