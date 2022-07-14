@@ -24,9 +24,11 @@ public static class Solver
 internal class SolverTests
 {
     [Test]
-    public void GetOutcomeValueReturnsPlayerHealth()
+    [TestCase(10, 10)]
+    [TestCase(20, 20)]
+    public void GetOutcomeValueReturnsPlayerHealth(int playerHealth, int expectedOutcomeValue)
     {
-        var gameState = new GameState { PlayerHealth = 10 };
-        Assert.AreEqual(10, Solver.GetOutcomeValue(gameState));
+        var gameState = new GameState { PlayerHealth = playerHealth };
+        Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(gameState));
     }
 }
