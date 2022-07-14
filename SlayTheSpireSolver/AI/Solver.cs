@@ -27,15 +27,21 @@ internal class SolverTests
     [TestCase(10, 10)]
     [TestCase(20, 20)]
     [TestCase(-10, 0)]
-    public void GetOutcomeValueReturnsPlayerHealthOfTerminalGameState(int playerHealth, int expectedOutcomeValue)
+    public void ReturnsPlayerHealthOfTerminalGameState(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
         Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
     }
 
     [Test]
-    public void Test()
+    [TestCase(10, 10)]
+    [TestCase(20, 20)]
+    [TestCase(-10, 0)]
+    public void ReturnsHighestExpectedPlayerHealthOfNonTerminalGameState(int playerHealth, int expectedOutcomeValue)
     {
-        
+        var nonTerminalGameState = new GameState
+        {
+            PlayerHealth = 10,
+        };
     }
 }
