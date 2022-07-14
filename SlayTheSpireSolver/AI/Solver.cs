@@ -22,9 +22,9 @@ public static class Solver
 
         var actions = gameState.GetLegalActions();
         var bestActionValue = double.NegativeInfinity;
-        foreach (var playerAction in actions)
+        foreach (var action in actions)
         {
-            var possibleResultsOfAction = playerAction.Resolve();
+            var possibleResultsOfAction = action.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
