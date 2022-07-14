@@ -90,4 +90,20 @@ internal class SolverTests
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
         Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
+
+    [Test]
+    [TestCase(13, 6)]
+    [TestCase(20, 13)]
+    public void ReturnsPlayerHealthPlusDefendArmorMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth,
+        int expectedOutcomeValue)
+    {
+        var nonTerminalGameState = new GameState
+        {
+            PlayerHealth = playerHealth,
+            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike())
+        };
+        var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+    }
 }
