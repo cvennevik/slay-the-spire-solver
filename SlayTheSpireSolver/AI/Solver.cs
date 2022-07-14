@@ -48,5 +48,6 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
+        var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
     }
 }
