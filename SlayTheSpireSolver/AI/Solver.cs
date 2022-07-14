@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
-using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
@@ -88,5 +87,6 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 }
