@@ -114,7 +114,8 @@ internal class SolverTests
     {
         var jawWorm = new JawWorm
         {
-            Health = 44
+            Health = 44,
+            IntendedMove = new Chomp()
         };
         var gameState = new GameState
         {
