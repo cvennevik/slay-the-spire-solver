@@ -43,7 +43,7 @@ internal class SolverTests
         var nonTerminalGameState = new GameState
         {
             PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm() }
+            EnemyParty = new[] { new JawWorm { Health = 3 } }
         };
     }
 }
