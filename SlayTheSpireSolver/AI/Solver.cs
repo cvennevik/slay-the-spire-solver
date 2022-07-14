@@ -74,7 +74,7 @@ internal class SolverTests
         {
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
-            DrawPile = new DrawPile(new Strike(), new Defend())
+            DrawPile = new DrawPile(new Strike())
         };
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
     }
