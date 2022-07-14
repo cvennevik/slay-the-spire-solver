@@ -66,16 +66,15 @@ internal class SolverTests
     }
 
     [Test]
-    [TestCase(10, 10)]
-    [TestCase(20, 20)]
+    [TestCase(13, 1)]
+    [TestCase(20, 8)]
     public void ReturnsPlayerHealthMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth, int expectedOutcomeValue)
     {
         var nonTerminalGameState = new GameState
         {
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
-            Energy = 3,
-            Hand = new Hand(new Strike(), new Defend())
+            DrawPile = new DrawPile(new Strike(), new Defend())
         };
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
     }
