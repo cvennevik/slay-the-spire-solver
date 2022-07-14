@@ -16,7 +16,7 @@ public static class Solver
 
     public static double GetOutcomeValue(GameState gameState)
     {
-        return 0;
+        return gameState.PlayerHealth.Amount;
     }
 }
 
@@ -26,6 +26,7 @@ internal class SolverTests
     [Test]
     public void TestGetOutcomeValue()
     {
-        
+        var gameState = new GameState { PlayerHealth = 10 };
+        Assert.AreEqual(10, Solver.GetOutcomeValue(gameState));
     }
 }
