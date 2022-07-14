@@ -7,15 +7,6 @@ namespace SlayTheSpireSolver.AI;
 
 public static class Solver
 {
-    // todo
-    //  1. Evaluate terminal game states
-    //  2. Evaluate non-terminal game states
-    //  3. Evaluate actions
-    //
-    // Action -> GameStates
-    // Non-terminal GameState -> Actions
-    // Terminal GameState -> OutcomeValue
-
     public static double GetOutcomeValue(GameState gameState)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
