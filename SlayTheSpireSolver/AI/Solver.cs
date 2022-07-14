@@ -24,7 +24,8 @@ public static class Solver
         foreach (var action in gameState.GetLegalActions())
         {
             var possibleResultsOfAction = action.Resolve();
-            var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
+            var actionValue = possibleResultsOfAction.Sum(x =>
+                GetOutcomeValue(x.GameState) * x.Probability.Value);
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
