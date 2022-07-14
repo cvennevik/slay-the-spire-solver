@@ -36,6 +36,7 @@ internal class SolverTests
     }
 
     [Test]
+    [TestCase(0, 0)]
     [TestCase(-10, 0)]
     public void ReturnsZeroWhenPlayerDead(int playerHealth, int expectedOutcomeValue)
     {
