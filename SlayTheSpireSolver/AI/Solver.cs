@@ -21,6 +21,9 @@ public static class Solver
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
         var playerActions = gameState.GetLegalActions();
+        var bestPlayerAction = playerActions.First();
+        foreach (var playerAction in playerActions) { }
+
         return Math.Max(gameState.PlayerHealth.Amount, 0);
     }
 }
