@@ -22,7 +22,10 @@ public static class Solver
 
         var playerActions = gameState.GetLegalActions();
         var bestPlayerAction = playerActions.First();
-        foreach (var playerAction in playerActions) { }
+        foreach (var playerAction in playerActions)
+        {
+            var possibleResultsOfAction = playerAction.Resolve();
+        }
 
         return Math.Max(gameState.PlayerHealth.Amount, 0);
     }
