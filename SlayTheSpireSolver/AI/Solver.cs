@@ -123,7 +123,8 @@ internal class SolverTests
             BaseEnergy = 3,
             Energy = 3,
             EnemyParty = new[] { jawWorm },
-            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend())
+            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike())
         };
     }
 }
