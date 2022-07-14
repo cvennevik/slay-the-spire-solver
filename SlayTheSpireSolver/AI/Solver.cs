@@ -18,11 +18,9 @@ public static class Solver
 
     public static double GetOutcomeValue(GameState gameState)
     {
-        if (gameState.IsCombatOver())
-        {
-            return Math.Max(gameState.PlayerHealth.Amount, 0);
-        }
+        if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
+        var playerActions = gameState.GetLegalActions();
         return Math.Max(gameState.PlayerHealth.Amount, 0);
     }
 }
