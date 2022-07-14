@@ -26,6 +26,7 @@ public static class Solver
         foreach (var playerAction in playerActions)
         {
             var possibleResultsOfAction = playerAction.Resolve();
+            var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
         }
 
         return Math.Max(gameState.PlayerHealth.Amount, 0);
