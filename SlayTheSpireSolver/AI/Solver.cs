@@ -18,6 +18,11 @@ public static class Solver
 
     public static double GetOutcomeValue(GameState gameState)
     {
+        if (gameState.IsCombatOver())
+        {
+            return Math.Max(gameState.PlayerHealth.Amount, 0);
+        }
+
         return Math.Max(gameState.PlayerHealth.Amount, 0);
     }
 }
