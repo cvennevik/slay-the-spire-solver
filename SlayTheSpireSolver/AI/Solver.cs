@@ -22,6 +22,7 @@ public static class Solver
 
         var playerActions = gameState.GetLegalActions();
         var bestPlayerAction = playerActions.First();
+        var bestPlayerActionValue = double.NegativeInfinity;
         foreach (var playerAction in playerActions)
         {
             var possibleResultsOfAction = playerAction.Resolve();
