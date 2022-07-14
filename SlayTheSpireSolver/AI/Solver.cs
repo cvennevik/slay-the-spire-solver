@@ -108,4 +108,10 @@ internal class SolverTests
         var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
         Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
+
+    [Test]
+    public void TestFullJawWormFight()
+    {
+        
+    }
 }
