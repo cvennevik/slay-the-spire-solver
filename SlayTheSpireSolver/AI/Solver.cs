@@ -11,7 +11,7 @@ public static class Solver
 }
 
 [TestFixture]
-public class SolverTests
+internal class SolverTests
 {
     [Test]
     public void Test()
