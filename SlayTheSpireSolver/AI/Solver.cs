@@ -27,6 +27,11 @@ public static class Solver
         {
             var possibleResultsOfAction = playerAction.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
+            if (actionValue > bestPlayerActionValue)
+            {
+                bestPlayerAction = playerAction;
+                bestPlayerActionValue = actionValue;
+            }
         }
 
         return Math.Max(gameState.PlayerHealth.Amount, 0);
