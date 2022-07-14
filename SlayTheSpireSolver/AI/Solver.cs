@@ -41,7 +41,7 @@ internal class SolverTests
     {
         var nonTerminalGameState = new GameState
         {
-            PlayerHealth = 10,
+            PlayerHealth = playerHealth,
         };
     }
 }
