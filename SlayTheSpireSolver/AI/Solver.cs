@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
@@ -20,9 +21,8 @@ public static class Solver
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
-        var actions = gameState.GetLegalActions();
         var bestActionValue = double.NegativeInfinity;
-        foreach (var action in actions)
+        foreach (var action in gameState.GetLegalActions())
         {
             var possibleResultsOfAction = action.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x => GetOutcomeValue(x.GameState) * x.Probability.Value);
