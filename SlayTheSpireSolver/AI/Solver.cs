@@ -26,9 +26,10 @@ public static class Solver
 internal class SolverTests
 {
     [Test]
+    [TestCase(-10, 0)]
+    [TestCase(0, 0)]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
-    [TestCase(-10, 0)]
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
