@@ -73,9 +73,7 @@ public class Solver
             var newMaximum = aggregate.Maximum + possibilityValueRange.Maximum * x.Probability.Value;
             return new ExpectedValueRange(newMinimum, newMaximum);
         });
-        var searchResult = possibleResultsOfAction.Sum(x =>
-            FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
-        return searchResult;
+        return expectedValueRange.ToExpectedValue;
     }
 }
 
