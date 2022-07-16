@@ -20,7 +20,11 @@ public static class Solver
         var stopWatch = Stopwatch.StartNew();
         var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
         stopWatch.Stop();
-        return searchResult with { ElapsedMilliseconds = stopWatch.ElapsedMilliseconds };
+        return searchResult with
+        {
+            ElapsedMilliseconds = stopWatch.ElapsedMilliseconds,
+            GameStateDepthLimit = gameStateDepthLimit
+        };
     }
 
     public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 3)
