@@ -44,8 +44,8 @@ public static class Solver
 
     private static SearchResult FindBestExpectedOutcome(PlayerAction action, int gameStateDepthLimit)
     {
-        return action
-            .Resolve()
+        var possibleResultsOfAction = action.Resolve();
+        return possibleResultsOfAction
             .Aggregate(new SearchResult(), (aggregate, x) =>
             {
                 var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
