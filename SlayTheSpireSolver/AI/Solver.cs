@@ -9,8 +9,8 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
+    public int CacheHits;
     private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
-    private int _cacheHits;
 
     // TODO:
     //  * Improve non-terminal game state estimation
@@ -23,7 +23,7 @@ public class Solver
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
-            Interlocked.Increment(ref _cacheHits);
+            Interlocked.Increment(ref CacheHits);
             return cachedResult!;
         }
 
