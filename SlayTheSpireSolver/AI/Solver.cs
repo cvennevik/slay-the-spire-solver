@@ -65,7 +65,7 @@ public class Solver
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit)
     {
         Interlocked.Increment(ref EvaluatedActions);
-        var possibleResultsOfAction = action.Resolve().OrderBy(x => x.Probability.Value).Reverse();
+        var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value);
         var remainingProbability = 1.0;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
