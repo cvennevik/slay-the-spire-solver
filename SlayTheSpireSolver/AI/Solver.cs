@@ -10,8 +10,9 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
-    public int CacheHits;
+    public int EvaluatedActions;
     public int EvaluatedGameStates;
+    public int GameStateCacheHits;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
@@ -30,7 +31,7 @@ public class Solver
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
-            Interlocked.Increment(ref CacheHits);
+            Interlocked.Increment(ref GameStateCacheHits);
             return cachedResult!;
         }
 
@@ -172,7 +173,7 @@ internal class SolverTests
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(4, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(3, searchResult.EvaluatedActions);
-        Assert.AreEqual(searchResult.EvaluatedGameStates, solver.EvaluatedGameStates + solver.CacheHits);
+        Assert.AreEqual(searchResult.EvaluatedGameStates, solver.EvaluatedGameStates + solver.GameStateCacheHits);
     }
 
     [Test]
@@ -213,6 +214,6 @@ internal class SolverTests
         var firstSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         var secondSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
-        Assert.LessOrEqual(1, solver.CacheHits);
+        Assert.LessOrEqual(1, solver.GameStateCacheHits);
     }
 }
