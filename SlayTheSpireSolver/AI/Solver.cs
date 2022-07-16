@@ -19,11 +19,15 @@ public static class Solver
     public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 3)
     {
         if (gameState.IsCombatOver())
+        {
+            var value = Math.Max(gameState.PlayerHealth.Amount, 0);
             return new SearchResult
             {
-                ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0),
+                ExpectedValue = value,
                 EvaluatedGameStates = 1
             };
+        }
+
         if (gameStateDepthLimit <= 0) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
