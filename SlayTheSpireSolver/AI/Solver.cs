@@ -17,6 +17,7 @@ public class Solver
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
+    //  * Parallelize
     //  * Improve non-terminal game state estimation
 
     public double FindExpectedValue(GameState gameState)
