@@ -6,4 +6,14 @@ public record SearchResult
     public int EvaluatedGameStates { get; init; }
     public int EvaluatedActions { get; init; }
     public double ElapsedMilliseconds { get; init; }
+
+    public override string ToString()
+    {
+        return $@"{{
+    ExpectedValue: {ExpectedValue}
+    EvaluatedGameStates: {EvaluatedGameStates}
+    EvaluatedActions: {EvaluatedActions}
+    ElapsedMilliseconds: {ElapsedMilliseconds}
+}}";
+    }
 }
