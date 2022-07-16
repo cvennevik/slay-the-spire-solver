@@ -31,20 +31,23 @@ public static class Solver
         {
             double actionValue;
             if (gameState.Turn.Number == turnLimit && action is EndTurnAction)
-            {
                 actionValue = 0;
-            }
             else
-            {
-                var possibleResultsOfAction = action.Resolve();
-                actionValue = possibleResultsOfAction.Sum(x =>
-                    FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
-            }
+                actionValue = FindBestExpectedOutcome(action, turnLimit);
 
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
         return new SearchResult { ExpectedValue = bestActionValue };
+    }
+
+    private static double FindBestExpectedOutcome(PlayerAction action, int turnLimit)
+    {
+        double actionValue;
+        var possibleResultsOfAction = action.Resolve();
+        actionValue = possibleResultsOfAction.Sum(x =>
+            FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
+        return actionValue;
     }
 }
 
