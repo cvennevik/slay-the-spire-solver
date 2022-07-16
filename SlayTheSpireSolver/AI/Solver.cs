@@ -24,7 +24,7 @@ public static class Solver
                 ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0),
                 EvalutedGameStates = 1
             };
-        if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0 };
+        if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0, EvalutedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
         var evaluatedGameStates = 1; // This
