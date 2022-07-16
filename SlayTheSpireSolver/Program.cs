@@ -22,7 +22,7 @@ var gameState = new GameState
     Turn = 1
 };
 
-const int gameStateSearchDepth = 3;
+const int gameStateSearchDepth = 4;
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"GameState search depth: {gameStateSearchDepth}");
 
