@@ -30,14 +30,14 @@ public static class Solver
         foreach (var action in gameState.GetLegalActions())
         {
             var willExceedTurnLimit = gameState.Turn.Number == turnLimit && action is EndTurnAction;
-            var actionValue = willExceedTurnLimit ? 0 : FindBestExpectedOutcome(action, turnLimit);
+            var actionValue = willExceedTurnLimit ? 0 : FindBestExpectedOutcome(action, turnLimit).ExpectedValue;
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
         return new SearchResult { ExpectedValue = bestActionValue };
     }
 
-    private static double FindBestExpectedOutcome(PlayerAction action, int turnLimit)
+    private static SearchResult FindBestExpectedOutcome(PlayerAction action, int turnLimit)
     {
         return action
             .Resolve()
@@ -49,7 +49,7 @@ public static class Solver
                     ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
                     EvalutedGameStates = aggregate.EvalutedGameStates + searchResult.EvalutedGameStates
                 };
-            }).ExpectedValue;
+            });
     }
 }
 
