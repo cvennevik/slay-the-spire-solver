@@ -41,32 +41,6 @@ public static class Solver
 
         return bestActionValue;
     }
-
-    public static double FindBestExpectedValueV2(GameState gameState, int turnLimit = 2)
-    {
-        if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
-        if (gameState.Turn.Number > turnLimit) return 0;
-
-        var bestActionValue = double.NegativeInfinity;
-        foreach (var action in gameState.GetLegalActions())
-        {
-            double actionValue;
-            if (gameState.Turn.Number == turnLimit && action is EndTurnAction)
-            {
-                actionValue = 0;
-            }
-            else
-            {
-                var possibleResultsOfAction = action.Resolve();
-                actionValue = possibleResultsOfAction.Sum(x =>
-                    FindBestExpectedValue(x.GameState, turnLimit) * x.Probability.Value);
-            }
-
-            if (actionValue > bestActionValue) bestActionValue = actionValue;
-        }
-
-        return bestActionValue;
-    }
 }
 
 [TestFixture]
@@ -164,7 +138,6 @@ internal class SolverTests
             Turn = 1
         };
         var bestExpectedValue = Solver.FindBestExpectedValue(gameState);
-        var result = Solver.FindBestExpectedValueV2(gameState);
         Assert.AreEqual(0, bestExpectedValue);
     }
 }
