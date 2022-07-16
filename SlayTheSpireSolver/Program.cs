@@ -22,12 +22,11 @@ var gameState = new GameState
     Turn = 1
 };
 
-const int gameStateSearchDepth = 4;
+var solver = new Solver { GameStateSearchDepth = 4 };
 Console.WriteLine("Evaluating Jaw Worm fight.");
-Console.WriteLine($"GameState search depth: {gameStateSearchDepth}");
+Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
 
 var stopWatch = Stopwatch.StartNew();
-var solver = new Solver { GameStateSearchDepth = gameStateSearchDepth };
 var searchResult = solver.FindBestExpectedOutcome(gameState);
 stopWatch.Stop();
 
