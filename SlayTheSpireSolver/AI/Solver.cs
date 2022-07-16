@@ -18,8 +18,6 @@ public class Solver
 
     // TODO:
     //  * Improve non-terminal game state estimation
-    //  * Prune
-    //      * Add non-terminal game state ranges
 
     public double FindExpectedValue(GameState gameState)
     {
