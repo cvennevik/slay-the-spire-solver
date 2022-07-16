@@ -13,7 +13,7 @@ public class Solver
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
-    public int PrunedActions;
+    public int PrunedActionOutcomes;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
