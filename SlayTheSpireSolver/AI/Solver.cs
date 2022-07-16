@@ -190,4 +190,22 @@ internal class SolverTests
         };
         new Solver().FindBestExpectedOutcome(gameState);
     }
+
+
+    [Test]
+    [TestCase(10, 10)]
+    [TestCase(20, 20)]
+    public void TestCache(int playerHealth, int expectedResult)
+    {
+        var nonTerminalGameState = new GameState
+        {
+            PlayerHealth = playerHealth,
+            EnemyParty = new[] { new JawWorm() },
+            Energy = 3,
+            Hand = new Hand(new Strike(), new Defend())
+        };
+        var firstSearchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        var secondSearchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, firstSearchResult.ExpectedValue);
+    }
 }
