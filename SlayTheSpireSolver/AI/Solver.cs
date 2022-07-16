@@ -27,7 +27,7 @@ public static class Solver
         if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0 };
 
         var bestActionValue = double.NegativeInfinity;
-        var evaluatedGameStates = 1;
+        var evaluatedGameStates = 1; // This
         foreach (var action in gameState.GetLegalActions())
         {
             var willExceedTurnLimit = gameState.Turn.Number == turnLimit && action is EndTurnAction;
