@@ -39,8 +39,9 @@ public class Solver
             return cachedResult!;
         }
 
-        Interlocked.Increment(ref EvaluatedGameStates);
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
+        _gameStateCache.TryAdd(gameState, result);
+        Interlocked.Increment(ref EvaluatedGameStates);
         return result;
     }
 
@@ -49,7 +50,6 @@ public class Solver
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
-            _gameStateCache.TryAdd(gameState, result);
             return result;
         }
 
