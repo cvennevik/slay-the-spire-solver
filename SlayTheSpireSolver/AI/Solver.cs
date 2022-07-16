@@ -41,11 +41,14 @@ public static class Solver
     {
         return action
             .Resolve()
-            .Aggregate<Possibility, double>(0, (aggregate, x) =>
+            .Aggregate(new SearchResult(), (aggregate, x) =>
             {
                 var searchResult = FindBestExpectedOutcome(x.GameState, turnLimit);
-                return aggregate + searchResult.ExpectedValue * x.Probability.Value;
-            });
+                return aggregate with
+                {
+                    ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value
+                };
+            }).ExpectedValue;
     }
 }
 
