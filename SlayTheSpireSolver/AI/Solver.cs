@@ -30,8 +30,10 @@ public static class Solver
         foreach (var action in gameState.GetLegalActions())
         {
             var willExceedTurnLimit = gameState.Turn.Number == turnLimit && action is EndTurnAction;
-            var actionValue = willExceedTurnLimit ? 0 : FindBestExpectedOutcome(action, turnLimit).ExpectedValue;
-            if (actionValue > bestActionValue) bestActionValue = actionValue;
+            var searchResult = willExceedTurnLimit
+                ? new SearchResult { ExpectedValue = 0, EvalutedGameStates = 1 }
+                : FindBestExpectedOutcome(action, turnLimit);
+            if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
         return new SearchResult { ExpectedValue = bestActionValue };
