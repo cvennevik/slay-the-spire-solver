@@ -84,9 +84,10 @@ public class Solver
             var bestPossibleMinimum = aggregatedMinimum + bestPossibleValue * remainingProbability;
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
             if (bestCompetingRange.Minimum > bestPossibleMaximum)
-                // This cannot be the best action
             {
+                // The competing action's value must be better, stop evaluating this action
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
+                return new ExpectedValueRange(0, 0);
             }
         }
 
