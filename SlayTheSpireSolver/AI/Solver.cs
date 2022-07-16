@@ -34,6 +34,8 @@ public class Solver
             return cachedResult!;
         }
 
+        Interlocked.Increment(ref EvaluatedGameStates);
+
         if (gameState.IsCombatOver())
         {
             var value = Math.Max(gameState.PlayerHealth.Amount, 0);
