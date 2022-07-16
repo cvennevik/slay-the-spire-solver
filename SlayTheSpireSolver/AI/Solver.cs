@@ -84,16 +84,19 @@ public class Solver
         Interlocked.Increment(ref EvaluatedActions);
 
         var possibleResultsOfAction = action.Resolve();
-        return possibleResultsOfAction.Aggregate(new SearchResult { EvaluatedActions = 1 }, (aggregate, x) =>
-        {
-            var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
-            return new SearchResult
+        var searchResult = possibleResultsOfAction.Aggregate(new SearchResult { EvaluatedActions = 1 },
+            (aggregate, x) =>
             {
-                ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
-                EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates,
-                EvaluatedActions = aggregate.EvaluatedActions + searchResult.EvaluatedActions
-            };
-        });
+                var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
+                return new SearchResult
+                {
+                    ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
+                    EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates,
+                    EvaluatedActions = aggregate.EvaluatedActions + searchResult.EvaluatedActions
+                };
+            });
+        _actionCache.TryAdd(action, searchResult);
+        return searchResult;
     }
 }
 
