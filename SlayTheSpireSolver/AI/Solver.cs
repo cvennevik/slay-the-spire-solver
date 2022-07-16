@@ -59,7 +59,8 @@ public static class Solver
             return new SearchResult
             {
                 ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
-                EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates
+                EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates,
+                EvaluatedActions = aggregate.EvaluatedActions + searchResult.EvaluatedActions + 1
             };
         });
     }
