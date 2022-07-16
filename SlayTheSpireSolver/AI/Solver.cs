@@ -20,7 +20,7 @@ public class Solver
     public SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
-        if (isCached) return cachedResult!;
+        if (isCached) return cachedResult! with { CacheHits = 1 };
         if (gameState.IsCombatOver())
         {
             var value = Math.Max(gameState.PlayerHealth.Amount, 0);
