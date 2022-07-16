@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.AI;
 
-public static class Solver
+public class Solver
 {
     private static ConcurrentDictionary<GameState, double> _gameStateCache = new();
 
