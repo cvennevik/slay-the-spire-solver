@@ -38,7 +38,7 @@ public static class Solver
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
-        return new SearchResult { ExpectedValue = bestActionValue };
+        return new SearchResult { ExpectedValue = bestActionValue, EvalutedGameStates = evalutedGameStates };
     }
 
     private static SearchResult FindBestExpectedOutcome(PlayerAction action, int turnLimit)
