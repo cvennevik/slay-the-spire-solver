@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.AI;
 
-public class Solver
+public static class Solver
 {
     // TODO:
     //  * Improve non-terminal game state estimation
