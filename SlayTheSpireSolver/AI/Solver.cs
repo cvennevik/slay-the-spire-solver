@@ -14,7 +14,7 @@ public static class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public static double FindBestExpectedValue(GameState gameState)
+    public static double FindBestExpectedValue(GameState gameState, int maxDepth = 3)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
