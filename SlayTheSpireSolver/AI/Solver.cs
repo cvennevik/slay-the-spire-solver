@@ -19,8 +19,9 @@ public class Solver
     // TODO:
     //  * Parallelize
     //  * Improve non-terminal game state estimation
-    //  * Check correctness
     //  * Return best actions + their expected value
+    //  * Check correctness
+    //      * Write tests for game states solvable in few steps
     //  * Improve Rules Engine performance
     //  * Improve action evaluation order (goal: hit winning paths earlier to improve pruning)
 
