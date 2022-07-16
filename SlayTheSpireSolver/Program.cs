@@ -38,7 +38,6 @@ Console.WriteLine($"Expected value: {expectedValue}");
 Console.WriteLine("");
 Console.WriteLine("STATISTICS");
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
-Console.WriteLine(
-    $"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
-Console.WriteLine(
-    $"Evaluated actions: {solver.EvaluatedActions}");
+Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
+Console.WriteLine($"Evaluated actions: {solver.EvaluatedActions}");
+Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
