@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
+using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
@@ -23,9 +24,18 @@ public static class Solver
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
         {
-            var possibleResultsOfAction = action.Resolve();
-            var actionValue = possibleResultsOfAction.Sum(x =>
-                FindBestExpectedValue(x.GameState, turnLimit) * x.Probability.Value);
+            double actionValue;
+            if (gameState.Turn.Number == turnLimit && action is EndTurnAction)
+            {
+                actionValue = 0;
+            }
+            else
+            {
+                var possibleResultsOfAction = action.Resolve();
+                actionValue = possibleResultsOfAction.Sum(x =>
+                    FindBestExpectedValue(x.GameState, turnLimit) * x.Probability.Value);
+            }
+
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
