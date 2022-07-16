@@ -51,10 +51,12 @@ public class Solver
 
         if (gameStateDepthLimit <= 0) return new ExpectedValueRange(0, gameState.PlayerHealth.Amount);
 
+        var bestActionValueRange = new ExpectedValueRange(double.NegativeInfinity, double.NegativeInfinity);
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
         {
-            var searchResult = FindExpectedValueRange(action, gameStateDepthLimit - 1).ToExpectedValue;
+            var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1);
+            var searchResult = actionValueRange.ToExpectedValue;
             if (searchResult > bestActionValue) bestActionValue = searchResult;
         }
 
