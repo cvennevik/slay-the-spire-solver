@@ -17,6 +17,7 @@ public static class Solver
     public static double FindBestExpectedValue(GameState gameState, int maxDepth = 3)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
+        if (maxDepth == 0) return 0;
 
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
