@@ -16,7 +16,7 @@ public static class Solver
     //  * Return more data (helps testing and observability)
     //      * Count evaluated game states
 
-    public static SearchResult FindBestExpectedOutcome(GameState gameState, int turnLimit = 2)
+    public static SearchResult FindBestExpectedOutcome(GameState gameState, int depthLimit = 2)
     {
         if (gameState.IsCombatOver())
             return new SearchResult
@@ -24,16 +24,16 @@ public static class Solver
                 ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0),
                 EvaluatedGameStates = 1
             };
-        if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
+        if (gameState.Turn.Number > depthLimit) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
         var evaluatedGameStates = 1; // This
         foreach (var action in gameState.GetLegalActions())
         {
-            var willExceedTurnLimit = gameState.Turn.Number == turnLimit && action is EndTurnAction;
+            var willExceedTurnLimit = gameState.Turn.Number == depthLimit && action is EndTurnAction;
             var searchResult = willExceedTurnLimit
                 ? new SearchResult { ExpectedValue = 0 }
-                : FindBestExpectedOutcome(action, turnLimit);
+                : FindBestExpectedOutcome(action, depthLimit);
             evaluatedGameStates += searchResult.EvaluatedGameStates;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
@@ -41,13 +41,13 @@ public static class Solver
         return new SearchResult { ExpectedValue = bestActionValue, EvaluatedGameStates = evaluatedGameStates };
     }
 
-    private static SearchResult FindBestExpectedOutcome(PlayerAction action, int turnLimit)
+    private static SearchResult FindBestExpectedOutcome(PlayerAction action, int depthLimit)
     {
         return action
             .Resolve()
             .Aggregate(new SearchResult(), (aggregate, x) =>
             {
-                var searchResult = FindBestExpectedOutcome(x.GameState, turnLimit);
+                var searchResult = FindBestExpectedOutcome(x.GameState, depthLimit);
                 return new SearchResult
                 {
                     ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
