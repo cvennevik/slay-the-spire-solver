@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics;
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -16,12 +17,15 @@ public static class Solver
 
     public static TimedSearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
     {
+        var stopWatch = Stopwatch.StartNew();
         var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
+        stopWatch.Stop();
         return new TimedSearchResult
         {
             ExpectedValue = searchResult.ExpectedValue,
             EvaluatedGameStates = searchResult.EvaluatedGameStates,
-            EvaluatedActions = searchResult.EvaluatedActions
+            EvaluatedActions = searchResult.EvaluatedActions,
+            ElapsedMilliseconds = stopWatch.ElapsedMilliseconds
         };
     }
 

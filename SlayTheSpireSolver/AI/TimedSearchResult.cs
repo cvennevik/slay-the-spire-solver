@@ -2,5 +2,5 @@ namespace SlayTheSpireSolver.AI;
 
 public record TimedSearchResult : SearchResult
 {
-    public double ElapsedTime { get; init; }
+    public double ElapsedMilliseconds { get; init; }
 }
