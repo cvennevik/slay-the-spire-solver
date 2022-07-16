@@ -23,14 +23,20 @@ var gameState = new GameState
 };
 
 var solver = new Solver { GameStateSearchDepth = 4 };
+Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
+Console.WriteLine("");
+Console.WriteLine("Searching for expected value...");
 
 var stopWatch = Stopwatch.StartNew();
-var searchResult = solver.FindExpectedValue(gameState);
+var expectedValue = solver.FindExpectedValue(gameState);
 stopWatch.Stop();
 
-Console.WriteLine(searchResult);
+Console.WriteLine("Search complete.");
+Console.WriteLine($"Expected value: {expectedValue}");
+Console.WriteLine("");
+Console.WriteLine("STATISTICS");
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
 Console.WriteLine(
     $"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
