@@ -32,7 +32,7 @@ public class Solver
         if (isCached)
         {
             Interlocked.Increment(ref GameStateCacheHits);
-            return cachedResult;
+            return cachedResult!;
         }
 
         Interlocked.Increment(ref EvaluatedGameStates);
