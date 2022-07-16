@@ -66,8 +66,13 @@ public class Solver
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve();
-        var expectedValueRange = possibleResultsOfAction.Sum(x =>
-            FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
+        var expectedValueRange = possibleResultsOfAction.Aggregate(new ExpectedValueRange(0, 0), (aggregate, x) =>
+        {
+            var possibilityValueRange = FindExpectedValueRange(x.GameState, gameStateDepthLimit);
+            var newMinimum = aggregate.Minimum + possibilityValueRange.Minimum * x.Probability.Value;
+            var newMaximum = aggregate.Maximum + possibilityValueRange.Maximum * x.Probability.Value;
+            return new ExpectedValueRange(newMinimum, newMaximum);
+        });
         var searchResult = possibleResultsOfAction.Sum(x =>
             FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
         return searchResult;
