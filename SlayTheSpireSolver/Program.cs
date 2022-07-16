@@ -32,4 +32,5 @@ stopWatch.Stop();
 
 Console.WriteLine(searchResult);
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
-Console.WriteLine($"Cache hits: {solver.GameStateCacheHits}");
+Console.WriteLine($"GameState cache size: {solver.GameStateCacheSize}, hits: {solver.GameStateCacheHits}");
+Console.WriteLine($"PlayerAction cache size: {solver.ActionCacheSize}, hits: {solver.ActionCacheHits}");

@@ -15,6 +15,8 @@ public class Solver
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
+    public int ActionCacheSize => _actionCache.Count;
+    public int GameStateCacheSize => _gameStateCache.Count;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
