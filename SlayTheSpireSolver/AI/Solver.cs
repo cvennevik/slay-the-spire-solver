@@ -172,6 +172,7 @@ internal class SolverTests
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(4, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(3, searchResult.EvaluatedActions);
+        Assert.AreEqual(searchResult.EvaluatedGameStates, solver.EvaluatedGameStates + solver.CacheHits);
     }
 
     [Test]
