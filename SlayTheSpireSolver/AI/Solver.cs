@@ -39,11 +39,9 @@ public static class Solver
 
     private static double FindBestExpectedOutcome(PlayerAction action, int turnLimit)
     {
-        double actionValue;
-        var possibleResultsOfAction = action.Resolve();
-        actionValue = possibleResultsOfAction.Sum(x =>
-            FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
-        return actionValue;
+        return action
+            .Resolve()
+            .Sum(x => FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
     }
 }
 
