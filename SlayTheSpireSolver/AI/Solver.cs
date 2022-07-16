@@ -74,6 +74,13 @@ public class Solver
 
     private SearchResult FindBestExpectedOutcome(PlayerAction action, int gameStateDepthLimit)
     {
+        var isCached = _actionCache.TryGetValue(action, out var cachedResult);
+        if (isCached)
+        {
+            Interlocked.Increment(ref ActionCacheHits);
+            return cachedResult!;
+        }
+
         var possibleResultsOfAction = action.Resolve();
         return possibleResultsOfAction.Aggregate(new SearchResult { EvaluatedActions = 1 }, (aggregate, x) =>
         {
