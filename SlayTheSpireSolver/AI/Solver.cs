@@ -27,7 +27,7 @@ public static class Solver
         if (gameStateDepthLimit <= 0) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
-        var evaluatedGameStates = 1; // This
+        var evaluatedGameStates = 1;
         foreach (var action in gameState.GetLegalActions())
         {
             var searchResult = FindBestExpectedOutcome(action, gameStateDepthLimit - 1);
