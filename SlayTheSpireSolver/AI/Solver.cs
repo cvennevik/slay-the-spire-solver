@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -14,18 +13,6 @@ public static class Solver
     //  * Prune
     //      * Add non-terminal game state ranges
     //  * Memoize
-
-    public static SearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
-    {
-        var stopWatch = Stopwatch.StartNew();
-        var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
-        stopWatch.Stop();
-        return searchResult with
-        {
-            ElapsedMilliseconds = stopWatch.ElapsedMilliseconds,
-            GameStateDepthLimit = gameStateDepthLimit
-        };
-    }
 
     public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 3)
     {
