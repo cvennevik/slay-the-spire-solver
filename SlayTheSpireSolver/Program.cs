@@ -33,6 +33,6 @@ stopWatch.Stop();
 Console.WriteLine(searchResult);
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
 Console.WriteLine(
-    $"Evaluated game states: {solver.EvaluatedGameStates}, cached: {solver.GameStateCacheSize}, hits: {solver.GameStateCacheHits}");
+    $"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
 Console.WriteLine(
-    $"Evaluated actions: {solver.EvaluatedActions}, cached: {solver.ActionCacheSize}, hits: {solver.ActionCacheHits}");
+    $"Evaluated actions: {solver.EvaluatedActions}, cache hits: {solver.ActionCacheHits}");
