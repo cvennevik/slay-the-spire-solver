@@ -40,7 +40,12 @@ public class Solver
         }
 
         Interlocked.Increment(ref EvaluatedGameStates);
+        var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
+        return result;
+    }
 
+    private double FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
+    {
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
