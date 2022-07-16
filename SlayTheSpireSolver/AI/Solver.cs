@@ -66,6 +66,7 @@ public class Solver
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderBy(x => x.Probability.Value).Reverse();
+        var remainingProbability = 1.0;
         var expectedValueRange = possibleResultsOfAction.Aggregate(new ExpectedValueRange(0, 0), (aggregate, x) =>
         {
             var possibilityValueRange = FindExpectedValueRange(x.GameState, gameStateDepthLimit);
