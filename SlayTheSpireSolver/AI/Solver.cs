@@ -166,6 +166,7 @@ internal class SolverTests
             Turn = 1
         };
         var bestExpectedValue = Solver.FindBestExpectedValue(gameState);
+        var result = Solver.FindBestExpectedValueV2(gameState);
         Assert.AreEqual(0, bestExpectedValue);
     }
 }
