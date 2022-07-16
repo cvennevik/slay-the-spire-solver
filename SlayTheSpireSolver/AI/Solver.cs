@@ -182,7 +182,6 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var timedSearchResult = Solver.FindBestExpectedOutcomeWithTime(gameState);
-        Console.Write(timedSearchResult);
+        Solver.FindBestExpectedOutcomeWithTime(gameState);
     }
 }
