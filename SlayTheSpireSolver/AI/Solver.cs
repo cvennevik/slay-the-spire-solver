@@ -9,8 +9,8 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    public int CacheHits;
     private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
+    public int CacheHits;
 
     // TODO:
     //  * Improve non-terminal game state estimation
@@ -19,6 +19,11 @@ public class Solver
     //  * Memoize
 
     public SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit)
+    {
+        return FindBestExpectedOutcomeInternal(gameState, gameStateDepthLimit);
+    }
+
+    private SearchResult FindBestExpectedOutcomeInternal(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
