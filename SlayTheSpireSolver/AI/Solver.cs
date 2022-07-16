@@ -118,8 +118,8 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var result = Solver.FindBestExpectedValue(nonTerminalGameState).ExpectedValue;
-        Assert.AreEqual(expectedResult, result);
+        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
     [Test]
