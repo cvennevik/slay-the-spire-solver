@@ -1,3 +1,7 @@
 namespace SlayTheSpireSolver.AI;
 
-public record SearchResult { }
+public record SearchResult
+{
+    public double ExpectedValue { get; init; }
+    public int EvaluatedGameStates { get; init; }
+}
