@@ -15,6 +15,7 @@ public static class Solver
     //  * Memoize
     //  * Return more data (helps testing and observability)
     //      * Count evaluated game states
+    //      * Count evaluated actions
 
     public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 3)
     {
