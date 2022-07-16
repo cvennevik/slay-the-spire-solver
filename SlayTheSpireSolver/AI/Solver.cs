@@ -85,8 +85,8 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var result = Solver.FindBestExpectedValue(nonTerminalGameState).ExpectedValue;
-        Assert.AreEqual(expectedResult, result);
+        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
     [Test]
