@@ -21,6 +21,10 @@ var gameState = new GameState
     DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
     Turn = 1
 };
+
+Console.WriteLine("Evaluating GameState:");
+Console.Write(gameState);
+
 var stopWatch = Stopwatch.StartNew();
 var searchResult = Solver.FindBestExpectedOutcome(gameState);
 stopWatch.Stop();
