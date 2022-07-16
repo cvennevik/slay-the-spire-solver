@@ -9,6 +9,7 @@ public static class Solver
 {
     // TODO:
     //  * Depth-limit
+    //      * Limit by number of turns
     //      * Estimate non-terminal game states
     //  * Prune
     //      * Add non-terminal game state ranges
