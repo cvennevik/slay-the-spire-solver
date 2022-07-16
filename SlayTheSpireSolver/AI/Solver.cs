@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, double> _gameStateCache = new();
+    private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
 
     // TODO:
     //  * Improve non-terminal game state estimation
@@ -19,6 +19,7 @@ public class Solver
 
     public SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit)
     {
+        var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (gameState.IsCombatOver())
         {
             var value = Math.Max(gameState.PlayerHealth.Amount, 0);
@@ -27,7 +28,7 @@ public class Solver
                 ExpectedValue = value,
                 EvaluatedGameStates = 1
             };
-            _gameStateCache.TryAdd(gameState, value);
+            _gameStateCache.TryAdd(gameState, result);
             return result;
         }
 
