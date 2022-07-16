@@ -23,7 +23,7 @@ var gameState = new GameState
 };
 
 Console.WriteLine("Evaluating GameState:");
-Console.Write(gameState);
+Console.WriteLine(gameState);
 
 var stopWatch = Stopwatch.StartNew();
 var searchResult = Solver.FindBestExpectedOutcome(gameState);
