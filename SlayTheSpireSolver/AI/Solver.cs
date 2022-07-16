@@ -10,6 +10,7 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
+    private int _cacheHits = 0;
 
     // TODO:
     //  * Improve non-terminal game state estimation
