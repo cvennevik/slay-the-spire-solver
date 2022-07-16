@@ -100,8 +100,8 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var result = Solver.FindBestExpectedValue(nonTerminalGameState).ExpectedValue;
-        Assert.AreEqual(expectedResult, result);
+        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
     [Test]
