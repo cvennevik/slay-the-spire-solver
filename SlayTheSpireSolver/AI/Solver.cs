@@ -204,8 +204,9 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var firstSearchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
-        var secondSearchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        var solver = new Solver();
+        var firstSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
+        var secondSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, firstSearchResult.ExpectedValue);
     }
 }
