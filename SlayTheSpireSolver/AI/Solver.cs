@@ -66,7 +66,7 @@ public class Solver
         if (isCached)
         {
             Interlocked.Increment(ref ActionCacheHits);
-            return cachedResult!;
+            return cachedResult;
         }
 
         Interlocked.Increment(ref EvaluatedActions);
