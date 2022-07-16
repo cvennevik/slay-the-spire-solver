@@ -41,7 +41,11 @@ public static class Solver
     {
         return action
             .Resolve()
-            .Sum(x => { return FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value; });
+            .Sum(x =>
+            {
+                var searchResult = FindBestExpectedOutcome(x.GameState, turnLimit);
+                return searchResult.ExpectedValue * x.Probability.Value;
+            });
     }
 }
 
