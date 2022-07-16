@@ -55,7 +55,8 @@ public class Solver
         var bestPossibleValue = gameState.PlayerHealth.Amount;
         foreach (var action in gameState.GetLegalActions())
         {
-            var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1, bestPossibleValue);
+            var actionValueRange =
+                FindExpectedValueRange(action, gameStateDepthLimit - 1, bestPossibleValue, bestActionValueRange);
             if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
                 bestActionValueRange = actionValueRange;
         }
@@ -64,7 +65,7 @@ public class Solver
     }
 
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
-        double bestPossibleValue)
+        double bestPossibleValue, ExpectedValueRange bestCompetingRange)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value);
