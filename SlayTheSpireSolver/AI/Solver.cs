@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, double> _gameStateCache = new();
+    private readonly ConcurrentDictionary<GameState, ExpectedValueRange> _gameStateCache = new();
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
@@ -23,10 +23,10 @@ public class Solver
 
     public double FindExpectedValue(GameState gameState)
     {
-        return FindExpectedValue(gameState, GameStateSearchDepth);
+        return FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
     }
 
-    private double FindExpectedValue(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
@@ -37,8 +37,8 @@ public class Solver
 
         Interlocked.Increment(ref EvaluatedGameStates);
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
-        _gameStateCache.TryAdd(gameState, result.ToExpectedValue);
-        return result.ToExpectedValue;
+        _gameStateCache.TryAdd(gameState, result);
+        return result;
     }
 
     private ExpectedValueRange FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
@@ -67,7 +67,7 @@ public class Solver
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve();
         var searchResult =
-            possibleResultsOfAction.Sum(x => FindExpectedValue(x.GameState, gameStateDepthLimit) * x.Probability.Value);
+            possibleResultsOfAction.Sum(x => FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
         return searchResult;
     }
 }
