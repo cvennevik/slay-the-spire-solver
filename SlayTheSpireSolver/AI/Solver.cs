@@ -15,7 +15,7 @@ public class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public static TimedSearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
+    public TimedSearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
     {
         var stopWatch = Stopwatch.StartNew();
         var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
@@ -184,7 +184,8 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var timedSearchResult = Solver.FindBestExpectedOutcomeWithTime(gameState);
+        var solver = new Solver();
+        var timedSearchResult = solver.FindBestExpectedOutcomeWithTime(gameState);
         Assert.AreEqual(0, timedSearchResult.ExpectedValue);
     }
 }
