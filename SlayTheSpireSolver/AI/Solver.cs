@@ -15,17 +15,17 @@ public static class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public static double FindBestExpectedValue(GameState gameState, int maxDepth = 3)
+    public static double FindBestExpectedValue(GameState gameState, int turnLimit = 3)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
-        if (maxDepth == 0) return 0;
+        if (turnLimit == 0) return 0;
 
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
         {
             var possibleResultsOfAction = action.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x =>
-                FindBestExpectedValue(x.GameState, maxDepth - 1) * x.Probability.Value);
+                FindBestExpectedValue(x.GameState, turnLimit - 1) * x.Probability.Value);
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
