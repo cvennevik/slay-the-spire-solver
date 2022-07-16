@@ -16,7 +16,7 @@ public static class Solver
     //  * Return more data (helps testing and observability)
     //      * Count evaluated game states
 
-    public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 2)
+    public static SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit = 3)
     {
         if (gameState.IsCombatOver())
             return new SearchResult
@@ -24,17 +24,13 @@ public static class Solver
                 ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0),
                 EvaluatedGameStates = 1
             };
-        if (gameState.Turn.Number > gameStateDepthLimit)
-            return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
+        if (gameStateDepthLimit <= 0) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
         var evaluatedGameStates = 1; // This
         foreach (var action in gameState.GetLegalActions())
         {
-            var willExceedTurnLimit = gameState.Turn.Number == gameStateDepthLimit && action is EndTurnAction;
-            var searchResult = willExceedTurnLimit
-                ? new SearchResult { ExpectedValue = 0 }
-                : FindBestExpectedOutcome(action, gameStateDepthLimit);
+            var searchResult = FindBestExpectedOutcome(action, gameStateDepthLimit - 1);
             evaluatedGameStates += searchResult.EvaluatedGameStates;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
