@@ -22,9 +22,9 @@ public static class Solver
             return new SearchResult
             {
                 ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0),
-                EvalutedGameStates = 1
+                EvaluatedGameStates = 1
             };
-        if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0, EvalutedGameStates = 1 };
+        if (gameState.Turn.Number > turnLimit) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
 
         var bestActionValue = double.NegativeInfinity;
         var evaluatedGameStates = 1; // This
@@ -34,11 +34,11 @@ public static class Solver
             var searchResult = willExceedTurnLimit
                 ? new SearchResult { ExpectedValue = 0 }
                 : FindBestExpectedOutcome(action, turnLimit);
-            evaluatedGameStates += searchResult.EvalutedGameStates;
+            evaluatedGameStates += searchResult.EvaluatedGameStates;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
-        return new SearchResult { ExpectedValue = bestActionValue, EvalutedGameStates = evaluatedGameStates };
+        return new SearchResult { ExpectedValue = bestActionValue, EvaluatedGameStates = evaluatedGameStates };
     }
 
     private static SearchResult FindBestExpectedOutcome(PlayerAction action, int turnLimit)
@@ -51,7 +51,7 @@ public static class Solver
                 return new SearchResult
                 {
                     ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
-                    EvalutedGameStates = aggregate.EvalutedGameStates + searchResult.EvalutedGameStates
+                    EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates
                 };
             });
     }
@@ -70,7 +70,7 @@ internal class SolverTests
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
         var searchResult = Solver.FindBestExpectedOutcome(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
-        Assert.AreEqual(1, searchResult.EvalutedGameStates);
+        Assert.AreEqual(1, searchResult.EvaluatedGameStates);
     }
 
     [Test]
@@ -85,7 +85,7 @@ internal class SolverTests
         };
         var searchResult = Solver.FindBestExpectedOutcome(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
-        Assert.AreEqual(1, searchResult.EvalutedGameStates);
+        Assert.AreEqual(1, searchResult.EvaluatedGameStates);
     }
 
     [Test]
@@ -102,7 +102,7 @@ internal class SolverTests
         };
         var searchResult = Solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
-        Assert.Less(1, searchResult.EvalutedGameStates);
+        Assert.Less(1, searchResult.EvaluatedGameStates);
     }
 
     [Test]
