@@ -37,19 +37,19 @@ public class Solver
 
         Interlocked.Increment(ref EvaluatedGameStates);
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
-        _gameStateCache.TryAdd(gameState, result);
-        return result;
+        _gameStateCache.TryAdd(gameState, result.ToExpectedValue);
+        return result.ToExpectedValue;
     }
 
-    private double FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValueRange FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
     {
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
-            return result;
+            return new ExpectedValueRange(result, result);
         }
 
-        if (gameStateDepthLimit <= 0) return 0;
+        if (gameStateDepthLimit <= 0) return new ExpectedValueRange(0, gameState.PlayerHealth.Amount);
 
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
@@ -58,7 +58,8 @@ public class Solver
             if (searchResult > bestActionValue) bestActionValue = searchResult;
         }
 
-        return bestActionValue;
+        return new ExpectedValueRange(bestActionValue, bestActionValue);
+        ;
     }
 
     private double FindExpectedValue(PlayerAction action, int gameStateDepthLimit)
