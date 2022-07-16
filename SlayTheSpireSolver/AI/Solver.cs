@@ -9,9 +9,7 @@ namespace SlayTheSpireSolver.AI;
 public static class Solver
 {
     // TODO:
-    //  * Depth-limit
-    //      * Limit by number of turns
-    //      * Estimate non-terminal game states
+    //  * Improve non-terminal game state estimation
     //  * Prune
     //      * Add non-terminal game state ranges
     //  * Memoize
