@@ -23,7 +23,7 @@ public static class Solver
         {
             var possibleResultsOfAction = action.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x =>
-                FindBestExpectedValue(x.GameState) * x.Probability.Value);
+                FindBestExpectedValue(x.GameState, maxDepth - 1) * x.Probability.Value);
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
