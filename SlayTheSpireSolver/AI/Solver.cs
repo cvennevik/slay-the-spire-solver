@@ -15,7 +15,7 @@ public static class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public static SearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
+    public static SearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 4)
     {
         var stopWatch = Stopwatch.StartNew();
         var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
