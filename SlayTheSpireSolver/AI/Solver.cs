@@ -44,7 +44,7 @@ public static class Solver
             .Aggregate(new SearchResult(), (aggregate, x) =>
             {
                 var searchResult = FindBestExpectedOutcome(x.GameState, turnLimit);
-                return aggregate with
+                return new SearchResult
                 {
                     ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
                     EvalutedGameStates = aggregate.EvalutedGameStates + searchResult.EvalutedGameStates
