@@ -167,7 +167,8 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var searchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        var solver = new Solver();
+        var searchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(4, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(3, searchResult.EvaluatedActions);
