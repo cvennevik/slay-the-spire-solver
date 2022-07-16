@@ -61,7 +61,7 @@ internal class SolverTests
     [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
-    public void ReturnsPlayerHealthWhenPlayerCanWinImmediately(int playerHealth, int expectedOutcomeValue)
+    public void ReturnsPlayerHealthWhenPlayerCanWinImmediately(int playerHealth, int expectedResult)
     {
         var nonTerminalGameState = new GameState
         {
@@ -70,14 +70,14 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
+        var result = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
     [TestCase(13, 1)]
     [TestCase(20, 8)]
-    public void ReturnsPlayerHealthMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth, int expectedOutcomeValue)
+    public void ReturnsPlayerHealthMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth, int expectedResult)
     {
         var nonTerminalGameState = new GameState
         {
@@ -85,15 +85,15 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
+        var result = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
     [TestCase(13, 6)]
     [TestCase(20, 13)]
     public void ReturnsPlayerHealthPlusDefendArmorMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth,
-        int expectedOutcomeValue)
+        int expectedResult)
     {
         var nonTerminalGameState = new GameState
         {
@@ -103,8 +103,8 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedOutcomeValue, outcomeValue);
+        var result = Solver.FindBestExpectedValue(nonTerminalGameState);
+        Assert.AreEqual(expectedResult, result);
     }
 
     [Test]
@@ -126,6 +126,6 @@ internal class SolverTests
             Turn = 1
         };
         // DOES NOT TERMINATE:
-        // var outcomeValue = Solver.GetOutcomeValue(gameState);
+        // var bestExpectedValue = Solver.GetOutcomeValue(gameState);
     }
 }
