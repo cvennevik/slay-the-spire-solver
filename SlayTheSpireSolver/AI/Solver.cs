@@ -29,11 +29,9 @@ public static class Solver
         var bestActionValue = double.NegativeInfinity;
         foreach (var action in gameState.GetLegalActions())
         {
-            double actionValue;
-            if (gameState.Turn.Number == turnLimit && action is EndTurnAction)
-                actionValue = 0;
-            else
-                actionValue = FindBestExpectedOutcome(action, turnLimit);
+            var actionValue = gameState.Turn.Number == turnLimit && action is EndTurnAction
+                ? 0
+                : FindBestExpectedOutcome(action, turnLimit);
 
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
