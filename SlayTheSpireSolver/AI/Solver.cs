@@ -42,7 +42,12 @@ public static class Solver
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
-        return new SearchResult { ExpectedValue = bestActionValue, EvaluatedGameStates = evaluatedGameStates };
+        return new SearchResult
+        {
+            ExpectedValue = bestActionValue,
+            EvaluatedGameStates = evaluatedGameStates,
+            EvaluatedActions = evaluatedActions
+        };
     }
 
     private static SearchResult FindBestExpectedOutcome(PlayerAction action, int gameStateDepthLimit)
