@@ -58,6 +58,8 @@ public class Solver
             var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1);
             var searchResult = actionValueRange.ToExpectedValue;
             if (searchResult > bestActionValue) bestActionValue = searchResult;
+            if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
+                bestActionValueRange = actionValueRange;
         }
 
         return new ExpectedValueRange(bestActionValue, bestActionValue);
