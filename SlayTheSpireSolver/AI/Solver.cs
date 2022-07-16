@@ -81,6 +81,8 @@ public class Solver
             return cachedResult!;
         }
 
+        Interlocked.Increment(ref EvaluatedActions);
+
         var possibleResultsOfAction = action.Resolve();
         return possibleResultsOfAction.Aggregate(new SearchResult { EvaluatedActions = 1 }, (aggregate, x) =>
         {
