@@ -68,8 +68,9 @@ public class Solver
         double bestPossibleValue, ExpectedValueRange bestCompetingRange)
     {
         Interlocked.Increment(ref EvaluatedActions);
-        var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value);
+        var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var remainingProbability = 1.0;
+        var remainingPossibilities = possibleResultsOfAction.Count;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
         foreach (var possibility in possibleResultsOfAction)
