@@ -38,7 +38,7 @@ public static class Solver
         {
             var searchResult = FindBestExpectedOutcome(action, gameStateDepthLimit - 1);
             evaluatedGameStates += searchResult.EvaluatedGameStates;
-            evaluatedActions += 1;
+            evaluatedActions += searchResult.EvaluatedActions;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
