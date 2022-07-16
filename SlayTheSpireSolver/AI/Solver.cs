@@ -71,6 +71,7 @@ public class Solver
         var aggregatedMaximum = 0.0;
         foreach (var possibility in possibleResultsOfAction)
         {
+            remainingProbability -= possibility.Probability.Value;
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
