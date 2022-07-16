@@ -14,7 +14,7 @@ public static class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public static double GetOutcomeValue(GameState gameState)
+    public static double FindBestExpectedValue(GameState gameState)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
 
@@ -23,7 +23,7 @@ public static class Solver
         {
             var possibleResultsOfAction = action.Resolve();
             var actionValue = possibleResultsOfAction.Sum(x =>
-                GetOutcomeValue(x.GameState) * x.Probability.Value);
+                FindBestExpectedValue(x.GameState) * x.Probability.Value);
             if (actionValue > bestActionValue) bestActionValue = actionValue;
         }
 
@@ -42,7 +42,7 @@ internal class SolverTests
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
+        Assert.AreEqual(expectedOutcomeValue, Solver.FindBestExpectedValue(terminalGameState));
     }
 
     [Test]
@@ -55,7 +55,7 @@ internal class SolverTests
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm() }
         };
-        Assert.AreEqual(expectedOutcomeValue, Solver.GetOutcomeValue(terminalGameState));
+        Assert.AreEqual(expectedOutcomeValue, Solver.FindBestExpectedValue(terminalGameState));
     }
 
     [Test]
@@ -70,7 +70,7 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 
@@ -85,7 +85,7 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 
@@ -103,7 +103,7 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var outcomeValue = Solver.GetOutcomeValue(nonTerminalGameState);
+        var outcomeValue = Solver.FindBestExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedOutcomeValue, outcomeValue);
     }
 
