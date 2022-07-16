@@ -131,6 +131,7 @@ internal class SolverTests
         var searchResult = Solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(3, searchResult.EvaluatedGameStates);
+        Assert.LessOrEqual(2, searchResult.EvaluatedActions);
     }
 
     [Test]
