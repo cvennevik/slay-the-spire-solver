@@ -55,7 +55,8 @@ internal class SolverTests
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        Assert.AreEqual(expectedOutcomeValue, Solver.FindBestExpectedValue(terminalGameState).ExpectedValue);
+        var searchResult = Solver.FindBestExpectedValue(terminalGameState);
+        Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
     }
 
     [Test]
