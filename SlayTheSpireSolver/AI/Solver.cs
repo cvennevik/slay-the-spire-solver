@@ -126,7 +126,6 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        // DOES NOT TERMINATE:
-        // var bestExpectedValue = Solver.GetOutcomeValue(gameState);
+        var bestExpectedValue = Solver.FindBestExpectedValue(gameState);
     }
 }
