@@ -21,6 +21,8 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Check correctness
     //  * Return best actions + their expected value
+    //  * Improve Rules Engine performance
+    //  * Improve action evaluation order (goal: hit winning paths earlier to improve pruning)
 
     public double FindExpectedValue(GameState gameState)
     {
