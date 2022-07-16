@@ -7,6 +7,13 @@ namespace SlayTheSpireSolver.AI;
 
 public static class Solver
 {
+    // TODO:
+    //  * Depth-limit
+    //      * Estimate non-terminal game states
+    //  * Prune
+    //      * Add non-terminal game state ranges
+    //  * Memoize
+
     public static double GetOutcomeValue(GameState gameState)
     {
         if (gameState.IsCombatOver()) return Math.Max(gameState.PlayerHealth.Amount, 0);
