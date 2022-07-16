@@ -208,5 +208,6 @@ internal class SolverTests
         var firstSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         var secondSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, firstSearchResult.ExpectedValue);
+        Assert.AreEqual(expectedResult, secondSearchResult.ExpectedValue);
     }
 }
