@@ -33,10 +33,12 @@ public static class Solver
 
         var bestActionValue = double.NegativeInfinity;
         var evaluatedGameStates = 1;
+        var evaluatedActions = 0;
         foreach (var action in gameState.GetLegalActions())
         {
             var searchResult = FindBestExpectedOutcome(action, gameStateDepthLimit - 1);
             evaluatedGameStates += searchResult.EvaluatedGameStates;
+            evaluatedActions += 1;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
