@@ -15,6 +15,8 @@ public static class Solver
     //  * Prune
     //      * Add non-terminal game state ranges
     //  * Memoize
+    //  * Return more data (helps testing and observability)
+    //      * Count evaluated game states
 
     public static double FindBestExpectedValue(GameState gameState, int turnLimit = 2)
     {
