@@ -126,7 +126,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var bestExpectedValue = Solver.FindBestExpectedValue(gameState, 4);
+        var bestExpectedValue = Solver.FindBestExpectedValue(gameState, 3);
         Assert.AreEqual(0, bestExpectedValue);
     }
 }
