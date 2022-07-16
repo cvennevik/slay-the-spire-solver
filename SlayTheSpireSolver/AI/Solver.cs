@@ -69,7 +69,8 @@ internal class SolverTests
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm() }
         };
-        Assert.AreEqual(expectedOutcomeValue, Solver.FindBestExpectedValue(terminalGameState).ExpectedValue);
+        var searchResult = Solver.FindBestExpectedValue(terminalGameState);
+        Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
     }
 
     [Test]
