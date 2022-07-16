@@ -31,3 +31,4 @@ var searchResult = Solver.FindBestExpectedOutcome(gameState);
 stopWatch.Stop();
 
 Console.WriteLine(searchResult);
+Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
