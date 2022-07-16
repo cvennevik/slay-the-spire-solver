@@ -9,13 +9,6 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly int _gameStateDepthLimit;
-
-    public Solver(int gameStateDepthLimit)
-    {
-        _gameStateDepthLimit = gameStateDepthLimit;
-    }
-
     // TODO:
     //  * Improve non-terminal game state estimation
     //  * Prune
@@ -185,7 +178,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var solver = new Solver(3);
+        var solver = new Solver();
         var timedSearchResult = solver.FindBestExpectedOutcomeWithTime(gameState);
         Assert.AreEqual(0, timedSearchResult.ExpectedValue);
     }
