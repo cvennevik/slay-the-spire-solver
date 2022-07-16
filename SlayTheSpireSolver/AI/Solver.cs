@@ -36,12 +36,12 @@ public class Solver
         }
 
         Interlocked.Increment(ref EvaluatedGameStates);
-        var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
+        var result = FindExpectedValueRangeUncached(gameState, gameStateDepthLimit);
         _gameStateCache.TryAdd(gameState, result);
         return result;
     }
 
-    private ExpectedValueRange FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValueRange FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
     {
         if (gameState.IsCombatOver())
         {
@@ -67,7 +67,8 @@ public class Solver
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve();
         var searchResult =
-            possibleResultsOfAction.Sum(x => FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
+            possibleResultsOfAction.Sum(x =>
+                FindExpectedValueRange(x.GameState, gameStateDepthLimit).ToExpectedValue * x.Probability.Value);
         return searchResult;
     }
 }
