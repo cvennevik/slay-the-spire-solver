@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Concurrent;
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -8,6 +9,8 @@ namespace SlayTheSpireSolver.AI;
 
 public static class Solver
 {
+    private static ConcurrentDictionary<GameState, double> _gameStateCache = new();
+
     // TODO:
     //  * Improve non-terminal game state estimation
     //  * Prune
