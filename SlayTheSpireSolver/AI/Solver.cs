@@ -10,7 +10,6 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     private readonly ConcurrentDictionary<GameState, double> _gameStateCache = new();
-    public int ActionCacheHits;
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;

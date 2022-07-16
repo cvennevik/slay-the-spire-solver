@@ -41,4 +41,4 @@ Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
 Console.WriteLine(
     $"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
 Console.WriteLine(
-    $"Evaluated actions: {solver.EvaluatedActions}, cache hits: {solver.ActionCacheHits}");
+    $"Evaluated actions: {solver.EvaluatedActions}");
