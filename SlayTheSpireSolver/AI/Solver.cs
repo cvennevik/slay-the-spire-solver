@@ -34,6 +34,7 @@ public static class Solver
             var searchResult = willExceedTurnLimit
                 ? new SearchResult { ExpectedValue = 0 }
                 : FindBestExpectedOutcome(action, turnLimit);
+            evalutedGameStates += searchResult.EvalutedGameStates;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
         }
 
