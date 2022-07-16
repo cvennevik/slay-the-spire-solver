@@ -79,12 +79,14 @@ public class Solver
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
+            remainingPossibilities--;
 
             var bestPossibleMinimum = aggregatedMinimum + bestPossibleValue * remainingProbability;
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
             if (bestCompetingRange.Minimum > bestPossibleMaximum)
-            {
                 // This cannot be the best action
+            {
+                Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
             }
         }
 
