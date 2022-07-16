@@ -15,6 +15,7 @@ public record SearchResult
     EvaluatedGameStates: {EvaluatedGameStates}
     EvaluatedActions: {EvaluatedActions}
     ElapsedMilliseconds: {ElapsedMilliseconds}
+    GameStateDepthLimit: {GameStateDepthLimit}
 }}";
     }
 }
