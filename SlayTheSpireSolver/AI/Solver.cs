@@ -76,6 +76,7 @@ internal class SolverTests
         };
         var searchResult = Solver.FindBestExpectedOutcome(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
+        Assert.AreEqual(1, searchResult.EvalutedGameStates);
     }
 
     [Test]
