@@ -79,6 +79,7 @@ public class Solver
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
 
+            var bestPossibleMinimum = aggregatedMinimum + bestPossibleValue * remainingProbability;
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
         }
 
