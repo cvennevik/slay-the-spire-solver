@@ -16,7 +16,7 @@ public static class Solver
     //  * Return more data (helps testing and observability)
     //      * Count evaluated game states
 
-    public static SearchResult FindBestExpectedValue(GameState gameState, int turnLimit = 2)
+    public static SearchResult FindBestExpectedOutcome(GameState gameState, int turnLimit = 2)
     {
         if (gameState.IsCombatOver())
             return new SearchResult { ExpectedValue = Math.Max(gameState.PlayerHealth.Amount, 0) };
@@ -34,7 +34,7 @@ public static class Solver
             {
                 var possibleResultsOfAction = action.Resolve();
                 actionValue = possibleResultsOfAction.Sum(x =>
-                    FindBestExpectedValue(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
+                    FindBestExpectedOutcome(x.GameState, turnLimit).ExpectedValue * x.Probability.Value);
             }
 
             if (actionValue > bestActionValue) bestActionValue = actionValue;
@@ -55,7 +55,7 @@ internal class SolverTests
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        var searchResult = Solver.FindBestExpectedValue(terminalGameState);
+        var searchResult = Solver.FindBestExpectedOutcome(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
     }
 
@@ -69,7 +69,7 @@ internal class SolverTests
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm() }
         };
-        var searchResult = Solver.FindBestExpectedValue(terminalGameState);
+        var searchResult = Solver.FindBestExpectedOutcome(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
     }
 
@@ -85,7 +85,7 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        var searchResult = Solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
@@ -100,7 +100,7 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        var searchResult = Solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
@@ -118,7 +118,7 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var searchResult = Solver.FindBestExpectedValue(nonTerminalGameState);
+        var searchResult = Solver.FindBestExpectedOutcome(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
     }
 
@@ -140,7 +140,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var searchResult = Solver.FindBestExpectedValue(gameState);
+        var searchResult = Solver.FindBestExpectedOutcome(gameState);
         Assert.AreEqual(0, searchResult.ExpectedValue);
     }
 }
