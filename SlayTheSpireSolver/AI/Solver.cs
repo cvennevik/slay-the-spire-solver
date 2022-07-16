@@ -45,16 +45,15 @@ public static class Solver
     private static SearchResult FindBestExpectedOutcome(PlayerAction action, int gameStateDepthLimit)
     {
         var possibleResultsOfAction = action.Resolve();
-        return possibleResultsOfAction
-            .Aggregate(new SearchResult(), (aggregate, x) =>
+        return possibleResultsOfAction.Aggregate(new SearchResult(), (aggregate, x) =>
+        {
+            var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
+            return new SearchResult
             {
-                var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
-                return new SearchResult
-                {
-                    ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
-                    EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates
-                };
-            });
+                ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
+                EvaluatedGameStates = aggregate.EvaluatedGameStates + searchResult.EvaluatedGameStates
+            };
+        });
     }
 }
 
