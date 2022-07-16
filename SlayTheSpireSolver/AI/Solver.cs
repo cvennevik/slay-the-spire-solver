@@ -22,10 +22,10 @@ public class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public SearchResult FindBestExpectedOutcomeWithTime(GameState gameState)
+    public SearchResult FindBestExpectedOutcomeWithTime(GameState gameState, int gameStateDepthLimit = 3)
     {
         var stopWatch = Stopwatch.StartNew();
-        var searchResult = FindBestExpectedOutcome(gameState, _gameStateDepthLimit);
+        var searchResult = FindBestExpectedOutcome(gameState, gameStateDepthLimit);
         stopWatch.Stop();
         return searchResult with { ElapsedMilliseconds = stopWatch.ElapsedMilliseconds };
     }
