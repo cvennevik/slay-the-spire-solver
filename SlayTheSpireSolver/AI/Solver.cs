@@ -81,6 +81,10 @@ public class Solver
 
             var bestPossibleMinimum = aggregatedMinimum + bestPossibleValue * remainingProbability;
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
+            if (bestCompetingRange.Minimum > bestPossibleMaximum)
+            {
+                // This cannot be the best action
+            }
         }
 
         return new ExpectedValueRange(aggregatedMinimum, aggregatedMaximum);
