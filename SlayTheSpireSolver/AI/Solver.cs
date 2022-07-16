@@ -56,8 +56,6 @@ public class Solver
         foreach (var action in gameState.GetLegalActions())
         {
             var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1);
-            var searchResult = actionValueRange.ToExpectedValue;
-            if (searchResult > bestActionValue) bestActionValue = searchResult;
             if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
                 bestActionValueRange = actionValueRange;
         }
