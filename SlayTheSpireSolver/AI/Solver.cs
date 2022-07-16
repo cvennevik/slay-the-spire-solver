@@ -22,11 +22,12 @@ public static class Solver
         if (gameState.IsCombatOver())
         {
             var value = Math.Max(gameState.PlayerHealth.Amount, 0);
-            return new SearchResult
+            var result = new SearchResult
             {
                 ExpectedValue = value,
                 EvaluatedGameStates = 1
             };
+            return result;
         }
 
         if (gameStateDepthLimit <= 0) return new SearchResult { ExpectedValue = 0, EvaluatedGameStates = 1 };
