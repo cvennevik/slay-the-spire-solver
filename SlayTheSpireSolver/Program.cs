@@ -21,7 +21,6 @@ var gameState = new GameState
     DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
     Turn = 1
 };
-const int gameStateDepthLimit = 3;
 var stopWatch = Stopwatch.StartNew();
 var searchResult = Solver.FindBestExpectedOutcome(gameState);
 stopWatch.Stop();
