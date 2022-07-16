@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private ConcurrentDictionary<GameState, double> _gameStateCache = new();
+    private readonly ConcurrentDictionary<GameState, double> _gameStateCache = new();
 
     // TODO:
     //  * Improve non-terminal game state estimation
@@ -27,6 +27,7 @@ public class Solver
                 ExpectedValue = value,
                 EvaluatedGameStates = 1
             };
+            _gameStateCache.TryAdd(gameState, value);
             return result;
         }
 
