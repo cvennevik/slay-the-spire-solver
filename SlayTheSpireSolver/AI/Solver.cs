@@ -62,8 +62,7 @@ public class Solver
                 bestActionValueRange = actionValueRange;
         }
 
-        return new ExpectedValueRange(bestActionValue, bestActionValue);
-        ;
+        return bestActionValueRange;
     }
 
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit)
