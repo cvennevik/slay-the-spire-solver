@@ -9,7 +9,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, SearchResult> _gameStateCache = new();
+    public readonly ConcurrentDictionary<GameState, SearchResult> GameStateCache = new();
     public int CacheHits;
     public int GameStateSearchDepth { get; init; } = 3;
 
@@ -26,7 +26,7 @@ public class Solver
 
     private SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit)
     {
-        var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
+        var isCached = GameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
             Interlocked.Increment(ref CacheHits);
@@ -41,7 +41,7 @@ public class Solver
                 ExpectedValue = value,
                 EvaluatedGameStates = 1
             };
-            _gameStateCache.TryAdd(gameState, result);
+            GameStateCache.TryAdd(gameState, result);
             return result;
         }
 
