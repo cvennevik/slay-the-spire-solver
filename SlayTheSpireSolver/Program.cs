@@ -27,7 +27,7 @@ Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
 
 var stopWatch = Stopwatch.StartNew();
-var searchResult = solver.FindBestExpectedOutcome(gameState);
+var searchResult = solver.FindExpectedValue(gameState);
 stopWatch.Stop();
 
 Console.WriteLine(searchResult);

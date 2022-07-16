@@ -25,12 +25,12 @@ public class Solver
     //      * Add non-terminal game state ranges
     //  * Memoize
 
-    public SearchResult FindBestExpectedOutcome(GameState gameState)
+    public SearchResult FindExpectedValue(GameState gameState)
     {
-        return FindBestExpectedOutcome(gameState, GameStateSearchDepth);
+        return FindExpectedValue(gameState, GameStateSearchDepth);
     }
 
-    private SearchResult FindBestExpectedOutcome(GameState gameState, int gameStateDepthLimit)
+    private SearchResult FindExpectedValue(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
@@ -60,7 +60,7 @@ public class Solver
         var evaluatedActions = 0;
         foreach (var action in gameState.GetLegalActions())
         {
-            var searchResult = FindBestExpectedOutcome(action, gameStateDepthLimit - 1);
+            var searchResult = FindExpectedValue(action, gameStateDepthLimit - 1);
             evaluatedGameStates += searchResult.EvaluatedGameStates;
             evaluatedActions += searchResult.EvaluatedActions;
             if (searchResult.ExpectedValue > bestActionValue) bestActionValue = searchResult.ExpectedValue;
@@ -74,7 +74,7 @@ public class Solver
         };
     }
 
-    private SearchResult FindBestExpectedOutcome(PlayerAction action, int gameStateDepthLimit)
+    private SearchResult FindExpectedValue(PlayerAction action, int gameStateDepthLimit)
     {
         var isCached = _actionCache.TryGetValue(action, out var cachedResult);
         if (isCached)
@@ -89,7 +89,7 @@ public class Solver
         var searchResult = possibleResultsOfAction.Aggregate(new SearchResult { EvaluatedActions = 1 },
             (aggregate, x) =>
             {
-                var searchResult = FindBestExpectedOutcome(x.GameState, gameStateDepthLimit);
+                var searchResult = FindExpectedValue(x.GameState, gameStateDepthLimit);
                 return new SearchResult
                 {
                     ExpectedValue = aggregate.ExpectedValue + searchResult.ExpectedValue * x.Probability.Value,
@@ -113,7 +113,7 @@ internal class SolverTests
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedOutcomeValue)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        var searchResult = new Solver().FindBestExpectedOutcome(terminalGameState);
+        var searchResult = new Solver().FindExpectedValue(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
         Assert.AreEqual(1, searchResult.EvaluatedGameStates);
         Assert.AreEqual(0, searchResult.EvaluatedActions);
@@ -129,7 +129,7 @@ internal class SolverTests
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm() }
         };
-        var searchResult = new Solver().FindBestExpectedOutcome(terminalGameState);
+        var searchResult = new Solver().FindExpectedValue(terminalGameState);
         Assert.AreEqual(expectedOutcomeValue, searchResult.ExpectedValue);
         Assert.AreEqual(1, searchResult.EvaluatedGameStates);
         Assert.AreEqual(0, searchResult.EvaluatedActions);
@@ -147,7 +147,7 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var searchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        var searchResult = new Solver().FindExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(2, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(1, searchResult.EvaluatedActions);
@@ -164,7 +164,7 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var searchResult = new Solver().FindBestExpectedOutcome(nonTerminalGameState);
+        var searchResult = new Solver().FindExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(3, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(2, searchResult.EvaluatedActions);
@@ -185,7 +185,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var solver = new Solver();
-        var searchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
+        var searchResult = solver.FindExpectedValue(nonTerminalGameState);
         Assert.AreEqual(expectedResult, searchResult.ExpectedValue);
         Assert.LessOrEqual(4, searchResult.EvaluatedGameStates);
         Assert.LessOrEqual(3, searchResult.EvaluatedActions);
@@ -210,7 +210,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        new Solver().FindBestExpectedOutcome(gameState);
+        new Solver().FindExpectedValue(gameState);
     }
 
 
@@ -227,8 +227,8 @@ internal class SolverTests
             Hand = new Hand(new Strike(), new Defend())
         };
         var solver = new Solver();
-        var firstSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
-        var secondSearchResult = solver.FindBestExpectedOutcome(nonTerminalGameState);
+        var firstSearchResult = solver.FindExpectedValue(nonTerminalGameState);
+        var secondSearchResult = solver.FindExpectedValue(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
         Assert.LessOrEqual(1, solver.GameStateCacheHits);
     }
