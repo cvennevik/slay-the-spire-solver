@@ -100,6 +100,7 @@ public class Solver
         {
             var possibility = possibleResultsOfAction[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
+            var combinedRange = combinedExpectedValue.Range + possibilityExpectedValue.Range;
             combinedExpectedValue += possibilityExpectedValue * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
