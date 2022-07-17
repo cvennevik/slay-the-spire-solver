@@ -19,13 +19,16 @@ public abstract record Card
                && gameState.Energy >= GetCost();
     }
 
-    public override string ToString() => GetName();
+    public sealed override string ToString()
+    {
+        return GetName();
+    }
 }
 
 internal abstract class CardTests<TCard> where TCard : Card, new()
 {
-    protected readonly TCard Card;
     protected readonly GameState BasicGameState;
+    protected readonly TCard Card;
 
     protected CardTests()
     {

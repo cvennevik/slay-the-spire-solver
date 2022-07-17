@@ -25,6 +25,7 @@ var gameState = new GameState
 var solver = new Solver { GameStateSearchDepth = 5 };
 Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
+Console.WriteLine($"Initial game state: {gameState}");
 Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
 Console.WriteLine("");
 Console.WriteLine("Searching for expected value...");
