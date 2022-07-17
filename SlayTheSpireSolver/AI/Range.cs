@@ -6,4 +6,9 @@ public record Range(double Minimum, double Maximum)
     {
         return new Range(Math.Min(a.Minimum, b.Minimum), Math.Max(a.Maximum, b.Maximum));
     }
+
+    public override string ToString()
+    {
+        return $"[Minimum: {Minimum}, Maximum: {Maximum}]";
+    }
 }
