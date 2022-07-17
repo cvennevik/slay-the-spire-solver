@@ -95,12 +95,14 @@ public class Solver
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
         var combinedExpectedValue = new ExpectedValue(0, 0);
+        var accumulatedEstimate = 0.0;
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             var combinedRange = combinedExpectedValue.Range + possibilityExpectedValue.Range;
+            accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability.Value;
             combinedExpectedValue += possibilityExpectedValue * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
