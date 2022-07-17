@@ -93,7 +93,7 @@ public class Solver
     }
 
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
-        ExpectedValue? competingExpectedValue)
+        ExpectedValue competingExpectedValue)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
@@ -107,7 +107,6 @@ public class Solver
             actionValueRange += possibilityValueRange * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
-            if (competingExpectedValue == null) continue;
             var potentialMaximumValue = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
             if (competingExpectedValue.StrictlyBetterThan(new ExpectedValue(0, potentialMaximumValue)))
             {
