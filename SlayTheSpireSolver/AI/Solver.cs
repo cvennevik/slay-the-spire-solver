@@ -37,7 +37,8 @@ public class Solver
 
         var result = remainingActions
             .Select(action => (action,
-                FindExpectedValueRange(action, GameStateSearchDepth, firstActionValueRange.Minimum)));
+                FindExpectedValueRange(action, GameStateSearchDepth, firstActionValueRange.Minimum)))
+            .MaxBy(tuple => tuple.Item2.ToExpectedValue);
 
         var bestAction = firstAction;
         var bestActionValueRange = firstActionValueRange;
