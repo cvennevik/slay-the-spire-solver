@@ -2,17 +2,9 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.AI;
 
-public record ValueRange
+public record ValueRange(double Minimum, double Maximum)
 {
-    public ValueRange(double Minimum, double Maximum)
-    {
-        this.Minimum = Minimum;
-        this.Maximum = Maximum;
-    }
-
     public double ToExpectedValue => Minimum;
-    public double Minimum { get; init; }
-    public double Maximum { get; init; }
 
     public static ValueRange operator +(ValueRange a, ValueRange b)
     {
