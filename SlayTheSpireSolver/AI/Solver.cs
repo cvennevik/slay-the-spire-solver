@@ -104,12 +104,14 @@ public class Solver
             FindExpectedValue(possibleResultsOfAction.First().GameState, gameStateDepthLimit);
         var accumulatedEstimate = 0.0;
         var accumulatedRange = firstPossibilityExpectedValue.Range;
+        var remainingProbability = 1.0;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             accumulatedRange += possibilityExpectedValue.Range;
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability.Value;
+            remainingProbability -= possibility.Probability;
         }
 
         return new ExpectedValue(accumulatedEstimate, accumulatedRange);
