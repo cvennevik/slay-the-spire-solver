@@ -16,12 +16,12 @@ public record ValueRange
 
     public static ValueRange operator +(ValueRange a, ValueRange b)
     {
-        return new(a.Minimum + b.Minimum, a.Minimum + b.Maximum);
+        return new ValueRange(a.Minimum + b.Minimum, a.Minimum + b.Maximum);
     }
 
     public static ValueRange operator *(ValueRange range, Probability probability)
     {
-        return new(range.Minimum * probability.Value, range.Maximum * probability.Value);
+        return new ValueRange(range.Minimum * probability.Value, range.Maximum * probability.Value);
     }
 
     public bool StrictlyBetterThan(ValueRange otherRange)
