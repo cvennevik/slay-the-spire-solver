@@ -33,7 +33,7 @@ public class Solver
 
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
-        var firstActionExpectedValue = FindActionValueRange(firstAction, GameStateSearchDepth - 1, 0);
+        var firstActionExpectedValue = FindExpectedValue(firstAction, GameStateSearchDepth - 1, 0);
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
         if (!remainingActions.Any()) return (firstAction, firstActionExpectedValue);
 
@@ -41,7 +41,7 @@ public class Solver
             .Select(action =>
             {
                 var expectedValue =
-                    FindActionValueRange(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
+                    FindExpectedValue(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
                 return (action, expectedValue);
             })
             .MaxBy(tuple => tuple.expectedValue);
@@ -79,7 +79,7 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
-            var actionValueRange = FindActionValueRange(action, gameStateDepthLimit - 1, bestActionValueRange.Minimum);
+            var actionValueRange = FindExpectedValue(action, gameStateDepthLimit - 1, bestActionValueRange.Minimum);
             if (actionValueRange.StrictlyBetterThan(bestActionValueRange))
                 bestActionValueRange = actionValueRange;
         }
@@ -101,7 +101,7 @@ public class Solver
         return 0;
     }
 
-    private ExpectedValue FindActionValueRange(PlayerAction action, int gameStateDepthLimit,
+    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
         double bestCompetingMinimum)
     {
         Interlocked.Increment(ref EvaluatedActions);
