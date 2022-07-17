@@ -108,11 +108,11 @@ public class Solver
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
-            remainingProbability -= possibility.Probability.Value;
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
 
+            remainingProbability -= possibility.Probability.Value;
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
             {
