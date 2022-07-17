@@ -63,6 +63,7 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstPossibilityExpectedValue = FindExpectedValue(playerActions.First(), gameStateDepthLimit);
         var bestEstimate = 0.0;
+        var expectedValueRanges = new List<Range>();
         var accumulatedRange = firstPossibilityExpectedValue.Range;
         foreach (var action in playerActions)
         {
