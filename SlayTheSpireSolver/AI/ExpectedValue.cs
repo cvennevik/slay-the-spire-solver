@@ -12,8 +12,10 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Estimate = Minimum;
     }
 
-    public ExpectedValue()
+    public ExpectedValue(double estimate)
     {
+        Estimate = estimate;
+        Range = new Range(estimate, estimate);
     }
 
     public Range Range { get; init; }
