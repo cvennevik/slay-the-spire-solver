@@ -100,10 +100,9 @@ public class Solver
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
-        var firstPossibilityExpectedValue =
-            FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
+        var firstOutcomeExpectedValue = FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
         var accumulatedEstimate = 0.0;
-        var accumulatedRange = firstPossibilityExpectedValue.Range;
+        var accumulatedRange = firstOutcomeExpectedValue.Range;
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleOutcomes.Count; index++)
         {
