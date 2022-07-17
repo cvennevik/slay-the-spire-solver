@@ -33,20 +33,20 @@ public class Solver
 
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
-        var firstActionValueRange = FindActionValueRange(firstAction, GameStateSearchDepth - 1, 0);
+        var firstActionExpectedValue = FindActionValueRange(firstAction, GameStateSearchDepth - 1, 0);
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
-        if (!remainingActions.Any()) return (firstAction, firstActionValueRange);
+        if (!remainingActions.Any()) return (firstAction, firstActionExpectedValue);
 
         var (bestRemainingAction, bestRemainingActionExpectedValue) = remainingActions
             .Select(action =>
             {
                 var expectedValue =
-                    FindActionValueRange(action, GameStateSearchDepth - 1, firstActionValueRange.Minimum);
+                    FindActionValueRange(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
                 return (action, expectedValue);
             })
             .MaxBy(tuple => tuple.expectedValue);
-        return firstActionValueRange.BestEstimate > bestRemainingActionExpectedValue.BestEstimate
-            ? (firstAction, firstActionValueRange)
+        return firstActionExpectedValue.BestEstimate > bestRemainingActionExpectedValue.BestEstimate
+            ? (firstAction, firstActionExpectedValue)
             : (bestRemainingAction, bestRemainingActionExpectedValue);
     }
 
