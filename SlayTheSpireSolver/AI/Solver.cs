@@ -34,9 +34,10 @@ public class Solver
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var pruningAction = actions.First();
-        var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit, 0);
+        var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit,
+            new ExpectedValue(0, gameState.PlayerHealth.Amount));
         return actions
-            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue.Minimum)))
+            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue)))
             .MaxBy(tuple => tuple.Item2);
     }
 
@@ -69,7 +70,7 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
-            var actionValueRange = FindExpectedValue(action, gameStateDepthLimit - 1, bestActionValueRange.Minimum);
+            var actionValueRange = FindExpectedValue(action, gameStateDepthLimit - 1, bestActionValueRange);
             if (actionValueRange.StrictlyBetterThan(bestActionValueRange))
                 bestActionValueRange = actionValueRange;
         }
@@ -92,7 +93,7 @@ public class Solver
     }
 
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
-        double bestCompetingMinimum)
+        ExpectedValue competingExpectedValue)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
@@ -106,7 +107,7 @@ public class Solver
             actionValueRange += possibilityValueRange * possibility.Probability;
             remainingProbability -= possibility.Probability;
             var potentialMaximumValue = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
-            if (bestCompetingMinimum > potentialMaximumValue)
+            if (competingExpectedValue.StrictlyBetterThan(new ExpectedValue(0, potentialMaximumValue)))
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
