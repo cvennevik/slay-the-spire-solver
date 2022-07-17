@@ -1,3 +1,5 @@
+using SlayTheSpireSolver.RulesEngine.Values;
+
 namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValueRange
@@ -14,4 +16,7 @@ public record ExpectedValueRange
 
     public static ExpectedValueRange operator +(ExpectedValueRange a, ExpectedValueRange b) =>
         new(a.Minimum + b.Minimum, a.Minimum + b.Maximum);
+
+    public static ExpectedValueRange operator +(ExpectedValueRange range, Probability probability) =>
+        new(range.Minimum * probability.Value, range.Maximum * probability.Value);
 }
