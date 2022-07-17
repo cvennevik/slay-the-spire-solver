@@ -29,7 +29,7 @@ public class Solver
     public double FindExpectedValue(GameState gameState) =>
         FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
 
-    public (PlayerAction, double) FindBestActionAndExpectedValue(GameState gameState)
+    public (PlayerAction, double) FindBestAction(GameState gameState)
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
         return (gameState.GetLegalActions().First(), 0);
@@ -244,9 +244,9 @@ internal class SolverTests
     public void FindBestActionThrowsExceptionForTerminalGameState()
     {
         var solver = new Solver();
-        Assert.Throws<ArgumentException>(() => solver.FindBestActionAndExpectedValue(new GameState
+        Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
             { PlayerHealth = 0 }));
-        Assert.Throws<ArgumentException>(() => solver.FindBestActionAndExpectedValue(new GameState
+        Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
             { PlayerHealth = 10, EnemyParty = new EnemyParty() }));
     }
 }
