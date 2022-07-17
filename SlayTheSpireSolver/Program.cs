@@ -8,7 +8,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 var jawWorm = new JawWorm
 {
-    Health = 44,
+    Health = 30,
     IntendedMove = new Chomp()
 };
 var gameState = new GameState
