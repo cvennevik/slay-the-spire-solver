@@ -96,6 +96,8 @@ public class Solver
         var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
         var combinedExpectedValue = new ExpectedValue(0, 0);
         var accumulatedEstimate = 0.0;
+        var firstPossibilityExpectedValue =
+            FindExpectedValue(possibleResultsOfAction.First().GameState, gameStateDepthLimit);
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
