@@ -44,7 +44,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
 
     public bool IsStrictlyBetterThan(ExpectedValue other)
     {
-        return false;
+        return Range.Minimum > other.Range.Maximum;
     }
 
     public override string ToString()
