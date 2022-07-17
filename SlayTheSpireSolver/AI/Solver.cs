@@ -26,6 +26,7 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
     //  * Rules Engine: Remove duplicate actions when same cards in hand
+    //  * Flatten ExpectedValue (remove Range)
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
@@ -297,6 +298,7 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action9);
         AssertRangeContains(new Range(0, 80), expectedValue2.Range);
         AssertRangeContains(expectedValue2.Range, expectedValue4.Range);
+        AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
         AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
     }
 
