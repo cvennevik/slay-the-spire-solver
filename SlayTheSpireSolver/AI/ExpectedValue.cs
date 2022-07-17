@@ -44,11 +44,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
         };
     }
 
-    public static ExpectedValue operator +(ExpectedValue a, ExpectedValue b)
-    {
-        return new ExpectedValue(a.Range.Minimum + b.Range.Minimum, a.Range.Minimum + b.Range.Maximum);
-    }
-
     public static ExpectedValue operator *(ExpectedValue expectedValue, Probability probability)
     {
         return new ExpectedValue(expectedValue.Range.Minimum * probability.Value,
