@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, ValueRange> _gameStateCache = new();
+    private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
@@ -22,12 +22,12 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
 
-    public ValueRange FindExpectedValueRange(GameState gameState)
+    public ExpectedValue FindExpectedValueRange(GameState gameState)
     {
         return FindExpectedValueRange(gameState, GameStateSearchDepth);
     }
 
-    public (PlayerAction, ValueRange) FindBestAction(GameState gameState)
+    public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
@@ -46,7 +46,7 @@ public class Solver
             : (bestRemainingAction, bestRemainingActionValueRange);
     }
 
-    private ValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValue FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
@@ -61,17 +61,17 @@ public class Solver
         return result;
     }
 
-    private ValueRange FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValue FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
     {
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
-            return new ValueRange(result, result);
+            return new ExpectedValue(result, result);
         }
 
-        if (gameStateDepthLimit <= 0) return new ValueRange(0, gameState.PlayerHealth.Amount);
+        if (gameStateDepthLimit <= 0) return new ExpectedValue(0, gameState.PlayerHealth.Amount);
 
-        var bestActionValueRange = new ValueRange(double.NegativeInfinity, double.NegativeInfinity);
+        var bestActionValueRange = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
@@ -97,13 +97,13 @@ public class Solver
         return 0;
     }
 
-    private ValueRange FindActionValueRange(PlayerAction action, int gameStateDepthLimit,
+    private ExpectedValue FindActionValueRange(PlayerAction action, int gameStateDepthLimit,
         double bestCompetingMinimum)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
-        var actionValueRange = new ValueRange(0, 0);
+        var actionValueRange = new ExpectedValue(0, 0);
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
@@ -116,7 +116,7 @@ public class Solver
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
-                return new ValueRange(0, 0);
+                return new ExpectedValue(0, 0);
             }
         }
 
@@ -136,7 +136,7 @@ internal class SolverTests
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
         var result = new Solver().FindExpectedValueRange(terminalGameState);
-        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
+        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -150,7 +150,7 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm() }
         };
         var result = new Solver().FindExpectedValueRange(terminalGameState);
-        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
+        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -166,7 +166,7 @@ internal class SolverTests
             Hand = new Hand(new Strike(), new Defend())
         };
         var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
-        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
+        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -181,7 +181,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
-        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
+        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -199,7 +199,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
-        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
+        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
     }
 
     [Test]
