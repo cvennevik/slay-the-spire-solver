@@ -297,9 +297,9 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var solver = new Solver();
-        var (action, expectedValueRange) = solver.FindBestAction(gameState);
+        var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayUntargetedCardAction(gameState, new Defend()), action);
-        Assert.AreEqual(44, expectedValueRange.Minimum);
-        Assert.AreEqual(44, expectedValueRange.Maximum);
+        Assert.AreEqual(44, expectedValue.Range.Minimum);
+        Assert.AreEqual(44, expectedValue.Range.Maximum);
     }
 }
