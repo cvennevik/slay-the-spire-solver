@@ -94,7 +94,6 @@ public class Solver
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
-        var combinedExpectedValue = new ExpectedValue(0, 0);
         var accumulatedEstimate = 0.0;
         var firstPossibilityExpectedValue =
             FindExpectedValue(possibleResultsOfAction.First().GameState, gameStateDepthLimit);
@@ -106,12 +105,11 @@ public class Solver
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             accumulatedRange += possibilityExpectedValue.Range;
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability.Value;
-            combinedExpectedValue += possibilityExpectedValue * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
-            var potentialMaximumValue =
-                combinedExpectedValue.Range.Maximum + highestPossibleHealth * remainingProbability;
-            if (cutoffValue > potentialMaximumValue)
+            var potentialMaximumEstimate =
+                accumulatedRange.Maximum + highestPossibleHealth * remainingProbability;
+            if (cutoffValue > potentialMaximumEstimate)
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
