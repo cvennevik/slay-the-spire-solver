@@ -15,9 +15,9 @@ public class Solver
     public int GameStateCacheHits => _gameStateCacheHits;
     public int PrunedActionOutcomes => _prunedActionOutcomes;
 
-    private int _prunedActionOutcomes;
     private int _evaluatedGameStates;
     private int _gameStateCacheHits;
+    private int _prunedActionOutcomes;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
