@@ -252,5 +252,6 @@ internal class SolverTests
         var solver = new Solver { GameStateSearchDepth = searchDepth };
         var result = solver.FindExpectedValue(gameState);
         Assert.LessOrEqual(69, result);
+        Assert.LessOrEqual(result, 74);
     }
 }
