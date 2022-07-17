@@ -40,6 +40,8 @@ public class Solver
         foreach (var action in remainingActions)
         {
             var actionValueRange = FindExpectedValueRange(action, GameStateSearchDepth, bestActionValueRange.Minimum);
+            if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
+                bestActionValueRange = actionValueRange;
         }
 
         return (gameState.GetLegalActions().First(), 0);
