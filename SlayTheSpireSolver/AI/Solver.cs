@@ -217,7 +217,7 @@ internal class SolverTests
 
     [Test]
     [TestCase(4)]
-    public void FindsNonTrivialSolution(int searchDepth)
+    public void FindsNonTrivialValue(int searchDepth)
     {
         var jawWorm = new JawWorm
         {
