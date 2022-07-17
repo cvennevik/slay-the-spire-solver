@@ -35,12 +35,12 @@ public class Solver
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
 
         // Evaluate first action to get an expected value for pruning other actions with
-        var firstAction = actions.First();
-        var firstActionExpectedValue = FindExpectedValue(firstAction, gameStateDepthLimit, 0);
+        var pruningAction = actions.First();
+        var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit, 0);
 
         return actions
             .Select(action =>
-                (action, FindExpectedValue(action, gameStateDepthLimit, firstActionExpectedValue.Minimum)))
+                (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue.Minimum)))
             .MaxBy(tuple => tuple.Item2);
     }
 
