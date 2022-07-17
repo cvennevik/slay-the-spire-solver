@@ -22,8 +22,10 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
 
-    public double FindExpectedValue(GameState gameState) =>
-        FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
+    public double FindExpectedValue(GameState gameState)
+    {
+        return FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
+    }
 
     public (PlayerAction, ValueRange) FindBestAction(GameState gameState)
     {
@@ -110,7 +112,7 @@ public class Solver
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedRange += possibilityValueRange * possibility.Probability;
 
-            remainingProbability -= possibility.Probability.Value;
+            remainingProbability -= possibility.Probability;
             var bestPossibleMaximum = aggregatedRange.Maximum + bestPossibleValue * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
             {
