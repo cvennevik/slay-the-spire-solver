@@ -31,7 +31,7 @@ public class Solver
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
-        var gameStateDepthLimit = GameStateSearchDepth - 1; // Initial game state counts
+        var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var pruningAction = actions.First();
         var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit, 0);
