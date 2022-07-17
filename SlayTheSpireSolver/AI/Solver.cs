@@ -103,8 +103,8 @@ public class Solver
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
-            var possibilityValueRange = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
-            combinedExpectedValue += possibilityValueRange * possibility.Probability;
+            var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
+            combinedExpectedValue += possibilityExpectedValue * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
             var potentialMaximumValue = combinedExpectedValue.Maximum + highestPossibleHealth * remainingProbability;
