@@ -238,7 +238,7 @@ internal class SolverTests
         var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
         var (action6, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
         var (action7, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
-        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action7);
+        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action4);
     }
 
     private void AssertRangeContains(Range range, double value)
