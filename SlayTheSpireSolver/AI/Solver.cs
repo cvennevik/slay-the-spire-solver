@@ -31,13 +31,13 @@ public class Solver
 
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
-        var firstActionValueRange = FindExpectedValueRange(firstAction, GameStateSearchDepth, 0);
+        var firstActionValueRange = FindExpectedValueRange(firstAction, GameStateSearchDepth - 1, 0);
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
         if (!remainingActions.Any()) return (firstAction, firstActionValueRange);
 
         var (bestRemainingAction, bestRemainingActionValueRange) = remainingActions
             .Select(action => (action,
-                FindExpectedValueRange(action, GameStateSearchDepth, firstActionValueRange.Minimum)))
+                FindExpectedValueRange(action, GameStateSearchDepth - 1, firstActionValueRange.Minimum)))
             .MaxBy(tuple => tuple.Item2.ToExpectedValue);
         return firstActionValueRange.ToExpectedValue > bestRemainingActionValueRange.ToExpectedValue
             ? (firstAction, firstActionValueRange)
