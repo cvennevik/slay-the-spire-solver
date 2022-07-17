@@ -59,7 +59,7 @@ public class Solver
     {
         if (gameState.IsCombatOver()) return new ExpectedValue(Math.Max(gameState.PlayerHealth.Amount, 0));
 
-        if (gameStateDepthLimit <= 0) return new ExpectedValue(0, gameState.PlayerHealth.Amount);
+        if (gameStateDepthLimit <= 0) return new ExpectedValue(new Range(0, gameState.PlayerHealth.Amount));
 
         var bestExpectedValue = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
