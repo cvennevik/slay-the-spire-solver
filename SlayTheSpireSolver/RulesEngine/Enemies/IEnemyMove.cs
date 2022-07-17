@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
-public interface IEnemyMove
+public abstract record EnemyMove
 {
-    EffectStack GetEffects(Enemy enemy);
+    public abstract EffectStack GetEffects(Enemy enemy);
 }

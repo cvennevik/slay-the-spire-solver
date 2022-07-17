@@ -4,22 +4,42 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
-public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
+public class EnemyMoveHistory : IReadOnlyList<EnemyMove>
 {
-    public int Count => _moves.Count;
-    public IEnemyMove this[int index] => _moves[index];
+    private readonly List<EnemyMove> _moves;
 
-    private readonly List<IEnemyMove> _moves;
-
-    public EnemyMoveHistory(params IEnemyMove[] moves)
+    public EnemyMoveHistory(params EnemyMove[] moves)
     {
         _moves = moves.ToList();
     }
 
-    public static implicit operator EnemyMoveHistory(IEnemyMove[] moves) => new(moves);
+    public int Count => _moves.Count;
+    public EnemyMove this[int index] => _moves[index];
 
-    public static bool operator ==(EnemyMoveHistory a, EnemyMoveHistory b) => a.Equals(b);
-    public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b) => !a.Equals(b);
+    public IEnumerator<EnemyMove> GetEnumerator()
+    {
+        return _moves.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _moves.GetEnumerator();
+    }
+
+    public static implicit operator EnemyMoveHistory(EnemyMove[] moves)
+    {
+        return new(moves);
+    }
+
+    public static bool operator ==(EnemyMoveHistory a, EnemyMoveHistory b)
+    {
+        return a.Equals(b);
+    }
+
+    public static bool operator !=(EnemyMoveHistory a, EnemyMoveHistory b)
+    {
+        return !a.Equals(b);
+    }
 
     public override bool Equals(object? obj)
     {
@@ -29,16 +49,6 @@ public class EnemyMoveHistory : IReadOnlyList<IEnemyMove>
     public override int GetHashCode()
     {
         return 0;
-    }
-
-    public IEnumerator<IEnemyMove> GetEnumerator()
-    {
-        return _moves.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return _moves.GetEnumerator();
     }
 
     public override string ToString()

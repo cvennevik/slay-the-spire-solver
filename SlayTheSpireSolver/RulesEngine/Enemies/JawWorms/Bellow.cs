@@ -4,12 +4,12 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
-public record Bellow : IEnemyMove
+public record Bellow : EnemyMove
 {
     private static readonly Strength StrengthGain = 3;
     private static readonly Armor ArmorGain = 6;
 
-    public EffectStack GetEffects(Enemy enemy)
+    public override EffectStack GetEffects(Enemy enemy)
     {
         return new Effect[]
         {

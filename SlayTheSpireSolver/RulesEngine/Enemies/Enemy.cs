@@ -13,8 +13,8 @@ public abstract record Enemy
     public Strength Strength { get; init; } = 0;
     public Vulnerable Vulnerable { get; init; } = 0;
     public EnemyMoveHistory PreviousMoves = new();
-    public abstract IEnemyMove IntendedMove { get; init; }
-    public abstract IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves();
+    public abstract EnemyMove IntendedMove { get; init; }
+    public abstract IReadOnlyCollection<(EnemyMove, Probability)> GetNextPossibleMoves();
 
     public EffectStack GetMoveEffects()
     {

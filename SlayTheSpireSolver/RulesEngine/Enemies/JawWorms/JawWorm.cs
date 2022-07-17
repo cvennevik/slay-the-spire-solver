@@ -5,23 +5,19 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record JawWorm : Enemy
 {
-    public override IEnemyMove IntendedMove { get; init; } = new Chomp();
-
     private const double BellowProbability = 0.45;
     private const double ThrashProbability = 0.3;
     private const double ChompProbability = 0.25;
+    public override EnemyMove IntendedMove { get; init; } = new Chomp();
 
-    public override IReadOnlyCollection<(IEnemyMove, Probability)> GetNextPossibleMoves()
+    public override IReadOnlyCollection<(EnemyMove, Probability)> GetNextPossibleMoves()
     {
-        if (PreviousMoves.Count == 0)
-        {
-            return new (IEnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
-        }
+        if (PreviousMoves.Count == 0) return new (EnemyMove, Probability)[] { (new Chomp(), new Probability(1)) };
 
         if (PreviousMoves[^1] is Bellow)
         {
             const double remainingProbability = 1 - BellowProbability;
-            return new (IEnemyMove, Probability)[]
+            return new (EnemyMove, Probability)[]
             {
                 (new Thrash(), ThrashProbability / remainingProbability),
                 (new Chomp(), ChompProbability / remainingProbability)
@@ -31,7 +27,7 @@ public record JawWorm : Enemy
         if (PreviousMoves[^1] is Chomp)
         {
             const double remainingProbability = 1 - ChompProbability;
-            return new (IEnemyMove, Probability)[]
+            return new (EnemyMove, Probability)[]
             {
                 (new Bellow(), BellowProbability / remainingProbability),
                 (new Thrash(), ThrashProbability / remainingProbability)
@@ -41,14 +37,14 @@ public record JawWorm : Enemy
         if (PreviousMoves.Count >= 2 && PreviousMoves[^1] is Thrash && PreviousMoves[^2] is Thrash)
         {
             const double remainingProbability = 1 - ThrashProbability;
-            return new (IEnemyMove, Probability)[]
+            return new (EnemyMove, Probability)[]
             {
                 (new Bellow(), BellowProbability / remainingProbability),
                 (new Chomp(), ChompProbability / remainingProbability)
             };
         }
 
-        return new (IEnemyMove, Probability)[]
+        return new (EnemyMove, Probability)[]
         {
             (new Bellow(), BellowProbability),
             (new Thrash(), ThrashProbability),
