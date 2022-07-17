@@ -59,19 +59,16 @@ public class Solver
         if (gameStateDepthLimit <= 0) return new ExpectedValue(new Range(0, playerHealth));
 
         gameStateDepthLimit -= 1;
-        var bestExpectedValue = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var bestEstimate = double.NegativeInfinity;
         var bestMinimum = double.NegativeInfinity;
         var bestMaximum = double.NegativeInfinity;
         foreach (var action in playerActions)
         {
-            var cutoffValue = bestExpectedValue.Range.Minimum;
-            var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
+            var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestEstimate);
             bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
             bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
-            if (expectedValue.Estimate > bestExpectedValue.Estimate) bestExpectedValue = expectedValue;
         }
 
         // TODO: Return the true range of possible best expected values
