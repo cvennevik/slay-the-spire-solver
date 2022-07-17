@@ -83,7 +83,7 @@ public class Solver
         // SOLUTION:
         // - min = max(min)
         // - max = max(max)
-        return bestExpectedValue;
+        return new ExpectedValue(bestEstimate, new Range(bestMinimum, bestMaximum));
     }
 
     private static int GetActionPriority(PlayerAction action)
