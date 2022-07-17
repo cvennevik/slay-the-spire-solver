@@ -42,20 +42,6 @@ public class Solver
         return firstActionValueRange.ToExpectedValue > bestRemainingActionValueRange.ToExpectedValue
             ? (firstAction, firstActionValueRange)
             : (bestRemainingAction, bestRemainingActionValueRange);
-
-        var bestAction = firstAction;
-        var bestActionValueRange = firstActionValueRange;
-        foreach (var action in remainingActions)
-        {
-            var actionValueRange = FindExpectedValueRange(action, GameStateSearchDepth, bestActionValueRange.Minimum);
-            if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
-            {
-                bestAction = action;
-                bestActionValueRange = actionValueRange;
-            }
-        }
-
-        return (bestAction, bestActionValueRange);
     }
 
     private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
