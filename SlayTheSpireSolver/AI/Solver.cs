@@ -71,15 +71,6 @@ public class Solver
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
         }
 
-        // TODO: Return the true range of possible best expected values
-        // If the best expected value is certain, min and max should equal estimate
-        // If the best expected value is uncertain:
-        //  * min should be minimum guaranteed health
-        //  * max should be maximum possible health
-        //
-        // SOLUTION:
-        // - min = max(min)
-        // - max = max(max)
         return new ExpectedValue(bestEstimate, new Range(bestMinimum, bestMaximum));
     }
 
