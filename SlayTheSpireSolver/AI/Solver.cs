@@ -99,6 +99,11 @@ public class Solver
 
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, ExpectedValue cutoffValue)
     {
+        return FindExpectedValue(action, gameStateDepthLimit, cutoffValue.Minimum);
+    }
+
+    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, double cutoffValue)
+    {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
@@ -112,7 +117,7 @@ public class Solver
             remainingProbability -= possibility.Probability;
 
             var potentialMaximumValue = combinedExpectedValue.Maximum + highestPossibleHealth * remainingProbability;
-            if (cutoffValue.StrictlyBetterThan(new ExpectedValue(0, potentialMaximumValue)))
+            if (cutoffValue > potentialMaximumValue)
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
