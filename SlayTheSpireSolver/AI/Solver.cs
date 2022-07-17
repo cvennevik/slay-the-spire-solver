@@ -26,10 +26,8 @@ public class Solver
     //  * Improve Rules Engine performance
     //  * Improve action evaluation order (goal: hit winning paths earlier to improve pruning)
 
-    public double FindExpectedValue(GameState gameState)
-    {
-        return FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
-    }
+    public double FindExpectedValue(GameState gameState) =>
+        FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
 
     private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
     {
@@ -89,7 +87,7 @@ public class Solver
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
             {
-                // The competing action's value must be better, stop evaluating this action
+                // The competing action's expected value is strictly higher, stop evaluating this action
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
                 return new ExpectedValueRange(0, 0);
             }
