@@ -42,6 +42,11 @@ public record ExpectedValue : IComparable<ExpectedValue>
         };
     }
 
+    public bool IsStrictlyBetterThan(ExpectedValue other)
+    {
+        return false;
+    }
+
     public override string ToString()
     {
         return $"{{Estimate: {Estimate}, Range: {Range}}}";
