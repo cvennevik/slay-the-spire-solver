@@ -217,8 +217,8 @@ internal class SolverTests
             Hand = new Hand(new Strike(), new Defend())
         };
         var solver = new Solver();
-        var firstSearchResult = solver.FindExpectedValue(nonTerminalGameState);
-        var secondSearchResult = solver.FindExpectedValue(nonTerminalGameState);
+        var firstSearchResult = solver.FindBestAction(nonTerminalGameState);
+        var secondSearchResult = solver.FindBestAction(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
         Assert.LessOrEqual(1, solver.GameStateCacheHits);
     }
