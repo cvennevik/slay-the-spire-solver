@@ -40,7 +40,7 @@ public class Solver
         var (bestRemainingAction, bestRemainingActionValueRange) = remainingActions
             .Select(action => (action,
                 FindActionValueRange(action, GameStateSearchDepth - 1, firstActionValueRange.Minimum)))
-            .MaxBy(tuple => tuple.Item2.BestEstimate);
+            .MaxBy(tuple => tuple.Item2);
         return firstActionValueRange.BestEstimate > bestRemainingActionValueRange.BestEstimate
             ? (firstAction, firstActionValueRange)
             : (bestRemainingAction, bestRemainingActionValueRange);
