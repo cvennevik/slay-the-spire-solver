@@ -68,7 +68,21 @@ public class Solver
         return bestActionValueRange;
     }
 
-    private int GetActionPriority(PlayerAction action) => 0;
+    private int GetActionPriority(PlayerAction action)
+    {
+        if (action is PlayCardAction playCardAction)
+            switch (playCardAction.Card)
+            {
+                case Bash:
+                    return 3;
+                case Strike:
+                    return 2;
+                case Defend:
+                    return 1;
+            }
+
+        return 0;
+    }
 
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
         double bestPossibleValue, double bestCompetingMinimum)
