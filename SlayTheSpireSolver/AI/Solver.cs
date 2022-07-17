@@ -56,7 +56,7 @@ public class Solver
 
         var bestActionValueRange = new ExpectedValueRange(double.NegativeInfinity, double.NegativeInfinity);
         var bestPossibleValue = gameState.PlayerHealth.Amount;
-        foreach (var action in gameState.GetLegalActions())
+        foreach (var action in gameState.GetLegalActions().OrderByDescending(GetActionPriority))
         {
             var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1,
                 bestPossibleValue, bestActionValueRange.Minimum);
@@ -95,6 +95,8 @@ public class Solver
 
         return new ExpectedValueRange(aggregatedMinimum, aggregatedMaximum);
     }
+
+    private int GetActionPriority(PlayerAction action) => 0;
 }
 
 [TestFixture]
