@@ -17,8 +17,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
     }
 
     public Range Range { get; init; }
-    private double Minimum { get; init; }
-    private double Maximum { get; init; }
     public double Estimate { get; init; }
 
     public int CompareTo(ExpectedValue? other)
