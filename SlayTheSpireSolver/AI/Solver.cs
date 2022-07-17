@@ -277,5 +277,6 @@ internal class SolverTests
         };
         var solver = new Solver();
         var (action, value) = solver.FindBestAction(gameState);
+        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
     }
 }
