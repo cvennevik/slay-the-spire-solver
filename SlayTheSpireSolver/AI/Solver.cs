@@ -12,10 +12,11 @@ public class Solver
 {
     private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
     public int EvaluatedGameStates => _evaluatedGameStates;
-    public int GameStateCacheHits;
+    public int GameStateCacheHits => _gameStateCacheHits;
     public int PrunedActionOutcomes;
 
     private int _evaluatedGameStates;
+    private int _gameStateCacheHits;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
@@ -43,7 +44,7 @@ public class Solver
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
-            Interlocked.Increment(ref GameStateCacheHits);
+            Interlocked.Increment(ref _gameStateCacheHits);
             return cachedResult!;
         }
 
