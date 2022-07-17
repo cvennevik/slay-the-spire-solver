@@ -288,6 +288,8 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action5);
         Assert.AreEqual(expectedAction, action9);
         AssertRangeContains(new Range(0, 80), expectedValue5.Range);
+        // SHOULD PASS:
+        // AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
     }
 
     private static void AssertRangeContains(Range range, double value)
