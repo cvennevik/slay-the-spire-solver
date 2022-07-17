@@ -33,11 +33,11 @@ public class Solver
 
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
-        var pruningAction = actions.First();
-        var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit,
+        var cutoffAction = actions.First();
+        var cutoffValue = FindExpectedValue(cutoffAction, gameStateDepthLimit,
             new ExpectedValue(0, gameState.PlayerHealth.Amount));
         return actions
-            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue)))
+            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
             .MaxBy(tuple => tuple.Item2);
     }
 
