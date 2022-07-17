@@ -293,5 +293,6 @@ internal class SolverTests
         var solver = new Solver();
         var (action, value) = solver.FindBestAction(gameState);
         Assert.AreEqual(new EndTurnAction(gameState), action);
+        Assert.AreEqual(39, value);
     }
 }
