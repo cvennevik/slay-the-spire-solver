@@ -33,7 +33,7 @@ public class Solver
         var firstAction = actions.First();
         var firstActionValueRange = FindExpectedValueRange(firstAction, GameStateSearchDepth, 0);
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
-        if (!remainingActions.Any()) return (firstAction, firstActionValueRange); 
+        if (!remainingActions.Any()) return (firstAction, firstActionValueRange);
 
         var bestAction = firstAction;
         var bestActionValueRange = firstActionValueRange;
