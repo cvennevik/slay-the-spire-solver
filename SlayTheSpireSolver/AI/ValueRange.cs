@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue(double Minimum, double Maximum)
 {
-    public double Estimate => Minimum;
+    public double BestEstimate => Minimum;
 
     public static ExpectedValue operator +(ExpectedValue a, ExpectedValue b)
     {
