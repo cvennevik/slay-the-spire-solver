@@ -28,8 +28,8 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Range = range;
     }
 
-    public Range Range { get; init; }
-    public double Estimate { get; init; }
+    public Range Range { get; }
+    public double Estimate { get; }
 
     public int CompareTo(ExpectedValue? other)
     {
