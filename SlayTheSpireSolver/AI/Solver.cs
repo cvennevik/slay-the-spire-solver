@@ -107,8 +107,7 @@ public class Solver
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability.Value;
             remainingProbability -= possibility.Probability;
 
-            var potentialMaximumEstimate =
-                accumulatedRange.Maximum + highestPossibleHealth * remainingProbability;
+            var potentialMaximumEstimate = accumulatedEstimate + highestPossibleHealth * remainingProbability;
             if (cutoffValue > potentialMaximumEstimate)
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
