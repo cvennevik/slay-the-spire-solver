@@ -111,7 +111,6 @@ public class Solver
             var possibility = possibleResultsOfAction[index];
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             actionValueRange += possibilityValueRange * possibility.Probability;
-
             remainingProbability -= possibility.Probability;
             var bestPossibleMaximum = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
