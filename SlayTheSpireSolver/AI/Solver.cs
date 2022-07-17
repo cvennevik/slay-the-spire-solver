@@ -258,6 +258,7 @@ internal class SolverTests
         AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
         AssertRangeContains(expectedValue5.Range, expectedValue6.Range);
         AssertRangeContains(expectedValue6.Range, expectedValue7.Range);
+        AssertRangeContains(expectedValue7.Range, expectedValue8.Range);
     }
 
     private static void AssertRangeContains(Range range, double value)
