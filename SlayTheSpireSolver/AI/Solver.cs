@@ -91,18 +91,13 @@ public class Solver
         return 0;
     }
 
-    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit)
-    {
-        var cutoffValue = new ExpectedValue(0, int.MaxValue);
-        return FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
-    }
-
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, ExpectedValue cutoffValue)
     {
         return FindExpectedValue(action, gameStateDepthLimit, cutoffValue.Minimum);
     }
 
-    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, double cutoffValue)
+    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
+        double cutoffValue = double.MinValue)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
