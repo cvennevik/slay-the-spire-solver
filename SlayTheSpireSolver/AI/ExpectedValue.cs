@@ -41,4 +41,9 @@ public record ExpectedValue : IComparable<ExpectedValue>
             _ => 1
         };
     }
+
+    public override string ToString()
+    {
+        return $"{{Estimate: {Estimate}, Range: {Range}}}";
+    }
 }
