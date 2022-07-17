@@ -110,6 +110,7 @@ public class Solver
         {
             var possibility = possibleResultsOfAction[index];
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
+            aggregatedRange += possibilityValueRange;
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
 
