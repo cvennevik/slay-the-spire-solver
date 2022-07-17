@@ -69,6 +69,8 @@ public class Solver
         {
             var cutoffValue = bestExpectedValue.Range.Minimum;
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
+            bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
+            bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
             expectedValueRanges.Add(expectedValue.Range);
             if (expectedValue.Estimate > bestEstimate)
             {
