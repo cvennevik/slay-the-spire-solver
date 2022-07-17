@@ -244,6 +244,7 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action6);
         Assert.AreEqual(expectedAction, action7);
         AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
+        AssertRangeContains(expectedValue5.Range, expectedValue6.Range);
     }
 
     private void AssertRangeContains(Range range, double value)
