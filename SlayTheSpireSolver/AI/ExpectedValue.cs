@@ -45,10 +45,4 @@ public record ExpectedValue : IComparable<ExpectedValue>
     {
         return new ExpectedValue(range.Minimum * probability.Value, range.Maximum * probability.Value);
     }
-
-    public void Deconstruct(out double Minimum, out double Maximum)
-    {
-        Minimum = this.Minimum;
-        Maximum = this.Maximum;
-    }
 }
