@@ -223,4 +223,20 @@ internal class SolverTests
         Assert.Less(expectedValue.Estimate, expectedValue.Range.Maximum);
         Assert.LessOrEqual(expectedValue.Range.Maximum, 39);
     }
+
+    [Test]
+    public void NarrowsExpectedValueRangeWhenSearchDepthIncreases()
+    {
+        var gameState = new GameState
+        {
+            PlayerHealth = 50,
+            EnemyParty = new[] { new JawWorm { Health = 13, IntendedMove = new Chomp() } },
+            BaseEnergy = 1,
+            Energy = 1,
+            Hand = new Hand(new Defend(), new Strike())
+        };
+        var solver = new Solver { GameStateSearchDepth = 7 };
+        var (action, expectedValue) = solver.FindBestAction(gameState);
+        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
+    }
 }
