@@ -241,6 +241,7 @@ internal class SolverTests
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action4);
         Assert.AreEqual(action4, action5);
         Assert.AreEqual(action4, action6);
+        Assert.AreEqual(action4, action7);
     }
 
     private void AssertRangeContains(Range range, double value)
