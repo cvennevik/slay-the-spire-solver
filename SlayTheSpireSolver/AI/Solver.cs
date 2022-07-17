@@ -71,7 +71,7 @@ public class Solver
         foreach (var action in playerActions)
         {
             var actionValueRange = FindExpectedValue(action, gameStateDepthLimit - 1, bestActionValueRange);
-            if (actionValueRange.StrictlyBetterThan(bestActionValueRange))
+            if (actionValueRange.BestEstimate > bestActionValueRange.BestEstimate)
                 bestActionValueRange = actionValueRange;
         }
 
