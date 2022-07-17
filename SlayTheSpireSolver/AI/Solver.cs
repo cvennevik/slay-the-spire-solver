@@ -50,12 +50,12 @@ public class Solver
         }
 
         Interlocked.Increment(ref EvaluatedGameStates);
-        var result = FindExpectedValueRangeUncached(gameState, gameStateDepthLimit);
+        var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
         _gameStateCache.TryAdd(gameState, result);
         return result;
     }
 
-    private ExpectedValue FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
+    private ExpectedValue FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
     {
         var playerHealth = Math.Max(gameState.PlayerHealth.Amount, 0);
         if (gameState.IsCombatOver()) return new ExpectedValue(playerHealth);
