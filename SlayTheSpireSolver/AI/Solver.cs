@@ -24,7 +24,6 @@ public class Solver
     //      * Write tests for game states solvable in few steps
     //      * Try playing a real game using the solver
     //  * Improve Rules Engine performance
-    //  * Improve action evaluation order (goal: hit winning paths earlier to improve pruning)
 
     public double FindExpectedValue(GameState gameState) =>
         FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
