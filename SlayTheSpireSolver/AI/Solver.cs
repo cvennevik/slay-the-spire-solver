@@ -101,7 +101,7 @@ public class Solver
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
         {
             Interlocked.Add(ref _prunedActionOutcomes, possibleOutcomes.Count);
-            return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
+            return new ExpectedValue(double.NegativeInfinity, possibleMaximum);
         }
 
         var firstOutcomeExpectedValue = FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
