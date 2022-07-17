@@ -31,12 +31,12 @@ Console.WriteLine("");
 Console.WriteLine("Searching for best player action...");
 
 var stopWatch = Stopwatch.StartNew();
-var (bestAction, expectedValueRange) = solver.FindBestAction(gameState);
+var (bestAction, expectedValue) = solver.FindBestAction(gameState);
 stopWatch.Stop();
 
 Console.WriteLine("Search complete.");
 Console.WriteLine($"Recommended action: {bestAction}");
-Console.WriteLine($"Expected value: [{expectedValueRange.Minimum}, {expectedValueRange.Maximum}]");
+Console.WriteLine($"Expected value: [{expectedValue.Minimum}, {expectedValue.Maximum}]");
 Console.WriteLine("");
 Console.WriteLine("STATISTICS");
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
