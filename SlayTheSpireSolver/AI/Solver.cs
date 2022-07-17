@@ -61,15 +61,13 @@ public class Solver
         gameStateDepthLimit -= 1;
         var bestExpectedValue = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
-        var firstPossibilityExpectedValue = FindExpectedValue(playerActions.First(), gameStateDepthLimit);
         var bestEstimate = 0.0;
         var expectedValueRanges = new List<Range>();
-        var accumulatedRange = firstPossibilityExpectedValue.Range;
         foreach (var action in playerActions)
         {
             var cutoffValue = bestExpectedValue.Range.Minimum;
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
-            accumulatedRange += expectedValue.Range;
+            expectedValueRanges.Add(expectedValue.Range);
             if (expectedValue.Estimate > bestEstimate)
             {
                 bestEstimate = expectedValue.Estimate;
