@@ -11,7 +11,6 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
-    public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
     public int PrunedActionOutcomes;
@@ -91,7 +90,6 @@ public class Solver
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
         double cutoffValue = double.MinValue)
     {
-        Interlocked.Increment(ref EvaluatedActions);
         var possibleOutcomes = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
