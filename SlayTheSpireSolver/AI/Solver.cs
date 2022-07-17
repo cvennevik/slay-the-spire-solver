@@ -299,7 +299,6 @@ internal class SolverTests
         var solver = new Solver();
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayUntargetedCardAction(gameState, new Defend()), action);
-        Assert.AreEqual(44, expectedValue.Range.Minimum);
-        Assert.AreEqual(44, expectedValue.Range.Maximum);
+        Assert.AreEqual(new Range(44, 44), expectedValue.Range);
     }
 }
