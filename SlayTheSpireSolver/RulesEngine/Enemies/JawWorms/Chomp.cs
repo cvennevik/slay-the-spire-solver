@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 public record Chomp : IEnemyMove
 {
-    private static readonly Damage BaseDamage = new(12);
+    public static readonly Damage BaseDamage = new(11);
 
     public EffectStack GetEffects(Enemy enemy)
     {

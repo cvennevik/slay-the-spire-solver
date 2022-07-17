@@ -25,10 +25,7 @@ public record GameState
     {
         var legalActions = new List<PlayerAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
-        if (!IsCombatOver())
-        {
-            legalActions.Add(new EndTurnAction(this));
-        }
+        if (!IsCombatOver()) legalActions.Add(new EndTurnAction(this));
         return legalActions;
     }
 
@@ -58,7 +55,10 @@ public record GameState
         return WithProbability(1).Resolve();
     }
 
-    public Possibility WithProbability(Probability probability) => new(this, probability);
+    public Possibility WithProbability(Probability probability)
+    {
+        return new(this, probability);
+    }
 
     public override string ToString()
     {
@@ -212,7 +212,7 @@ internal class GameStateTests
             Assert.AreEqual(new GameState(), resolvedState);
         }
 
-        
+
         [Test]
         public void ResolvesOneEffect()
         {
@@ -242,10 +242,10 @@ internal class GameStateTests
                 PlayerHealth = 30,
                 EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
                     new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }),
-                EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>()) 
+                EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>())
             };
             var resolvedState = gameState.Resolve().Single().GameState;
-            var expectedGameState = gameState with { PlayerHealth = 6, EffectStack = new EffectStack() };
+            var expectedGameState = gameState with { PlayerHealth = 8, EffectStack = new EffectStack() };
             Assert.AreEqual(expectedGameState, resolvedState);
         }
 
@@ -270,11 +270,11 @@ internal class GameStateTests
                 DrawPile = new DrawPile(new Strike(), new Strike(), new Strike())
             };
             Assert.AreEqual(2, result.Count());
-            Assert.Contains(expectedResult1.WithProbability(0.75),result.ToList());
-            Assert.Contains(expectedResult2.WithProbability(0.25),result.ToList());
+            Assert.Contains(expectedResult1.WithProbability(0.75), result.ToList());
+            Assert.Contains(expectedResult2.WithProbability(0.25), result.ToList());
         }
 
-        
+
         [Test]
         public void ResolvesMultipleEffectsWithMultipleOutcomes()
         {

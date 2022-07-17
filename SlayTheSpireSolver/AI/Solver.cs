@@ -145,8 +145,8 @@ internal class SolverTests
     }
 
     [Test]
-    [TestCase(13, 1)]
-    [TestCase(20, 8)]
+    [TestCase(13, 2)]
+    [TestCase(20, 9)]
     public void ReturnsPlayerHealthMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth, int expectedResult)
     {
         var nonTerminalGameState = new GameState
@@ -160,8 +160,8 @@ internal class SolverTests
     }
 
     [Test]
-    [TestCase(13, 6)]
-    [TestCase(20, 13)]
+    [TestCase(13, 7)]
+    [TestCase(20, 14)]
     public void ReturnsPlayerHealthPlusDefendArmorMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth,
         int expectedResult)
     {
