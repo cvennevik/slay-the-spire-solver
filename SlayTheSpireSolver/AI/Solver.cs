@@ -215,11 +215,11 @@ internal class SolverTests
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 5 };
+        var solver = new Solver { GameStateSearchDepth = 6 };
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
-        Assert.AreEqual(0, expectedValue.Range.Minimum);
-        Assert.AreEqual(39, expectedValue.Range.Maximum);
+        Assert.LessOrEqual(0, expectedValue.Range.Minimum);
+        Assert.LessOrEqual(expectedValue.Range.Maximum, 39);
         Assert.Less(0, expectedValue.Estimate);
         Assert.Less(expectedValue.Estimate, 39);
     }
