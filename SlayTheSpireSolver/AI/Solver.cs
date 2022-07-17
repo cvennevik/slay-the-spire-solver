@@ -282,8 +282,8 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var solver5 = new Solver { GameStateSearchDepth = 5 };
-        var solver9 = new Solver { GameStateSearchDepth = 5 };
+        var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
+        var (action9, expectedValue9) = new Solver { GameStateSearchDepth = 9 }.FindBestAction(gameState);
     }
 
     private static void AssertRangeContains(Range range, double value)
