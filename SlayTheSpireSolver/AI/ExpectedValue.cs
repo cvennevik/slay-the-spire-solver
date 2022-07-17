@@ -22,6 +22,12 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Range = new Range(estimate, estimate);
     }
 
+    public ExpectedValue(double estimate, Range range)
+    {
+        Estimate = estimate;
+        Range = range;
+    }
+
     public Range Range { get; init; }
     public double Estimate { get; init; }
 
