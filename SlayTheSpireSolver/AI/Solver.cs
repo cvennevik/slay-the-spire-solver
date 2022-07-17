@@ -253,6 +253,14 @@ internal class SolverTests
     [Test]
     public void FindsBestActionWhenPlayerCanWinImmediately()
     {
-        
+        var gameState = new GameState
+        {
+            PlayerHealth = 50,
+            EnemyParty = new[] { new JawWorm() },
+            Energy = 3,
+            Hand = new Hand(new Strike(), new Defend())
+        };
+        var solver = new Solver();
+        var (action, value) = solver.FindBestAction(gameState);
     }
 }
