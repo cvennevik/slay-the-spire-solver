@@ -207,13 +207,11 @@ internal class SolverTests
     }
 
     [Test]
-    [TestCase(10, 10)]
-    [TestCase(20, 20)]
-    public void TestCache(int playerHealth, int expectedResult)
+    public void TestCache()
     {
         var nonTerminalGameState = new GameState
         {
-            PlayerHealth = playerHealth,
+            PlayerHealth = 10,
             EnemyParty = new[] { new JawWorm() },
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
@@ -223,31 +221,6 @@ internal class SolverTests
         var secondSearchResult = solver.FindExpectedValue(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
         Assert.LessOrEqual(1, solver.GameStateCacheHits);
-    }
-
-    [Test]
-    [TestCase(4)]
-    public void FindsNonTrivialValue(int searchDepth)
-    {
-        var jawWorm = new JawWorm
-        {
-            Health = 26,
-            IntendedMove = new Chomp()
-        };
-        var gameState = new GameState
-        {
-            PlayerHealth = 80,
-            BaseEnergy = 3,
-            Energy = 3,
-            EnemyParty = new[] { jawWorm },
-            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
-            Turn = 1
-        };
-        var solver = new Solver { GameStateSearchDepth = searchDepth };
-        var result = solver.FindExpectedValue(gameState);
-        Assert.LessOrEqual(69, result.Range.Minimum);
-        Assert.LessOrEqual(result.Range.Maximum, 74);
     }
 
     [Test]
