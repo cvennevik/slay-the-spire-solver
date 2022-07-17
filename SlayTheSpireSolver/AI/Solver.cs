@@ -32,9 +32,9 @@ public class Solver
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
         var firstActionValueRange = FindExpectedValueRange(firstAction, GameStateSearchDepth, 0);
+        var remainingActions = actions.Except(new[] { firstAction });
         var bestAction = firstAction;
         var bestActionValueRange = firstActionValueRange;
-        var remainingActions = actions.Except(new[] { bestAction });
         foreach (var action in remainingActions)
         {
             var actionValueRange = FindExpectedValueRange(action, GameStateSearchDepth, bestActionValueRange.Minimum);
