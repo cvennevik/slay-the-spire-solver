@@ -70,15 +70,13 @@ public class Solver
     private static int GetActionPriority(PlayerAction action)
     {
         if (action is PlayCardAction playCardAction)
-            switch (playCardAction.Card)
+            return playCardAction.Card switch
             {
-                case Bash:
-                    return 3;
-                case Strike:
-                    return 2;
-                case Defend:
-                    return 1;
-            }
+                Bash => 3,
+                Strike => 2,
+                Defend => 1,
+                _ => 0
+            };
 
         return 0;
     }
