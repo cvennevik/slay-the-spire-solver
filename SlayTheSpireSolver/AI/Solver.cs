@@ -35,12 +35,10 @@ public class Solver
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
         var firstActionExpectedValue = FindExpectedValue(firstAction, gameStateDepthLimit, 0);
-        return actions.Select(action =>
-            {
-                var expectedValue = FindExpectedValue(action, gameStateDepthLimit, firstActionExpectedValue.Minimum);
-                return (action, expectedValue);
-            })
-            .MaxBy(tuple => tuple.expectedValue);
+        return actions
+            .Select(action =>
+                (action, FindExpectedValue(action, gameStateDepthLimit, firstActionExpectedValue.Minimum)))
+            .MaxBy(tuple => tuple.Item2);
     }
 
     private ExpectedValue FindExpectedValue(GameState gameState, int gameStateDepthLimit)
