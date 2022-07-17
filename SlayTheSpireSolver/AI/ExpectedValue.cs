@@ -1,5 +1,3 @@
-using SlayTheSpireSolver.RulesEngine.Values;
-
 namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue : IComparable<ExpectedValue>
@@ -42,11 +40,5 @@ public record ExpectedValue : IComparable<ExpectedValue>
             0 => 0,
             _ => 1
         };
-    }
-
-    public static ExpectedValue operator *(ExpectedValue expectedValue, Probability probability)
-    {
-        return new ExpectedValue(expectedValue.Range.Minimum * probability.Value,
-            expectedValue.Range.Maximum * probability.Value);
     }
 }
