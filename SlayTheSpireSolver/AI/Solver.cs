@@ -282,6 +282,7 @@ internal class SolverTests
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new EndTurnAction(gameState), action);
         Assert.AreEqual(new Range(39, 39), expectedValue.Range);
+        Assert.AreEqual(39, expectedValue.Estimate);
     }
 
     [Test]
