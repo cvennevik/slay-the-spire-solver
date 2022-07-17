@@ -22,11 +22,6 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
 
-    public ExpectedValue FindExpectedValue(GameState gameState)
-    {
-        return FindExpectedValue(gameState, GameStateSearchDepth);
-    }
-
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
         if (!gameState.GetLegalActions().Any()) throw new ArgumentException("Game state has no legal actions");
@@ -131,81 +126,6 @@ public class Solver
 [TestFixture]
 internal class SolverTests
 {
-    [Test]
-    [TestCase(-10, 0)]
-    [TestCase(0, 0)]
-    [TestCase(10, 10)]
-    [TestCase(20, 20)]
-    public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedResult)
-    {
-        var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        var result = new Solver().FindExpectedValue(terminalGameState);
-        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
-    }
-
-    [Test]
-    [TestCase(0, 0)]
-    [TestCase(-10, 0)]
-    public void ReturnsZeroWhenPlayerDead(int playerHealth, int expectedResult)
-    {
-        var terminalGameState = new GameState
-        {
-            PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm() }
-        };
-        var result = new Solver().FindExpectedValue(terminalGameState);
-        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
-    }
-
-    [Test]
-    [TestCase(10, 10)]
-    [TestCase(20, 20)]
-    public void ReturnsPlayerHealthWhenPlayerCanWinImmediately(int playerHealth, int expectedResult)
-    {
-        var nonTerminalGameState = new GameState
-        {
-            PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm() },
-            Energy = 3,
-            Hand = new Hand(new Strike(), new Defend())
-        };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
-    }
-
-    [Test]
-    [TestCase(13, 2)]
-    [TestCase(20, 9)]
-    public void ReturnsPlayerHealthMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth, int expectedResult)
-    {
-        var nonTerminalGameState = new GameState
-        {
-            PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
-            DrawPile = new DrawPile(new Strike())
-        };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
-    }
-
-    [Test]
-    [TestCase(13, 7)]
-    [TestCase(20, 14)]
-    public void ReturnsPlayerHealthPlusDefendArmorMinusEnemyAttackWhenPlayerCanWinNextTurn(int playerHealth,
-        int expectedResult)
-    {
-        var nonTerminalGameState = new GameState
-        {
-            PlayerHealth = playerHealth,
-            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
-            Energy = 1,
-            Hand = new Hand(new Defend()),
-            DrawPile = new DrawPile(new Strike())
-        };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(new ExpectedValue(expectedResult, expectedResult), result);
-    }
-
     [Test]
     public void TestCache()
     {
