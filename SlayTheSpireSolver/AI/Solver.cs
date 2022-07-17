@@ -114,6 +114,12 @@ public class Solver
             remainingProbability -= possibility.Probability;
 
             var maximumPossibleEstimate = accumulatedEstimate + possibleMaximum * remainingProbability;
+            if (maximumPossibleEstimate < cutoffValue)
+            {
+                var prunedOutcomes = possibleResultsOfAction.Count - 1 - index;
+                Interlocked.Add(ref PrunedActionOutcomes, prunedOutcomes);
+                return new ExpectedValue(0, 0);
+            }
         }
 
         return new ExpectedValue(accumulatedEstimate, accumulatedRange);
