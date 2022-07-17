@@ -80,6 +80,10 @@ public class Solver
         // If the best expected value is uncertain:
         //  * min should be minimum guaranteed health
         //  * max should be maximum possible health
+        //
+        // SOLUTION:
+        // - min = max(min)
+        // - max = max(max)
         return bestExpectedValue;
     }
 
