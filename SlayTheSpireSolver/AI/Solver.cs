@@ -122,8 +122,7 @@ public class Solver
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
                 Interlocked.Add(ref _prunedActionOutcomes, prunedOutcomes);
-                // BUG: PRUNES MAX RANGE OF ACTIONS WITH HIGHER MAX RANGE THAN THE CUTOFF VALUE
-                return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
+                return new ExpectedValue(double.NegativeInfinity, possibleMaximum);
             }
         }
 
