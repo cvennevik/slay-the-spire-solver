@@ -112,6 +112,8 @@ public class Solver
             accumulatedRange += possibilityExpectedValue.Range;
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability;
             remainingProbability -= possibility.Probability;
+
+            var maximumPossibleEstimate = accumulatedEstimate + possibleMaximum * remainingProbability;
         }
 
         return new ExpectedValue(accumulatedEstimate, accumulatedRange);
