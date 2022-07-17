@@ -196,27 +196,6 @@ internal class SolverTests
     }
 
     [Test]
-    public void TestFullJawWormFight()
-    {
-        var jawWorm = new JawWorm
-        {
-            Health = 44,
-            IntendedMove = new Chomp()
-        };
-        var gameState = new GameState
-        {
-            PlayerHealth = 80,
-            BaseEnergy = 3,
-            Energy = 3,
-            EnemyParty = new[] { jawWorm },
-            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
-            Turn = 1
-        };
-        new Solver().FindExpectedValue(gameState);
-    }
-
-    [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
     public void TestCache(int playerHealth, int expectedResult)
