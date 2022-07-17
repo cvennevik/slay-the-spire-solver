@@ -61,7 +61,9 @@ public class Solver
         gameStateDepthLimit -= 1;
         var bestExpectedValue = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
-        var bestEstimate = 0.0;
+        var bestEstimate = double.NegativeInfinity;
+        var bestMinimum = double.NegativeInfinity;
+        var bestMaximum = double.NegativeInfinity;
         var expectedValueRanges = new List<Range>();
         foreach (var action in playerActions)
         {
