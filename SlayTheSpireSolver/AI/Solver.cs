@@ -70,6 +70,7 @@ public class Solver
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
             bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
             bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
+            bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
             if (expectedValue.Estimate > bestExpectedValue.Estimate)
             {
                 bestEstimate = expectedValue.Estimate;
