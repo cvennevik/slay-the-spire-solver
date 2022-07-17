@@ -47,7 +47,7 @@ public class Solver
             }
         }
 
-        return (gameState.GetLegalActions().First(), 0);
+        return (bestAction, bestActionValueRange.Minimum);
     }
 
     private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
