@@ -69,7 +69,8 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
-            var expectedValue = FindExpectedValue(action, gameStateDepthLimit - 1, bestExpectedValue);
+            var cutoffValue = bestExpectedValue.Minimum;
+            var expectedValue = FindExpectedValue(action, gameStateDepthLimit - 1, cutoffValue);
             if (expectedValue.BestEstimate > bestExpectedValue.BestEstimate)
                 bestExpectedValue = expectedValue;
         }
