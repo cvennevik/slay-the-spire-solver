@@ -34,7 +34,7 @@ public class Solver
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var cutoffAction = actions.First();
-        var cutoffValue = FindExpectedValue(cutoffAction, gameStateDepthLimit).Minimum;
+        var cutoffValue = FindExpectedValue(cutoffAction, gameStateDepthLimit).Range.Minimum;
         return actions
             .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
             .MaxBy(tuple => tuple.Item2);
