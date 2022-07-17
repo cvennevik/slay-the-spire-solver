@@ -125,7 +125,7 @@ public class Solver
             }
         }
 
-        return new ValueRange(aggregatedMinimum, aggregatedMaximum);
+        return aggregatedRange;
     }
 }
 
