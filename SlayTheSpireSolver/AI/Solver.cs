@@ -58,12 +58,16 @@ public class Solver
         if (gameState.IsCombatOver()) return new ExpectedValue(playerHealth);
         if (gameStateDepthLimit <= 0) return new ExpectedValue(new Range(0, playerHealth));
 
+        gameStateDepthLimit -= 1;
         var bestExpectedValue = new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
-        var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
+        var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
+        var firstPossibilityExpectedValue = FindExpectedValue(playerActions.First(), gameStateDepthLimit);
+        var bestEstimate = 0.0;
+        var accumulatedRange = firstPossibilityExpectedValue.Range;
         foreach (var action in playerActions)
         {
             var cutoffValue = bestExpectedValue.Range.Minimum;
-            var expectedValue = FindExpectedValue(action, gameStateDepthLimit - 1, cutoffValue);
+            var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
             if (expectedValue.Estimate > bestExpectedValue.Estimate)
                 bestExpectedValue = expectedValue;
         }
