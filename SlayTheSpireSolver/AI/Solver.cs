@@ -254,4 +254,10 @@ internal class SolverTests
         Assert.LessOrEqual(69, result);
         Assert.LessOrEqual(result, 74);
     }
+
+    [Test]
+    public void FindBestActionThrowsExceptionForTerminalGameState()
+    {
+        var terminalGameState = new GameState { PlayerHealth = 0 };
+    }
 }
