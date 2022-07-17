@@ -1,3 +1,3 @@
 namespace SlayTheSpireSolver.AI;
 
-public record ValueRange(double Minimum, double Maximum);
+public record Range(double Minimum, double Maximum);
