@@ -37,7 +37,7 @@ public class Solver
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
         if (!remainingActions.Any()) return (firstAction, firstActionValueRange);
 
-        var (bestRemainingAction, bestRemainingActionValueRange) = remainingActions
+        var (bestRemainingAction, bestRemainingActionExpectedValue) = remainingActions
             .Select(action =>
             {
                 var expectedValue =
@@ -45,9 +45,9 @@ public class Solver
                 return (action, expectedValue);
             })
             .MaxBy(tuple => tuple.expectedValue);
-        return firstActionValueRange.BestEstimate > bestRemainingActionValueRange.BestEstimate
+        return firstActionValueRange.BestEstimate > bestRemainingActionExpectedValue.BestEstimate
             ? (firstAction, firstActionValueRange)
-            : (bestRemainingAction, bestRemainingActionValueRange);
+            : (bestRemainingAction, bestRemainingActionExpectedValue);
     }
 
     private ExpectedValue FindExpectedValue(GameState gameState, int gameStateDepthLimit)
