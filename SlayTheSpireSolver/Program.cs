@@ -22,7 +22,7 @@ var gameState = new GameState
     Turn = 1
 };
 
-var solver = new Solver { GameStateSearchDepth = 5 };
+var solver = new Solver { GameStateSearchDepth = 0 };
 Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
@@ -41,5 +41,4 @@ Console.WriteLine("");
 Console.WriteLine("STATISTICS");
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
 Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
-Console.WriteLine($"Evaluated actions: {solver.EvaluatedActions}");
 Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
