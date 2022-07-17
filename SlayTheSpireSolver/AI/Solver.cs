@@ -118,7 +118,7 @@ public class Solver
             {
                 var prunedOutcomes = possibleResultsOfAction.Count - 1 - index;
                 Interlocked.Add(ref PrunedActionOutcomes, prunedOutcomes);
-                return new ExpectedValue(0, 0);
+                return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
 
