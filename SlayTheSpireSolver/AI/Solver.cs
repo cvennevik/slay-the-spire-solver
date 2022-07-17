@@ -205,7 +205,7 @@ internal class SolverTests
     }
 
     [Test]
-    public void FindsBestActionWhenPlayerCanWinInTwoOrMoreTurns()
+    public void FindsBestActionWhenOutcomeIsUncertain()
     {
         var gameState = new GameState
         {
