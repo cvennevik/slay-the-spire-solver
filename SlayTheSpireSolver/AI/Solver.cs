@@ -20,7 +20,6 @@ public class Solver
     // TODO:
     //  * Parallelize
     //  * Improve non-terminal game state estimation
-    //  * Return best actions + their expected value
     //  * Improve Rules Engine performance
 
     public double FindExpectedValue(GameState gameState) =>
