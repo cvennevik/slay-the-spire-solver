@@ -115,7 +115,6 @@ public class Solver
             var bestPossibleMaximum = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
             {
-                // The competing action's expected value is strictly higher, stop evaluating this action
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
                 return new ValueRange(0, 0);
