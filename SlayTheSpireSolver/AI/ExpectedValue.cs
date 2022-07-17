@@ -4,7 +4,9 @@ namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue(double Minimum, double Maximum) : IComparable<ExpectedValue>
 {
-    public double BestEstimate => Minimum;
+    public double Minimum { get; init; } = Minimum;
+    public double Maximum { get; init; } = Maximum;
+    public double BestEstimate { get; init; } = Minimum;
 
     public int CompareTo(ExpectedValue? other)
     {
