@@ -34,7 +34,7 @@ public class Solver
         var gameStateDepthLimit = GameStateSearchDepth - 1; // Initial game state counts
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
 
-        // Evaluate first action to get an expected value to prune other actions
+        // Evaluate first action to get an expected value for pruning other actions with
         var firstAction = actions.First();
         var firstActionExpectedValue = FindExpectedValue(firstAction, gameStateDepthLimit, 0);
 
