@@ -92,11 +92,6 @@ public class Solver
         return 0;
     }
 
-    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, ExpectedValue cutoffValue)
-    {
-        return FindExpectedValue(action, gameStateDepthLimit, cutoffValue.Minimum);
-    }
-
     private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
         double cutoffValue = double.MinValue)
     {
