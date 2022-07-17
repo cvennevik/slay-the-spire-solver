@@ -112,8 +112,8 @@ public class Solver
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             actionValueRange += possibilityValueRange * possibility.Probability;
             remainingProbability -= possibility.Probability;
-            var bestPossibleMaximum = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
-            if (bestCompetingMinimum > bestPossibleMaximum)
+            var potentialMaximumValue = actionValueRange.Maximum + highestPossibleHealth * remainingProbability;
+            if (bestCompetingMinimum > potentialMaximumValue)
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
