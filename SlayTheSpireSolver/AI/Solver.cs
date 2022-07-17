@@ -34,9 +34,6 @@ public class Solver
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
         var firstActionExpectedValue = FindExpectedValue(firstAction, GameStateSearchDepth - 1, 0);
-        var remainingActions = actions.Except(new[] { firstAction }).ToList();
-        if (!remainingActions.Any()) return (firstAction, firstActionExpectedValue);
-
         return actions.Select(action =>
             {
                 var expectedValue =
