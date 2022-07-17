@@ -71,7 +71,7 @@ public class Solver
         {
             var cutoffValue = bestExpectedValue.Range.Minimum;
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit - 1, cutoffValue);
-            if (expectedValue.BestEstimate > bestExpectedValue.BestEstimate)
+            if (expectedValue.Estimate > bestExpectedValue.Estimate)
                 bestExpectedValue = expectedValue;
         }
 
@@ -266,7 +266,7 @@ internal class SolverTests
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.AreEqual(new Range(50, 50), expectedValue.Range);
-        Assert.AreEqual(50, expectedValue.BestEstimate);
+        Assert.AreEqual(50, expectedValue.Estimate);
     }
 
     [Test]
