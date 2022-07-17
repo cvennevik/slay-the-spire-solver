@@ -34,9 +34,11 @@ public class Solver
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var cutoffAction = actions.First();
+        var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
         var cutoffValue = FindExpectedValue(cutoffAction, gameStateDepthLimit).Range.Minimum;
         return actions
             .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
+            .Append((cutoffAction, cutoffExpectedValue))
             .MaxBy(tuple => tuple.Item2);
     }
 
@@ -94,7 +96,7 @@ public class Solver
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var possibleMaximum = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
-        if (possibleMaximum < cutoffValue)
+        if (possibleMaximum <= cutoffValue)
         {
             Interlocked.Add(ref PrunedActionOutcomes, possibleResultsOfAction.Count);
             return new ExpectedValue(0, 0);
