@@ -269,6 +269,7 @@ internal class SolverTests
     }
 
     [Test]
+    [Ignore("Slow test")]
     public void TestProblematicRange()
     {
         var jawWorm = new JawWorm
