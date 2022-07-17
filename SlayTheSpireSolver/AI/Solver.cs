@@ -287,6 +287,7 @@ internal class SolverTests
         var expectedAction = new PlayTargetedCardAction(gameState, new Bash(), EnemyId.Default);
         Assert.AreEqual(expectedAction, action5);
         Assert.AreEqual(expectedAction, action9);
+        AssertRangeContains(new Range(0, 80), expectedValue5.Range);
     }
 
     private static void AssertRangeContains(Range range, double value)
