@@ -295,4 +295,21 @@ internal class SolverTests
         Assert.AreEqual(new EndTurnAction(gameState), action);
         Assert.AreEqual(39, value);
     }
+
+    [Test]
+    public void FindsBestActionWhenPlayerCanWinNextTurnWithDefendInHand()
+    {
+        var gameState = new GameState
+        {
+            PlayerHealth = 50,
+            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            Energy = 3,
+            Hand = new Hand(new Defend()),
+            DrawPile = new DrawPile(new Strike())
+        };
+        var solver = new Solver();
+        var (action, value) = solver.FindBestAction(gameState);
+        Assert.AreEqual(new PlayUntargetedCardAction(gameState, new Defend()), action);
+        Assert.AreEqual(44, value);
+    }
 }
