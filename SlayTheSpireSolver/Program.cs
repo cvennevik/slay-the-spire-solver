@@ -35,7 +35,7 @@ var (bestAction, expectedValueRange) = solver.FindBestAction(gameState);
 stopWatch.Stop();
 
 Console.WriteLine("Search complete.");
-Console.WriteLine($"Recommended action: ${bestAction}");
+Console.WriteLine($"Recommended action: {bestAction}");
 Console.WriteLine($"Expected value: {expectedValueRange.ToExpectedValue}");
 Console.WriteLine("");
 Console.WriteLine("STATISTICS");
