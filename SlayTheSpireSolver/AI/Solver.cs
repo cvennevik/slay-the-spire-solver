@@ -210,7 +210,6 @@ internal class SolverTests
         new Solver().FindExpectedValue(gameState);
     }
 
-
     [Test]
     [TestCase(10, 10)]
     [TestCase(20, 20)]
