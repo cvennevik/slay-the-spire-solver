@@ -203,4 +203,19 @@ internal class SolverTests
         Assert.AreEqual(new Range(44, 44), expectedValue.Range);
         Assert.AreEqual(44, expectedValue.Estimate);
     }
+
+    [Test]
+    public void FindsBestActionWhenPlayerCanWinInTwoTurns()
+    {
+        var gameState = new GameState
+        {
+            PlayerHealth = 50,
+            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            BaseEnergy = 1,
+            Energy = 1,
+            Hand = new Hand(new Defend(), new Strike())
+        };
+        var solver = new Solver();
+        var (action, expectedValue) = solver.FindBestAction(gameState);
+    }
 }
