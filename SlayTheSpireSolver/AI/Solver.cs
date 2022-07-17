@@ -30,8 +30,10 @@ public class Solver
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
-        var bestAction = actions.First();
-        var bestActionValueRange = FindExpectedValueRange(bestAction, GameStateSearchDepth, 0);
+        var firstAction = actions.First();
+        var firstActionValueRange = FindExpectedValueRange(firstAction, GameStateSearchDepth, 0);
+        var bestAction = firstAction;
+        var bestActionValueRange = firstActionValueRange;
         var remainingActions = actions.Except(new[] { bestAction });
         foreach (var action in remainingActions)
         {
