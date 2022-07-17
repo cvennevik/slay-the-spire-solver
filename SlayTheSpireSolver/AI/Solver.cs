@@ -92,22 +92,22 @@ public class Solver
         double cutoffValue = double.MinValue)
     {
         Interlocked.Increment(ref EvaluatedActions);
-        var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
-        var possibleMaximum = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
+        var possibleOutcomes = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
+        var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
         {
-            Interlocked.Add(ref PrunedActionOutcomes, possibleResultsOfAction.Count);
+            Interlocked.Add(ref PrunedActionOutcomes, possibleOutcomes.Count);
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
         var firstPossibilityExpectedValue =
-            FindExpectedValue(possibleResultsOfAction.First().GameState, gameStateDepthLimit);
+            FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
         var accumulatedEstimate = 0.0;
         var accumulatedRange = firstPossibilityExpectedValue.Range;
         var remainingProbability = 1.0;
-        for (var index = 0; index < possibleResultsOfAction.Count; index++)
+        for (var index = 0; index < possibleOutcomes.Count; index++)
         {
-            var possibility = possibleResultsOfAction[index];
+            var possibility = possibleOutcomes[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             accumulatedRange += possibilityExpectedValue.Range;
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability;
@@ -117,7 +117,7 @@ public class Solver
             if (maximumPossibleEstimate < cutoffValue)
             {
                 var evaluatedOutcomes = index + 1;
-                var prunedOutcomes = possibleResultsOfAction.Count - evaluatedOutcomes;
+                var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
                 Interlocked.Add(ref PrunedActionOutcomes, prunedOutcomes);
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
