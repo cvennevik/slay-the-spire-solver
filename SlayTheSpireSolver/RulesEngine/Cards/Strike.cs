@@ -23,7 +23,7 @@ internal class StrikeTests : TargetedCardTests<Strike>
         {
             Energy = 3,
             Hand = new Hand(new Strike()),
-            EnemyParty = new[] { new JawWorm { Health = 10 } } 
+            EnemyParty = new[] { new JawWorm { Health = 10 } }
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
