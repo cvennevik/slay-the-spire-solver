@@ -55,12 +55,11 @@ public class Solver
         if (gameStateDepthLimit <= 0) return new ExpectedValueRange(0, gameState.PlayerHealth.Amount);
 
         var bestActionValueRange = new ExpectedValueRange(double.NegativeInfinity, double.NegativeInfinity);
-        var bestPossibleValue = gameState.PlayerHealth.Amount;
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
-            var actionValueRange = FindExpectedValueRange(action, gameStateDepthLimit - 1,
-                bestPossibleValue, bestActionValueRange.Minimum);
+            var actionValueRange =
+                FindExpectedValueRange(action, gameStateDepthLimit - 1, bestActionValueRange.Minimum);
             if (actionValueRange.ToExpectedValue > bestActionValueRange.ToExpectedValue)
                 bestActionValueRange = actionValueRange;
         }
@@ -85,11 +84,11 @@ public class Solver
     }
 
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
-        double bestPossibleValue, double bestCompetingMinimum)
+        double bestCompetingMinimum)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
-        bestPossibleValue = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
+        var bestPossibleValue = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
         var remainingProbability = 1.0;
         var remainingPossibilities = possibleResultsOfAction.Count;
         var aggregatedMinimum = 0.0;
