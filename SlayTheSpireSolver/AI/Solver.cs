@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, ExpectedValueRange> _gameStateCache = new();
+    private readonly ConcurrentDictionary<GameState, ValueRange> _gameStateCache = new();
     public int EvaluatedActions;
     public int EvaluatedGameStates;
     public int GameStateCacheHits;
@@ -25,7 +25,7 @@ public class Solver
     public double FindExpectedValue(GameState gameState) =>
         FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
 
-    public (PlayerAction, ExpectedValueRange) FindBestAction(GameState gameState)
+    public (PlayerAction, ValueRange) FindBestAction(GameState gameState)
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
@@ -44,7 +44,7 @@ public class Solver
             : (bestRemainingAction, bestRemainingActionValueRange);
     }
 
-    private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
+    private ValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
@@ -59,17 +59,17 @@ public class Solver
         return result;
     }
 
-    private ExpectedValueRange FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
+    private ValueRange FindExpectedValueRangeUncached(GameState gameState, int gameStateDepthLimit)
     {
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
-            return new ExpectedValueRange(result, result);
+            return new ValueRange(result, result);
         }
 
-        if (gameStateDepthLimit <= 0) return new ExpectedValueRange(0, gameState.PlayerHealth.Amount);
+        if (gameStateDepthLimit <= 0) return new ValueRange(0, gameState.PlayerHealth.Amount);
 
-        var bestActionValueRange = new ExpectedValueRange(double.NegativeInfinity, double.NegativeInfinity);
+        var bestActionValueRange = new ValueRange(double.NegativeInfinity, double.NegativeInfinity);
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
@@ -96,7 +96,7 @@ public class Solver
         return 0;
     }
 
-    private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
+    private ValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
         double bestCompetingMinimum)
     {
         Interlocked.Increment(ref EvaluatedActions);
@@ -105,7 +105,7 @@ public class Solver
         var remainingProbability = 1.0;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
-        var aggregatedRange = new ExpectedValueRange(0, 0);
+        var aggregatedRange = new ValueRange(0, 0);
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
@@ -121,11 +121,11 @@ public class Solver
                 // The competing action's expected value is strictly higher, stop evaluating this action
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
-                return new ExpectedValueRange(0, 0);
+                return new ValueRange(0, 0);
             }
         }
 
-        return new ExpectedValueRange(aggregatedMinimum, aggregatedMaximum);
+        return new ValueRange(aggregatedMinimum, aggregatedMaximum);
     }
 }
 
