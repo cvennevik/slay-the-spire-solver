@@ -25,7 +25,7 @@ public class Solver
     public double FindExpectedValue(GameState gameState) =>
         FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
 
-    public (PlayerAction, double) FindBestAction(GameState gameState)
+    public (PlayerAction, ExpectedValueRange) FindBestAction(GameState gameState)
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
@@ -45,7 +45,7 @@ public class Solver
             }
         }
 
-        return (bestAction, bestActionValueRange.Minimum);
+        return (bestAction, bestActionValueRange);
     }
 
     private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
@@ -274,9 +274,9 @@ internal class SolverTests
             Hand = new Hand(new Strike())
         };
         var solver = new Solver();
-        var (action, value) = solver.FindBestAction(gameState);
+        var (action, expectedValueRange) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
-        Assert.AreEqual(50, value);
+        Assert.AreEqual(50, expectedValueRange.ToExpectedValue);
     }
 
     [Test]
@@ -289,9 +289,9 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var solver = new Solver();
-        var (action, value) = solver.FindBestAction(gameState);
+        var (action, expectedValueRange) = solver.FindBestAction(gameState);
         Assert.AreEqual(new EndTurnAction(gameState), action);
-        Assert.AreEqual(39, value);
+        Assert.AreEqual(39, expectedValueRange.ToExpectedValue);
     }
 
     [Test]
@@ -306,8 +306,8 @@ internal class SolverTests
             DrawPile = new DrawPile(new Strike())
         };
         var solver = new Solver();
-        var (action, value) = solver.FindBestAction(gameState);
+        var (action, expectedValueRange) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayUntargetedCardAction(gameState, new Defend()), action);
-        Assert.AreEqual(44, value);
+        Assert.AreEqual(44, expectedValueRange.ToExpectedValue);
     }
 }
