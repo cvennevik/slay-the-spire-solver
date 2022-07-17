@@ -60,7 +60,7 @@ public class Solver
         if (gameState.IsCombatOver())
         {
             var result = Math.Max(gameState.PlayerHealth.Amount, 0);
-            return new ExpectedValue(result, result);
+            return new ExpectedValue(result);
         }
 
         if (gameStateDepthLimit <= 0) return new ExpectedValue(0, gameState.PlayerHealth.Amount);
