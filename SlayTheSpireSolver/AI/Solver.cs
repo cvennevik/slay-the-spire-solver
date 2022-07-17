@@ -89,6 +89,7 @@ public class Solver
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
+        bestPossibleValue = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
         var remainingProbability = 1.0;
         var remainingPossibilities = possibleResultsOfAction.Count;
         var aggregatedMinimum = 0.0;
