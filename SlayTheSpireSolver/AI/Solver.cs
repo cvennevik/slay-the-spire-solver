@@ -107,7 +107,8 @@ public class Solver
             combinedExpectedValue += possibilityExpectedValue * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
-            var potentialMaximumValue = combinedExpectedValue.Maximum + highestPossibleHealth * remainingProbability;
+            var potentialMaximumValue =
+                combinedExpectedValue.Range.Maximum + highestPossibleHealth * remainingProbability;
             if (cutoffValue > potentialMaximumValue)
             {
                 var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
