@@ -105,6 +105,7 @@ public class Solver
         var remainingProbability = 1.0;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
+        var aggregatedRange = new ExpectedValueRange(0, 0);
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
             var possibility = possibleResultsOfAction[index];
