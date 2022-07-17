@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.AI;
@@ -243,7 +244,9 @@ internal class SolverTests
     public void FindBestActionThrowsExceptionForTerminalGameState()
     {
         var solver = new Solver();
-        Assert.Throws<ArgumentException>(
-            () => solver.FindBestActionAndExpectedValue(new GameState { PlayerHealth = 0 }));
+        Assert.Throws<ArgumentException>(() => solver.FindBestActionAndExpectedValue(new GameState
+            { PlayerHealth = 0 }));
+        Assert.Throws<ArgumentException>(() => solver.FindBestActionAndExpectedValue(new GameState
+            { PlayerHealth = 10, EnemyParty = new EnemyParty() }));
     }
 }
