@@ -36,8 +36,7 @@ public class Solver
         var pruningAction = actions.First();
         var pruningExpectedValue = FindExpectedValue(pruningAction, gameStateDepthLimit, 0);
         return actions
-            .Select(action =>
-                (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue.Minimum)))
+            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, pruningExpectedValue.Minimum)))
             .MaxBy(tuple => tuple.Item2);
     }
 
