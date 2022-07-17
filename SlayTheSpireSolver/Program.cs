@@ -36,7 +36,7 @@ stopWatch.Stop();
 
 Console.WriteLine("Search complete.");
 Console.WriteLine($"Recommended action: {bestAction}");
-Console.WriteLine($"Expected value: [{expectedValue.Minimum}, {expectedValue.Maximum}]");
+Console.WriteLine($"Expected value: {expectedValue.Estimate}, range: {expectedValue.Range}");
 Console.WriteLine("");
 Console.WriteLine("STATISTICS");
 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
