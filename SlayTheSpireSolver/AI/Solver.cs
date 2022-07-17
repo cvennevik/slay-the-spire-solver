@@ -25,6 +25,7 @@ public class Solver
     //  * Parallelize
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
+    //  * Rules Engine: Remove duplicate actions when same cards in hand
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
@@ -121,6 +122,7 @@ public class Solver
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
                 Interlocked.Add(ref _prunedActionOutcomes, prunedOutcomes);
+                // BUG: PRUNES MAX RANGE OF ACTIONS WITH HIGHER MAX RANGE THAN THE CUTOFF VALUE
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
