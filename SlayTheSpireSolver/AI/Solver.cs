@@ -93,8 +93,8 @@ public class Solver
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
-        var highestPossibleHealth = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
-        if (highestPossibleHealth < cutoffValue)
+        var possibleMaximum = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
+        if (possibleMaximum < cutoffValue)
         {
             Interlocked.Add(ref PrunedActionOutcomes, possibleResultsOfAction.Count);
             return new ExpectedValue(0, 0);
