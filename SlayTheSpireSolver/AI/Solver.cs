@@ -265,5 +265,7 @@ internal class SolverTests
     public void FindBestActionThrowsExceptionForTerminalGameState()
     {
         var terminalGameState = new GameState { PlayerHealth = 0 };
+        var solver = new Solver();
+        Assert.Throws<ArgumentException>(() => solver.FindBestActionAndExpectedValue(terminalGameState));
     }
 }
