@@ -119,7 +119,7 @@ public class Solver
             }
         }
 
-        return combinedExpectedValue;
+        return new ExpectedValue(accumulatedEstimate, accumulatedRange);
     }
 }
 
