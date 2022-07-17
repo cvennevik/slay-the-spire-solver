@@ -234,9 +234,12 @@ internal class SolverTests
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 7 };
-        var (action, expectedValue) = solver.FindBestAction(gameState);
-        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
+        var solver3 = new Solver { GameStateSearchDepth = 7 };
+        var solver4 = new Solver { GameStateSearchDepth = 7 };
+        var solver5 = new Solver { GameStateSearchDepth = 7 };
+        var solver6 = new Solver { GameStateSearchDepth = 7 };
+        var (action7, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
+        Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action7);
     }
 
     private void AssertRangeContains(Range range, double value)
