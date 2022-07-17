@@ -12,5 +12,10 @@ public abstract record PlayCardAction : PlayerAction
                 .Push(cardEffects)
                 .Push(new RemoveCardFromHandEffect(card))
                 .Push(new RemoveEnergyEffect(card.GetCost()))
-        }) { }
+        })
+    {
+        Card = card;
+    }
+
+    public Card Card { get; }
 }
