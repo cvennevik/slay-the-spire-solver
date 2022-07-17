@@ -71,11 +71,7 @@ public class Solver
             bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
             bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
-            if (expectedValue.Estimate > bestExpectedValue.Estimate)
-            {
-                bestEstimate = expectedValue.Estimate;
-                bestExpectedValue = expectedValue;
-            }
+            if (expectedValue.Estimate > bestExpectedValue.Estimate) bestExpectedValue = expectedValue;
         }
 
         // TODO: Return the true range of possible best expected values
