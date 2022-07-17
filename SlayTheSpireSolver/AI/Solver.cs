@@ -97,7 +97,7 @@ public class Solver
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
         {
             Interlocked.Add(ref PrunedActionOutcomes, possibleResultsOfAction.Count);
-            return new ExpectedValue(0, 0);
+            return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
         var firstPossibilityExpectedValue =
