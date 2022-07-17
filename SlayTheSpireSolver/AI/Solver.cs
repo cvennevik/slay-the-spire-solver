@@ -31,7 +31,7 @@ public class Solver
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
-        var gameStateDepthLimit = GameStateSearchDepth - 1;
+        var gameStateDepthLimit = GameStateSearchDepth - 1; // Initial game state counts
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
         var firstActionExpectedValue = FindExpectedValue(firstAction, gameStateDepthLimit, 0);
