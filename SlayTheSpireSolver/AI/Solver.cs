@@ -249,4 +249,10 @@ internal class SolverTests
         Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
             { PlayerHealth = 10, EnemyParty = new EnemyParty() }));
     }
+
+    [Test]
+    public void FindsBestActionWhenPlayerCanWinImmediately()
+    {
+        
+    }
 }
