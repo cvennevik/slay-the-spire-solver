@@ -290,5 +290,8 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
+        var solver = new Solver();
+        var (action, value) = solver.FindBestAction(gameState);
+        Assert.AreEqual(new EndTurnAction(gameState), action);
     }
 }
