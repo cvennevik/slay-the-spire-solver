@@ -110,7 +110,7 @@ public class Solver
             var possibility = possibleResultsOfAction[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             accumulatedRange += possibilityExpectedValue.Range;
-            accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability.Value;
+            accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability;
             remainingProbability -= possibility.Probability;
         }
 
