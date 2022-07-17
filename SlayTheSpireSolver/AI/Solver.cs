@@ -68,7 +68,7 @@ public class Solver
         return bestActionValueRange;
     }
 
-    private int GetActionPriority(PlayerAction action)
+    private static int GetActionPriority(PlayerAction action)
     {
         if (action is PlayCardAction playCardAction)
             switch (playCardAction.Card)
