@@ -239,4 +239,9 @@ internal class SolverTests
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
     }
+
+    private void AssertRangeContains(Range range, double value)
+    {
+        Assert.True(range.Minimum <= value && value <= range.Maximum, $"{range} does not contain {value}");
+    }
 }
