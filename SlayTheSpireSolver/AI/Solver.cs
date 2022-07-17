@@ -280,4 +280,15 @@ internal class SolverTests
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.AreEqual(50, value);
     }
+
+    [Test]
+    public void FindsBestActionWhenPlayerCanWinNextTurn()
+    {
+        var gameState = new GameState
+        {
+            PlayerHealth = 50,
+            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            DrawPile = new DrawPile(new Strike())
+        };
+    }
 }
