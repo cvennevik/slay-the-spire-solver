@@ -228,4 +228,28 @@ internal class SolverTests
         Assert.AreEqual(firstSearchResult, secondSearchResult);
         Assert.LessOrEqual(1, solver.GameStateCacheHits);
     }
+
+    [Test]
+    [TestCase(5)]
+    [TestCase(6)]
+    public void FindsNonTrivialSolution(int searchDepth)
+    {
+        var jawWorm = new JawWorm
+        {
+            Health = 30,
+            IntendedMove = new Chomp()
+        };
+        var gameState = new GameState
+        {
+            PlayerHealth = 80,
+            BaseEnergy = 3,
+            Energy = 3,
+            EnemyParty = new[] { jawWorm },
+            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
+            Turn = 1
+        };
+        var solver = new Solver { GameStateSearchDepth = searchDepth };
+        var result = solver.FindExpectedValue(gameState);
+    }
 }
