@@ -36,8 +36,7 @@ public class Solver
         var firstActionExpectedValue = FindExpectedValue(firstAction, GameStateSearchDepth - 1, 0);
         return actions.Select(action =>
             {
-                var expectedValue =
-                    FindExpectedValue(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
+                var expectedValue = FindExpectedValue(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
                 return (action, expectedValue);
             })
             .MaxBy(tuple => tuple.expectedValue);
