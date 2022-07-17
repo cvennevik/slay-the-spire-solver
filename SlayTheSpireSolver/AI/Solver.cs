@@ -103,7 +103,6 @@ public class Solver
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var bestPossibleValue = possibleResultsOfAction.Max(x => x.GameState.PlayerHealth.Amount);
         var remainingProbability = 1.0;
-        var remainingPossibilities = possibleResultsOfAction.Count;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
@@ -113,12 +112,12 @@ public class Solver
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
             aggregatedMaximum += possibilityValueRange.Maximum * possibility.Probability.Value;
-            remainingPossibilities--;
 
             var bestPossibleMaximum = aggregatedMaximum + bestPossibleValue * remainingProbability;
             if (bestCompetingMinimum > bestPossibleMaximum)
             {
                 // The competing action's expected value is strictly higher, stop evaluating this action
+                var remainingPossibilities = possibleResultsOfAction.Count - index - 1;
                 Interlocked.Add(ref PrunedActionOutcomes, remainingPossibilities);
                 return new ExpectedValueRange(0, 0);
             }
