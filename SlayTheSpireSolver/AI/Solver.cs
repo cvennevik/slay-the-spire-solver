@@ -28,6 +28,12 @@ public class Solver
     public double FindExpectedValue(GameState gameState) =>
         FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
 
+    public (PlayerAction, double) FindBestActionAndExpectedValue(GameState gameState)
+    {
+        if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
+        return (gameState.GetLegalActions().First(), 0);
+    }
+
     private ExpectedValueRange FindExpectedValueRange(GameState gameState, int gameStateDepthLimit)
     {
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
