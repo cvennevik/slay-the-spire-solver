@@ -11,9 +11,11 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
-    public int EvaluatedGameStates;
+    public int EvaluatedGameStates => _evaluatedGameStates;
     public int GameStateCacheHits;
     public int PrunedActionOutcomes;
+
+    private int _evaluatedGameStates;
     public int GameStateSearchDepth { get; init; } = 3;
 
     // TODO:
@@ -45,7 +47,7 @@ public class Solver
             return cachedResult!;
         }
 
-        Interlocked.Increment(ref EvaluatedGameStates);
+        Interlocked.Increment(ref _evaluatedGameStates);
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
         _gameStateCache.TryAdd(gameState, result);
         return result;
