@@ -13,8 +13,9 @@ public class Solver
     private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
     public int EvaluatedGameStates => _evaluatedGameStates;
     public int GameStateCacheHits => _gameStateCacheHits;
-    public int PrunedActionOutcomes;
+    public int PrunedActionOutcomes => _prunedActionOutcomes;
 
+    private int _prunedActionOutcomes;
     private int _evaluatedGameStates;
     private int _gameStateCacheHits;
     public int GameStateSearchDepth { get; init; } = 3;
@@ -97,7 +98,7 @@ public class Solver
         var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
         {
-            Interlocked.Add(ref PrunedActionOutcomes, possibleOutcomes.Count);
+            Interlocked.Add(ref _prunedActionOutcomes, possibleOutcomes.Count);
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
@@ -118,7 +119,7 @@ public class Solver
             {
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
-                Interlocked.Add(ref PrunedActionOutcomes, prunedOutcomes);
+                Interlocked.Add(ref _prunedActionOutcomes, prunedOutcomes);
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
