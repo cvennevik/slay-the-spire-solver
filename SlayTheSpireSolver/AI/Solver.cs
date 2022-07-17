@@ -267,6 +267,21 @@ internal class SolverTests
     [Test]
     public void TestProblematicRange()
     {
+        var jawWorm = new JawWorm
+        {
+            Health = 30,
+            IntendedMove = new Chomp()
+        };
+        var gameState = new GameState
+        {
+            PlayerHealth = 80,
+            BaseEnergy = 3,
+            Energy = 3,
+            EnemyParty = new[] { jawWorm },
+            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
+            Turn = 1
+        };
     }
 
     private static void AssertRangeContains(Range range, double value)
