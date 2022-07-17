@@ -31,12 +31,13 @@ public class Solver
     {
         if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
 
+        var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var firstAction = actions.First();
-        var firstActionExpectedValue = FindExpectedValue(firstAction, GameStateSearchDepth - 1, 0);
+        var firstActionExpectedValue = FindExpectedValue(firstAction, gameStateDepthLimit, 0);
         return actions.Select(action =>
             {
-                var expectedValue = FindExpectedValue(action, GameStateSearchDepth - 1, firstActionExpectedValue.Minimum);
+                var expectedValue = FindExpectedValue(action, gameStateDepthLimit, firstActionExpectedValue.Minimum);
                 return (action, expectedValue);
             })
             .MaxBy(tuple => tuple.expectedValue);
