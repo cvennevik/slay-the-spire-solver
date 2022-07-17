@@ -210,7 +210,7 @@ internal class SolverTests
         var gameState = new GameState
         {
             PlayerHealth = 50,
-            EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
+            EnemyParty = new[] { new JawWorm { Health = 13, IntendedMove = new Chomp() } },
             BaseEnergy = 1,
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
