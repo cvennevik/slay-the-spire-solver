@@ -42,11 +42,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
         };
     }
 
-    public bool IsStrictlyBetterThan(ExpectedValue other)
-    {
-        return Range.Minimum > other.Range.Maximum;
-    }
-
     public override string ToString()
     {
         return $"{{Estimate: {Estimate}, Range: {Range}}}";
