@@ -29,7 +29,7 @@ public class Solver
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
-        if (gameState.IsCombatOver()) throw new ArgumentException("Cannot find best actions for terminal game states");
+        if (!gameState.GetLegalActions().Any()) throw new ArgumentException("Game state has no legal actions");
 
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
