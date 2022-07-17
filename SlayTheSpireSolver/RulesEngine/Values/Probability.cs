@@ -4,39 +4,31 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public record Probability
 {
-    public double Value { get; }
-
     public Probability(double value)
     {
         if (value is > 1 or < 0)
-        {
             throw new ArgumentException("Probability value must be between 1 and 0", nameof(value));
-        }
 
         Value = value;
     }
 
-    public Probability Add(Probability other)
-    {
-        return new Probability(Value + other.Value);
-    }
+    public double Value { get; }
 
-    public bool IsEqualTo(Probability other, double tolerance = double.Epsilon)
-    {
-        return Math.Abs(Value - other.Value) < tolerance;
-    }
+    public Probability Add(Probability other) => new Probability(Value + other.Value);
 
+    public bool IsEqualTo(Probability other, double tolerance = double.Epsilon) =>
+        Math.Abs(Value - other.Value) < tolerance;
+
+    public static double operator -(double number, Probability probability) => number - probability.Value;
     public static Probability operator *(Probability a, Probability b) => new(a.Value * b.Value);
 
-    public static implicit operator Probability(double value)
-    {
-        return value switch
+    public static implicit operator Probability(double value) =>
+        value switch
         {
             < 0 => new Probability(0),
             > 1 => new Probability(1),
             _ => new Probability(value)
         };
-    }
 }
 
 [TestFixture]
@@ -52,14 +44,8 @@ internal class ProbabilityTests
     }
 
     [Test]
-    public void ThrowsExceptionForValueAboveOne()
-    {
-        Assert.Throws<ArgumentException>(() => new Probability(1.01));
-    }
+    public void ThrowsExceptionForValueAboveOne() => Assert.Throws<ArgumentException>(() => new Probability(1.01));
 
     [Test]
-    public void ThrowsExceptionForValueBelowZero()
-    {
-        Assert.Throws<ArgumentException>(() => new Probability(-0.01));
-    }
+    public void ThrowsExceptionForValueBelowZero() => Assert.Throws<ArgumentException>(() => new Probability(-0.01));
 }
