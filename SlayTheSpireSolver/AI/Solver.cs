@@ -64,14 +64,12 @@ public class Solver
         var bestEstimate = double.NegativeInfinity;
         var bestMinimum = double.NegativeInfinity;
         var bestMaximum = double.NegativeInfinity;
-        var expectedValueRanges = new List<Range>();
         foreach (var action in playerActions)
         {
             var cutoffValue = bestExpectedValue.Range.Minimum;
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, cutoffValue);
             bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
             bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
-            expectedValueRanges.Add(expectedValue.Range);
             if (expectedValue.Estimate > bestEstimate)
             {
                 bestEstimate = expectedValue.Estimate;
