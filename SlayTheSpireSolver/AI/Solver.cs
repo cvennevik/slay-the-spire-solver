@@ -100,9 +100,9 @@ public class Solver
             return new ExpectedValue(0, 0);
         }
 
-        var accumulatedEstimate = 0.0;
         var firstPossibilityExpectedValue =
             FindExpectedValue(possibleResultsOfAction.First().GameState, gameStateDepthLimit);
+        var accumulatedEstimate = 0.0;
         var accumulatedRange = firstPossibilityExpectedValue.Range;
         for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
