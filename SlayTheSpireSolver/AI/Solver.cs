@@ -260,12 +260,12 @@ internal class SolverTests
         AssertRangeContains(expectedValue6.Range, expectedValue7.Range);
     }
 
-    private void AssertRangeContains(Range range, double value)
+    private static void AssertRangeContains(Range range, double value)
     {
         Assert.True(range.Minimum <= value && value <= range.Maximum, $"{range} does not contain {value}");
     }
 
-    private void AssertRangeContains(Range range, Range otherRange)
+    private static void AssertRangeContains(Range range, Range otherRange)
     {
         Assert.True(range.Minimum <= otherRange.Minimum && otherRange.Maximum <= range.Maximum,
             $"{range} does not contain {otherRange}");
