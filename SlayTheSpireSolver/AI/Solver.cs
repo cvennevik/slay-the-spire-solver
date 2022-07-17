@@ -21,9 +21,6 @@ public class Solver
     //  * Parallelize
     //  * Improve non-terminal game state estimation
     //  * Return best actions + their expected value
-    //  * Check correctness
-    //      * Write tests for game states solvable in few steps
-    //      * Try playing a real game using the solver
     //  * Improve Rules Engine performance
 
     public double FindExpectedValue(GameState gameState) =>
