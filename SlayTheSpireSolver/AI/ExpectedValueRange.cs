@@ -14,9 +14,18 @@ public record ValueRange
     public double Minimum { get; init; }
     public double Maximum { get; init; }
 
-    public static ValueRange operator +(ValueRange a, ValueRange b) =>
-        new(a.Minimum + b.Minimum, a.Minimum + b.Maximum);
+    public static ValueRange operator +(ValueRange a, ValueRange b)
+    {
+        return new(a.Minimum + b.Minimum, a.Minimum + b.Maximum);
+    }
 
-    public static ValueRange operator *(ValueRange range, Probability probability) =>
-        new(range.Minimum * probability.Value, range.Maximum * probability.Value);
+    public static ValueRange operator *(ValueRange range, Probability probability)
+    {
+        return new(range.Minimum * probability.Value, range.Maximum * probability.Value);
+    }
+
+    public bool StrictlyBetterThan(ValueRange otherRange)
+    {
+        return Minimum > otherRange.Maximum;
+    }
 }
