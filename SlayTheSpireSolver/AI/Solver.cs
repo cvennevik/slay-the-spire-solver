@@ -96,7 +96,8 @@ public class Solver
         return FindExpectedValue(action, gameStateDepthLimit, cutoffValue.Minimum);
     }
 
-    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit, double cutoffValue = 0)
+    private ExpectedValue FindExpectedValue(PlayerAction action, int gameStateDepthLimit,
+        double cutoffValue = double.MinValue)
     {
         Interlocked.Increment(ref EvaluatedActions);
         var possibleResultsOfAction = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
