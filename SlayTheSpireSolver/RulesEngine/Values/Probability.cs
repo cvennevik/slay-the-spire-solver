@@ -14,21 +14,35 @@ public record Probability
 
     public double Value { get; }
 
-    public Probability Add(Probability other) => new(Value + other.Value);
+    public Probability Add(Probability other)
+    {
+        return new(Value + other.Value);
+    }
 
-    public bool IsEqualTo(Probability other, double tolerance = double.Epsilon) =>
-        Math.Abs(Value - other.Value) < tolerance;
+    public bool IsEqualTo(Probability other, double tolerance = double.Epsilon)
+    {
+        return Math.Abs(Value - other.Value) < tolerance;
+    }
 
-    public static double operator -(double number, Probability probability) => number - probability.Value;
-    public static Probability operator *(Probability a, Probability b) => new(a.Value * b.Value);
+    public static double operator -(double number, Probability probability)
+    {
+        return number - probability.Value;
+    }
 
-    public static implicit operator Probability(double value) =>
-        value switch
+    public static Probability operator *(Probability a, Probability b)
+    {
+        return new(a.Value * b.Value);
+    }
+
+    public static implicit operator Probability(double value)
+    {
+        return value switch
         {
             < 0 => new Probability(0),
             > 1 => new Probability(1),
             _ => new Probability(value)
         };
+    }
 }
 
 [TestFixture]
@@ -44,8 +58,14 @@ internal class ProbabilityTests
     }
 
     [Test]
-    public void ThrowsExceptionForValueAboveOne() => Assert.Throws<ArgumentException>(() => new Probability(1.01));
+    public void ThrowsExceptionForValueAboveOne()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(1.01));
+    }
 
     [Test]
-    public void ThrowsExceptionForValueBelowZero() => Assert.Throws<ArgumentException>(() => new Probability(-0.01));
+    public void ThrowsExceptionForValueBelowZero()
+    {
+        Assert.Throws<ArgumentException>(() => new Probability(-0.01));
+    }
 }
