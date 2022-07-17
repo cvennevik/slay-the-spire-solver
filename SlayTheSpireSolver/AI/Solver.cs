@@ -35,6 +35,10 @@ public class Solver
         var remainingActions = actions.Except(new[] { firstAction }).ToList();
         if (!remainingActions.Any()) return (firstAction, firstActionValueRange);
 
+        var result = remainingActions
+            .Select(action => (action,
+                FindExpectedValueRange(action, GameStateSearchDepth, firstActionValueRange.Minimum)));
+
         var bestAction = firstAction;
         var bestActionValueRange = firstActionValueRange;
         foreach (var action in remainingActions)
