@@ -69,7 +69,7 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority);
         foreach (var action in playerActions)
         {
-            var cutoffValue = bestExpectedValue.Minimum;
+            var cutoffValue = bestExpectedValue.Range.Minimum;
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit - 1, cutoffValue);
             if (expectedValue.BestEstimate > bestExpectedValue.BestEstimate)
                 bestExpectedValue = expectedValue;
@@ -238,8 +238,8 @@ internal class SolverTests
         };
         var solver = new Solver { GameStateSearchDepth = searchDepth };
         var result = solver.FindExpectedValue(gameState);
-        Assert.LessOrEqual(69, result.Minimum);
-        Assert.LessOrEqual(result.Maximum, 74);
+        Assert.LessOrEqual(69, result.Range.Minimum);
+        Assert.LessOrEqual(result.Range.Maximum, 74);
     }
 
     [Test]
@@ -263,10 +263,9 @@ internal class SolverTests
             Hand = new Hand(new Strike())
         };
         var solver = new Solver();
-        var (action, expectedValueRange) = solver.FindBestAction(gameState);
+        var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
-        Assert.AreEqual(50, expectedValueRange.Minimum);
-        Assert.AreEqual(50, expectedValueRange.Maximum);
+        Assert.AreEqual(new Range(50, 50), expectedValue.Range);
     }
 
     [Test]
