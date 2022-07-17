@@ -14,7 +14,7 @@ public record Probability
 
     public double Value { get; }
 
-    public Probability Add(Probability other) => new Probability(Value + other.Value);
+    public Probability Add(Probability other) => new(Value + other.Value);
 
     public bool IsEqualTo(Probability other, double tolerance = double.Epsilon) =>
         Math.Abs(Value - other.Value) < tolerance;
