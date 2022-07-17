@@ -4,6 +4,12 @@ namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue : IComparable<ExpectedValue>
 {
+    public ExpectedValue(Range range)
+    {
+        Range = range;
+        Estimate = range.Minimum;
+    }
+
     public ExpectedValue(double minimum, double maximum)
     {
         Range = new Range(minimum, maximum);
