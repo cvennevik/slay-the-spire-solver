@@ -106,8 +106,9 @@ public class Solver
         var remainingPossibilities = possibleResultsOfAction.Count;
         var aggregatedMinimum = 0.0;
         var aggregatedMaximum = 0.0;
-        foreach (var possibility in possibleResultsOfAction)
+        for (var index = 0; index < possibleResultsOfAction.Count; index++)
         {
+            var possibility = possibleResultsOfAction[index];
             remainingProbability -= possibility.Probability.Value;
             var possibilityValueRange = FindExpectedValueRange(possibility.GameState, gameStateDepthLimit);
             aggregatedMinimum += possibilityValueRange.Minimum * possibility.Probability.Value;
