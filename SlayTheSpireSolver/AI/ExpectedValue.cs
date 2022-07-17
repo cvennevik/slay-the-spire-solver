@@ -2,12 +2,24 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.AI;
 
-public record ExpectedValue(double Minimum, double Maximum) : IComparable<ExpectedValue>
+public record ExpectedValue : IComparable<ExpectedValue>
 {
-    public Range Range { get; init; } = new(Minimum, Maximum);
-    public double Minimum { get; init; } = Minimum;
-    public double Maximum { get; init; } = Maximum;
-    public double Estimate { get; init; } = Minimum;
+    public ExpectedValue(double Minimum, double Maximum)
+    {
+        Range = new Range(Minimum, Maximum);
+        this.Minimum = Minimum;
+        this.Maximum = Maximum;
+        Estimate = Minimum;
+    }
+
+    public ExpectedValue()
+    {
+    }
+
+    public Range Range { get; init; }
+    public double Minimum { get; init; }
+    public double Maximum { get; init; }
+    public double Estimate { get; init; }
 
     public int CompareTo(ExpectedValue? other)
     {
@@ -30,5 +42,11 @@ public record ExpectedValue(double Minimum, double Maximum) : IComparable<Expect
     public static ExpectedValue operator *(ExpectedValue range, Probability probability)
     {
         return new ExpectedValue(range.Minimum * probability.Value, range.Maximum * probability.Value);
+    }
+
+    public void Deconstruct(out double Minimum, out double Maximum)
+    {
+        Minimum = this.Minimum;
+        Maximum = this.Maximum;
     }
 }
