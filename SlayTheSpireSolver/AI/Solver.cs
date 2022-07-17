@@ -68,6 +68,8 @@ public class Solver
         return bestActionValueRange;
     }
 
+    private int GetActionPriority(PlayerAction action) => 0;
+
     private ExpectedValueRange FindExpectedValueRange(PlayerAction action, int gameStateDepthLimit,
         double bestPossibleValue, double bestCompetingMinimum)
     {
@@ -96,8 +98,6 @@ public class Solver
 
         return new ExpectedValueRange(aggregatedMinimum, aggregatedMaximum);
     }
-
-    private int GetActionPriority(PlayerAction action) => 0;
 }
 
 [TestFixture]
