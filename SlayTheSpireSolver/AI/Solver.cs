@@ -39,7 +39,7 @@ public class Solver
         var remainingActions = actions.Except(new[] { bestAction });
         foreach (var action in remainingActions)
         {
-            var actionValueRange = FindExpectedValueRange(action, GameStateSearchDepth, 0);
+            var actionValueRange = FindExpectedValueRange(action, GameStateSearchDepth, bestActionValueRange.Minimum);
         }
 
         return (gameState.GetLegalActions().First(), 0);
