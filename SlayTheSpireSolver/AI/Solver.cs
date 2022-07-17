@@ -10,15 +10,16 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
+    public int GameStateSearchDepth { get; init; } = 3;
     public int EvaluatedGameStates => _evaluatedGameStates;
     public int GameStateCacheHits => _gameStateCacheHits;
     public int PrunedActionOutcomes => _prunedActionOutcomes;
-    public int GameStateSearchDepth { get; init; } = 3;
 
     private int _evaluatedGameStates;
     private int _gameStateCacheHits;
     private int _prunedActionOutcomes;
+
+    private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
 
     // TODO:
     //  * Parallelize
