@@ -243,4 +243,10 @@ internal class SolverTests
     {
         Assert.True(range.Minimum <= value && value <= range.Maximum, $"{range} does not contain {value}");
     }
+
+    private void AssertRangeContains(Range range, Range otherRange)
+    {
+        Assert.True(range.Minimum <= otherRange.Minimum && otherRange.Maximum <= range.Maximum,
+            $"{range} does not contain {otherRange}");
+    }
 }
