@@ -28,9 +28,4 @@ public record ExpectedValue(double Minimum, double Maximum) : IComparable<Expect
     {
         return new ExpectedValue(range.Minimum * probability.Value, range.Maximum * probability.Value);
     }
-
-    public bool StrictlyBetterThan(ExpectedValue other)
-    {
-        return Minimum > other.Maximum;
-    }
 }
