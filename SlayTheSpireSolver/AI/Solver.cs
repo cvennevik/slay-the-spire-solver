@@ -22,9 +22,9 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
 
-    public double FindExpectedValue(GameState gameState)
+    public ValueRange FindExpectedValueRange(GameState gameState)
     {
-        return FindExpectedValueRange(gameState, GameStateSearchDepth).ToExpectedValue;
+        return FindExpectedValueRange(gameState, GameStateSearchDepth);
     }
 
     public (PlayerAction, ValueRange) FindBestAction(GameState gameState)
@@ -135,8 +135,8 @@ internal class SolverTests
     public void ReturnsPlayerHealthWhenNoEnemiesLeft(int playerHealth, int expectedResult)
     {
         var terminalGameState = new GameState { PlayerHealth = playerHealth };
-        var result = new Solver().FindExpectedValue(terminalGameState);
-        Assert.AreEqual(expectedResult, result);
+        var result = new Solver().FindExpectedValueRange(terminalGameState);
+        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -149,8 +149,8 @@ internal class SolverTests
             PlayerHealth = playerHealth,
             EnemyParty = new[] { new JawWorm() }
         };
-        var result = new Solver().FindExpectedValue(terminalGameState);
-        Assert.AreEqual(expectedResult, result);
+        var result = new Solver().FindExpectedValueRange(terminalGameState);
+        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -165,8 +165,8 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedResult, result);
+        var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
+        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -180,8 +180,8 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedResult, result);
+        var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
+        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -198,8 +198,8 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var result = new Solver().FindExpectedValue(nonTerminalGameState);
-        Assert.AreEqual(expectedResult, result);
+        var result = new Solver().FindExpectedValueRange(nonTerminalGameState);
+        Assert.AreEqual(new ValueRange(expectedResult, expectedResult), result);
     }
 
     [Test]
@@ -215,8 +215,8 @@ internal class SolverTests
             Hand = new Hand(new Strike(), new Defend())
         };
         var solver = new Solver();
-        var firstSearchResult = solver.FindExpectedValue(nonTerminalGameState);
-        var secondSearchResult = solver.FindExpectedValue(nonTerminalGameState);
+        var firstSearchResult = solver.FindExpectedValueRange(nonTerminalGameState);
+        var secondSearchResult = solver.FindExpectedValueRange(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
         Assert.LessOrEqual(1, solver.GameStateCacheHits);
     }
@@ -241,9 +241,9 @@ internal class SolverTests
             Turn = 1
         };
         var solver = new Solver { GameStateSearchDepth = searchDepth };
-        var result = solver.FindExpectedValue(gameState);
-        Assert.LessOrEqual(69, result);
-        Assert.LessOrEqual(result, 74);
+        var result = solver.FindExpectedValueRange(gameState);
+        Assert.LessOrEqual(69, result.Minimum);
+        Assert.LessOrEqual(result.Maximum, 74);
     }
 
     [Test]
