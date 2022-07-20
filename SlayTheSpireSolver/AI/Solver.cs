@@ -295,16 +295,16 @@ internal class SolverTests
         var (action2, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
         var (action4, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
         var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
-        var (action9, expectedValue9) = new Solver { GameStateSearchDepth = 9 }.FindBestAction(gameState);
+        // Slow, skip for now
+        // var (action9, expectedValue9) = new Solver { GameStateSearchDepth = 9 }.FindBestAction(gameState);
         var expectedAction = new PlayTargetedCardAction(gameState, new Bash(), EnemyId.Default);
         Assert.AreEqual(expectedAction, action2);
         Assert.AreEqual(expectedAction, action4);
         Assert.AreEqual(expectedAction, action5);
-        Assert.AreEqual(expectedAction, action9);
         AssertRangeContains(new Range(0, 80), expectedValue2.Range);
         AssertRangeContains(expectedValue2.Range, expectedValue4.Range);
         // SHOULD PASS: AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
-        AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
+        // AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
     }
 
     [Test]
