@@ -21,7 +21,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
     {
     }
 
-    public Range Range { get; }
+    private Range Range { get; }
     public double Estimate { get; }
     public double Minimum => Range.Minimum;
     public double Maximum => Range.Maximum;
