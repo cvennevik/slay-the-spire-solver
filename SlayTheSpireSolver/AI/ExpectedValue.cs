@@ -4,6 +4,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
 {
     public ExpectedValue(double minimum, double estimate, double maximum)
     {
+        var tolerance = 0.001;
         Range = new Range(minimum, maximum);
         Estimate = estimate;
     }
