@@ -5,7 +5,9 @@ public record ExpectedValue : IComparable<ExpectedValue>
     public ExpectedValue(double minimum, double estimate, double maximum)
     {
         var tolerance = 0.001;
-        if (minimum > estimate && minimum - estimate > tolerance) throw new ArgumentException();
+        if (minimum > estimate && minimum - estimate > tolerance)
+            throw new ArgumentException(
+                $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
         Range = new Range(minimum, maximum);
         Estimate = estimate;
     }
