@@ -4,9 +4,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
 {
     public ExpectedValue(double minimum, double estimate, double maximum)
     {
-        if (minimum > estimate)
-            throw new ArgumentException(
-                $"Illegal expected value: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
         Range = new Range(minimum, maximum);
         Estimate = estimate;
     }
