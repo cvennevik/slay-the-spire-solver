@@ -17,10 +17,8 @@ public record ExpectedValue : IComparable<ExpectedValue>
     {
     }
 
-    public ExpectedValue(double estimate)
+    public ExpectedValue(double estimate) : this(estimate, estimate, estimate)
     {
-        Estimate = estimate;
-        Range = new Range(estimate, estimate);
     }
 
     public Range Range { get; }
