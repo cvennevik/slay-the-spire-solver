@@ -339,14 +339,14 @@ internal class SolverTests
         var (_, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
         var (_, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
         var (_, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
-        AssertRangeContains(new Range(0, 80), expectedValue1.Range);
-        AssertRangeContains(expectedValue1.Range, expectedValue2.Range);
-        AssertRangeContains(expectedValue2.Range, expectedValue3.Range);
-        AssertRangeContains(expectedValue3.Range, expectedValue4.Range);
-        AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
-        AssertRangeContains(expectedValue5.Range, expectedValue6.Range);
-        AssertRangeContains(expectedValue6.Range, expectedValue7.Range);
-        AssertRangeContains(expectedValue7.Range, expectedValue8.Range);
+        AssertRangeContains(new ExpectedValue(0, 80), expectedValue1);
+        AssertRangeContains(expectedValue1, expectedValue2);
+        AssertRangeContains(expectedValue2, expectedValue3);
+        AssertRangeContains(expectedValue3, expectedValue4);
+        AssertRangeContains(expectedValue4, expectedValue5);
+        AssertRangeContains(expectedValue5, expectedValue6);
+        AssertRangeContains(expectedValue6, expectedValue7);
+        AssertRangeContains(expectedValue7, expectedValue8);
     }
 
 
