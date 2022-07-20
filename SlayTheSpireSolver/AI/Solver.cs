@@ -307,6 +307,45 @@ internal class SolverTests
         AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
     }
 
+    [Test]
+    [Ignore("Fails")]
+    public void TestProblematicRangeOneStepFurtherDown()
+    {
+        var jawWorm = new JawWorm
+        {
+            Health = 22,
+            IntendedMove = new Chomp(),
+            Vulnerable = 2
+        };
+        var gameState = new GameState
+        {
+            PlayerHealth = 80,
+            BaseEnergy = 3,
+            Energy = 1,
+            EnemyParty = new[] { jawWorm },
+            Hand = new Hand(new Strike(), new Strike(), new Strike(), new Defend()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
+            DiscardPile = new DiscardPile(new Bash()),
+            Turn = 1
+        };
+        var (_, expectedValue1) = new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState);
+        var (_, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
+        var (_, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
+        var (_, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
+        var (_, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
+        var (_, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
+        var (_, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
+        var (_, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
+        AssertRangeContains(new Range(0, 80), expectedValue1.Range);
+        AssertRangeContains(expectedValue1.Range, expectedValue2.Range);
+        AssertRangeContains(expectedValue2.Range, expectedValue3.Range);
+        AssertRangeContains(expectedValue3.Range, expectedValue4.Range);
+        AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
+        AssertRangeContains(expectedValue5.Range, expectedValue6.Range);
+        AssertRangeContains(expectedValue6.Range, expectedValue7.Range);
+        AssertRangeContains(expectedValue7.Range, expectedValue8.Range);
+    }
+
     private static void AssertRangeContains(Range range, double value)
     {
         Assert.True(range.Minimum <= value && value <= range.Maximum, $"{range} does not contain {value}");
