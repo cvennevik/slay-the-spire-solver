@@ -12,6 +12,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Range = new Range(minimum, maximum);
         Minimum = minimum;
         Estimate = estimate;
+        Maximum = maximum;
     }
 
     public ExpectedValue(double minimum, double maximum) : this(minimum, minimum, maximum)
@@ -25,7 +26,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
     private Range Range { get; }
     public double Estimate { get; }
     public double Minimum { get; }
-    public double Maximum => Range.Maximum;
+    public double Maximum { get; }
 
     public int CompareTo(ExpectedValue? other)
     {
