@@ -13,10 +13,8 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Estimate = estimate;
     }
 
-    public ExpectedValue(double minimum, double maximum)
+    public ExpectedValue(double minimum, double maximum) : this(minimum, minimum, maximum)
     {
-        Range = new Range(minimum, maximum);
-        Estimate = minimum;
     }
 
     public ExpectedValue(double estimate)
