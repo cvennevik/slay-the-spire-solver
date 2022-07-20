@@ -36,7 +36,7 @@ public class Solver
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var cutoffAction = actions.First();
         var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
-        var cutoffValue = cutoffExpectedValue.Range.Minimum;
+        var cutoffValue = cutoffExpectedValue.Minimum;
         return actions
             .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
             .Append((cutoffAction, cutoffExpectedValue))
@@ -62,7 +62,7 @@ public class Solver
     {
         var playerHealth = Math.Max(gameState.PlayerHealth.Amount, 0);
         if (gameState.IsCombatOver()) return new ExpectedValue(playerHealth);
-        if (gameStateDepthLimit <= 0) return new ExpectedValue(new Range(0, playerHealth));
+        if (gameStateDepthLimit <= 0) return new ExpectedValue(0, playerHealth);
 
         gameStateDepthLimit -= 1;
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
@@ -72,8 +72,8 @@ public class Solver
         foreach (var action in playerActions)
         {
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestEstimate);
-            bestMinimum = Math.Max(bestMinimum, expectedValue.Range.Minimum);
-            bestMaximum = Math.Max(bestMaximum, expectedValue.Range.Maximum);
+            bestMinimum = Math.Max(bestMinimum, expectedValue.Minimum);
+            bestMaximum = Math.Max(bestMaximum, expectedValue.Maximum);
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
         }
 
