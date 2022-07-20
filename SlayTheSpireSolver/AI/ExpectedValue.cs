@@ -5,10 +5,8 @@ public record ExpectedValue : IComparable<ExpectedValue>
     public ExpectedValue(double minimum, double estimate, double maximum)
     {
         const double tolerance = 0.0000000000001;
-        if (minimum > estimate && minimum - estimate > tolerance)
-            throw new ArgumentException(
-                $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
-        if (estimate > maximum && estimate - maximum > tolerance)
+        if ((minimum > estimate && minimum - estimate > tolerance) ||
+            (estimate > maximum && estimate - maximum > tolerance))
             throw new ArgumentException(
                 $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
         Range = new Range(minimum, maximum);
