@@ -8,6 +8,12 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Estimate = range.Minimum;
     }
 
+    public ExpectedValue(double minimum, double estimate, double maximum)
+    {
+        Range = new Range(minimum, maximum);
+        Estimate = estimate;
+    }
+
     public ExpectedValue(double minimum, double maximum)
     {
         Range = new Range(minimum, maximum);
