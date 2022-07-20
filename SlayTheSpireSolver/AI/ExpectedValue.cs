@@ -10,6 +10,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
             throw new ArgumentException(
                 $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
         Range = new Range(minimum, maximum);
+        Minimum = minimum;
         Estimate = estimate;
     }
 
@@ -23,7 +24,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
 
     private Range Range { get; }
     public double Estimate { get; }
-    public double Minimum => Range.Minimum;
+    public double Minimum { get; }
     public double Maximum => Range.Maximum;
 
     public int CompareTo(ExpectedValue? other)
