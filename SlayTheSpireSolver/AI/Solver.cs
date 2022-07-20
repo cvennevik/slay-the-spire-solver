@@ -236,7 +236,6 @@ internal class SolverTests
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.LessOrEqual(0, expectedValue.Minimum);
         Assert.LessOrEqual(expectedValue.Maximum, 39);
-        AssertRangeContains(expectedValue.Range, expectedValue.Estimate);
     }
 
     [Test]
