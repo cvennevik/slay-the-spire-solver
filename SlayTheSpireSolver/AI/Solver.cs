@@ -304,7 +304,7 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action2);
         Assert.AreEqual(expectedAction, action4);
         Assert.AreEqual(expectedAction, action5);
-        AssertRangeContains(new Range(0, 80), expectedValue2.Range);
+        AssertRangeContains(new ExpectedValue(0, 80), expectedValue2);
         AssertRangeContains(expectedValue2.Range, expectedValue4.Range);
         // SHOULD PASS: AssertRangeContains(expectedValue4.Range, expectedValue5.Range);
         // AssertRangeContains(expectedValue5.Range, expectedValue9.Range);
