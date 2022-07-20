@@ -115,6 +115,7 @@ public class Solver
         {
             var possibility = possibleOutcomes[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
+            lowestMinimum = Math.Min(lowestMinimum, possibilityExpectedValue.Minimum);
             accumulatedRange += possibilityExpectedValue.Range;
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability;
             remainingProbability -= possibility.Probability;
