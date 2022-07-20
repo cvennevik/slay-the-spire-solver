@@ -26,7 +26,6 @@ public class Solver
     //  * Improve non-terminal game state estimation
     //  * Improve Rules Engine performance
     //  * Rules Engine: Remove duplicate actions when same cards in hand
-    //  * Flatten ExpectedValue (remove Range)
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
