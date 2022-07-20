@@ -8,6 +8,9 @@ public record ExpectedValue : IComparable<ExpectedValue>
         if (minimum > estimate && minimum - estimate > tolerance)
             throw new ArgumentException(
                 $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
+        if (estimate > maximum && estimate - maximum > tolerance)
+            throw new ArgumentException(
+                $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
         Range = new Range(minimum, maximum);
         Estimate = estimate;
     }
