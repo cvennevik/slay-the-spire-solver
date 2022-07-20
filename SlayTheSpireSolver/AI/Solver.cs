@@ -136,7 +136,7 @@ public class Solver
             }
         }
 
-        return new ExpectedValue(accumulatedRange.Minimum, accumulatedEstimate, accumulatedRange.Maximum);
+        return new ExpectedValue(lowestMinimum, accumulatedEstimate, highestMaximum);
     }
 }
 
