@@ -107,6 +107,8 @@ public class Solver
 
         var firstOutcomeExpectedValue = FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
         var accumulatedEstimate = 0.0;
+        var lowestMinimum = firstOutcomeExpectedValue.Minimum;
+        var highestMaximum = firstOutcomeExpectedValue.Maximum;
         var accumulatedRange = firstOutcomeExpectedValue.Range;
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleOutcomes.Count; index++)
