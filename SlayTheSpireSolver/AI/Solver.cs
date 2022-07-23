@@ -78,6 +78,11 @@ public class Solver
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
         }
 
+        var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
+        var cutoffAction = actions.First();
+        var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
+        var cutoffValue = cutoffExpectedValue.Minimum;
+
         return new ExpectedValue(bestMinimum, bestEstimate);
     }
 
