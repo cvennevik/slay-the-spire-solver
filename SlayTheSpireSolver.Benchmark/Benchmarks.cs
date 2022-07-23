@@ -28,6 +28,6 @@ public class Benchmarks
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        return new Solver(1).FindBestAction(gameState);
+        return new Solver(3).FindBestAction(gameState);
     }
 }
