@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine;
@@ -75,3 +76,8 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 }
 
 // TODO: Add common CardCollection tests
+
+[TestFixture]
+internal abstract class CardCollectionTests<T> where T : CardCollection<T>
+{
+}
