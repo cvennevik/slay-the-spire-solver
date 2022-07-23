@@ -360,9 +360,8 @@ internal class SolverTests
         foreach (var expectedValuesGroup in expectedValuesByAction)
         {
             var expectedValues = expectedValuesGroup.Select(x => x.Item2).ToList();
-            for (int i = 0; i < expectedValues.Count; i++)
-            {
-            }
+            for (var i = 0; i < expectedValues.Count - 1; i++)
+                Assert.LessOrEqual(expectedValues[i].Minimum, expectedValues[i + 1].Minimum);
         }
     }
 }
