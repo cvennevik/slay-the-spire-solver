@@ -2,19 +2,16 @@ namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue : IComparable<ExpectedValue>
 {
-    public ExpectedValue(double minimum, double estimate, double maximum)
+    public ExpectedValue(double minimum, double estimate)
     {
         const double tolerance = 0.0000000000001;
-        if ((minimum > estimate && minimum - estimate > tolerance) ||
-            (estimate > maximum && estimate - maximum > tolerance))
-            throw new ArgumentException(
-                $"Illegal estimate: Minimum = {minimum}, Estimate = {estimate}, Maximum = {maximum}");
+        if (minimum > estimate && minimum - estimate > tolerance)
+            throw new ArgumentException($"Illegal expected value: Minimum = {minimum}, Estimate = {estimate}");
         Minimum = minimum;
         Estimate = estimate;
-        Maximum = maximum;
     }
 
-    public ExpectedValue(double estimate) : this(estimate, estimate, estimate)
+    public ExpectedValue(double estimate) : this(estimate, estimate)
     {
     }
 
@@ -37,6 +34,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
 
     public override string ToString()
     {
-        return $"{{Estimate: {Estimate}, Minimum: {Minimum}, Maximum: {Maximum}}}";
+        return $"{{Estimate: {Estimate}, Minimum: {Minimum}}}";
     }
 }
