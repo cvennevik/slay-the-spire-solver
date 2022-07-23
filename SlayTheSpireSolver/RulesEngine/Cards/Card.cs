@@ -6,7 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public abstract record Card
+public abstract record Card : IComparable<Card>
 {
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
@@ -17,6 +17,12 @@ public abstract record Card
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
                && gameState.Energy >= GetCost();
+    }
+
+    public int CompareTo(Card? other)
+    {
+        if (other == null) return -1;
+        return string.Compare(ToString(), other.ToString(), StringComparison.Ordinal);
     }
 
     public sealed override string ToString()

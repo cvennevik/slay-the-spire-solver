@@ -8,7 +8,8 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     protected CardCollection(params Card[] cards)
     {
-        Cards = cards.OrderBy(card => card.ToString()).ToArray();
+        Array.Sort(cards);
+        Cards = cards;
     }
 
     protected abstract T CreateNew(params Card[] cards);
