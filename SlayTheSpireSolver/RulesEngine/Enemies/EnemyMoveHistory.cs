@@ -28,7 +28,7 @@ public class EnemyMoveHistory : IReadOnlyList<EnemyMove>
 
     public static implicit operator EnemyMoveHistory(EnemyMove[] moves)
     {
-        return new(moves);
+        return new EnemyMoveHistory(moves);
     }
 
     public static bool operator ==(EnemyMoveHistory a, EnemyMoveHistory b)
