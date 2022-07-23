@@ -26,6 +26,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public T Add(Card card)
     {
+        return AddCache.GetOrAdd(((T)this, card), (key) => CreateNew(key.Item1.Cards.Append(key.Item2).ToArray()));
         return CreateNew(Cards.Append(card).ToArray());
     }
 
