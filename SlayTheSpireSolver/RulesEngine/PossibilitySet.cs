@@ -9,7 +9,7 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
 
     public PossibilitySet(params Possibility[] possibilities)
     {
-        _possibilities = possibilities.Distinct().ToList();
+        _possibilities = possibilities.ToList();
     }
 
     public static implicit operator PossibilitySet(GameState gameState)
