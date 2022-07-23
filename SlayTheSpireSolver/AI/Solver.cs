@@ -42,6 +42,11 @@ public class Solver
         foreach (var action in actions)
         {
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestActionExpectedValue.Estimate);
+            if (expectedValue.Estimate > bestActionExpectedValue.Estimate)
+            {
+                bestAction = action;
+                bestActionExpectedValue = expectedValue;
+            }
         }
 
         var cutoffAction = actions.First();
