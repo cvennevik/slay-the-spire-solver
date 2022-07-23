@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace SlayTheSpireSolver.RulesEngine.Buffs;
 
-public readonly record struct Strength
+public record Strength
 {
     public int Amount { get; }
 
@@ -12,40 +12,14 @@ public readonly record struct Strength
         Amount = amount;
     }
 
-    public static bool operator >(Strength a, Strength b)
-    {
-        return a.Amount > b.Amount;
-    }
+    public static bool operator >(Strength a, Strength b) => a.Amount > b.Amount;
+    public static bool operator >=(Strength a, Strength b) => a.Amount >= b.Amount;
+    public static bool operator <(Strength a, Strength b) => a.Amount < b.Amount;
+    public static bool operator <=(Strength a, Strength b) => a.Amount <= b.Amount;
+    public static Strength operator +(Strength a, Strength b) => new(a.Amount + b.Amount);
+    public static Strength operator -(Strength a, Strength b) => new(a < b ? 0 : a.Amount - b.Amount);
 
-    public static bool operator >=(Strength a, Strength b)
-    {
-        return a.Amount >= b.Amount;
-    }
-
-    public static bool operator <(Strength a, Strength b)
-    {
-        return a.Amount < b.Amount;
-    }
-
-    public static bool operator <=(Strength a, Strength b)
-    {
-        return a.Amount <= b.Amount;
-    }
-
-    public static Strength operator +(Strength a, Strength b)
-    {
-        return new Strength(a.Amount + b.Amount);
-    }
-
-    public static Strength operator -(Strength a, Strength b)
-    {
-        return new Strength(a < b ? 0 : a.Amount - b.Amount);
-    }
-
-    public static implicit operator Strength(int amount)
-    {
-        return amount > 0 ? new Strength(amount) : new Strength(0);
-    }
+    public static implicit operator Strength(int amount) => amount > 0 ? new Strength(amount) : new Strength(0);
 
     public override string ToString()
     {
