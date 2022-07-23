@@ -8,7 +8,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     protected CardCollection(params Card[] cards)
     {
-        Cards = cards;
+        Cards = cards.OrderBy(card => card.ToString()).ToArray();
     }
 
     protected abstract T CreateNew(params Card[] cards);
@@ -31,15 +31,20 @@ public abstract class CardCollection<T> where T : CardCollection<T>
         return CreateNew(cardsCopy.ToArray());
     }
 
-    public static bool operator ==(CardCollection<T> a, CardCollection<T> b) => a.Equals(b);
-    public static bool operator !=(CardCollection<T> a, CardCollection<T> b) => !a.Equals(b);
+    public static bool operator ==(CardCollection<T> a, CardCollection<T> b)
+    {
+        return a.Equals(b);
+    }
+
+    public static bool operator !=(CardCollection<T> a, CardCollection<T> b)
+    {
+        return !a.Equals(b);
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is not T otherCardCollection) return false;
-        if (otherCardCollection.Cards.Count != Cards.Count) return false;
-        var orderedCards = Cards.OrderBy(x => x.ToString());
-        var orderedOtherCards = otherCardCollection.Cards.OrderBy(x => x.ToString());
-        return orderedCards.SequenceEqual(orderedOtherCards);
+        return otherCardCollection.Cards.Count == Cards.Count && Cards.SequenceEqual(otherCardCollection.Cards);
     }
 
     public override int GetHashCode()
