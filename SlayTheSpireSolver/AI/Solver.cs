@@ -316,7 +316,6 @@ internal class SolverTests
     }
 
     [Test]
-    [Ignore("Fails")]
     public void TestProblematicRangeOneStepFurtherDown()
     {
         var jawWorm = new JawWorm
