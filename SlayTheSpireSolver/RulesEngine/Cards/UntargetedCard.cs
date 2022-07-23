@@ -10,7 +10,7 @@ public abstract record UntargetedCard : Card
 
     public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
-        return CanBePlayed(gameState, this)
+        return Card.CanBePlayed(gameState, this)
             ? new[] { new PlayUntargetedCardAction(gameState, this) }
             : Array.Empty<PlayCardAction>();
     }

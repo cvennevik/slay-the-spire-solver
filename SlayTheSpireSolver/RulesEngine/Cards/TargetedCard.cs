@@ -12,7 +12,7 @@ public abstract record TargetedCard : Card
 
     public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
-        return CanBePlayed(gameState, this)
+        return Card.CanBePlayed(gameState, this)
             ? gameState.EnemyParty.Select(enemy => GetTargetedAction(gameState, enemy.Id)).ToArray()
             : Array.Empty<PlayCardAction>();
     }
