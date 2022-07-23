@@ -28,9 +28,9 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public T Remove(Card card)
     {
-        if (!Cards.Contains(card)) throw new ArgumentException($"CardCollection does not contain {card}");
         var cardsCopy = Cards.ToList();
-        cardsCopy.Remove(card);
+        var cardFound = cardsCopy.Remove(card);
+        if (!cardFound) throw new ArgumentException($"CardCollection does not contain {card}");
         return CreateNew(cardsCopy.ToArray());
     }
 
