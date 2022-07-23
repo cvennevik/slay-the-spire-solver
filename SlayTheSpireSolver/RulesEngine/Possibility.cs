@@ -39,8 +39,9 @@ public record Possibility(GameState GameState, Probability Probability)
             {
                 var newPossibilities = ResolveTopEffect();
                 foreach (var newPossibility in newPossibilities)
-                {
-                }
+                    if (newPossibility.GameState.EffectStack.IsEmpty())
+                    {
+                    }
             }
 
             unresolvedPossibilities = newUnresolvedPossibilities;
