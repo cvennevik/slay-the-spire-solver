@@ -49,6 +49,8 @@ public class Solver
             }
         }
 
+        return (bestAction, bestActionExpectedValue);
+
         var cutoffAction = actions.First();
         var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
         var cutoffValue = cutoffExpectedValue.Minimum;
