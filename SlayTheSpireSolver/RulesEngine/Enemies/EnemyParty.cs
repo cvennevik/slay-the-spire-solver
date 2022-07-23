@@ -7,22 +7,36 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 public class EnemyParty : IEnumerable<Enemy>
 {
     private readonly Enemy[] _enemies;
+    private readonly int _hashCode;
 
-    public static implicit operator EnemyParty(Enemy[] enemies) => new(enemies);
+    public static implicit operator EnemyParty(Enemy[] enemies)
+    {
+        return new EnemyParty(enemies);
+    }
 
     public EnemyParty(params Enemy[] enemies)
     {
         if (enemies.Select(x => x.Id).Distinct().Count() != enemies.Length)
-        {
             throw new ArgumentException("Not all enemy IDs are unique");
-        }
 
         _enemies = enemies;
+        _hashCode = _enemies.Aggregate(0, HashCode.Combine);
     }
 
-    public bool Has(EnemyId id) => _enemies.Any(enemy => enemy.Id == id);
-    public Enemy Get(EnemyId id) => _enemies.First(x => x.Id == id);
-    public EnemyParty Remove(EnemyId id) => new(_enemies.Where(enemy => enemy.Id != id).ToArray());
+    public bool Has(EnemyId id)
+    {
+        return _enemies.Any(enemy => enemy.Id == id);
+    }
+
+    public Enemy Get(EnemyId id)
+    {
+        return _enemies.First(x => x.Id == id);
+    }
+
+    public EnemyParty Remove(EnemyId id)
+    {
+        return new EnemyParty(_enemies.Where(enemy => enemy.Id != id).ToArray());
+    }
 
     public EnemyParty ModifyEnemy(EnemyId id, Func<Enemy, Enemy> modifier)
     {
