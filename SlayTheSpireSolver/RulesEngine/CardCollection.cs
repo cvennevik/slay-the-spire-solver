@@ -43,7 +43,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
             var cardsCopy = cardCollection.Cards.ToList();
             var cardIndex = cardsCopy.BinarySearch(innerCard);
             if (cardIndex < 0) throw new ArgumentException($"CardCollection does not contain {card}");
-            var cardFound = cardsCopy.Remove(innerCard);
+            cardsCopy.RemoveAt(cardIndex);
             return CreateNew(cardsCopy.ToArray());
         });
     }
