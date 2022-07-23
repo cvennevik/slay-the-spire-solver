@@ -166,9 +166,9 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     [Test]
     public void RemovesOnlyOneCopy()
     {
-        var hand = new Hand(new Strike(), new Strike());
-        var newHand = hand.Remove(new Strike());
-        Assert.AreEqual(new Hand(new Strike()), newHand);
+        var collection = _type.CreateNew(new Strike(), new Strike());
+        var newCollection = collection.Remove(new Strike());
+        Assert.AreEqual(_type.CreateNew(new Strike()), newCollection);
     }
 
     [Test]
