@@ -12,13 +12,20 @@ public abstract record TargetedCard : Card
     public abstract EffectStack GetTargetedEffects(EnemyId target);
     public abstract Energy GetCost();
 
+    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
+    {
+        return Card.CanBePlayed(gameState, this)
+            ? gameState.EnemyParty.Select(enemy => GetTargetedAction(gameState, enemy.Id)).ToArray()
+            : Array.Empty<PlayCardAction>();
+    }
+
     public PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)
     {
         return new PlayTargetedCardAction(gameState, this, target);
     }
 }
 
-internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, Card, new()
+internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, new()
 {
     [Test]
     public void OneLegalActionPerEnemy()
