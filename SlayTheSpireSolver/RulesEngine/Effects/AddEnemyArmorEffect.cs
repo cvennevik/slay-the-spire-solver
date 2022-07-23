@@ -5,12 +5,12 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
+public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
 {
-    public PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
-        var armorGain = ArmorGain;
-        return gameState.ModifyEnemy(EnemyId, enemy => enemy with { Armor = enemy.Armor + armorGain });
+        return gameState.ModifyEnemy(EnemyId,
+            enemy => enemy with { Armor = enemy.Armor + ArmorGain });
     }
 }
 
