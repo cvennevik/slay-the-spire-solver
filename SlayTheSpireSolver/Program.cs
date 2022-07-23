@@ -22,7 +22,7 @@ var gameState = new GameState
     Turn = 1
 };
 
-var solver = new Solver(14);
+var solver = new Solver(10);
 Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
