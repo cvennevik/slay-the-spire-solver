@@ -59,6 +59,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public override bool Equals(object? obj)
     {
+        if (ReferenceEquals(this, obj)) return true;
         return obj is T otherCardCollection &&
                _hashCode == otherCardCollection._hashCode &&
                Cards.SequenceEqual(otherCardCollection.Cards);
