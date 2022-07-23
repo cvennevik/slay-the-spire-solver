@@ -125,4 +125,36 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
         Assert.True(collection.Contains(new Defend()));
         Assert.False(collection.Contains(new Strike()));
     }
+
+    [Test]
+    public void AddsStrikeToEmptyHand()
+    {
+        var hand = new Hand();
+        var newHand = hand.Add(new Strike());
+        Assert.AreEqual(new Hand(new Strike()), newHand);
+    }
+
+    [Test]
+    public void AddsDefendToEmptyHand()
+    {
+        var hand = new Hand();
+        var newHand = hand.Add(new Defend());
+        Assert.AreEqual(new Hand(new Defend()), newHand);
+    }
+
+    [Test]
+    public void AddsStrikeToExistingHand()
+    {
+        var hand = new Hand(new Strike());
+        var newHand = hand.Add(new Strike());
+        Assert.AreEqual(new Hand(new Strike(), new Strike()), newHand);
+    }
+
+    [Test]
+    public void AddsDefendToExistingHand()
+    {
+        var hand = new Hand(new Strike());
+        var newHand = hand.Add(new Defend());
+        Assert.AreEqual(new Hand(new Strike(), new Defend()), newHand);
+    }
 }
