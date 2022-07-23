@@ -1,14 +1,16 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record UntargetedCard : Card
 {
     public abstract EffectStack GetEffects();
+    public abstract Energy GetCost();
 
-    public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
+    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
         return Card.CanBePlayed(gameState, this)
             ? new[] { new PlayUntargetedCardAction(gameState, this) }

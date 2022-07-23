@@ -31,7 +31,7 @@ public record DrawCardEffect : Effect
                     Hand = gameState.Hand.Add(uniqueCard),
                     DrawPile = gameState.DrawPile.Remove(uniqueCard)
                 };
-                var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
+                var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x.Equals(uniqueCard)) /
                                          gameState.DrawPile.Cards.Count;
                 var probability = new Probability(fractionOfDrawPile);
                 results.Add(new Possibility(newGameState, probability));

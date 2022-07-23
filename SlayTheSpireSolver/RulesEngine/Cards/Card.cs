@@ -6,10 +6,10 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public abstract record Card
+public interface Card
 {
-    public abstract Energy GetCost();
-    public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
+    public Energy GetCost();
+    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
 
     protected static bool CanBePlayed(GameState gameState, Card card)
     {
