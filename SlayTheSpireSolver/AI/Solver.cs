@@ -61,7 +61,7 @@ public class Solver
     {
         var playerHealth = Math.Max(gameState.PlayerHealth.Amount, 0);
         if (gameState.IsCombatOver()) return new ExpectedValue(playerHealth);
-        if (gameStateDepthLimit <= 0) return new ExpectedValue(0, playerHealth);
+        if (gameStateDepthLimit <= 0) return new ExpectedValue(0, 0, playerHealth);
 
         gameStateDepthLimit -= 1;
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
@@ -99,7 +99,7 @@ public class Solver
         if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
         {
             Interlocked.Add(ref _prunedActionOutcomes, possibleOutcomes.Count);
-            return new ExpectedValue(double.NegativeInfinity, possibleMaximum);
+            return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity, possibleMaximum);
         }
 
         var firstOutcomeExpectedValue = FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
@@ -125,7 +125,7 @@ public class Solver
                 // Example: Depth-4 search concludes with a possible range of [0, 74],
                 // while Depth-5 search concludes with a possible range of [69, 80],
                 // and Depth-9 search concludes with a possible range of [69, 74]
-                return new ExpectedValue(double.NegativeInfinity, possibleMaximum);
+                return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity, possibleMaximum);
             }
         }
 

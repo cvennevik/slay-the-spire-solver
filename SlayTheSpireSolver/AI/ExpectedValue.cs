@@ -14,10 +14,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Maximum = maximum;
     }
 
-    public ExpectedValue(double minimum, double maximum) : this(minimum, minimum, maximum)
-    {
-    }
-
     public ExpectedValue(double estimate) : this(estimate, estimate, estimate)
     {
     }
