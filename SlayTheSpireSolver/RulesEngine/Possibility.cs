@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
-public readonly record struct Possibility(GameState GameState, Probability Probability)
+public record Possibility(GameState GameState, Probability Probability)
 {
     public static implicit operator Possibility(GameState gameState)
     {
@@ -40,10 +40,8 @@ public readonly record struct Possibility(GameState GameState, Probability Proba
     {
         var (effect, gameState) = GameState.PopEffect();
         var possibilitiesWithEffectResolved = effect.Resolve(gameState);
-        var totalProbability = Probability;
-        var possibilitiesMultipliedByTotalProbability =
-            possibilitiesWithEffectResolved.Select(x => x * totalProbability);
-        return possibilitiesMultipliedByTotalProbability.ToArray();
+        var possibilitiesWithCurrentProbabilityApplied = possibilitiesWithEffectResolved.Select(x => x * Probability);
+        return possibilitiesWithCurrentProbabilityApplied.ToArray();
     }
 }
 
