@@ -19,10 +19,16 @@ public record DrawCardEffect : Effect
         {
             var drawPileCount = gameState.DrawPile.Cards.Count;
             var cardCounts = new Dictionary<Card, int>();
+            var cardDrawProbabilities = new Dictionary<Card, double>();
             var fractionOfDrawPilePerCard = 1.0 / drawPileCount;
             foreach (var card in gameState.DrawPile.Cards)
+            {
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
+
+                if (cardDrawProbabilities.ContainsKey(card)) cardDrawProbabilities[card] += fractionOfDrawPilePerCard;
+                else cardDrawProbabilities[card] = fractionOfDrawPilePerCard;
+            }
 
             var uniqueCards = cardCounts.Keys.ToArray();
             var newResults = new Possibility[uniqueCards.Length];
