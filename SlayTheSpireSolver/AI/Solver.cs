@@ -348,7 +348,7 @@ internal class SolverTests
             new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState),
             new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState)
         };
-        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(actionsAndExpectedValues);
+        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 8);
     }
 
     private static void AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(GameState gameState, int searchDepth)
