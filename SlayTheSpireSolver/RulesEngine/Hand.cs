@@ -9,7 +9,7 @@ public class Hand : CardCollection<Hand>
     {
     }
 
-    protected override Hand CreateNew(params Card[] cards)
+    public override Hand CreateNew(params Card[] cards)
     {
         return new Hand(cards);
     }
@@ -26,7 +26,7 @@ internal class HandTests
         {
             Assert.AreEqual(new Hand(), new Hand());
         }
-    
+
         [Test]
         public void Test2()
         {
@@ -34,7 +34,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike());
             Assert.AreNotEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test3()
         {
@@ -42,7 +42,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike());
             Assert.AreEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test4()
         {
@@ -50,7 +50,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike(), new Strike());
             Assert.AreNotEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test5()
         {
@@ -58,7 +58,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike(), new Strike());
             Assert.AreEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test6()
         {
@@ -66,7 +66,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike(), new Defend());
             Assert.AreNotEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test7()
         {
@@ -74,7 +74,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike(), new Strike(), new Defend());
             Assert.AreNotEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void Test8()
         {
@@ -82,7 +82,7 @@ internal class HandTests
             var hand2 = new Hand(new Strike(), new Defend());
             Assert.AreEqual(hand1, hand2);
         }
-    
+
         [Test]
         public void EqualityIgnoresOrder()
         {

@@ -9,7 +9,7 @@ public class DiscardPile : CardCollection<DiscardPile>
     {
     }
 
-    protected override DiscardPile CreateNew(params Card[] cards)
+    public override DiscardPile CreateNew(params Card[] cards)
     {
         return new DiscardPile(cards);
     }

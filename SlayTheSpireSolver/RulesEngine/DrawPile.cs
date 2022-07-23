@@ -9,7 +9,7 @@ public class DrawPile : CardCollection<DrawPile>
     {
     }
 
-    protected override DrawPile CreateNew(params Card[] cards)
+    public override DrawPile CreateNew(params Card[] cards)
     {
         return new DrawPile(cards);
     }
@@ -133,7 +133,7 @@ internal class DrawPileTests
             Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
         }
     }
-    
+
     [TestFixture]
     internal class AddTests : DrawPileTests
     {

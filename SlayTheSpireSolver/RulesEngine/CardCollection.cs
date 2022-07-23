@@ -19,7 +19,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
         _hashCode = Cards.Sum(x => x.GetHashCode());
     }
 
-    protected abstract T CreateNew(params Card[] cards);
+    public abstract T CreateNew(params Card[] cards);
 
     public bool Contains(Card card)
     {
