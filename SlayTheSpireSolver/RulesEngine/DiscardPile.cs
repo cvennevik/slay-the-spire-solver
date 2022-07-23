@@ -5,6 +5,10 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DiscardPile : CardCollection<DiscardPile>
 {
+    public DiscardPile() : this(Array.Empty<Card>())
+    {
+    }
+
     public DiscardPile(params Card[] cards) : base(cards)
     {
     }
@@ -16,7 +20,7 @@ public class DiscardPile : CardCollection<DiscardPile>
 }
 
 [TestFixture]
-internal class DiscardPileTests
+internal class DiscardPileTests : CardCollectionTests<DiscardPile>
 {
     [Test]
     public void TestEquality1()
