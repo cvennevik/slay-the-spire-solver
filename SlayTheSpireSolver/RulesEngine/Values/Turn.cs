@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public record Turn
+public readonly record struct Turn
 {
     public int Number { get; }
 
@@ -13,7 +13,10 @@ public record Turn
         Number = number;
     }
 
-    public static implicit operator Turn(int amount) => amount > 1 ? new Turn(amount) : new Turn(1);
+    public static implicit operator Turn(int amount)
+    {
+        return amount > 1 ? new Turn(amount) : new Turn(1);
+    }
 
     public override string ToString()
     {
@@ -52,7 +55,7 @@ internal class TurnTests
         Assert.AreEqual(new Turn(turnNumber), new Turn(turnNumber));
     }
 
-    
+
     [Test]
     [TestCase(1)]
     [TestCase(5)]
