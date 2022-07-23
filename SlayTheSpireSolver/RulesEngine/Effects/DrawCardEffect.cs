@@ -9,16 +9,11 @@ public record DrawCardEffect : Effect
     public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
-        {
-            var newDrawPile = gameState.DiscardPile.Cards.Aggregate(gameState.DrawPile,
-                (current, card) => current.Add(card));
-
             gameState = gameState with
             {
                 DiscardPile = new DiscardPile(),
-                DrawPile = newDrawPile
+                DrawPile = new DrawPile(gameState.DiscardPile.Cards.ToArray())
             };
-        }
 
         if (gameState.DrawPile.Cards.Any())
         {
