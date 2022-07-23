@@ -39,7 +39,7 @@ public class Solver
         return actions
             .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
             .Append((cutoffAction, cutoffExpectedValue))
-            .MaxBy(tuple => tuple.Item2);
+            .MaxBy(tuple => tuple.Item2.Estimate);
     }
 
     private ExpectedValue FindExpectedValue(GameState gameState, int gameStateDepthLimit)
