@@ -12,12 +12,22 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
         _possibilities = possibilities.ToList();
     }
 
+    public PossibilitySet(List<Possibility> possibilities)
+    {
+        _possibilities = possibilities;
+    }
+
     public static implicit operator PossibilitySet(GameState gameState)
     {
         return new PossibilitySet(gameState.WithProbability(1));
     }
 
     public static implicit operator PossibilitySet(Possibility[] possibilities)
+    {
+        return new PossibilitySet(possibilities);
+    }
+
+    public static implicit operator PossibilitySet(List<Possibility> possibilities)
     {
         return new PossibilitySet(possibilities);
     }
