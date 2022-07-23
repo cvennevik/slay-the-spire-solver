@@ -182,7 +182,6 @@ internal class SolverTests
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.AreEqual(50, expectedValue.Minimum);
         Assert.AreEqual(50, expectedValue.Estimate);
-        Assert.AreEqual(50, expectedValue.Maximum);
     }
 
     [Test]
@@ -199,7 +198,6 @@ internal class SolverTests
         Assert.AreEqual(new EndTurnAction(gameState), action);
         Assert.AreEqual(39, expectedValue.Minimum);
         Assert.AreEqual(39, expectedValue.Estimate);
-        Assert.AreEqual(39, expectedValue.Maximum);
     }
 
     [Test]
