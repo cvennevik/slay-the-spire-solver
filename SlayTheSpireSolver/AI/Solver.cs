@@ -105,14 +105,12 @@ public class Solver
         var firstOutcomeExpectedValue = FindExpectedValue(possibleOutcomes.First().GameState, gameStateDepthLimit);
         var accumulatedEstimate = 0.0;
         var lowestMinimum = firstOutcomeExpectedValue.Minimum;
-        var highestMaximum = firstOutcomeExpectedValue.Maximum;
         var remainingProbability = 1.0;
         for (var index = 0; index < possibleOutcomes.Count; index++)
         {
             var possibility = possibleOutcomes[index];
             var possibilityExpectedValue = FindExpectedValue(possibility.GameState, gameStateDepthLimit);
             lowestMinimum = Math.Min(lowestMinimum, possibilityExpectedValue.Minimum);
-            highestMaximum = Math.Max(highestMaximum, possibilityExpectedValue.Maximum);
             accumulatedEstimate += possibilityExpectedValue.Estimate * possibility.Probability;
             remainingProbability -= possibility.Probability;
 
