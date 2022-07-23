@@ -76,14 +76,6 @@ public record GameState
     EffectStack: {EffectStack}
 }}";
     }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(
-            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty),
-            HashCode.Combine(Turn, Hand, DrawPile, DiscardPile, EffectStack)
-        );
-    }
 }
 
 [TestFixture]
