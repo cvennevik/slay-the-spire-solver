@@ -8,8 +8,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     protected CardCollection(params Card[] cards)
     {
-        Array.Sort(cards,
-            (card1, card2) => string.Compare(card1.ToString(), card2.ToString(), StringComparison.Ordinal));
+        Array.Sort(cards);
         Cards = cards;
     }
 
