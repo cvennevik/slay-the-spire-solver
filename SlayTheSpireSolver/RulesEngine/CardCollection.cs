@@ -75,8 +75,6 @@ public abstract class CardCollection<T> where T : CardCollection<T>
     }
 }
 
-// TODO: Add common CardCollection tests
-
 [TestFixture]
 internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new()
 {
