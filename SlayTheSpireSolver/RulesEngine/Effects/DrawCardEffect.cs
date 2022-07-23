@@ -29,10 +29,6 @@ public record DrawCardEffect : Effect
             for (var i = 0; i < uniqueCards.Length; i++)
             {
                 var card = uniqueCards[i];
-            }
-
-            foreach (var card in cardCounts.Keys)
-            {
                 var newGameState = gameState with
                 {
                     Hand = gameState.Hand.Add(card),
