@@ -2,7 +2,7 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public record Energy
+public readonly record struct Energy
 {
     private int Amount { get; }
 
@@ -12,14 +12,40 @@ public record Energy
         Amount = amount;
     }
 
-    public static bool operator >(Energy a, Energy b) => a.Amount > b.Amount;
-    public static bool operator >=(Energy a, Energy b) => a.Amount >= b.Amount;
-    public static bool operator <(Energy a, Energy b) => a.Amount < b.Amount;
-    public static bool operator <=(Energy a, Energy b) => a.Amount <= b.Amount;
-    public static Energy operator +(Energy a, Energy b) => new(a.Amount + b.Amount);
-    public static Energy operator -(Energy a, Energy b) => new(a < b ? 0 : a.Amount - b.Amount);
+    public static bool operator >(Energy a, Energy b)
+    {
+        return a.Amount > b.Amount;
+    }
 
-    public static implicit operator Energy(int amount) => amount > 0 ? new Energy(amount) : new Energy(0);
+    public static bool operator >=(Energy a, Energy b)
+    {
+        return a.Amount >= b.Amount;
+    }
+
+    public static bool operator <(Energy a, Energy b)
+    {
+        return a.Amount < b.Amount;
+    }
+
+    public static bool operator <=(Energy a, Energy b)
+    {
+        return a.Amount <= b.Amount;
+    }
+
+    public static Energy operator +(Energy a, Energy b)
+    {
+        return new Energy(a.Amount + b.Amount);
+    }
+
+    public static Energy operator -(Energy a, Energy b)
+    {
+        return new Energy(a < b ? 0 : a.Amount - b.Amount);
+    }
+
+    public static implicit operator Energy(int amount)
+    {
+        return amount > 0 ? new Energy(amount) : new Energy(0);
+    }
 
     public override string ToString()
     {
