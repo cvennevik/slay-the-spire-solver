@@ -5,11 +5,13 @@ namespace SlayTheSpireSolver.RulesEngine;
 public abstract class CardCollection<T> where T : CardCollection<T>
 {
     public IReadOnlyCollection<Card> Cards { get; }
+    private readonly int _hashCode;
 
     protected CardCollection(params Card[] cards)
     {
         Array.Sort(cards);
         Cards = cards;
+        _hashCode = Cards.Aggregate(0, HashCode.Combine);
     }
 
     protected abstract T CreateNew(params Card[] cards);
