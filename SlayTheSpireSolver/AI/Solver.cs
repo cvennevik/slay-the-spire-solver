@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -19,7 +18,7 @@ public class Solver
     private int _gameStateCacheHits;
     private int _prunedActionOutcomes;
 
-    private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
+    private readonly Dictionary<GameState, ExpectedValue> _gameStateCache = new();
 
     public Solver(int gameStateSearchDepth)
     {
@@ -50,11 +49,11 @@ public class Solver
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
-            Interlocked.Increment(ref _gameStateCacheHits);
+            _gameStateCacheHits++;
             return cachedResult!;
         }
 
-        Interlocked.Increment(ref _evaluatedGameStates);
+        _evaluatedGameStates++;
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
         _gameStateCache.TryAdd(gameState, result);
         return result;
@@ -101,7 +100,7 @@ public class Solver
         var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
         if (possibleMaximum <= cutoffValue)
         {
-            Interlocked.Add(ref _prunedActionOutcomes, possibleOutcomes.Count);
+            _prunedActionOutcomes += possibleOutcomes.Count;
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
@@ -122,7 +121,7 @@ public class Solver
             {
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
-                Interlocked.Add(ref _prunedActionOutcomes, prunedOutcomes);
+                _prunedActionOutcomes += prunedOutcomes;
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
