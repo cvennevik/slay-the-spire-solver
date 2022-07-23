@@ -9,16 +9,9 @@ public abstract record UntargetedCard : Card
 {
     public abstract EffectStack GetEffects();
     public abstract Energy GetCost();
-
-    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
-    {
-        return Card.CanBePlayed(gameState, this)
-            ? new[] { new PlayUntargetedCardAction(gameState, this) }
-            : Array.Empty<PlayCardAction>();
-    }
 }
 
-internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCard : UntargetedCard, new()
+internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCard : UntargetedCard, Card, new()
 {
     [Test]
     public void OneLegalActionForBasicGameState()
