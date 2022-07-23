@@ -11,7 +11,7 @@ public record Possibility(GameState GameState, Probability Probability)
 {
     public static implicit operator Possibility(GameState gameState)
     {
-        return new(gameState, new Probability(1));
+        return new Possibility(gameState, new Probability(1));
     }
 
     public static Possibility operator *(Possibility possibility, Probability probability)
