@@ -41,8 +41,9 @@ public abstract class CardCollection<T> where T : CardCollection<T>
         {
             var (cardCollection, innerCard) = key;
             var cardsCopy = cardCollection.Cards.ToList();
+            var cardIndex = cardsCopy.BinarySearch(innerCard);
+            if (cardIndex < 0) throw new ArgumentException($"CardCollection does not contain {card}");
             var cardFound = cardsCopy.Remove(innerCard);
-            if (!cardFound) throw new ArgumentException($"CardCollection does not contain {card}");
             return CreateNew(cardsCopy.ToArray());
         });
     }
