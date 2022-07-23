@@ -125,11 +125,6 @@ public class Solver
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
                 Interlocked.Add(ref _prunedActionOutcomes, prunedOutcomes);
-                // PROBLEM:
-                // Pruning can lead to over-optimistic possible maximum.
-                // Example: Depth-4 search concludes with a possible range of [0, 74],
-                // while Depth-5 search concludes with a possible range of [69, 80],
-                // and Depth-9 search concludes with a possible range of [69, 74]
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
