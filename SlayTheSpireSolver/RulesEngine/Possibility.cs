@@ -26,7 +26,14 @@ public record Possibility(GameState GameState, Probability Probability)
 
     public PossibilitySet Resolve()
     {
-        return ResolveToArray();
+        if (GameState.EffectStack.IsEmpty()) return new PossibilitySet(this);
+
+        return ResolveTopEffect()
+            .SelectMany(x => x.Resolve())
+            .GroupBy(x => x.GameState)
+            .Select(grouping => new Possibility(grouping.Key,
+                grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
+            .ToArray();
     }
 
     private Possibility[] ResolveToArray()
