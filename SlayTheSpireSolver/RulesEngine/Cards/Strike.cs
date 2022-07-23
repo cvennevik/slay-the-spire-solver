@@ -18,7 +18,7 @@ public record Strike : TargetedCard
         return new EffectStack(new AttackEnemyEffect(target, 6));
     }
 
-    protected override string GetName()
+    public override string ToString()
     {
         return "Strike";
     }
