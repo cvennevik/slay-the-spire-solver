@@ -39,6 +39,11 @@ public class Solver
 
         var bestAction = actions.First();
         var bestActionExpectedValue = new ExpectedValue(double.NegativeInfinity);
+        foreach (var action in actions)
+        {
+            var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestActionExpectedValue.Estimate);
+        }
+
         var cutoffAction = actions.First();
         var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
         var cutoffValue = cutoffExpectedValue.Minimum;
