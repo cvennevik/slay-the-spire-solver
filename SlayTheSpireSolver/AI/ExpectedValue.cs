@@ -24,7 +24,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
 
     public double Estimate { get; }
     public double Minimum { get; }
-    public double Maximum { get; }
+    private double Maximum { get; }
 
     public int CompareTo(ExpectedValue? other)
     {
