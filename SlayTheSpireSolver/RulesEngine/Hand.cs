@@ -107,40 +107,4 @@ internal class HandTests : CardCollectionTests<Hand>
             Assert.Throws<ArgumentException>(() => hand.Remove(new Strike()));
         }
     }
-
-    [TestFixture]
-    internal class ContainsTests : HandTests
-    {
-        [Test]
-        public void TestSingleDefend()
-        {
-            var hand = new Hand(new Defend());
-            Assert.True(hand.Contains(new Defend()));
-            Assert.False(hand.Contains(new Strike()));
-        }
-
-        [Test]
-        public void TestStrikeAndDefend()
-        {
-            var hand = new Hand(new Defend(), new Strike());
-            Assert.True(hand.Contains(new Defend()));
-            Assert.True(hand.Contains(new Strike()));
-        }
-
-        [Test]
-        public void TestEmptyHand()
-        {
-            var hand = new Hand();
-            Assert.False(hand.Contains(new Defend()));
-            Assert.False(hand.Contains(new Strike()));
-        }
-
-        [Test]
-        public void TestTwoDefends()
-        {
-            var hand = new Hand(new Defend(), new Defend());
-            Assert.True(hand.Contains(new Defend()));
-            Assert.False(hand.Contains(new Strike()));
-        }
-    }
 }
