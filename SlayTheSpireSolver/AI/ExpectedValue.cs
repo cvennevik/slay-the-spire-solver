@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.AI;
 
-public record ExpectedValue : IComparable<ExpectedValue>
+public record ExpectedValue
 {
     public ExpectedValue(double exactExpectedValue) : this(exactExpectedValue, exactExpectedValue)
     {
