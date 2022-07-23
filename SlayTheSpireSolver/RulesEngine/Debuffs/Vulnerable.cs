@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Debuffs;
 
-public record Vulnerable
+public readonly record struct Vulnerable
 {
     private readonly int _duration;
 
@@ -10,10 +10,15 @@ public record Vulnerable
         _duration = duration;
     }
 
-    public static implicit operator Vulnerable(int duration) =>
-        duration > 0 ? new Vulnerable(duration) : new Vulnerable(0);
+    public static implicit operator Vulnerable(int duration)
+    {
+        return duration > 0 ? new Vulnerable(duration) : new Vulnerable(0);
+    }
 
-    public bool Any() => _duration > 0;
+    public bool Any()
+    {
+        return _duration > 0;
+    }
 
     public Vulnerable Add(Vulnerable vulnerableToAdd)
     {
