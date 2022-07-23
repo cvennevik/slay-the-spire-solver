@@ -33,6 +33,6 @@ public record ExpectedValue : IComparable<ExpectedValue>
 
     public override string ToString()
     {
-        return $"{{Estimate: {Estimate}, Minimum: {Minimum}}}";
+        return $"{{Minimum: {Minimum}, Estimate: {Estimate}}}";
     }
 }
