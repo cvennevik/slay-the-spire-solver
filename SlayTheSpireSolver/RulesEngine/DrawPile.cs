@@ -63,40 +63,4 @@ internal class DrawPileTests : CardCollectionTests<DrawPile>
             Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
         }
     }
-
-    [TestFixture]
-    internal class AddTests : DrawPileTests
-    {
-        [Test]
-        public void AddsStrikeToEmptyDrawPile()
-        {
-            var drawPile = new DrawPile();
-            var newDrawPile = drawPile.Add(new Strike());
-            Assert.AreEqual(new DrawPile(new Strike()), newDrawPile);
-        }
-
-        [Test]
-        public void AddsDefendToEmptyDrawPile()
-        {
-            var drawPile = new DrawPile();
-            var newDrawPile = drawPile.Add(new Defend());
-            Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
-        }
-
-        [Test]
-        public void AddsStrikeToExistingDrawPile()
-        {
-            var drawPile = new DrawPile(new Strike());
-            var newDrawPile = drawPile.Add(new Strike());
-            Assert.AreEqual(new DrawPile(new Strike(), new Strike()), newDrawPile);
-        }
-
-        [Test]
-        public void AddsDefendToExistingDrawPile()
-        {
-            var drawPile = new DrawPile(new Strike());
-            var newDrawPile = drawPile.Add(new Defend());
-            Assert.AreEqual(new DrawPile(new Strike(), new Defend()), newDrawPile);
-        }
-    }
 }
