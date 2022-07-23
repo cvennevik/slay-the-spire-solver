@@ -3,7 +3,7 @@ using SlayTheSpireSolver.RulesEngine.Buffs;
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public record Damage
+public readonly record struct Damage
 {
     public int Amount { get; }
 
@@ -18,18 +18,40 @@ public record Damage
         return (int)(Amount * 1.5);
     }
 
-    public static bool operator >(Damage damage, Armor armor) => damage.Amount > armor.Amount;
-    public static bool operator >=(Damage damage, Armor armor) => damage.Amount >= armor.Amount;
-    public static bool operator <(Damage damage, Armor armor) => damage.Amount < armor.Amount;
-    public static bool operator <=(Damage damage, Armor armor) => damage.Amount <= armor.Amount;
+    public static bool operator >(Damage damage, Armor armor)
+    {
+        return damage.Amount > armor.Amount;
+    }
 
-    public static Damage operator -(Damage damage, Armor armor) =>
-        new(damage < armor ? 0 : damage.Amount - armor.Amount);
+    public static bool operator >=(Damage damage, Armor armor)
+    {
+        return damage.Amount >= armor.Amount;
+    }
 
-    public static Damage operator +(Damage damage, Strength strength) =>
-        new(damage.Amount + strength.Amount);
+    public static bool operator <(Damage damage, Armor armor)
+    {
+        return damage.Amount < armor.Amount;
+    }
 
-    public static implicit operator Damage(int amount) => amount > 0 ? new Damage(amount) : new Damage(0);
+    public static bool operator <=(Damage damage, Armor armor)
+    {
+        return damage.Amount <= armor.Amount;
+    }
+
+    public static Damage operator -(Damage damage, Armor armor)
+    {
+        return new Damage(damage < armor ? 0 : damage.Amount - armor.Amount);
+    }
+
+    public static Damage operator +(Damage damage, Strength strength)
+    {
+        return new Damage(damage.Amount + strength.Amount);
+    }
+
+    public static implicit operator Damage(int amount)
+    {
+        return amount > 0 ? new Damage(amount) : new Damage(0);
+    }
 
     public override string ToString()
     {
@@ -95,7 +117,7 @@ internal class DamageTests
         {
             Assert.AreEqual(expectedResult, new Damage(amountOfDamage) > new Armor(amountOfArmor));
         }
-    
+
         [Test]
         [TestCase(0, 0, true)]
         [TestCase(0, 1, false)]
@@ -110,7 +132,7 @@ internal class DamageTests
         {
             Assert.AreEqual(expectedResult, new Damage(amountOfDamage) >= new Armor(amountOfArmor));
         }
-    
+
         [Test]
         [TestCase(0, 0, false)]
         [TestCase(0, 1, true)]
@@ -125,7 +147,7 @@ internal class DamageTests
         {
             Assert.AreEqual(expectedResult, new Damage(amountOfDamage) < new Armor(amountOfArmor));
         }
-    
+
         [Test]
         [TestCase(0, 0, true)]
         [TestCase(0, 1, true)]
