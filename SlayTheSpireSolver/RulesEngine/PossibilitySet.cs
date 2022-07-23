@@ -12,11 +12,15 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
         _possibilities = possibilities.Distinct().ToList();
     }
 
-    public static implicit operator PossibilitySet(GameState gameState) =>
-        new(gameState.WithProbability(1));
+    public static implicit operator PossibilitySet(GameState gameState)
+    {
+        return new(gameState.WithProbability(1));
+    }
 
-    public static implicit operator PossibilitySet(Possibility[] possibilities) =>
-        new(possibilities);
+    public static implicit operator PossibilitySet(Possibility[] possibilities)
+    {
+        return new(possibilities);
+    }
 
     public IEnumerator<Possibility> GetEnumerator()
     {
@@ -42,7 +46,7 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
 
     public override int GetHashCode()
     {
-        return _possibilities.GetHashCode();
+        return 0;
     }
 
     public override string ToString()
