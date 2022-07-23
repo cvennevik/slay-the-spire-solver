@@ -5,6 +5,10 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DrawPile : CardCollection<DrawPile>
 {
+    public DrawPile() : this(Array.Empty<Card>())
+    {
+    }
+
     public DrawPile(params Card[] cards) : base(cards)
     {
     }
@@ -16,7 +20,7 @@ public class DrawPile : CardCollection<DrawPile>
 }
 
 [TestFixture]
-internal class DrawPileTests
+internal class DrawPileTests : CardCollectionTests<DrawPile>
 {
     [TestFixture]
     internal class EqualityTests : DrawPileTests
