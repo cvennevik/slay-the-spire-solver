@@ -53,7 +53,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public override int GetHashCode()
     {
-        return 0;
+        return _hashCode;
     }
 
     public override string ToString()
