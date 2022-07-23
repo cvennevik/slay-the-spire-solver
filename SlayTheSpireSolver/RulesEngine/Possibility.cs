@@ -39,10 +39,11 @@ public record Possibility(GameState GameState, Probability Probability)
     private PossibilitySet ResolveTopEffect()
     {
         var (effect, gameState) = GameState.PopEffect();
-        var newPossibilities = effect.Resolve(gameState);
-        return newPossibilities
-            .Select(possibility => possibility * Probability)
-            .ToList();
+        var newPossibilities = effect.Resolve(gameState).ToArray();
+        var possibilityCount = newPossibilities.Length;
+        var result = new Possibility[possibilityCount];
+        for (var i = 0; i < possibilityCount; i++) result[i] = newPossibilities[i] * Probability;
+        return result;
     }
 }
 
