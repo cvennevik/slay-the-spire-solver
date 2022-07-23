@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public record Probability
+public readonly record struct Probability
 {
     public Probability(double value)
     {
