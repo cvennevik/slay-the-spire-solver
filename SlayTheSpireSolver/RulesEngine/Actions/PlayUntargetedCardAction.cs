@@ -1,13 +1,23 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
+using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public record PlayUntargetedCardAction : PlayCardAction
+public record PlayUntargetedCardAction(GameState GameState, UntargetedCard UntargetedCard) : PlayCardAction
 {
-    public PlayUntargetedCardAction(GameState gameState, UntargetedCard card)
-        : base(gameState, card, card.GetEffects())
+    public Card Card => UntargetedCard;
+
+    public PossibilitySet Resolve()
     {
+        var unresolvedGameState = GameState with
+        {
+            EffectStack = new EffectStack(new AddCardToDiscardPileEffect(UntargetedCard))
+                .Push(UntargetedCard.GetEffects())
+                .Push(new RemoveCardFromHandEffect(UntargetedCard))
+                .Push(new RemoveEnergyEffect(UntargetedCard.GetCost()))
+        };
+        return unresolvedGameState.Resolve();
     }
 }
 
