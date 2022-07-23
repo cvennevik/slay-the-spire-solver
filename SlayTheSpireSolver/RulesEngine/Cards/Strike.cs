@@ -6,7 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public record Strike : TargetedCard
+public readonly record struct Strike : TargetedCard
 {
     public Energy GetCost()
     {
