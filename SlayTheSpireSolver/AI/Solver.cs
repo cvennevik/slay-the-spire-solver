@@ -336,7 +336,7 @@ internal class SolverTests
             Turn = 1
         };
 
-        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 8);
+        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 7);
     }
 
     private static void AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(GameState gameState, int searchDepth)
