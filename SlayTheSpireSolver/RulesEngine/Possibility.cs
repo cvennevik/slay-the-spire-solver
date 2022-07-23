@@ -37,6 +37,10 @@ public record Possibility(GameState GameState, Probability Probability)
             var newUnresolvedPossibilities = new List<Possibility>();
             foreach (var unresolvedPossibility in unresolvedPossibilities)
             {
+                var newPossibilities = ResolveTopEffect();
+                foreach (var newPossibility in newPossibilities)
+                {
+                }
             }
 
             unresolvedPossibilities = newUnresolvedPossibilities;
