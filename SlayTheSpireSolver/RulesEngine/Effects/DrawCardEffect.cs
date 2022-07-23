@@ -41,7 +41,7 @@ public record DrawCardEffect : Effect
                     DrawPile = gameState.DrawPile.Remove(card)
                 };
                 var fractionOfDrawPile = (double)cardCounts[card] / drawPileCount;
-                var probability = new Probability(fractionOfDrawPile);
+                var probability = new Probability(cardDrawProbabilities[card]);
                 newResults[i] = new Possibility(newGameState, probability);
             }
 
@@ -105,21 +105,22 @@ internal class DrawCardEffectTests
                 new Defend(), new Defend())
         };
         var result = new DrawCardEffect().Resolve(gameState);
-        var expectedGameState1 = new GameState
+        var expectedResult1 = new GameState
         {
             Hand = new Hand(new Strike()),
             DrawPile = new DrawPile(new Strike(), new Strike(),
                 new Defend(), new Defend())
-        };
-        var expectedGameState2 = new GameState
+        }.WithProbability(0.6);
+        var expectedResult2 = new GameState
         {
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike(), new Strike(), new Strike(),
                 new Defend())
-        };
+        }.WithProbability(0.4);
+        const double tolerance = 0.000000000000001;
         Assert.AreEqual(2, result.Count());
-        Assert.Contains(expectedGameState1.WithProbability(0.6), result.ToList());
-        Assert.Contains(expectedGameState2.WithProbability(0.4), result.ToList());
+        Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult1, tolerance)));
+        Assert.AreEqual(1, result.Count(x => x.IsEqualTo(expectedResult2, tolerance)));
     }
 
     [Test]
