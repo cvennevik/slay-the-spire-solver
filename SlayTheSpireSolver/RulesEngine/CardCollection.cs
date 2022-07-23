@@ -143,8 +143,8 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     [Test]
     public void RemoveThrowsExceptionWhenCollectionEmpty()
     {
-        var hand = new Hand();
-        Assert.Throws<ArgumentException>(() => hand.Remove(new Strike()));
+        var collection = _type.CreateNew();
+        Assert.Throws<ArgumentException>(() => collection.Remove(new Strike()));
     }
 
     [Test]
