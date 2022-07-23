@@ -26,12 +26,6 @@ internal class DrawPileTests : CardCollectionTests<DrawPile>
     internal class EqualityTests : DrawPileTests
     {
         [Test]
-        public void Test1()
-        {
-            Assert.AreEqual(new DrawPile(), new DrawPile());
-        }
-
-        [Test]
         public void Test2()
         {
             var drawPile1 = new DrawPile();
