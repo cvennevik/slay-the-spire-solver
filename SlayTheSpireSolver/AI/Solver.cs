@@ -36,6 +36,9 @@ public class Solver
 
         var gameStateDepthLimit = GameStateSearchDepth - 1;
         var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
+
+        var bestAction = actions.First();
+        var bestActionExpectedValue = new ExpectedValue(double.NegativeInfinity);
         var cutoffAction = actions.First();
         var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
         var cutoffValue = cutoffExpectedValue.Minimum;
