@@ -101,7 +101,7 @@ public class Solver
     {
         var possibleOutcomes = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
         var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
-        if (possibleMaximum < cutoffValue) // Switch to <= when possible (currently causes bug)
+        if (possibleMaximum <= cutoffValue) // Switch to <= when possible (currently causes bug)
         {
             Interlocked.Add(ref _prunedActionOutcomes, possibleOutcomes.Count);
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
