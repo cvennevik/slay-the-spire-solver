@@ -2,6 +2,10 @@ namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue : IComparable<ExpectedValue>
 {
+    public ExpectedValue(double exactExpectedValue) : this(exactExpectedValue, exactExpectedValue)
+    {
+    }
+
     public ExpectedValue(double minimum, double estimate)
     {
         const double tolerance = 0.0000000000001;
@@ -11,12 +15,8 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Estimate = estimate;
     }
 
-    public ExpectedValue(double exactExpectedValue) : this(exactExpectedValue, exactExpectedValue)
-    {
-    }
-
-    public double Estimate { get; }
     public double Minimum { get; }
+    public double Estimate { get; }
 
     public int CompareTo(ExpectedValue? other)
     {
