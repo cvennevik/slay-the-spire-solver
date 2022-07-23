@@ -23,6 +23,7 @@ public record GameState
 
     public IReadOnlyCollection<PlayerAction> GetLegalActions()
     {
+        if (IsCombatOver()) return Array.Empty<PlayerAction>();
         var legalActions = new List<PlayerAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver()) legalActions.Add(new EndTurnAction(this));
