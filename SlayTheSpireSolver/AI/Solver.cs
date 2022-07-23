@@ -67,12 +67,10 @@ public class Solver
         var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
         var bestEstimate = double.NegativeInfinity;
         var bestMinimum = double.NegativeInfinity;
-        var bestMaximum = double.NegativeInfinity;
         foreach (var action in playerActions)
         {
             var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestEstimate);
             bestMinimum = Math.Max(bestMinimum, expectedValue.Minimum);
-            bestMaximum = Math.Max(bestMaximum, expectedValue.Maximum);
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
         }
 
