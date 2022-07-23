@@ -11,11 +11,11 @@ public abstract record Card
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
 
-    protected static bool CanBePlayed(GameState gameState, Card card)
+    protected bool CanBePlayed(GameState gameState)
     {
         return !gameState.IsCombatOver()
-               && gameState.Hand.Contains(card)
-               && gameState.Energy >= card.GetCost();
+               && gameState.Hand.Contains(this)
+               && gameState.Energy >= GetCost();
     }
 }
 
