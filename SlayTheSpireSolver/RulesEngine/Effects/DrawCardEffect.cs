@@ -23,7 +23,6 @@ public record DrawCardEffect : Effect
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
 
-            var uniqueCards = gameState.DrawPile.Cards.Distinct();
             foreach (var uniqueCard in cardCounts.Keys)
             {
                 var newGameState = gameState with
