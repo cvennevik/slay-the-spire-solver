@@ -357,5 +357,12 @@ internal class SolverTests
             (action8, expectedValue8)
         };
         var expectedValuesByAction = actionsAndExpectedValues.GroupBy(x => x.Item1);
+        foreach (var expectedValuesGroup in expectedValuesByAction)
+        {
+            var expectedValues = expectedValuesGroup.Select(x => x.Item2).ToList();
+            for (int i = 0; i < expectedValues.Count; i++)
+            {
+            }
+        }
     }
 }
