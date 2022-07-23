@@ -80,9 +80,11 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 [TestFixture]
 internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new()
 {
+    private readonly T _type = new();
+
     [Test]
     public void EmptyCollectionsAreEqual()
     {
-        Assert.AreEqual(new T(), new T());
+        Assert.AreEqual(_type.CreateNew(), _type.CreateNew());
     }
 }
