@@ -26,12 +26,6 @@ internal class HandTests : CardCollectionTests<Hand>
     internal class EqualityTests : HandTests
     {
         [Test]
-        public void Test1()
-        {
-            Assert.AreEqual(new Hand(), new Hand());
-        }
-
-        [Test]
         public void Test2()
         {
             var hand1 = new Hand();
