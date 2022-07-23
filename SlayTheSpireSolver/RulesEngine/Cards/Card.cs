@@ -17,7 +17,7 @@ public interface Card
         {
             case TargetedCard targetedCard:
                 return gameState.EnemyParty
-                    .Select(enemy => new PlayTargetedCardAction(gameState, targetedCard, enemy.Id))
+                    .Select(enemy => targetedCard.GetTargetedAction(gameState, enemy.Id))
                     .ToArray();
             case UntargetedCard untargetedCard:
                 return new[] { new PlayUntargetedCardAction(gameState, untargetedCard) };
