@@ -24,15 +24,14 @@ public record DrawCardEffect : Effect
                 else cardCounts[card] = 1;
 
             var uniqueCards = gameState.DrawPile.Cards.Distinct();
-            foreach (var uniqueCard in uniqueCards)
+            foreach (var uniqueCard in cardCounts.Keys)
             {
                 var newGameState = gameState with
                 {
                     Hand = gameState.Hand.Add(uniqueCard),
                     DrawPile = gameState.DrawPile.Remove(uniqueCard)
                 };
-                var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
-                                         gameState.DrawPile.Cards.Count;
+                var fractionOfDrawPile = (double)cardCounts[uniqueCard] / gameState.DrawPile.Cards.Count;
                 var probability = new Probability(fractionOfDrawPile);
                 results.Add(new Possibility(newGameState, probability));
             }
