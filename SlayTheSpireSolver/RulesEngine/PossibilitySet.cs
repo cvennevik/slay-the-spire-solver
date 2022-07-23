@@ -14,12 +14,12 @@ public class PossibilitySet : IEnumerable<Possibility>, IEquatable<PossibilitySe
 
     public static implicit operator PossibilitySet(GameState gameState)
     {
-        return new(gameState.WithProbability(1));
+        return new PossibilitySet(gameState.WithProbability(1));
     }
 
     public static implicit operator PossibilitySet(Possibility[] possibilities)
     {
-        return new(possibilities);
+        return new PossibilitySet(possibilities);
     }
 
     public IEnumerator<Possibility> GetEnumerator()
