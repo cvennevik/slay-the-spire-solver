@@ -1,9 +1,12 @@
+using System.Collections.Concurrent;
 using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine;
 
 public abstract class CardCollection<T> where T : CardCollection<T>
 {
+    private static readonly ConcurrentDictionary<(T, Card), T> Cache = new();
+
     public IReadOnlyCollection<Card> Cards { get; }
     private readonly int _hashCode;
 
