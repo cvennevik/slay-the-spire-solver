@@ -1,15 +1,17 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Effects;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public interface UntargetedCard : Card
+public abstract record UntargetedCard : Card
 {
-    public EffectStack GetEffects();
+    public abstract EffectStack GetEffects();
+    public abstract Energy GetCost();
 }
 
-internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCard : UntargetedCard, new()
+internal abstract class UntargetedCardTests<TCard> : CardTests<TCard> where TCard : UntargetedCard, Card, new()
 {
     [Test]
     public void OneLegalActionForBasicGameState()
