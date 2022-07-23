@@ -18,19 +18,13 @@ public record DrawCardEffect : Effect
         if (gameState.DrawPile.Cards.Any())
         {
             var drawPileCount = gameState.DrawPile.Cards.Count;
-            var cardCounts = new Dictionary<Card, int>();
             var cardDrawProbabilities = new Dictionary<Card, double>();
             var fractionOfDrawPilePerCard = 1.0 / drawPileCount;
             foreach (var card in gameState.DrawPile.Cards)
-            {
-                if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
-                else cardCounts[card] = 1;
-
                 if (cardDrawProbabilities.ContainsKey(card)) cardDrawProbabilities[card] += fractionOfDrawPilePerCard;
                 else cardDrawProbabilities[card] = fractionOfDrawPilePerCard;
-            }
 
-            var uniqueCards = cardCounts.Keys.ToArray();
+            var uniqueCards = cardDrawProbabilities.Keys.ToArray();
             var newResults = new Possibility[uniqueCards.Length];
             for (var i = 0; i < uniqueCards.Length; i++)
             {
@@ -40,7 +34,6 @@ public record DrawCardEffect : Effect
                     Hand = gameState.Hand.Add(card),
                     DrawPile = gameState.DrawPile.Remove(card)
                 };
-                var fractionOfDrawPile = (double)cardCounts[card] / drawPileCount;
                 var probability = new Probability(cardDrawProbabilities[card]);
                 newResults[i] = new Possibility(newGameState, probability);
             }
