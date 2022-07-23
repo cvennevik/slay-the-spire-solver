@@ -20,18 +20,27 @@ public record DrawCardEffect : Effect
             };
         }
 
-        if (!gameState.DrawPile.Cards.Any()) return gameState;
-        var uniqueCards = gameState.DrawPile.Cards.Distinct();
-
-        return (from uniqueCard in uniqueCards
-            let newGameState = gameState with
+        if (gameState.DrawPile.Cards.Any())
+        {
+            var results = new List<Possibility>();
+            var uniqueCards = gameState.DrawPile.Cards.Distinct();
+            foreach (var uniqueCard in uniqueCards)
             {
-                Hand = gameState.Hand.Add(uniqueCard), DrawPile = gameState.DrawPile.Remove(uniqueCard)
+                var newGameState = gameState with
+                {
+                    Hand = gameState.Hand.Add(uniqueCard),
+                    DrawPile = gameState.DrawPile.Remove(uniqueCard)
+                };
+                var fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
+                                         gameState.DrawPile.Cards.Count;
+                var probability = new Probability(fractionOfDrawPile);
+                results.Add(new Possibility(newGameState, probability));
             }
-            let fractionOfDrawPile = (double)gameState.DrawPile.Cards.Count(x => x == uniqueCard) /
-                                     gameState.DrawPile.Cards.Count
-            let probability = new Probability(fractionOfDrawPile)
-            select new Possibility(newGameState, probability)).ToArray();
+
+            return results.ToArray();
+        }
+
+        return gameState;
     }
 }
 
