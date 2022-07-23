@@ -337,17 +337,6 @@ internal class SolverTests
             Turn = 1
         };
 
-        var actionsAndExpectedValues = new List<(PlayerAction, ExpectedValue)>
-        {
-            new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState),
-            new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState)
-        };
         AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 8);
     }
 
