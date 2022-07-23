@@ -19,6 +19,7 @@ public record DrawCardEffect : Effect
         {
             var drawPileCount = gameState.DrawPile.Cards.Count;
             var cardCounts = new Dictionary<Card, int>();
+            var fractionOfDrawPilePerCard = 1.0 / drawPileCount;
             foreach (var card in gameState.DrawPile.Cards)
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
