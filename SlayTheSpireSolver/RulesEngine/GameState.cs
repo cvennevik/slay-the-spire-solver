@@ -26,7 +26,7 @@ public record GameState
         var legalActions = new List<PlayerAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver()) legalActions.Add(new EndTurnAction(this));
-        return legalActions;
+        return legalActions.Distinct().ToList();
     }
 
     public bool IsCombatOver()
@@ -57,7 +57,7 @@ public record GameState
 
     public Possibility WithProbability(Probability probability)
     {
-        return new(this, probability);
+        return new Possibility(this, probability);
     }
 
     public override string ToString()
