@@ -9,22 +9,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 public interface Card
 {
     public Energy GetCost();
-
-    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
-    {
-        if (!CanBePlayed(gameState, this)) return Array.Empty<PlayCardAction>();
-        switch (this)
-        {
-            case TargetedCard targetedCard:
-                return gameState.EnemyParty
-                    .Select(enemy => targetedCard.GetTargetedAction(gameState, enemy.Id))
-                    .ToArray();
-            case UntargetedCard untargetedCard:
-                return new[] { new PlayUntargetedCardAction(gameState, untargetedCard) };
-            default:
-                throw new NotImplementedException();
-        }
-    }
+    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
 
     protected static bool CanBePlayed(GameState gameState, Card card)
     {
