@@ -127,11 +127,9 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     }
 
     [Test]
-    public void AddsStrikeToEmptyHand()
+    public void AddsStrikeToEmptyCollection()
     {
-        var hand = new Hand();
-        var newHand = hand.Add(new Strike());
-        Assert.AreEqual(new Hand(new Strike()), newHand);
+        Assert.AreEqual(_type.CreateNew(new Strike()), _type.CreateNew().Add(new Strike()));
     }
 
     [Test]
