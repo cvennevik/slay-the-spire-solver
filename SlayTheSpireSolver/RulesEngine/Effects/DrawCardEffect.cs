@@ -24,6 +24,13 @@ public record DrawCardEffect : Effect
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
 
+            var uniqueCards = cardCounts.Keys.ToArray();
+            var newResults = new Possibility[uniqueCards.Length];
+            for (var i = 0; i < uniqueCards.Length; i++)
+            {
+                var card = uniqueCards[i];
+            }
+
             foreach (var card in cardCounts.Keys)
             {
                 var newGameState = gameState with
