@@ -336,25 +336,17 @@ internal class SolverTests
             DiscardPile = new DiscardPile(new Bash()),
             Turn = 1
         };
-        var (action1, expectedValue1) = new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState);
-        var (action2, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
-        var (action3, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
-        var (action4, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
-        var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
-        var (action6, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
-        var (action7, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
-        var (action8, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
 
         var actionsAndExpectedValues = new List<(PlayerAction, ExpectedValue)>
         {
             new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState),
-            (action2, expectedValue2),
-            (action3, expectedValue3),
-            (action4, expectedValue4),
-            (action5, expectedValue5),
-            (action6, expectedValue6),
-            (action7, expectedValue7),
-            (action8, expectedValue8)
+            new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState),
+            new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState)
         };
         AssertActionExpectedValueMinimumsIncreaseMonotonically(actionsAndExpectedValues);
     }
