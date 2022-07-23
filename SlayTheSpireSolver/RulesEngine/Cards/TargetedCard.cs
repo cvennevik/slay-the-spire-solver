@@ -3,16 +3,14 @@ using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
-using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record TargetedCard : Card
 {
     public abstract EffectStack GetTargetedEffects(EnemyId target);
-    public abstract Energy GetCost();
 
-    public IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
+    public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
         return Card.CanBePlayed(gameState, this)
             ? gameState.EnemyParty.Select(enemy => GetTargetedAction(gameState, enemy.Id)).ToArray()
