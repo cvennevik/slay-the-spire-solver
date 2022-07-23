@@ -28,7 +28,10 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         if (GameState.EffectStack.IsEmpty()) return new PossibilitySet(this);
 
-        return ResolveTopEffect()
+        var fullyResolvedPossibilities = new Dictionary<GameState, Probability>();
+        var topEffectResolved = ResolveTopEffect();
+
+        return topEffectResolved
             .SelectMany(x => x.Resolve())
             .GroupBy(x => x.GameState)
             .Select(grouping => new Possibility(grouping.Key,
