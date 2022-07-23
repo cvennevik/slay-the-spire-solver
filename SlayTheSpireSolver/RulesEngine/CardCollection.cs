@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public abstract class CardCollection<T> where T : CardCollection<T>
 {
-    private static readonly ConcurrentDictionary<(T, Card), T> AddCache = new();
+    private static readonly Dictionary<(T, Card), T> AddCache = new();
     private static readonly ConcurrentDictionary<(T, Card), T> RemoveCache = new();
 
     public IReadOnlyCollection<Card> Cards { get; }
@@ -28,11 +28,11 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public T Add(Card card)
     {
-        return AddCache.GetOrAdd(((T)this, card), key =>
-        {
-            var (cardCollection, innerCard) = key;
-            return CreateNew(cardCollection.Cards.Append(innerCard).ToArray());
-        });
+        if (AddCache.TryGetValue(((T)this, card), out var cachedValue)) return cachedValue;
+
+        var value = CreateNew(Cards.Append(card).ToArray());
+        AddCache[((T)this, card)] = value;
+        return value;
     }
 
     public T Remove(Card card)
