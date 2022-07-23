@@ -26,7 +26,7 @@ internal class KillEnemyEffectTests
     [Test]
     public void KillsOnlyTargetEnemy()
     {
-        var (id1, id2, id3) = (new EnemyId(), new EnemyId(), new EnemyId());
+        var (id1, id2, id3) = (EnemyId.New(), EnemyId.New(), EnemyId.New());
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Id = id1 }, new JawWorm { Id = id2 }, new JawWorm { Id = id3 })
@@ -43,7 +43,7 @@ internal class KillEnemyEffectTests
     public void DoesNothingIfNoEnemyHasTargetId()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
-        var effect = new KillEnemyEffect(new EnemyId());
+        var effect = new KillEnemyEffect(EnemyId.New());
         Assert.AreEqual(gameState, effect.Resolve(gameState).Single().GameState);
     }
 }

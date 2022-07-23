@@ -246,8 +246,8 @@ internal class GameStateTests
             var gameState = new GameState
             {
                 PlayerHealth = 30,
-                EnemyParty = new EnemyParty(new JawWorm { Id = new EnemyId(), IntendedMove = new Chomp() },
-                    new JawWorm { Id = new EnemyId(), IntendedMove = new Chomp() }),
+                EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
+                    new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }),
                 EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>())
             };
             var resolvedState = gameState.Resolve().Single().GameState;

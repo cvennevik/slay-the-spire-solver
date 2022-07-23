@@ -28,9 +28,9 @@ internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard 
     [Test]
     public void OneLegalActionPerEnemy()
     {
-        var enemy1 = new JawWorm { Id = new EnemyId() };
-        var enemy2 = new JawWorm { Id = new EnemyId() };
-        var enemy3 = new JawWorm { Id = new EnemyId() };
+        var enemy1 = new JawWorm { Id = EnemyId.New() };
+        var enemy2 = new JawWorm { Id = EnemyId.New() };
+        var enemy3 = new JawWorm { Id = EnemyId.New() };
         var gameState = BasicGameState with { EnemyParty = new[] { enemy1, enemy2, enemy3 } };
 
         var expectedAction1 = new PlayTargetedCardAction(gameState, Card, enemy1.Id);

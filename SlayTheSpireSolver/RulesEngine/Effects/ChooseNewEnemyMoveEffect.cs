@@ -38,7 +38,7 @@ internal class ChooseNewEnemyMoveEffectTests
     public void DoesNothingWhenNoEnemyHasTargetId()
     {
         var gameState = new GameState { EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } } };
-        var effect = new ChooseNewEnemyMoveEffect(new EnemyId());
+        var effect = new ChooseNewEnemyMoveEffect(EnemyId.New());
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }

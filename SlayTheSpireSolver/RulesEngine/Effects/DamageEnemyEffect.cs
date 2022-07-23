@@ -35,7 +35,7 @@ internal class DamageEnemyEffectTests
     public void DoesNothingWhenTargetEnemyIsMissing()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Health = 10 }) };
-        var effect = new DamageEnemyEffect(new EnemyId(), 5);
+        var effect = new DamageEnemyEffect(EnemyId.New(), 5);
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
@@ -65,7 +65,7 @@ internal class DamageEnemyEffectTests
     [Test]
     public void OnlyDamagesTarget()
     {
-        var (id1, id2, id3) = (new EnemyId(), new EnemyId(), new EnemyId());
+        var (id1, id2, id3) = (EnemyId.New(), EnemyId.New(), EnemyId.New());
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(
@@ -89,7 +89,7 @@ internal class DamageEnemyEffectTests
     [Test]
     public void OnlyKillsTarget()
     {
-        var (id1, id2, id3) = (new EnemyId(), new EnemyId(), new EnemyId());
+        var (id1, id2, id3) = (EnemyId.New(), EnemyId.New(), EnemyId.New());
         var gameState = new GameState
         {
             EnemyParty = new EnemyParty(

@@ -29,7 +29,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
-        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = new EnemyId() } } };
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New() } } };
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
@@ -41,7 +41,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [TestCase(2)]
     public void AppliesVulnerableToTargetEnemy(int vulnerableAmount)
     {
-        var targetEnemy = new JawWorm { Id = new EnemyId() };
+        var targetEnemy = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
         var result = effect.Resolve(gameState).Single().GameState;
@@ -58,7 +58,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [TestCase(2)]
     public void AddsVulnerableToEnemyWithVulnerable(int vulnerableAmount)
     {
-        var targetEnemy = new JawWorm { Id = new EnemyId(), Vulnerable = 2 };
+        var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
         var gameState = new GameState { Turn = 3, EnemyParty = new[] { targetEnemy } };
         var effect = new ApplyVulnerableToEnemyEffect(targetEnemy.Id, vulnerableAmount);
         var result = effect.Resolve(gameState).Single().GameState;

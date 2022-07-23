@@ -31,8 +31,8 @@ internal class ClearAllEnemyArmorEffectTests
     [Test]
     public void DoesNothingWhenNoEnemiesHaveArmor()
     {
-        var enemy1 = new JawWorm { Id = new EnemyId() };
-        var enemy2 = new JawWorm { Id = new EnemyId() };
+        var enemy1 = new JawWorm { Id = EnemyId.New() };
+        var enemy2 = new JawWorm { Id = EnemyId.New() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).Single().GameState;
@@ -42,7 +42,7 @@ internal class ClearAllEnemyArmorEffectTests
     [Test]
     public void ClearsArmorFromSingleEnemy()
     {
-        var enemy = new JawWorm { Id = new EnemyId(), Armor = 5 };
+        var enemy = new JawWorm { Id = EnemyId.New(), Armor = 5 };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).Single().GameState;
@@ -53,8 +53,8 @@ internal class ClearAllEnemyArmorEffectTests
     [Test]
     public void ClearsArmorFromMultipleEnemies()
     {
-        var enemy1 = new JawWorm { Id = new EnemyId(), Armor = 5 };
-        var enemy2 = new JawWorm { Id = new EnemyId(), Armor = 7 };
+        var enemy1 = new JawWorm { Id = EnemyId.New(), Armor = 5 };
+        var enemy2 = new JawWorm { Id = EnemyId.New(), Armor = 7 };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ClearAllEnemyArmorEffect();
         var result = effect.Resolve(gameState).Single().GameState;
