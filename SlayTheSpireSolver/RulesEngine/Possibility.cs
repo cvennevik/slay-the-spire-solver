@@ -26,7 +26,7 @@ public record Possibility(GameState GameState, Probability Probability)
 
     public PossibilitySet Resolve()
     {
-        if (GameState.EffectStack.IsEmpty()) return new[] { this };
+        if (GameState.EffectStack.IsEmpty()) return new PossibilitySet(this);
 
         return ResolveTopEffect()
             .SelectMany(x => x.Resolve())
