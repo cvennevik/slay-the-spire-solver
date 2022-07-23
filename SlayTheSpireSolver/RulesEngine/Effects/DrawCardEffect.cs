@@ -17,12 +17,12 @@ public record DrawCardEffect : Effect
 
         if (gameState.DrawPile.Cards.Any())
         {
+            var drawPileCount = gameState.DrawPile.Cards.Count;
             var results = new List<Possibility>();
             var cardCounts = new Dictionary<Card, int>();
             foreach (var card in gameState.DrawPile.Cards)
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
-            var cardCount = gameState.DrawPile.Cards.Count;
 
             foreach (var card in cardCounts.Keys)
             {
@@ -31,7 +31,7 @@ public record DrawCardEffect : Effect
                     Hand = gameState.Hand.Add(card),
                     DrawPile = gameState.DrawPile.Remove(card)
                 };
-                var fractionOfDrawPile = (double)cardCounts[card] / cardCount;
+                var fractionOfDrawPile = (double)cardCounts[card] / drawPileCount;
                 var probability = new Probability(fractionOfDrawPile);
                 results.Add(new Possibility(newGameState, probability));
             }
