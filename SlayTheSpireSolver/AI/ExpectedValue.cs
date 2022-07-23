@@ -11,7 +11,7 @@ public record ExpectedValue : IComparable<ExpectedValue>
         Estimate = estimate;
     }
 
-    public ExpectedValue(double estimate) : this(estimate, estimate)
+    public ExpectedValue(double exactExpectedValue) : this(exactExpectedValue, exactExpectedValue)
     {
     }
 
