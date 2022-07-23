@@ -5,8 +5,6 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public class DiscardPile : CardCollection<DiscardPile>
 {
-    public static readonly DiscardPile Empty = new();
-
     public DiscardPile(params Card[] cards) : base(cards)
     {
     }
