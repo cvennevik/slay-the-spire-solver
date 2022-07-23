@@ -28,7 +28,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyHasTargetId()
     {
-        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New(), Vulnerable = 2 } } };
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = new EnemyId(), Vulnerable = 2 } } };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
@@ -55,8 +55,8 @@ internal class DecreaseEnemyVulnerableEffectTests
     [Test]
     public void OnlyReducesVulnerableOfTargetEnemy()
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 3 };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
+        var targetEnemy = new JawWorm { Id = new EnemyId(), Vulnerable = 3 };
+        var otherEnemy = new JawWorm { Id = new EnemyId(), Vulnerable = 2 };
         var gameState = new GameState { Turn = 2, EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new DecreaseEnemyVulnerableEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).Single().GameState;

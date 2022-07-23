@@ -48,7 +48,7 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
     [Test]
     public void ResolvesSingleEnemyEffect()
     {
-        var enemy = new JawWorm { Id = EnemyId.New() };
+        var enemy = new JawWorm { Id = new EnemyId() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
         var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).Single().GameState;
@@ -58,8 +58,8 @@ internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEn
     [Test]
     public void ResolvesMultipleEnemyEffectsInOrder()
     {
-        var enemy1 = new JawWorm { Id = EnemyId.New() };
-        var enemy2 = new JawWorm { Id = EnemyId.New() };
+        var enemy1 = new JawWorm { Id = new EnemyId() };
+        var enemy2 = new JawWorm { Id = new EnemyId() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy1, enemy2) };
         var effect = new ResolveForAllEnemiesEffect<T>();
         var result = effect.Resolve(gameState).Single().GameState;

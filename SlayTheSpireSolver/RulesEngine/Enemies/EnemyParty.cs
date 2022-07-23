@@ -76,7 +76,7 @@ internal class EnemyPartyTests
     public void TestEquality3()
     {
         var enemyParty1 = new EnemyParty(new JawWorm());
-        var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm { Id = EnemyId.New() });
+        var enemyParty2 = new EnemyParty(new JawWorm(), new JawWorm { Id = new EnemyId() });
         Assert.AreNotEqual(enemyParty1, enemyParty2);
     }
 }

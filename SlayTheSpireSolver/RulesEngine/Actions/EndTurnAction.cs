@@ -25,8 +25,8 @@ internal class EndTurnEffectTests
             PlayerArmor = 15,
             EnemyParty = new[]
             {
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() }
+                new JawWorm { Id = new EnemyId(), IntendedMove = new Chomp() },
+                new JawWorm { Id = new EnemyId(), IntendedMove = new Thrash() }
             },
             Hand = new Hand(new Strike(), new Defend()),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
@@ -51,8 +51,8 @@ internal class EndTurnEffectTests
             PlayerArmor = 50,
             EnemyParty = new[]
             {
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() }
+                new JawWorm { Id = new EnemyId(), IntendedMove = new Chomp() },
+                new JawWorm { Id = new EnemyId(), IntendedMove = new Thrash() }
             },
             Hand = new Hand(new Strike(), new Defend()),
             DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),

@@ -7,11 +7,6 @@ public readonly record struct EnemyId
 {
     public static readonly EnemyId Default = new();
 
-    public static EnemyId New()
-    {
-        return new EnemyId();
-    }
-
     // Arbitrary string ID makes enemies' ToString() more readable
     private readonly string _printedId;
 
@@ -39,8 +34,8 @@ internal class EnemyIdTests
     [Test]
     public void TestEquality()
     {
-        var enemyId1 = EnemyId.New();
-        var enemyId2 = EnemyId.New();
+        var enemyId1 = new EnemyId();
+        var enemyId2 = new EnemyId();
         Assert.AreEqual(enemyId1, enemyId1);
         Assert.AreEqual(enemyId2, enemyId2);
         Assert.AreNotEqual(enemyId1, enemyId2);
@@ -62,6 +57,6 @@ internal class EnemyIdTests
     [Test]
     public void EnemiesWithDifferentIdsAreNotEqual()
     {
-        Assert.AreNotEqual(new JawWorm { Id = EnemyId.New() }, new JawWorm { Id = EnemyId.New() });
+        Assert.AreNotEqual(new JawWorm { Id = new EnemyId() }, new JawWorm { Id = new EnemyId() });
     }
 }

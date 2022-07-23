@@ -30,7 +30,7 @@ internal class AttackEnemyEffectTests
     [Test]
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
-        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = EnemyId.New(), Health = 10 } } };
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Id = new EnemyId(), Health = 10 } } };
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(result, gameState);
@@ -42,8 +42,8 @@ internal class AttackEnemyEffectTests
     [TestCase(2)]
     public void AddsDamageEnemyEffect(int damage)
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10 };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
+        var targetEnemy = new JawWorm { Id = new EnemyId(), Health = 10 };
+        var otherEnemy = new JawWorm { Id = new EnemyId(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, damage);
         var result = effect.Resolve(gameState).Single().GameState;
@@ -61,8 +61,8 @@ internal class AttackEnemyEffectTests
     [TestCase(4, 6)]
     public void AddsDamageEnemyEffectWithExtraDamageAgainstVulnerableEnemy(int attackDamage, int dealtDamage)
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10, Vulnerable = 1 };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
+        var targetEnemy = new JawWorm { Id = new EnemyId(), Health = 10, Vulnerable = 1 };
+        var otherEnemy = new JawWorm { Id = new EnemyId(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, attackDamage);
         var result = effect.Resolve(gameState).Single().GameState;

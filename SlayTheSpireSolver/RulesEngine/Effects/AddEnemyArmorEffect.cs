@@ -40,8 +40,8 @@ internal class AddEnemyArmorEffectTests
     [Test]
     public void OnlyAddsArmorToTargetEnemy()
     {
-        var targetEnemyId = EnemyId.New();
-        var otherEnemyId = EnemyId.New();
+        var targetEnemyId = new EnemyId();
+        var otherEnemyId = new EnemyId();
         var effect = new AddEnemyArmorEffect(targetEnemyId, new Armor(5));
         var gameState = new GameState
         {
@@ -70,7 +70,7 @@ internal class AddEnemyArmorEffectTests
     public void DoesNothingWhenNoEnemyWithTargetId()
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, 5);
-        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New() }) };
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Id = new EnemyId() }) };
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }

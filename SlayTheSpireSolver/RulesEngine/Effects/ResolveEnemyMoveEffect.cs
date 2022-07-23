@@ -39,8 +39,8 @@ internal class ResolveEnemyMoveEffectTests
     [Test]
     public void OnlyPlacesEffectsOfTargetEnemyOnEffectStack()
     {
-        var targetEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() };
-        var otherEnemy = new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() };
+        var targetEnemy = new JawWorm { Id = new EnemyId(), IntendedMove = new Thrash() };
+        var otherEnemy = new JawWorm { Id = new EnemyId(), IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(targetEnemy, otherEnemy) };
         var effect = new ResolveEnemyMoveEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).Single().GameState;
@@ -53,7 +53,7 @@ internal class ResolveEnemyMoveEffectTests
     {
         var enemy = new JawWorm { IntendedMove = new Chomp() };
         var gameState = new GameState { EnemyParty = new EnemyParty(enemy) };
-        var effect = new ResolveEnemyMoveEffect(EnemyId.New());
+        var effect = new ResolveEnemyMoveEffect(new EnemyId());
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
     }
