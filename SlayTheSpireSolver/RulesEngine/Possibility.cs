@@ -36,6 +36,18 @@ public record Possibility(GameState GameState, Probability Probability)
             .ToArray();
     }
 
+    private Possibility[] ResolveToArray()
+    {
+        if (GameState.EffectStack.IsEmpty()) return new[] { this };
+
+        return ResolveTopEffect()
+            .SelectMany(x => x.Resolve())
+            .GroupBy(x => x.GameState)
+            .Select(grouping => new Possibility(grouping.Key,
+                grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
+            .ToArray();
+    }
+
     private PossibilitySet ResolveTopEffect()
     {
         var (effect, gameState) = GameState.PopEffect();
