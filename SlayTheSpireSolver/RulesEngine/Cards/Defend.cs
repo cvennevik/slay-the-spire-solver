@@ -17,7 +17,7 @@ public record Defend : UntargetedCard
         return new EffectStack(new GainPlayerArmorEffect(5));
     }
 
-    public override string ToString()
+    protected override string GetName()
     {
         return "Defend";
     }

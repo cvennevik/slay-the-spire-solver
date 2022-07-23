@@ -10,12 +10,18 @@ public abstract record Card
 {
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
+    protected abstract string GetName();
 
     protected bool CanBePlayed(GameState gameState)
     {
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
                && gameState.Energy >= GetCost();
+    }
+
+    public sealed override string ToString()
+    {
+        return GetName();
     }
 }
 

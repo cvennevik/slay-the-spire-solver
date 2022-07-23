@@ -9,24 +9,15 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Bash : TargetedCard
 {
-    public override Energy GetCost()
-    {
-        return 2;
-    }
+    public override Energy GetCost() => 2;
 
-    public override EffectStack GetTargetedEffects(EnemyId target)
+    public override EffectStack GetTargetedEffects(EnemyId target) => new Effect[]
     {
-        return new Effect[]
-        {
-            new ApplyVulnerableToEnemyEffect(target, new Vulnerable(2)),
-            new AttackEnemyEffect(target, new Damage(8))
-        };
-    }
+        new ApplyVulnerableToEnemyEffect(target, new Vulnerable(2)),
+        new AttackEnemyEffect(target, new Damage(8))
+    };
 
-    public override string ToString()
-    {
-        return "Bash";
-    }
+    protected override string GetName() => "Bash";
 }
 
 [TestFixture]
@@ -39,7 +30,7 @@ internal class BashTests : TargetedCardTests<Bash>
         {
             Energy = 3,
             Hand = new Hand(new Bash()),
-            EnemyParty = new[] { new JawWorm { Health = 10 } }
+            EnemyParty = new[] { new JawWorm { Health = 10 } } 
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
