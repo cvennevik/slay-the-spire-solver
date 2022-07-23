@@ -25,7 +25,7 @@ public record GameState
     {
         if (IsCombatOver()) return Array.Empty<PlayerAction>();
         return Hand.Cards
-            .SelectMany(card => (IReadOnlyCollection<PlayerAction>)card.GetLegalActions(this))
+            .SelectMany(card => (IReadOnlyCollection<PlayerAction>) card.GetLegalActions(this))
             .Append(new EndTurnAction(this))
             .ToArray();
     }
