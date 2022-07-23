@@ -73,3 +73,5 @@ public abstract class CardCollection<T> where T : CardCollection<T>
         return $"[{string.Join(",", Cards)}]";
     }
 }
+
+// TODO: Add common CardCollection tests
