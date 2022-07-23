@@ -40,7 +40,6 @@ public class Solver
         var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
         var cutoffValue = cutoffExpectedValue.Minimum;
         return actions
-            .AsParallel()
             .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
             .Append((cutoffAction, cutoffExpectedValue))
             .MaxBy(tuple => tuple.Item2.Estimate);
