@@ -7,24 +7,16 @@ public readonly record struct EnemyId
 {
     public static readonly EnemyId Default = new();
 
-    // Arbitrary string ID makes enemies' ToString() more readable
-    private readonly string _printedId;
+    private readonly Guid _guid;
 
     public EnemyId()
     {
-        _printedId = GeneratePrintedId();
-    }
-
-    private static string GeneratePrintedId()
-    {
-        var random = new Random();
-        const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-        return new string(Enumerable.Repeat(chars, 4).Select(s => s[random.Next(s.Length)]).ToArray());
+        _guid = Guid.NewGuid();
     }
 
     public override string ToString()
     {
-        return $"{_printedId}";
+        return $"{_guid}";
     }
 }
 
