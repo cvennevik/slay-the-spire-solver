@@ -3,17 +3,19 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public abstract record PlayCardAction(GameState GameState, Card Card, EffectStack CardEffects) : PlayerAction
+public abstract record PlayCardAction : PlayerAction
 {
-    public PossibilitySet Resolve()
-    {
-        var unresolvedGameState = GameState with
+    protected PlayCardAction(GameState gameState, Card card, EffectStack cardEffects)
+        : base(gameState with
         {
-            EffectStack = new EffectStack(new AddCardToDiscardPileEffect(Card))
-                .Push(CardEffects)
-                .Push(new RemoveCardFromHandEffect(Card))
-                .Push(new RemoveEnergyEffect(Card.GetCost()))
-        };
-        return unresolvedGameState.Resolve();
+            EffectStack = new EffectStack(new AddCardToDiscardPileEffect(card))
+                .Push(cardEffects)
+                .Push(new RemoveCardFromHandEffect(card))
+                .Push(new RemoveEnergyEffect(card.GetCost()))
+        })
+    {
+        Card = card;
     }
+
+    public Card Card { get; }
 }
