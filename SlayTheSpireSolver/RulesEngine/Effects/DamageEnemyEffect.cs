@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 {
-    public override PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(TargetId)) return gameState;
 

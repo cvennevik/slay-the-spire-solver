@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DrawCardEffect : Effect
 {
-    public override PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.DrawPile.Cards.Any() && gameState.DiscardPile.Cards.Any())
         {

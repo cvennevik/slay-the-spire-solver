@@ -6,10 +6,10 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ResolveForAllEnemiesEffect<T> : Effect where T : TargetEnemyEffect, new()
 {
-    public override PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         var resolveEnemyMoveEffects =
-            gameState.EnemyParty.Select(enemy => new T {Target = enemy.Id}).Reverse();
+            gameState.EnemyParty.Select(enemy => new T { Target = enemy.Id }).Reverse();
         return gameState.WithAddedEffects(new EffectStack(resolveEnemyMoveEffects));
     }
 }
@@ -18,14 +18,20 @@ public record ResolveForAllEnemiesEffect<T> : Effect where T : TargetEnemyEffect
 internal class ResolveForAllEnemiesEffectTests
 {
     [TestFixture]
-    internal class ResolveAllEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect> { }
+    internal class ResolveAllEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ResolveEnemyMoveEffect>
+    {
+    }
 
     [TestFixture]
-    internal class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect> { }
+    internal class ChooseAllNewEnemyMovesEffectTest : ResolveForAllEnemiesEffectTestBase<ChooseNewEnemyMoveEffect>
+    {
+    }
 
     [TestFixture]
     internal class DecreaseAllEnemiesVulnerableEffectTest :
-        ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect> { }
+        ResolveForAllEnemiesEffectTestBase<DecreaseEnemyVulnerableEffect>
+    {
+    }
 }
 
 internal abstract class ResolveForAllEnemiesEffectTestBase<T> where T : TargetEnemyEffect, new()

@@ -6,7 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record KillEnemyEffect(EnemyId TargetId) : Effect
 {
-    public override PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { EnemyParty = gameState.EnemyParty.Remove(TargetId) };
     }

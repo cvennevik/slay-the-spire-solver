@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AddEnemyArmorEffect(EnemyId EnemyId, Armor ArmorGain) : Effect
 {
-    public override PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         return gameState.ModifyEnemy(EnemyId,
             enemy => enemy with { Armor = enemy.Armor + ArmorGain });
@@ -31,7 +31,7 @@ internal class AddEnemyArmorEffectTests
     public void AddsToExistingEnemyArmor()
     {
         var effect = new AddEnemyArmorEffect(EnemyId.Default, new Armor(5));
-        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm {Armor = 5}) };
+        var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 5 }) };
         var result = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = new GameState { EnemyParty = new EnemyParty(new JawWorm { Armor = 10 }) };
         Assert.AreEqual(expectedGameState, result);
