@@ -228,7 +228,7 @@ internal class SolverTests
         var solver = new Solver { GameStateSearchDepth = 7 };
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
-        Assert.LessOrEqual(0, expectedValue.Minimum);
+        Assert.Less(0, expectedValue.Minimum);
         Assert.Less(expectedValue.Minimum, expectedValue.Estimate);
     }
 
