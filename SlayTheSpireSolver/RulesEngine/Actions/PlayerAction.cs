@@ -1,13 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public abstract record PlayerAction
+public interface PlayerAction
 {
-    private readonly GameState _unresolvedGameState;
-
-    protected PlayerAction(GameState unresolvedGameState)
-    {
-        _unresolvedGameState = unresolvedGameState;
-    }
-
-    public PossibilitySet Resolve() => _unresolvedGameState.Resolve();
+    public PossibilitySet Resolve();
 }

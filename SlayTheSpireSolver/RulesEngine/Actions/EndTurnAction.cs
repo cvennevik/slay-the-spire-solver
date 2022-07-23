@@ -6,9 +6,13 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public record EndTurnAction : PlayerAction
+public record EndTurnAction(GameState GameState) : PlayerAction
 {
-    public EndTurnAction(GameState gameState) : base(gameState with { EffectStack = new[] { new EndTurnEffect() } }) { }
+    public PossibilitySet Resolve()
+    {
+        var unresolvedGameState = GameState with { EffectStack = new[] { new EndTurnEffect() } };
+        return unresolvedGameState.Resolve();
+    }
 }
 
 [TestFixture]
