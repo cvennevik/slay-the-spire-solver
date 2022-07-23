@@ -12,7 +12,7 @@ public class EnemyMoveHistory : IReadOnlyList<EnemyMove>
     public EnemyMoveHistory(params EnemyMove[] moves)
     {
         _moves = moves.ToList();
-        _hashCode = moves.Aggregate(0, HashCode.Combine);
+        _hashCode = moves.Sum(x => x.GetHashCode());
     }
 
     public int Count => _moves.Count;
