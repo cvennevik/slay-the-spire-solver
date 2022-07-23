@@ -139,12 +139,4 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
         var collection = _type.CreateNew(new Strike()).Add(new Defend());
         Assert.AreEqual(_type.CreateNew(new Strike(), new Defend()), collection);
     }
-
-    [Test]
-    public void AddsDefendToExistingHand()
-    {
-        var hand = new Hand(new Strike());
-        var newHand = hand.Add(new Defend());
-        Assert.AreEqual(new Hand(new Strike(), new Defend()), newHand);
-    }
 }
