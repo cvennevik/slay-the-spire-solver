@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
@@ -19,7 +18,7 @@ public class Solver
     private int _gameStateCacheHits;
     private int _prunedActionOutcomes;
 
-    private readonly Hashtable _gameStateCache = new();
+    private readonly Dictionary<GameState, ExpectedValue> _gameStateCache = new();
 
     public Solver(int gameStateSearchDepth)
     {
@@ -48,10 +47,11 @@ public class Solver
 
     private ExpectedValue FindExpectedValue(GameState gameState, int gameStateDepthLimit)
     {
-        if (_gameStateCache.ContainsKey(gameState))
+        var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
+        if (isCached)
         {
             _gameStateCacheHits++;
-            return (ExpectedValue)_gameStateCache[gameState]!;
+            return cachedResult!;
         }
 
         _evaluatedGameStates++;
