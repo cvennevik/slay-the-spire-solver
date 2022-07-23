@@ -68,15 +68,17 @@ public class Solver
         if (gameStateDepthLimit <= 0) return new ExpectedValue(0, 0);
 
         gameStateDepthLimit -= 1;
-        var actions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
-        var cutoffAction = actions.First();
-        var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
-        var cutoffValue = cutoffExpectedValue.Minimum;
-        return actions
-            .AsParallel()
-            .Select(action => FindExpectedValue(action, gameStateDepthLimit, cutoffValue))
-            .Append(cutoffExpectedValue)
-            .MaxBy(tuple => tuple.Estimate);
+        var playerActions = gameState.GetLegalActions().OrderByDescending(GetActionPriority).ToList();
+        var bestEstimate = double.NegativeInfinity;
+        var bestMinimum = double.NegativeInfinity;
+        foreach (var action in playerActions)
+        {
+            var expectedValue = FindExpectedValue(action, gameStateDepthLimit, bestEstimate);
+            bestMinimum = Math.Max(bestMinimum, expectedValue.Minimum);
+            bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
+        }
+
+        return new ExpectedValue(bestMinimum, bestEstimate);
     }
 
     private static int GetActionPriority(PlayerAction action)
