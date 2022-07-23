@@ -21,8 +21,6 @@ public record GameState
     public DiscardPile DiscardPile { get; init; } = new();
     public EffectStack EffectStack { get; init; } = new();
 
-    private int _hashCode;
-
     public IReadOnlyCollection<PlayerAction> GetLegalActions()
     {
         if (IsCombatOver()) return Array.Empty<PlayerAction>();
