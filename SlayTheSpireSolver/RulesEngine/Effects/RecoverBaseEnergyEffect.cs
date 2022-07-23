@@ -4,7 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RecoverBaseEnergyEffect : Effect
 {
-    public virtual PossibilitySet Resolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Energy = gameState.BaseEnergy };
     }

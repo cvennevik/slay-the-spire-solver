@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RemoveCardFromHandEffect(Card CardToRemove) : Effect
 {
-    public virtual PossibilitySet Resolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         var cardsInHand = gameState.Hand.Cards.ToList();
         cardsInHand.Remove(CardToRemove);

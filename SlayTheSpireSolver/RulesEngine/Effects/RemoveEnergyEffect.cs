@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record RemoveEnergyEffect(Energy EnergyToRemove) : Effect
 {
-    public virtual PossibilitySet Resolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         return gameState with { Energy = gameState.Energy - EnergyToRemove };
     }

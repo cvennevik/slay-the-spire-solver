@@ -5,7 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record AddCardToDiscardPileEffect(Card CardToAdd) : Effect
 {
-    public virtual PossibilitySet Resolve(GameState gameState)
+    public override PossibilitySet Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(CardToAdd).ToArray();
         return gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) };

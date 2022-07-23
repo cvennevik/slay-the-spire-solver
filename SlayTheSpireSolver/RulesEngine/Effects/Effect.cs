@@ -1,6 +1,6 @@
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public interface Effect
+public abstract record Effect
 {
-    public PossibilitySet Resolve(GameState gameState);
+    public abstract PossibilitySet Resolve(GameState gameState);
 }

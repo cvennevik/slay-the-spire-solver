@@ -6,13 +6,8 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record DecreaseEnemyVulnerableEffect : TargetEnemyEffect
 {
-    public DecreaseEnemyVulnerableEffect()
-    {
-    }
-
-    public DecreaseEnemyVulnerableEffect(EnemyId enemyId) : base(enemyId)
-    {
-    }
+    public DecreaseEnemyVulnerableEffect() { }
+    public DecreaseEnemyVulnerableEffect(EnemyId enemyId) : base(enemyId) { }
 
     public override PossibilitySet Resolve(GameState gameState)
     {
