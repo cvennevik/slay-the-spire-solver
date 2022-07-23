@@ -298,21 +298,7 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        var (action2, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
-        var (action3, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
-        var (action4, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
-        var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
-        // Slow, skip for now
-        // var (action9, expectedValue9) = new Solver { GameStateSearchDepth = 9 }.FindBestAction(gameState);
-        var expectedAction = new PlayTargetedCardAction(gameState, new Bash(), EnemyId.Default);
-        Assert.AreEqual(expectedAction, action2);
-        Assert.AreEqual(expectedAction, action3);
-        Assert.AreEqual(expectedAction, action4);
-        Assert.AreEqual(expectedAction, action5);
-        Assert.LessOrEqual(0, expectedValue2.Minimum);
-        Assert.LessOrEqual(expectedValue2.Minimum, expectedValue3.Minimum);
-        Assert.LessOrEqual(expectedValue3.Minimum, expectedValue4.Minimum);
-        Assert.LessOrEqual(expectedValue4.Minimum, expectedValue5.Minimum);
+        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 5);
     }
 
     [Test]
