@@ -25,7 +25,7 @@ public record GameState
     {
         if (IsCombatOver()) return Array.Empty<PlayerAction>();
         return Hand.Cards
-            .SelectMany(card => (IReadOnlyCollection<PlayerAction>) card.GetLegalActions(this))
+            .SelectMany(card => (IReadOnlyCollection<PlayerAction>)card.GetLegalActions(this))
             .Append(new EndTurnAction(this))
             .ToArray();
     }
@@ -75,6 +75,14 @@ public record GameState
     DiscardPile: {DiscardPile}
     EffectStack: {EffectStack}
 }}";
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty),
+            HashCode.Combine(Turn, Hand, DrawPile, DiscardPile, EffectStack)
+        );
     }
 }
 
