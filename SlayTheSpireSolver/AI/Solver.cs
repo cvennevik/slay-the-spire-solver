@@ -28,7 +28,7 @@ public class Solver
 
     // TODO:
     //  * Improve non-terminal game state estimation
-    //  * Improve Rules Engine performance
+    //  * Add nice UI
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
