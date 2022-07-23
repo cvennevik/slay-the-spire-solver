@@ -19,7 +19,7 @@ public abstract record TargetedCard : Card
             : Array.Empty<PlayCardAction>();
     }
 
-    private PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)
+    public PlayCardAction GetTargetedAction(GameState gameState, EnemyId target)
     {
         return new PlayTargetedCardAction(gameState, this, target);
     }
