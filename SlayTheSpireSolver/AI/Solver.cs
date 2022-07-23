@@ -336,21 +336,26 @@ internal class SolverTests
             DiscardPile = new DiscardPile(new Bash()),
             Turn = 1
         };
-        var (_, expectedValue1) = new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState);
-        var (_, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
-        var (_, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
-        var (_, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
-        var (_, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
-        var (_, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
-        var (_, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
-        var (_, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
-        Assert.LessOrEqual(0, expectedValue1.Minimum);
-        Assert.LessOrEqual(expectedValue1.Minimum, expectedValue2.Minimum);
-        Assert.LessOrEqual(expectedValue2.Minimum, expectedValue3.Minimum);
-        Assert.LessOrEqual(expectedValue3.Minimum, expectedValue4.Minimum);
-        Assert.LessOrEqual(expectedValue4.Minimum, expectedValue5.Minimum);
-        Assert.LessOrEqual(expectedValue5.Minimum, expectedValue6.Minimum);
-        Assert.LessOrEqual(expectedValue6.Minimum, expectedValue7.Minimum);
-        Assert.LessOrEqual(expectedValue7.Minimum, expectedValue8.Minimum);
+        var (action1, expectedValue1) = new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState);
+        var (action2, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
+        var (action3, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
+        var (action4, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
+        var (action5, expectedValue5) = new Solver { GameStateSearchDepth = 5 }.FindBestAction(gameState);
+        var (action6, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
+        var (action7, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
+        var (action8, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
+
+        var actionsAndExpectedValues = new List<(PlayerAction, ExpectedValue)>
+        {
+            (action1, expectedValue1),
+            (action2, expectedValue2),
+            (action3, expectedValue3),
+            (action4, expectedValue4),
+            (action5, expectedValue5),
+            (action6, expectedValue6),
+            (action7, expectedValue7),
+            (action8, expectedValue8)
+        };
+        var expectedValuesByAction = actionsAndExpectedValues.GroupBy(x => x.Item1);
     }
 }
