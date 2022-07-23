@@ -11,7 +11,7 @@ public record Possibility(GameState GameState, Probability Probability)
 {
     public static implicit operator Possibility(GameState gameState)
     {
-        return new Possibility(gameState, new Probability(1));
+        return new(gameState, new Probability(1));
     }
 
     public static Possibility operator *(Possibility possibility, Probability probability)
@@ -28,12 +28,12 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         if (GameState.EffectStack.IsEmpty()) return new[] { this };
 
-        var possibilitiesAfterResolvingTopEffect = ResolveTopEffect();
-        var fullyResolvedPossibilities = possibilitiesAfterResolvingTopEffect.SelectMany(x => x.Resolve());
-        var possibilitiesByGameState = fullyResolvedPossibilities.GroupBy(x => x.GameState);
-        var mergedPossibilities = possibilitiesByGameState.Select(grouping => new Possibility(grouping.Key,
-            grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))));
-        return mergedPossibilities.ToArray();
+        return ResolveTopEffect()
+            .SelectMany(x => x.Resolve())
+            .GroupBy(x => x.GameState)
+            .Select(grouping => new Possibility(grouping.Key,
+                grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))))
+            .ToArray();
     }
 
     private PossibilitySet ResolveTopEffect()
