@@ -50,14 +50,6 @@ public class Solver
         }
 
         return (bestAction, bestActionExpectedValue);
-
-        var cutoffAction = actions.First();
-        var cutoffExpectedValue = FindExpectedValue(cutoffAction, gameStateDepthLimit);
-        var cutoffValue = cutoffExpectedValue.Minimum;
-        return actions
-            .Select(action => (action, FindExpectedValue(action, gameStateDepthLimit, cutoffValue)))
-            .Append((cutoffAction, cutoffExpectedValue))
-            .MaxBy(tuple => tuple.Item2.Estimate);
     }
 
     private ExpectedValue FindExpectedValue(GameState gameState, int gameStateDepthLimit)
