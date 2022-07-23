@@ -20,7 +20,7 @@ public interface Card
                     .Select(enemy => new PlayTargetedCardAction(gameState, targetedCard, enemy.Id))
                     .ToArray();
             case UntargetedCard untargetedCard:
-                return new[] { new PlayUntargetedCardAction(gameState, untargetedCard) };
+                return new PlayCardAction[] { new PlayUntargetedCardAction(gameState, untargetedCard) };
             default:
                 throw new NotImplementedException();
         }

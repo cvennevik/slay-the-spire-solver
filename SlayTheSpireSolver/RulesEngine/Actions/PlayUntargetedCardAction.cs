@@ -4,7 +4,8 @@ using SlayTheSpireSolver.RulesEngine.Effects;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public record PlayUntargetedCardAction(GameState GameState, UntargetedCard UntargetedCard) : PlayCardAction
+public readonly record struct PlayUntargetedCardAction
+    (GameState GameState, UntargetedCard UntargetedCard) : PlayCardAction
 {
     public Card Card => UntargetedCard;
 
