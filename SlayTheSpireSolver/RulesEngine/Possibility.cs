@@ -28,8 +28,8 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         if (GameState.EffectStack.IsEmpty()) return new[] { this };
 
-        var possibilitiesAfterResolvingTopEffect = ResolveTopEffect();
-        var fullyResolvedPossibilities = possibilitiesAfterResolvingTopEffect.SelectMany(x => x.Resolve());
+        var topEffectResolvedPossibilities = ResolveTopEffect();
+        var fullyResolvedPossibilities = topEffectResolvedPossibilities.SelectMany(x => x.Resolve());
         var possibilitiesByGameState = fullyResolvedPossibilities.GroupBy(x => x.GameState);
         var mergedPossibilities = possibilitiesByGameState.Select(grouping => new Possibility(grouping.Key,
             grouping.Select(x => x.Probability).Aggregate((acc, x) => acc.Add(x))));
