@@ -11,7 +11,6 @@ public abstract record Card : IComparable<Card>
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
     protected abstract string GetName();
-    protected abstract int GetSortValue();
 
     protected bool CanBePlayed(GameState gameState)
     {
@@ -23,7 +22,7 @@ public abstract record Card : IComparable<Card>
     public int CompareTo(Card? other)
     {
         if (other == null) return -1;
-        return GetSortValue() - other.GetSortValue();
+        return string.Compare(ToString(), other.ToString(), StringComparison.Ordinal);
     }
 
     public sealed override string ToString()

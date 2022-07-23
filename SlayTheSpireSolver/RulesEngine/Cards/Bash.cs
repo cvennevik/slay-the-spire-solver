@@ -27,11 +27,6 @@ public record Bash : TargetedCard
     {
         return "Bash";
     }
-
-    protected override int GetSortValue()
-    {
-        return 3;
-    }
 }
 
 [TestFixture]

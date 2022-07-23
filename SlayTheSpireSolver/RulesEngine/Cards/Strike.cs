@@ -22,11 +22,6 @@ public record Strike : TargetedCard
     {
         return "Strike";
     }
-
-    protected override int GetSortValue()
-    {
-        return 1;
-    }
 }
 
 [TestFixture]

@@ -21,11 +21,6 @@ public record Defend : UntargetedCard
     {
         return "Defend";
     }
-
-    protected override int GetSortValue()
-    {
-        return 2;
-    }
 }
 
 [TestFixture]
