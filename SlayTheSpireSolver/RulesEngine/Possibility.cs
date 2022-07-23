@@ -28,7 +28,7 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         if (GameState.EffectStack.IsEmpty()) return new PossibilitySet(this);
 
-        var fullyResolvedPossibilities = new Dictionary<GameState, Probability>();
+        var fullyResolvedPossibilities = new List<Possibility>();
         var topEffectResolved = ResolveTopEffect();
 
         return topEffectResolved
