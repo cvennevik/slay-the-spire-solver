@@ -45,12 +45,14 @@ public class EnemyMoveHistory : IReadOnlyList<EnemyMove>
 
     public override bool Equals(object? obj)
     {
-        return obj is EnemyMoveHistory otherHistory && this.SequenceEqual(otherHistory);
+        return obj is EnemyMoveHistory otherHistory &&
+               _hashCode == otherHistory._hashCode &&
+               this.SequenceEqual(otherHistory);
     }
 
     public override int GetHashCode()
     {
-        return 0;
+        return _hashCode;
     }
 
     public override string ToString()
