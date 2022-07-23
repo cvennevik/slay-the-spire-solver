@@ -3,9 +3,9 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
-public readonly record struct AddCardToDiscardPileEffect(Card CardToAdd) : Effect
+public record AddCardToDiscardPileEffect(Card CardToAdd) : Effect
 {
-    public PossibilitySet Resolve(GameState gameState)
+    public virtual PossibilitySet Resolve(GameState gameState)
     {
         var newCardsInDiscardPile = gameState.DiscardPile.Cards.Append(CardToAdd).ToArray();
         return gameState with { DiscardPile = new DiscardPile(newCardsInDiscardPile) };
