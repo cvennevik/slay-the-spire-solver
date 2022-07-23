@@ -28,7 +28,33 @@ public record Possibility(GameState GameState, Probability Probability)
     {
         if (GameState.EffectStack.IsEmpty()) return new PossibilitySet(this);
 
-        return ResolveTopEffect()
+        var unresolvedPossibilities = new List<Possibility>();
+        var fullyResolvedPossibilities = new List<Possibility>();
+        unresolvedPossibilities.Add(this);
+
+        while (unresolvedPossibilities.Any())
+        {
+            var newUnresolvedPossibilities = new List<Possibility>();
+            foreach (var unresolvedPossibility in unresolvedPossibilities)
+            {
+                var newPossibilities = ResolveTopEffect();
+                foreach (var newPossibility in newPossibilities)
+                    if (newPossibility.GameState.EffectStack.IsEmpty())
+                    {
+                    }
+            }
+
+            unresolvedPossibilities = newUnresolvedPossibilities;
+        }
+
+        var topEffectResolved = ResolveTopEffect();
+        foreach (var possibility in topEffectResolved)
+            if (possibility.GameState.EffectStack.IsEmpty())
+                fullyResolvedPossibilities.Add(possibility);
+            else
+                unresolvedPossibilities.Add(possibility);
+
+        return topEffectResolved
             .SelectMany(x => x.Resolve())
             .GroupBy(x => x.GameState)
             .Select(grouping => new Possibility(grouping.Key,
