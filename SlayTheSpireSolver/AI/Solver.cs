@@ -242,7 +242,8 @@ internal class SolverTests
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
         };
-        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 9);
+        var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, 9);
+        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(actionsAndExpectedValues);
     }
 
     [Test]
@@ -263,7 +264,8 @@ internal class SolverTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
             Turn = 1
         };
-        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 5);
+        var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, 5);
+        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(actionsAndExpectedValues);
     }
 
     [Test]
@@ -287,12 +289,7 @@ internal class SolverTests
             Turn = 1
         };
 
-        AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(gameState, 6);
-    }
-
-    private static void AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(GameState gameState, int searchDepth)
-    {
-        var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, searchDepth);
+        var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, 6);
         AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(actionsAndExpectedValues);
     }
 
