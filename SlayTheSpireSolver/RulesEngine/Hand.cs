@@ -20,7 +20,7 @@ public class Hand : CardCollection<Hand>
 }
 
 [TestFixture]
-internal class HandTests
+internal class HandTests : CardCollectionTests<Hand>
 {
     [TestFixture]
     internal class EqualityTests : HandTests
