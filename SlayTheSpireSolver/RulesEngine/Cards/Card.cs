@@ -23,7 +23,7 @@ public abstract record Card : IComparable<Card>
     public int CompareTo(Card? other)
     {
         if (other == null) return -1;
-        return string.Compare(ToString(), other.ToString(), StringComparison.Ordinal);
+        return GetSortValue() - other.GetSortValue();
     }
 
     public sealed override string ToString()
