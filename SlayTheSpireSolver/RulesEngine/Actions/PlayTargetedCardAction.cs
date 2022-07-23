@@ -6,7 +6,8 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public record PlayTargetedCardAction(GameState GameState, TargetedCard TargetedCard, EnemyId Target) : PlayCardAction
+public readonly record struct PlayTargetedCardAction
+    (GameState GameState, TargetedCard TargetedCard, EnemyId Target) : PlayCardAction
 {
     public Card Card => TargetedCard;
 
