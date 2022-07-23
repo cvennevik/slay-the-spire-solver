@@ -7,10 +7,12 @@ namespace SlayTheSpireSolver.RulesEngine.Enemies;
 public class EnemyMoveHistory : IReadOnlyList<EnemyMove>
 {
     private readonly List<EnemyMove> _moves;
+    private readonly int _hashCode;
 
     public EnemyMoveHistory(params EnemyMove[] moves)
     {
         _moves = moves.ToList();
+        _hashCode = moves.Aggregate(0, HashCode.Combine);
     }
 
     public int Count => _moves.Count;
