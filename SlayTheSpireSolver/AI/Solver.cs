@@ -55,7 +55,7 @@ public class Solver
 
         _evaluatedGameStates++;
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
-        _gameStateCache.TryAdd(gameState, result);
+        _gameStateCache[gameState] = result;
         return result;
     }
 
