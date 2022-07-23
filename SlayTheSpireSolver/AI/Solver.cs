@@ -300,9 +300,7 @@ internal class SolverTests
         GameState gameState, int searchDepth)
     {
         var depths = Enumerable.Range(1, searchDepth);
-        var actionsAndExpectedValues =
-            depths.Select(depth => new Solver { GameStateSearchDepth = depth }.FindBestAction(gameState));
-        return actionsAndExpectedValues;
+        return depths.Select(depth => new Solver { GameStateSearchDepth = depth }.FindBestAction(gameState));
     }
 
     private static void AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(
