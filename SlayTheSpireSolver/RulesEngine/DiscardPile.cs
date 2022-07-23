@@ -23,12 +23,6 @@ public class DiscardPile : CardCollection<DiscardPile>
 internal class DiscardPileTests : CardCollectionTests<DiscardPile>
 {
     [Test]
-    public void TestEquality1()
-    {
-        Assert.AreEqual(new DiscardPile(), new DiscardPile());
-    }
-
-    [Test]
     public void TestEquality2()
     {
         var discardPile1 = new DiscardPile();
