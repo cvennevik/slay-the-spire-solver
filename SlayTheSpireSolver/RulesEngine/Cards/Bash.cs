@@ -7,7 +7,7 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public readonly record struct Bash : TargetedCard
+public record Bash : TargetedCard
 {
     public Energy GetCost()
     {
