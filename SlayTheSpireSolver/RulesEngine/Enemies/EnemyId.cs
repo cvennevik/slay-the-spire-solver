@@ -3,19 +3,16 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Enemies;
 
-public readonly record struct EnemyId
+public class EnemyId
 {
     public static readonly EnemyId Default = new();
 
-    public static EnemyId New()
-    {
-        return new EnemyId();
-    }
+    public static EnemyId New() => new();
 
     // Arbitrary string ID makes enemies' ToString() more readable
     private readonly string _printedId;
 
-    public EnemyId()
+    private EnemyId()
     {
         _printedId = GeneratePrintedId();
     }
