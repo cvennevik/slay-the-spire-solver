@@ -7,12 +7,13 @@ using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Cards;
 
-public interface TargetedCard : Card
+public abstract record TargetedCard : Card
 {
-    public EffectStack GetTargetedEffects(EnemyId target);
+    public abstract EffectStack GetTargetedEffects(EnemyId target);
+    public abstract Energy GetCost();
 }
 
-internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, new()
+internal abstract class TargetedCardTests<TCard> : CardTests<TCard> where TCard : TargetedCard, Card, new()
 {
     [Test]
     public void OneLegalActionPerEnemy()

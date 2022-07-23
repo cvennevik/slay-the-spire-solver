@@ -9,12 +9,12 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Bash : TargetedCard
 {
-    public Energy GetCost()
+    public override Energy GetCost()
     {
         return 2;
     }
 
-    public EffectStack GetTargetedEffects(EnemyId target)
+    public override EffectStack GetTargetedEffects(EnemyId target)
     {
         return new Effect[]
         {
