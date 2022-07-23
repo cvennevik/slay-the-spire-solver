@@ -6,6 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 public abstract class CardCollection<T> where T : CardCollection<T>
 {
     private static readonly ConcurrentDictionary<(T, Card), T> AddCache = new();
+    private static readonly ConcurrentDictionary<(T, Card), T> RemoveCache = new();
 
     public IReadOnlyCollection<Card> Cards { get; }
     private readonly int _hashCode;
@@ -35,10 +36,14 @@ public abstract class CardCollection<T> where T : CardCollection<T>
 
     public T Remove(Card card)
     {
-        var cardsCopy = Cards.ToList();
-        var cardFound = cardsCopy.Remove(card);
-        if (!cardFound) throw new ArgumentException($"CardCollection does not contain {card}");
-        return CreateNew(cardsCopy.ToArray());
+        return RemoveCache.GetOrAdd(((T)this, card), key =>
+        {
+            var (cardCollection, innerCard) = key;
+            var cardsCopy = cardCollection.Cards.ToList();
+            var cardFound = cardsCopy.Remove(innerCard);
+            if (!cardFound) throw new ArgumentException($"CardCollection does not contain {card}");
+            return CreateNew(cardsCopy.ToArray());
+        });
     }
 
     public static bool operator ==(CardCollection<T> a, CardCollection<T> b)
