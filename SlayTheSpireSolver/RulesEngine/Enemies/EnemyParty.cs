@@ -52,7 +52,7 @@ public class EnemyParty : IEnumerable<Enemy>
 
     public override int GetHashCode()
     {
-        return 0;
+        return _hashCode;
     }
 
     public IEnumerator<Enemy> GetEnumerator()
