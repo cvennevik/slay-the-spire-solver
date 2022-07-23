@@ -76,7 +76,7 @@ public class Solver
             bestEstimate = Math.Max(bestEstimate, expectedValue.Estimate);
         }
 
-        return new ExpectedValue(bestMinimum, bestEstimate, bestMaximum);
+        return new ExpectedValue(bestMinimum, bestEstimate, 10000);
     }
 
     private static int GetActionPriority(PlayerAction action)
