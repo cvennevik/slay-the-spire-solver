@@ -83,14 +83,10 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     private readonly T _type = new();
 
     [Test]
-    public void EmptyCollectionsAreEqual()
+    public void TestEquality()
     {
         Assert.AreEqual(_type.CreateNew(), _type.CreateNew());
-    }
-
-    [Test]
-    public void EmptyCollectionsWithStrikeAddedAreNotEqual()
-    {
         Assert.AreNotEqual(_type.CreateNew(), _type.CreateNew(new Strike()));
+        Assert.AreNotEqual(_type.CreateNew(new Defend()), _type.CreateNew(new Strike()));
     }
 }
