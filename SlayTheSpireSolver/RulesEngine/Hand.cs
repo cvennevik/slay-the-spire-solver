@@ -23,42 +23,6 @@ public class Hand : CardCollection<Hand>
 internal class HandTests : CardCollectionTests<Hand>
 {
     [TestFixture]
-    internal class AddTests : HandTests
-    {
-        [Test]
-        public void AddsStrikeToEmptyHand()
-        {
-            var hand = new Hand();
-            var newHand = hand.Add(new Strike());
-            Assert.AreEqual(new Hand(new Strike()), newHand);
-        }
-
-        [Test]
-        public void AddsDefendToEmptyHand()
-        {
-            var hand = new Hand();
-            var newHand = hand.Add(new Defend());
-            Assert.AreEqual(new Hand(new Defend()), newHand);
-        }
-
-        [Test]
-        public void AddsStrikeToExistingHand()
-        {
-            var hand = new Hand(new Strike());
-            var newHand = hand.Add(new Strike());
-            Assert.AreEqual(new Hand(new Strike(), new Strike()), newHand);
-        }
-
-        [Test]
-        public void AddsDefendToExistingHand()
-        {
-            var hand = new Hand(new Strike());
-            var newHand = hand.Add(new Defend());
-            Assert.AreEqual(new Hand(new Strike(), new Defend()), newHand);
-        }
-    }
-
-    [TestFixture]
     internal class RemoveTests : HandTests
     {
         [Test]
