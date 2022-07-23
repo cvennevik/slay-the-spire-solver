@@ -230,6 +230,7 @@ internal class SolverTests
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.Less(0, expectedValue.Minimum);
         Assert.Less(expectedValue.Minimum, expectedValue.Estimate);
+        Assert.Less(expectedValue.Estimate, 50);
     }
 
     [Test]
