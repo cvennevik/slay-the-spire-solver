@@ -6,7 +6,7 @@ using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public readonly record struct EndTurnAction(GameState GameState) : PlayerAction
+public record EndTurnAction(GameState GameState) : PlayerAction
 {
     public PossibilitySet Resolve()
     {
