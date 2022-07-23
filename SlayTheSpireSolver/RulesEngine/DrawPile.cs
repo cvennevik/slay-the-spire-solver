@@ -22,45 +22,4 @@ public class DrawPile : CardCollection<DrawPile>
 [TestFixture]
 internal class DrawPileTests : CardCollectionTests<DrawPile>
 {
-    [TestFixture]
-    internal class RemoveTests : DrawPileTests
-    {
-        [Test]
-        public void ThrowsExceptionWhenDrawPileEmpty()
-        {
-            var drawPile = new DrawPile();
-            Assert.Throws<ArgumentException>(() => drawPile.Remove(new Strike()));
-        }
-
-        [Test]
-        public void ThrowsExceptionWhenCardNotInDrawPile()
-        {
-            var drawPile = new DrawPile(new Defend());
-            Assert.Throws<ArgumentException>(() => drawPile.Remove(new Strike()));
-        }
-
-        [Test]
-        public void RemovesStrike()
-        {
-            var drawPile = new DrawPile(new Strike());
-            var newDrawPile = drawPile.Remove(new Strike());
-            Assert.AreEqual(new DrawPile(), newDrawPile);
-        }
-
-        [Test]
-        public void RemovesDefend()
-        {
-            var drawPile = new DrawPile(new Defend());
-            var newDrawPile = drawPile.Remove(new Defend());
-            Assert.AreEqual(new DrawPile(), newDrawPile);
-        }
-
-        [Test]
-        public void RemovesOnlyOneCopy()
-        {
-            var drawPile = new DrawPile(new Defend(), new Defend());
-            var newDrawPile = drawPile.Remove(new Defend());
-            Assert.AreEqual(new DrawPile(new Defend()), newDrawPile);
-        }
-    }
 }
