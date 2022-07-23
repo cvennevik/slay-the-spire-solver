@@ -16,7 +16,7 @@ public readonly record struct EnemyId
 
     public override string ToString()
     {
-        return $"{_guid}";
+        return _guid.ToString();
     }
 }
 
