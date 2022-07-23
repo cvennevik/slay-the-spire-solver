@@ -175,7 +175,8 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     public void RemovesCorrectCardType()
     {
         var collection = _type.CreateNew(new Strike(), new Defend());
-        Assert.AreEqual(_type.CreateNew(new Defend()), collection.Remove(new Strike()));
+        var newCollection = collection.Remove(new Strike());
+        Assert.AreEqual(_type.CreateNew(new Defend()), newCollection);
     }
 
     [Test]
