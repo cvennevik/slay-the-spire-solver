@@ -29,7 +29,19 @@ public class Benchmarks
     };
 
     [Benchmark]
-    public (PlayerAction, ExpectedValue) MyFirstBenchmark()
+    public (PlayerAction, ExpectedValue) SolveDepth1()
+    {
+        return new Solver(1).FindBestAction(_gameState);
+    }
+
+    [Benchmark]
+    public (PlayerAction, ExpectedValue) SolveDepth2()
+    {
+        return new Solver(2).FindBestAction(_gameState);
+    }
+
+    [Benchmark]
+    public (PlayerAction, ExpectedValue) SolveDepth3()
     {
         return new Solver(3).FindBestAction(_gameState);
     }
