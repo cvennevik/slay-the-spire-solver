@@ -131,7 +131,7 @@ public class Solver
             }
         }
 
-        return new ExpectedValue(lowestMinimum, accumulatedEstimate, highestMaximum);
+        return new ExpectedValue(lowestMinimum, accumulatedEstimate, 10000);
     }
 }
 
