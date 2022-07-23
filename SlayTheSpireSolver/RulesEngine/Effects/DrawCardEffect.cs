@@ -40,7 +40,7 @@ public record DrawCardEffect : Effect
                 newResults[i] = new Possibility(newGameState, probability);
             }
 
-            return results.ToArray();
+            return newResults;
         }
 
         return gameState;
