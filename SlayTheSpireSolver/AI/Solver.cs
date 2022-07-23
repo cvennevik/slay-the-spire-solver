@@ -347,7 +347,7 @@ internal class SolverTests
 
         var actionsAndExpectedValues = new List<(PlayerAction, ExpectedValue)>
         {
-            (action1, expectedValue1),
+            new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState),
             (action2, expectedValue2),
             (action3, expectedValue3),
             (action4, expectedValue4),
