@@ -26,7 +26,7 @@ public record GameState
         var legalActions = new List<PlayerAction>();
         legalActions.AddRange(Hand.Cards.SelectMany(card => card.GetLegalActions(this)));
         if (!IsCombatOver()) legalActions.Add(new EndTurnAction(this));
-        return legalActions.Distinct().ToList();
+        return legalActions;
     }
 
     public bool IsCombatOver()
