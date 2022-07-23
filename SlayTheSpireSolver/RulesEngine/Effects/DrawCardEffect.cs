@@ -18,6 +18,11 @@ public record DrawCardEffect : Effect
         if (gameState.DrawPile.Cards.Any())
         {
             var results = new List<Possibility>();
+            var cardCounts = new Dictionary<Card, int>();
+            foreach (var card in gameState.DrawPile.Cards)
+                if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
+                else cardCounts[card] = 1;
+
             var uniqueCards = gameState.DrawPile.Cards.Distinct();
             foreach (var uniqueCard in uniqueCards)
             {
