@@ -93,4 +93,36 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
         Assert.AreEqual(_type.CreateNew(new Strike(), new Defend()), _type.CreateNew(new Strike(), new Defend()));
         Assert.AreEqual(_type.CreateNew(new Strike(), new Defend()), _type.CreateNew(new Defend(), new Strike()));
     }
+
+    [Test]
+    public void ContainsDefend()
+    {
+        var collection = _type.CreateNew(new Defend());
+        Assert.True(collection.Contains(new Defend()));
+        Assert.False(collection.Contains(new Strike()));
+    }
+
+    [Test]
+    public void ContainsStrikeAndDefend()
+    {
+        var collection = _type.CreateNew(new Defend(), new Strike());
+        Assert.True(collection.Contains(new Defend()));
+        Assert.True(collection.Contains(new Strike()));
+    }
+
+    [Test]
+    public void ContainsNothing()
+    {
+        var collection = _type.CreateNew();
+        Assert.False(collection.Contains(new Defend()));
+        Assert.False(collection.Contains(new Strike()));
+    }
+
+    [Test]
+    public void ContainsTwoDefends()
+    {
+        var collection = _type.CreateNew(new Defend(), new Defend());
+        Assert.True(collection.Contains(new Defend()));
+        Assert.False(collection.Contains(new Strike()));
+    }
 }
