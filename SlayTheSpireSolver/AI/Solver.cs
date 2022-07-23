@@ -28,6 +28,7 @@ public class Solver
     // TODO:
     //  * Improve non-terminal game state estimation
     //  * Add nice UI
+    //  * Pregenerate GameState hashcodes?
 
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {

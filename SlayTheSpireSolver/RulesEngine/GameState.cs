@@ -21,6 +21,8 @@ public record GameState
     public DiscardPile DiscardPile { get; init; } = new();
     public EffectStack EffectStack { get; init; } = new();
 
+    private int _hashCode;
+
     public IReadOnlyCollection<PlayerAction> GetLegalActions()
     {
         if (IsCombatOver()) return Array.Empty<PlayerAction>();
@@ -59,6 +61,14 @@ public record GameState
     public Possibility WithProbability(Probability probability)
     {
         return new Possibility(this, probability);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty),
+            HashCode.Combine(Turn, Hand, DrawPile, DiscardPile, EffectStack)
+        );
     }
 
     public override string ToString()
