@@ -1,26 +1,14 @@
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
-using SlayTheSpireSolver.RulesEngine.Effects;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
 namespace SlayTheSpireSolver.RulesEngine.Actions;
 
-public record PlayTargetedCardAction(GameState GameState, TargetedCard TargetedCard, EnemyId Target) : PlayCardAction
+public record PlayTargetedCardAction : PlayCardAction
 {
-    public Card Card => TargetedCard;
-
-    public PossibilitySet Resolve()
-    {
-        var unresolvedGameState = GameState with
-        {
-            EffectStack = new EffectStack(new AddCardToDiscardPileEffect(TargetedCard))
-                .Push(TargetedCard.GetTargetedEffects(Target))
-                .Push(new RemoveCardFromHandEffect(TargetedCard))
-                .Push(new RemoveEnergyEffect(TargetedCard.GetCost()))
-        };
-        return unresolvedGameState.Resolve();
-    }
+    public PlayTargetedCardAction(GameState gameState, TargetedCard card, EnemyId target)
+        : base(gameState, card, card.GetTargetedEffects(target)) { }
 }
 
 [TestFixture]
