@@ -25,7 +25,7 @@ public record GameState
     {
         if (IsCombatOver()) return Array.Empty<PlayerAction>();
         return Hand.Cards
-            .SelectMany(card => (IReadOnlyCollection<PlayerAction>)card.GetLegalActions(this))
+            .SelectMany(card => (IReadOnlyCollection<PlayerAction>) card.GetLegalActions(this))
             .Append(new EndTurnAction(this))
             .ToArray();
     }
@@ -44,11 +44,6 @@ public record GameState
     {
         var (effect, remainingEffectStack) = EffectStack.Pop();
         return (effect, this with { EffectStack = remainingEffectStack });
-    }
-
-    public GameState WithAddedEffects(params Effect[] effects)
-    {
-        return WithAddedEffects(new EffectStack(effects));
     }
 
     public GameState WithAddedEffects(EffectStack effectStack)

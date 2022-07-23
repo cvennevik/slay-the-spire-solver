@@ -47,10 +47,7 @@ internal class AttackEnemyEffectTests
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, damage);
         var result = effect.Resolve(gameState).Single().GameState;
-        Assert.AreEqual(gameState with
-        {
-            EffectStack = new EffectStack(new DamageEnemyEffect(targetEnemy.Id, damage))
-        }, result);
+        Assert.AreEqual(gameState with { EffectStack = new DamageEnemyEffect(targetEnemy.Id, damage) }, result);
     }
 
     [Test]
@@ -66,9 +63,6 @@ internal class AttackEnemyEffectTests
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new AttackEnemyEffect(targetEnemy.Id, attackDamage);
         var result = effect.Resolve(gameState).Single().GameState;
-        Assert.AreEqual(gameState with
-        {
-            EffectStack = new EffectStack(new DamageEnemyEffect(targetEnemy.Id, dealtDamage))
-        }, result);
+        Assert.AreEqual(gameState with { EffectStack = new DamageEnemyEffect(targetEnemy.Id, dealtDamage) }, result);
     }
 }

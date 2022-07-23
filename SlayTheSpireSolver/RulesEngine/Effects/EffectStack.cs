@@ -6,23 +6,14 @@ public readonly struct EffectStack
 {
     private readonly Effect[] _effects;
 
-    public bool IsEmpty()
-    {
-        return _effects.Length == 0;
-    }
+    public bool IsEmpty() => _effects.Length == 0;
 
-    public EffectStack() : this(Array.Empty<Effect>())
-    {
-    }
+    public EffectStack() : this(Array.Empty<Effect>()) { }
+    
+    public static implicit operator EffectStack(Effect effect) => new(effect);
+    public static implicit operator EffectStack(Effect[] effects) => new(effects);
 
-    public static implicit operator EffectStack(Effect[] effects)
-    {
-        return new EffectStack(effects);
-    }
-
-    public EffectStack(IEnumerable<Effect> effects) : this(effects.ToArray())
-    {
-    }
+    public EffectStack(IEnumerable<Effect> effects) : this(effects.ToArray()) { }
 
     public EffectStack(params Effect[] effects)
     {

@@ -9,24 +9,33 @@ public record DamageEnemyEffect(EnemyId TargetId, Damage Damage) : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
-        if (!gameState.EnemyParty.Has(TargetId)) return gameState;
+        if (!gameState.EnemyParty.Has(TargetId))
+        {
+            return gameState;
+        }
 
         var newGameState = gameState.ModifyEnemy(TargetId, enemy => DamageEnemy(enemy, Damage));
 
         if (newGameState.EnemyParty.Get(TargetId).Health.Amount <= 0)
+        {
             return newGameState.WithAddedEffects(new KillEnemyEffect(TargetId));
+        }
 
         return newGameState;
     }
 
     private static Enemy DamageEnemy(Enemy enemy, Damage damage)
     {
-        if (damage < enemy.Armor) return enemy with { Armor = enemy.Armor - damage };
+        if (damage < enemy.Armor)
+        {
+            return enemy with { Armor = enemy.Armor - damage };
+        }
 
         var remainingDamage = damage - enemy.Armor;
         return enemy with { Armor = 0, Health = enemy.Health - remainingDamage };
     }
 }
+
 
 [TestFixture]
 internal class DamageEnemyEffectTests
@@ -57,7 +66,7 @@ internal class DamageEnemyEffectTests
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(new JawWorm { Health = 0 }),
-            EffectStack = new EffectStack(new KillEnemyEffect(EnemyId.Default))
+            EffectStack = new KillEnemyEffect(EnemyId.Default)
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
@@ -106,7 +115,7 @@ internal class DamageEnemyEffectTests
                 new JawWorm { Health = 0, Id = id2 },
                 new JawWorm { Health = 10, Id = id3 }
             ),
-            EffectStack = new EffectStack(new KillEnemyEffect(id2))
+            EffectStack = new KillEnemyEffect(id2)
         };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }

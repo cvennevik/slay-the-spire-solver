@@ -9,15 +9,10 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record Possibility(GameState GameState, Probability Probability)
 {
-    public static implicit operator Possibility(GameState gameState)
-    {
-        return new(gameState, new Probability(1));
-    }
+    public static implicit operator Possibility(GameState gameState) => new(gameState, new Probability(1));
 
-    public static Possibility operator *(Possibility possibility, Probability probability)
-    {
-        return possibility with { Probability = possibility.Probability * probability };
-    }
+    public static Possibility operator *(Possibility possibility, Probability probability) =>
+        possibility with { Probability = possibility.Probability * probability };
 
     public bool IsEqualTo(Possibility other, double tolerance = double.Epsilon)
     {
@@ -26,7 +21,10 @@ public record Possibility(GameState GameState, Probability Probability)
 
     public PossibilitySet Resolve()
     {
-        if (GameState.EffectStack.IsEmpty()) return new[] { this };
+        if (GameState.EffectStack.IsEmpty())
+        {
+            return new[] { this };
+        }
 
         return ResolveTopEffect()
             .SelectMany(x => x.Resolve())
@@ -65,7 +63,7 @@ internal class PossibilityTests
         {
             Turn = 2,
             EnemyParty = new EnemyParty(new JawWorm { Health = 2 }),
-            EffectStack = new EffectStack(new AttackEnemyEffect(EnemyId.Default, 3))
+            EffectStack = new AttackEnemyEffect(EnemyId.Default, 3)
         };
         var possibility = new Possibility(gameState, 0.8);
         var result = possibility.Resolve().Single();
