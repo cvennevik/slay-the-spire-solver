@@ -22,6 +22,7 @@ public record DrawCardEffect : Effect
             foreach (var card in gameState.DrawPile.Cards)
                 if (cardCounts.ContainsKey(card)) cardCounts[card] += 1;
                 else cardCounts[card] = 1;
+            var cardCount = gameState.DrawPile.Cards.Count;
 
             foreach (var uniqueCard in cardCounts.Keys)
             {
@@ -30,7 +31,7 @@ public record DrawCardEffect : Effect
                     Hand = gameState.Hand.Add(uniqueCard),
                     DrawPile = gameState.DrawPile.Remove(uniqueCard)
                 };
-                var fractionOfDrawPile = (double)cardCounts[uniqueCard] / gameState.DrawPile.Cards.Count;
+                var fractionOfDrawPile = (double)cardCounts[uniqueCard] / cardCount;
                 var probability = new Probability(fractionOfDrawPile);
                 results.Add(new Possibility(newGameState, probability));
             }
