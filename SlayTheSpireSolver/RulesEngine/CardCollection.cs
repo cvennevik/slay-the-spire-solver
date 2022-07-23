@@ -148,19 +148,11 @@ internal abstract class CardCollectionTests<T> where T : CardCollection<T>, new(
     }
 
     [Test]
-    public void RemoveStrikeCard()
-    {
-        var hand = new Hand(new Strike());
-        var newHand = hand.Remove(new Strike());
-        Assert.AreEqual(new Hand(), newHand);
-    }
-
-    [Test]
     public void RemovesDefendCard()
     {
-        var hand = new Hand(new Defend());
-        var newHand = hand.Remove(new Defend());
-        Assert.AreEqual(new Hand(), newHand);
+        var collection = _type.CreateNew(new Defend());
+        var newCollection = collection.Remove(new Defend());
+        Assert.AreEqual(_type.CreateNew(), newCollection);
     }
 
     [Test]
