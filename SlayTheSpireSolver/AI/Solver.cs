@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.AI;
 
 public class Solver
 {
-    public int GameStateSearchDepth { get; init; }
+    public int GameStateSearchDepth { get; }
     public int EvaluatedGameStates => _evaluatedGameStates;
     public int GameStateCacheHits => _gameStateCacheHits;
     public int PrunedActionOutcomes => _prunedActionOutcomes;
@@ -20,6 +20,11 @@ public class Solver
     private int _prunedActionOutcomes;
 
     private readonly ConcurrentDictionary<GameState, ExpectedValue> _gameStateCache = new();
+
+    public Solver(int gameStateSearchDepth)
+    {
+        GameStateSearchDepth = gameStateSearchDepth;
+    }
 
     // TODO:
     //  * Parallelize
@@ -146,7 +151,7 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
         };
-        var solver = new Solver { GameStateSearchDepth = 3 };
+        var solver = new Solver(3);
         var firstSearchResult = solver.FindBestAction(nonTerminalGameState);
         var secondSearchResult = solver.FindBestAction(nonTerminalGameState);
         Assert.AreEqual(firstSearchResult, secondSearchResult);
@@ -156,7 +161,7 @@ internal class SolverTests
     [Test]
     public void FindBestActionThrowsExceptionForTerminalGameState()
     {
-        var solver = new Solver { GameStateSearchDepth = 3 };
+        var solver = new Solver(3);
         Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
             { PlayerHealth = 0 }));
         Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
@@ -173,7 +178,7 @@ internal class SolverTests
             Energy = 3,
             Hand = new Hand(new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 3 };
+        var solver = new Solver(3);
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.AreEqual(50, expectedValue.Minimum);
@@ -189,7 +194,7 @@ internal class SolverTests
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 3 };
+        var solver = new Solver(3);
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new EndTurnAction(gameState), action);
         Assert.AreEqual(39, expectedValue.Minimum);
@@ -207,7 +212,7 @@ internal class SolverTests
             Hand = new Hand(new Defend()),
             DrawPile = new DrawPile(new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 3 };
+        var solver = new Solver(3);
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayUntargetedCardAction(gameState, new Defend()), action);
         Assert.AreEqual(44, expectedValue.Minimum);
@@ -225,7 +230,7 @@ internal class SolverTests
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
         };
-        var solver = new Solver { GameStateSearchDepth = 7 };
+        var solver = new Solver(7);
         var (action, expectedValue) = solver.FindBestAction(gameState);
         Assert.AreEqual(new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default), action);
         Assert.Less(0, expectedValue.Minimum);
@@ -299,7 +304,7 @@ internal class SolverTests
         GameState gameState, int searchDepth)
     {
         var depths = Enumerable.Range(1, searchDepth);
-        return depths.Select(depth => new Solver { GameStateSearchDepth = depth }.FindBestAction(gameState));
+        return depths.Select(depth => new Solver(depth).FindBestAction(gameState));
     }
 
     private static void AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(
