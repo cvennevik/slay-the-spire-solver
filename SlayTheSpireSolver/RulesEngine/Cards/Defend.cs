@@ -7,12 +7,12 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Defend : UntargetedCard
 {
-    public override Energy GetCost()
+    public Energy GetCost()
     {
         return 1;
     }
 
-    public override EffectStack GetEffects()
+    public EffectStack GetEffects()
     {
         return new EffectStack(new GainPlayerArmorEffect(5));
     }
