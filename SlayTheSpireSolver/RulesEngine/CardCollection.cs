@@ -30,9 +30,9 @@ public abstract class CardCollection<T> where T : CardCollection<T>
     {
         if (AddCache.TryGetValue(((T)this, card), out var cachedValue)) return cachedValue;
 
-        var value = CreateNew(Cards.Append(card).ToArray());
-        AddCache[((T)this, card)] = value;
-        return value;
+        var result = CreateNew(Cards.Append(card).ToArray());
+        AddCache[((T)this, card)] = result;
+        return result;
     }
 
     public T Remove(Card card)
