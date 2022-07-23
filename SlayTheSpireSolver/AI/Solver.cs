@@ -250,6 +250,7 @@ internal class SolverTests
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
         };
+        var (action1, expectedValue1) = new Solver { GameStateSearchDepth = 1 }.FindBestAction(gameState);
         var (action2, expectedValue2) = new Solver { GameStateSearchDepth = 2 }.FindBestAction(gameState);
         var (action3, expectedValue3) = new Solver { GameStateSearchDepth = 3 }.FindBestAction(gameState);
         var (action4, expectedValue4) = new Solver { GameStateSearchDepth = 4 }.FindBestAction(gameState);
@@ -259,6 +260,7 @@ internal class SolverTests
         var (action8, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
         var (action9, expectedValue9) = new Solver { GameStateSearchDepth = 9 }.FindBestAction(gameState);
         var expectedAction = new PlayTargetedCardAction(gameState, new Strike(), EnemyId.Default);
+        Assert.AreEqual(expectedAction, action1);
         Assert.AreEqual(expectedAction, action2);
         Assert.AreEqual(expectedAction, action3);
         Assert.AreEqual(expectedAction, action4);
@@ -267,14 +269,15 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action7);
         Assert.AreEqual(expectedAction, action8);
         Assert.AreEqual(expectedAction, action9);
-        AssertRangeContains(new ExpectedValue(0, 50), expectedValue2);
-        AssertRangeContains(expectedValue2, expectedValue3);
-        AssertRangeContains(expectedValue3, expectedValue4);
-        AssertRangeContains(expectedValue4, expectedValue5);
-        AssertRangeContains(expectedValue5, expectedValue6);
-        AssertRangeContains(expectedValue6, expectedValue7);
-        AssertRangeContains(expectedValue7, expectedValue8);
-        AssertRangeContains(expectedValue8, expectedValue9);
+        Assert.LessOrEqual(0, expectedValue1.Minimum);
+        Assert.LessOrEqual(expectedValue1.Minimum, expectedValue2.Minimum);
+        Assert.LessOrEqual(expectedValue2.Minimum, expectedValue3.Minimum);
+        Assert.LessOrEqual(expectedValue3.Minimum, expectedValue4.Minimum);
+        Assert.LessOrEqual(expectedValue4.Minimum, expectedValue5.Minimum);
+        Assert.LessOrEqual(expectedValue5.Minimum, expectedValue6.Minimum);
+        Assert.LessOrEqual(expectedValue6.Minimum, expectedValue7.Minimum);
+        Assert.LessOrEqual(expectedValue7.Minimum, expectedValue8.Minimum);
+        Assert.LessOrEqual(expectedValue8.Minimum, expectedValue9.Minimum);
     }
 
     [Test]
@@ -306,11 +309,10 @@ internal class SolverTests
         Assert.AreEqual(expectedAction, action3);
         Assert.AreEqual(expectedAction, action4);
         Assert.AreEqual(expectedAction, action5);
-        AssertRangeContains(new ExpectedValue(0, 80), expectedValue2);
-        AssertRangeContains(expectedValue2, expectedValue3);
-        AssertRangeContains(expectedValue3, expectedValue4);
-        // SHOULD PASS: AssertRangeContains(expectedValue4, expectedValue5);
-        // AssertRangeContains(expectedValue5, expectedValue9);
+        Assert.LessOrEqual(0, expectedValue2.Minimum);
+        Assert.LessOrEqual(expectedValue2.Minimum, expectedValue3.Minimum);
+        Assert.LessOrEqual(expectedValue3.Minimum, expectedValue4.Minimum);
+        Assert.LessOrEqual(expectedValue4.Minimum, expectedValue5.Minimum);
     }
 
     [Test]
@@ -342,19 +344,13 @@ internal class SolverTests
         var (_, expectedValue6) = new Solver { GameStateSearchDepth = 6 }.FindBestAction(gameState);
         var (_, expectedValue7) = new Solver { GameStateSearchDepth = 7 }.FindBestAction(gameState);
         var (_, expectedValue8) = new Solver { GameStateSearchDepth = 8 }.FindBestAction(gameState);
-        AssertRangeContains(new ExpectedValue(0, 80), expectedValue1);
-        AssertRangeContains(expectedValue1, expectedValue2);
-        AssertRangeContains(expectedValue2, expectedValue3);
-        AssertRangeContains(expectedValue3, expectedValue4);
-        AssertRangeContains(expectedValue4, expectedValue5);
-        AssertRangeContains(expectedValue5, expectedValue6);
-        AssertRangeContains(expectedValue6, expectedValue7);
-        AssertRangeContains(expectedValue7, expectedValue8);
-    }
-
-    private static void AssertRangeContains(ExpectedValue value1, ExpectedValue value2)
-    {
-        Assert.True(value1.Minimum <= value2.Minimum && value2.Maximum <= value1.Maximum,
-            $"{value1} does not contain {value2}");
+        Assert.LessOrEqual(0, expectedValue1.Minimum);
+        Assert.LessOrEqual(expectedValue1.Minimum, expectedValue2.Minimum);
+        Assert.LessOrEqual(expectedValue2.Minimum, expectedValue3.Minimum);
+        Assert.LessOrEqual(expectedValue3.Minimum, expectedValue4.Minimum);
+        Assert.LessOrEqual(expectedValue4.Minimum, expectedValue5.Minimum);
+        Assert.LessOrEqual(expectedValue5.Minimum, expectedValue6.Minimum);
+        Assert.LessOrEqual(expectedValue6.Minimum, expectedValue7.Minimum);
+        Assert.LessOrEqual(expectedValue7.Minimum, expectedValue8.Minimum);
     }
 }
