@@ -356,6 +356,12 @@ internal class SolverTests
             (action7, expectedValue7),
             (action8, expectedValue8)
         };
+        AssertActionExpectedValueMinimumsIncreaseMonotonically(actionsAndExpectedValues);
+    }
+
+    private static void AssertActionExpectedValueMinimumsIncreaseMonotonically(
+        IEnumerable<(PlayerAction, ExpectedValue)> actionsAndExpectedValues)
+    {
         var expectedValuesByAction = actionsAndExpectedValues.GroupBy(x => x.Item1);
         foreach (var expectedValuesGroup in expectedValuesByAction)
         {
