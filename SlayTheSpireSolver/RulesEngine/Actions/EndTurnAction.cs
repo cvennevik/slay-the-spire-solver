@@ -81,8 +81,6 @@ internal class EndTurnEffectTests
                 new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }
             },
             Hand = new Hand(new AscendersBane(), new Defend()),
-            DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
         var result = new EndTurnAction(gameState).Resolve();
         Assert.True(result.Select(x => x.GameState).All(x => x.ExhaustPile == new ExhaustPile(new AscendersBane())));
