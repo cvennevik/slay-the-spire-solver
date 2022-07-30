@@ -74,10 +74,6 @@ internal class EndTurnEffectTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new[]
-            {
-                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }
-            },
             Hand = new Hand(new AscendersBane(), new Defend()),
         };
         var result = new EndTurnAction(gameState).Resolve();
