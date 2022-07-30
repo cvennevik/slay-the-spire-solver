@@ -26,20 +26,23 @@ Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
 
-var solver = new Solver(10);
-Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
-Console.WriteLine("");
-Console.WriteLine("Searching for best player action...");
+for (var i = 1; i < 10; i++)
+{
+    var solver = new Solver(i);
+    Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
+    Console.WriteLine("");
+    Console.WriteLine("Searching for best player action...");
 
-var stopWatch = Stopwatch.StartNew();
-var (bestAction, expectedValue) = solver.FindBestAction(gameState);
-stopWatch.Stop();
+    var stopWatch = Stopwatch.StartNew();
+    var (bestAction, expectedValue) = solver.FindBestAction(gameState);
+    stopWatch.Stop();
 
-Console.WriteLine("Search complete.");
-Console.WriteLine($"Recommended action: {bestAction}");
-Console.WriteLine($"Expected value: {expectedValue}");
-Console.WriteLine("");
-Console.WriteLine("STATISTICS");
-Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
-Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
-Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
+    Console.WriteLine("Search complete.");
+    Console.WriteLine($"Recommended action: {bestAction}");
+    Console.WriteLine($"Expected value: {expectedValue}");
+    Console.WriteLine("");
+    Console.WriteLine("STATISTICS");
+    Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
+    Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
+    Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
+}
