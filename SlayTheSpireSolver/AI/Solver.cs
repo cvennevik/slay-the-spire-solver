@@ -25,11 +25,6 @@ public class Solver
         GameStateSearchDepth = gameStateSearchDepth;
     }
 
-    // TODO:
-    //  * Improve non-terminal game state estimation
-    //  * Add nice UI
-    //  * Pregenerate GameState hashcodes?
-
     public (PlayerAction, ExpectedValue) FindBestAction(GameState gameState)
     {
         if (!gameState.GetLegalActions().Any()) throw new ArgumentException("Game state has no legal actions");
