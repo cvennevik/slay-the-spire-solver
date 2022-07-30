@@ -16,6 +16,7 @@ public record EndTurnEffect : Effect
             new ResolveForAllEnemiesEffect<ChooseNewEnemyMoveEffect>(),
             new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>(),
             new ClearAllEnemyArmorEffect(),
-            new MoveHandToDiscardPileEffect()));
+            new MoveHandToDiscardPileEffect(),
+            new ExhaustEtherealCardsEffect()));
     }
 }
