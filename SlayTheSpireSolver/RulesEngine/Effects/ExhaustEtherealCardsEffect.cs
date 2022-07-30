@@ -43,4 +43,10 @@ internal class ExhaustEtherealCardsEffectTests
             Hand = new Hand(new Strike(), new AscendersBane())
         };
     }
+
+    [Test]
+    public void ExhaustsAllEtherealCardsInHand()
+    {
+        // TODO
+    }
 }
