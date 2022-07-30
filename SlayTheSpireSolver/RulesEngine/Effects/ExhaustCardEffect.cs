@@ -49,5 +49,6 @@ internal class ExhaustCardEffectTests
         {
             ExhaustPile = new ExhaustPile(new Strike(), new Strike())
         };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 }
