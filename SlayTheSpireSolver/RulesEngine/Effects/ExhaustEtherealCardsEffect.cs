@@ -9,7 +9,7 @@ public record ExhaustEtherealCardsEffect : Effect
     {
         var etherealCards = gameState.Hand.Cards.Where(x => x.IsEthereal);
         var effects = etherealCards.Select(card => new ExhaustCardEffect(card));
-        return gameState;
+        return gameState.WithAddedEffects(effects.ToArray());
     }
 }
 
