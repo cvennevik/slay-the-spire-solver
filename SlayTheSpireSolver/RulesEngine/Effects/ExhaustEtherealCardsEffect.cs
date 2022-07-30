@@ -57,4 +57,10 @@ internal class ExhaustEtherealCardsEffectTests
     {
         // TODO
     }
+
+    [Test]
+    public void PushesExhaustEffectsOntoExistingEffects()
+    {
+        // TODO
+    }
 }
