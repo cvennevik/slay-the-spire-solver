@@ -68,4 +68,9 @@ internal class EndTurnEffectTests
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == 50));
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerArmor == 0));
     }
+
+    [Test]
+    public void TestWithAscendersBaneInHand()
+    {
+    }
 }
