@@ -8,6 +8,7 @@ public record ExhaustEtherealCardsEffect : Effect
     public override PossibilitySet Resolve(GameState gameState)
     {
         var etherealCards = gameState.Hand.Cards.Where(x => x.IsEthereal);
+        var effects = etherealCards.Select(card => new ExhaustCardEffect(card));
         return gameState;
     }
 }
