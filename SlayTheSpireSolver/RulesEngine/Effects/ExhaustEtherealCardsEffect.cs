@@ -13,4 +13,8 @@ public record ExhaustEtherealCardsEffect : Effect
 [TestFixture]
 internal class ExhaustEtherealCardsEffectTests
 {
+    [Test]
+    public void DoesNothingWhenNoEtherealCardsInHand()
+    {
+    }
 }
