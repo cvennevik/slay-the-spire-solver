@@ -25,12 +25,12 @@ var gameState = new GameState
 Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
+Console.WriteLine("");
 
 for (var i = 1; i < 10; i++)
 {
     var solver = new Solver(i);
-    Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
-    Console.WriteLine("");
+    Console.WriteLine($"Searching at new depth: {solver.GameStateSearchDepth}");
     Console.WriteLine("Searching for best player action...");
 
     var stopWatch = Stopwatch.StartNew();
@@ -45,4 +45,5 @@ for (var i = 1; i < 10; i++)
     Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
     Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
     Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
+    Console.WriteLine("---");
 }
