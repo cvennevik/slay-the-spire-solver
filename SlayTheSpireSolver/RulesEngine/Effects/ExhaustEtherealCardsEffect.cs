@@ -58,13 +58,16 @@ internal class ExhaustEtherealCardsEffectTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new Strike(), new AscendersBane())
+            Hand = new Hand(new Strike(), new AscendersBane(), new AscendersBane())
         };
         var effect = new ExhaustEtherealCardsEffect();
         var result = effect.Resolve(gameState);
         var expectedGameState = gameState with
         {
-            EffectStack = new EffectStack(new ExhaustCardEffect(new AscendersBane()))
+            EffectStack = new EffectStack(
+                new ExhaustCardEffect(new AscendersBane()),
+                new ExhaustCardEffect(new AscendersBane())
+            )
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
