@@ -9,6 +9,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 public record Strike : TargetedCard
 {
     public override Energy Cost => 1;
+    public override string Name => "Strike";
 
     public override EffectStack GetTargetedEffects(EnemyId target)
     {

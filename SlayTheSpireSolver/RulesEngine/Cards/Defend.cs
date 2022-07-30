@@ -8,6 +8,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 public record Defend : UntargetedCard
 {
     public override Energy Cost => 1;
+    public override string Name => "Defend";
 
     public override Effect GetEffect()
     {
