@@ -50,6 +50,7 @@ internal class ExhaustEtherealCardsEffectTests
         {
             EffectStack = new EffectStack(new ExhaustCardEffect(new AscendersBane()))
         };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 
     [Test]
