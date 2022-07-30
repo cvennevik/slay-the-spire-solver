@@ -13,11 +13,6 @@ public record AscendersBane : Card
     {
         return Array.Empty<PlayCardAction>();
     }
-
-    protected virtual string GetName()
-    {
-        return "Ascender's Bane";
-    }
 }
 
 [TestFixture]

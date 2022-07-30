@@ -20,11 +20,6 @@ public record Bash : TargetedCard
             new AttackEnemyEffect(target, new Damage(8))
         };
     }
-
-    protected virtual string GetName()
-    {
-        return "Bash";
-    }
 }
 
 [TestFixture]
