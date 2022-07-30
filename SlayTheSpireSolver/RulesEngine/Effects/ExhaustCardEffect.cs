@@ -62,5 +62,6 @@ internal class ExhaustCardEffectTests
         };
         var effect = new ExhaustCardEffect(new Strike());
         var result = effect.Resolve(gameState);
+        Assert.AreEqual(gameState, result.Single().GameState);
     }
 }
