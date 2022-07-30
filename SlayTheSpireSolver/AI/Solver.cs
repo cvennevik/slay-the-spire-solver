@@ -10,13 +10,9 @@ namespace SlayTheSpireSolver.AI;
 public class Solver
 {
     public int GameStateSearchDepth { get; }
-    public int EvaluatedGameStates => _evaluatedGameStates;
-    public int GameStateCacheHits => _gameStateCacheHits;
-    public int PrunedActionOutcomes => _prunedActionOutcomes;
-
-    private int _evaluatedGameStates;
-    private int _gameStateCacheHits;
-    private int _prunedActionOutcomes;
+    public int EvaluatedGameStates { get; private set; }
+    public int GameStateCacheHits { get; private set; }
+    public int PrunedActionOutcomes { get; private set; }
 
     private readonly Dictionary<GameState, ExpectedValue> _gameStateCache = new();
 
@@ -45,11 +41,11 @@ public class Solver
         var isCached = _gameStateCache.TryGetValue(gameState, out var cachedResult);
         if (isCached)
         {
-            _gameStateCacheHits++;
+            GameStateCacheHits++;
             return cachedResult!;
         }
 
-        _evaluatedGameStates++;
+        EvaluatedGameStates++;
         var result = FindExpectedValueUncached(gameState, gameStateDepthLimit);
         _gameStateCache[gameState] = result;
         return result;
@@ -96,7 +92,7 @@ public class Solver
         var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
         if (possibleMaximum <= cutoffValue)
         {
-            _prunedActionOutcomes += possibleOutcomes.Count;
+            PrunedActionOutcomes += possibleOutcomes.Count;
             return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
         }
 
@@ -117,7 +113,7 @@ public class Solver
             {
                 var evaluatedOutcomes = index + 1;
                 var prunedOutcomes = possibleOutcomes.Count - evaluatedOutcomes;
-                _prunedActionOutcomes += prunedOutcomes;
+                PrunedActionOutcomes += prunedOutcomes;
                 return new ExpectedValue(double.NegativeInfinity, double.NegativeInfinity);
             }
         }
