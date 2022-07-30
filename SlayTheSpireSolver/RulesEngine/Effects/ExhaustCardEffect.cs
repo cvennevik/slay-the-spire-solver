@@ -59,5 +59,6 @@ internal class ExhaustCardEffectTests
         {
             Hand = new Hand(new Defend())
         };
+        var effect = new ExhaustCardEffect(new Strike());
     }
 }
