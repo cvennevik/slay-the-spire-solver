@@ -74,8 +74,6 @@ internal class EndTurnEffectTests
     {
         var gameState = new GameState
         {
-            BaseEnergy = 3,
-            Energy = 0,
             PlayerHealth = 50,
             PlayerArmor = 50,
             EnemyParty = new[]
