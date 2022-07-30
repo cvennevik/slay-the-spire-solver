@@ -11,7 +11,7 @@ public abstract record PlayCardAction : PlayerAction
             EffectStack = new EffectStack(new AddCardToDiscardPileEffect(card))
                 .Push(cardEffects)
                 .Push(new RemoveCardFromHandEffect(card))
-                .Push(new RemoveEnergyEffect(card.GetCost()))
+                .Push(new RemoveEnergyEffect(card.Cost))
         })
     {
         Card = card;
