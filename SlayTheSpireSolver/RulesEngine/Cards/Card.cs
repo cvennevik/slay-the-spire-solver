@@ -10,7 +10,7 @@ public abstract record Card : IComparable<Card>
 {
     public abstract Energy Cost { get; }
     protected abstract string Name { get; }
-    public virtual bool IsEthereal { get; } = false;
+    public virtual bool IsEthereal => false;
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
 
     protected bool CanBePlayed(GameState gameState)
