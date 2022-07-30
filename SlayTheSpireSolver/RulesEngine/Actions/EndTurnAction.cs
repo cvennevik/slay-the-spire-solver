@@ -85,5 +85,6 @@ internal class EndTurnEffectTests
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
         };
         var result = new EndTurnAction(gameState).Resolve();
+        Assert.True(result.Select(x => x.GameState).All(x => x.ExhaustPile == new ExhaustPile(new AscendersBane())));
     }
 }
