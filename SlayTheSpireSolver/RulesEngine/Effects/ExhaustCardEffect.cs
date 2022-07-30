@@ -45,5 +45,9 @@ internal class ExhaustCardEffectTests
         };
         var effect = new ExhaustCardEffect(new Strike());
         var result = effect.Resolve(gameState);
+        var expectedGameState = new GameState
+        {
+            ExhaustPile = new ExhaustPile(new Strike(), new Strike())
+        };
     }
 }
