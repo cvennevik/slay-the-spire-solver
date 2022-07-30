@@ -7,7 +7,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 public record AscendersBane : Card
 {
     public override Energy Cost => 0;
-    public override string Name => "Ascender's Bane";
+    protected override string Name => "Ascender's Bane";
 
     public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {

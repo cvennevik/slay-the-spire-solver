@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 public record Bash : TargetedCard
 {
     public override Energy Cost => 2;
-    public override string Name => "Bash";
+    protected override string Name => "Bash";
 
     public override EffectStack GetTargetedEffects(EnemyId target)
     {
