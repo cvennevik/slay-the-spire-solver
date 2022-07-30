@@ -9,7 +9,7 @@ public class ExhaustPile : CardCollection<ExhaustPile>
     {
     }
 
-    private ExhaustPile(params Card[] cards) : base(cards)
+    public ExhaustPile(params Card[] cards) : base(cards)
     {
     }
 
