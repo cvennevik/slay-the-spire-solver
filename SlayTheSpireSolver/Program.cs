@@ -18,7 +18,7 @@ var gameState = new GameState
     Energy = 3,
     EnemyParty = new[] { jawWorm },
     Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
-    DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
+    DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike(), new AscendersBane()),
     Turn = 1
 };
 
@@ -27,7 +27,7 @@ Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
 Console.WriteLine("");
 
-for (var i = 1; i <= 8; i++)
+for (var i = 1; i <= 14; i++)
 {
     var solver = new Solver(i);
     Console.WriteLine($"Searching for best player action, search depth: {solver.GameStateSearchDepth}...");
