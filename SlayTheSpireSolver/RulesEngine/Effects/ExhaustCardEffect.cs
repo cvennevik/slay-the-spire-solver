@@ -43,5 +43,7 @@ internal class ExhaustCardEffectTests
             Hand = new Hand(new Strike()),
             ExhaustPile = new ExhaustPile(new Strike())
         };
+        var effect = new ExhaustCardEffect(new Strike());
+        var result = effect.Resolve(gameState);
     }
 }
