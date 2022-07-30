@@ -19,7 +19,7 @@ internal class ExhaustCardEffectTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new Strike(), new Strike())
+            Hand = new Hand(new Strike(), new Strike(), new Defend())
         };
         var effect = new ExhaustCardEffect(new Strike());
     }
