@@ -8,6 +8,8 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record Card : IComparable<Card>
 {
+    public abstract Energy Cost { get; }
+
     public abstract Energy GetCost();
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
     protected abstract string GetName();

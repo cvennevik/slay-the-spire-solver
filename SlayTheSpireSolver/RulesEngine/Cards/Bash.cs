@@ -9,6 +9,8 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Bash : TargetedCard
 {
+    public override Energy Cost => 2;
+
     public override Energy GetCost()
     {
         return 2;

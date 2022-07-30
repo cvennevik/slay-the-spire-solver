@@ -8,6 +8,8 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record Strike : TargetedCard
 {
+    public override Energy Cost => 1;
+
     public override Energy GetCost()
     {
         return 1;
