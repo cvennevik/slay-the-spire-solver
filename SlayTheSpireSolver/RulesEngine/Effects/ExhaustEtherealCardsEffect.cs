@@ -44,6 +44,10 @@ internal class ExhaustEtherealCardsEffectTests
         };
         var effect = new ExhaustEtherealCardsEffect();
         var result = effect.Resolve(gameState);
+        var expectedGameState = gameState with
+        {
+            EffectStack = new EffectStack(new ExhaustCardEffect(new AscendersBane()))
+        };
     }
 
     [Test]
