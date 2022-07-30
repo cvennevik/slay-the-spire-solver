@@ -21,4 +21,9 @@ internal class ExhaustEtherealCardsEffectTests
         var result = effect.Resolve(gameState);
         Assert.AreEqual(gameState, result.Single().GameState);
     }
+
+    [Test]
+    public void DoesNothingWhenNoEtherealCardsInHand()
+    {
+    }
 }
