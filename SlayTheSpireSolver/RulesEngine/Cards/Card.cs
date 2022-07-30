@@ -11,7 +11,6 @@ public abstract record Card : IComparable<Card>
     public abstract Energy Cost { get; }
     public abstract string Name { get; }
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
-    protected abstract string GetName();
 
     protected bool CanBePlayed(GameState gameState)
     {

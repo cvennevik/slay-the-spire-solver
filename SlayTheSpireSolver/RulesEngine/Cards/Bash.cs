@@ -21,7 +21,7 @@ public record Bash : TargetedCard
         };
     }
 
-    protected override string GetName()
+    protected virtual string GetName()
     {
         return "Bash";
     }

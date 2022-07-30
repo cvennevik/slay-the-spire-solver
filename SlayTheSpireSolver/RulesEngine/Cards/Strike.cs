@@ -16,7 +16,7 @@ public record Strike : TargetedCard
         return new AttackEnemyEffect(target, 6);
     }
 
-    protected override string GetName()
+    protected virtual string GetName()
     {
         return "Strike";
     }

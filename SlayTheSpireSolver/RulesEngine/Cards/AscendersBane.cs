@@ -14,7 +14,7 @@ public record AscendersBane : Card
         return Array.Empty<PlayCardAction>();
     }
 
-    protected override string GetName()
+    protected virtual string GetName()
     {
         return "Ascender's Bane";
     }
