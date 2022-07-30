@@ -18,7 +18,7 @@ public abstract record Card : IComparable<Card>
     {
         return !gameState.IsCombatOver()
                && gameState.Hand.Contains(this)
-               && gameState.Energy >= GetCost();
+               && gameState.Energy >= Cost;
     }
 
     public int CompareTo(Card? other)
