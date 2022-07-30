@@ -70,7 +70,7 @@ internal class EndTurnEffectTests
     }
 
     [Test]
-    public void TestWithAscendersBaneInHand()
+    public void ExhaustsAscendersBane()
     {
         var gameState = new GameState
         {
