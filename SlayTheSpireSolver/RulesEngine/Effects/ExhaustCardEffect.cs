@@ -7,7 +7,11 @@ public record ExhaustCardEffect(Card TargetCard) : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
-        return gameState;
+        return gameState with
+        {
+            Hand = gameState.Hand.Remove(TargetCard),
+            ExhaustPile = gameState.ExhaustPile.Add(TargetCard)
+        };
     }
 }
 
