@@ -16,7 +16,7 @@ public abstract class CardCollection<T> where T : CardCollection<T>
     {
         Array.Sort(cards);
         Cards = cards;
-        _hashCode = Cards.Sum(x => x.GetHashCode());
+        _hashCode = Cards.Aggregate(0, HashCode.Combine);
     }
 
     public abstract T CreateNew(params Card[] cards);
