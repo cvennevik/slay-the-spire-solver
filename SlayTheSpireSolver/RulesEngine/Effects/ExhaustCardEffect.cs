@@ -27,12 +27,12 @@ internal class ExhaustCardEffectTests
         };
         var effect = new ExhaustCardEffect(new Strike());
         var result = effect.Resolve(gameState);
-        var expectedResult = new GameState
+        var expectedGameState = new GameState
         {
             Hand = new Hand(new Strike(), new Defend()),
             ExhaustPile = new ExhaustPile(new Strike())
         };
-        Assert.AreEqual(expectedResult, result.Single().GameState);
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 
     [Test]
