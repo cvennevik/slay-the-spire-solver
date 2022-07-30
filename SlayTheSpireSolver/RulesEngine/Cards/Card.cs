@@ -28,7 +28,7 @@ public abstract record Card : IComparable<Card>
 
     public sealed override string ToString()
     {
-        return GetName();
+        return Name;
     }
 }
 
