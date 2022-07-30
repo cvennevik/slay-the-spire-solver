@@ -51,4 +51,9 @@ internal class ExhaustCardEffectTests
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
+
+    [Test]
+    public void DoesNothingWhenCardNotInHand()
+    {
+    }
 }
