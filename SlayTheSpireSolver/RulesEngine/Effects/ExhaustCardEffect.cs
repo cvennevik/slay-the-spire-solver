@@ -15,8 +15,8 @@ public record ExhaustCardEffect(Card TargetCard) : Effect
 internal class ExhaustCardEffectTests
 {
     [Test]
-    public void Test()
+    public void ExhaustsOneOfTargetCard()
     {
-        
+        var effect = new ExhaustCardEffect(new Strike());
     }
 }
