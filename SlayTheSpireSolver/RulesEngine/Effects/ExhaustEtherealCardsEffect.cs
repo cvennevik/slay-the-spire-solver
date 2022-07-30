@@ -36,8 +36,11 @@ internal class ExhaustEtherealCardsEffectTests
     }
 
     [Test]
-    public void ExhaustsEtherealCardsInHand()
+    public void ExhaustsEtherealCardInHand()
     {
-        
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike(), new AscendersBane())
+        };
     }
 }
