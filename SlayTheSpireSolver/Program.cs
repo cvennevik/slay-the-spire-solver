@@ -22,10 +22,11 @@ var gameState = new GameState
     Turn = 1
 };
 
-var solver = new Solver(10);
 Console.WriteLine("PROGRAM START");
 Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
+
+var solver = new Solver(10);
 Console.WriteLine($"GameState search depth: {solver.GameStateSearchDepth}");
 Console.WriteLine("");
 Console.WriteLine("Searching for best player action...");
