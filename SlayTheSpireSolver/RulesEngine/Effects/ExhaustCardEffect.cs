@@ -14,5 +14,9 @@ public record ExhaustCardEffect(Card TargetCard) : Effect
 [TestFixture]
 internal class ExhaustCardEffectTests
 {
-    
+    [Test]
+    public void Test()
+    {
+        
+    }
 }
