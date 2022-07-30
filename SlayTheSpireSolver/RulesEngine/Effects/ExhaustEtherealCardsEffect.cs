@@ -19,5 +19,6 @@ internal class ExhaustEtherealCardsEffectTests
         var gameState = new GameState();
         var effect = new ExhaustEtherealCardsEffect();
         var result = effect.Resolve(gameState);
+        Assert.AreEqual(gameState, result.Single().GameState);
     }
 }
