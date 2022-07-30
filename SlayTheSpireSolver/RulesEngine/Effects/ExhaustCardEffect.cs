@@ -34,4 +34,14 @@ internal class ExhaustCardEffectTests
         };
         Assert.AreEqual(expectedResult, result.Single().GameState);
     }
+
+    [Test]
+    public void AddsAdditionalCopyToExhaustPile()
+    {
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike()),
+            ExhaustPile = new ExhaustPile(new Strike())
+        };
+    }
 }
