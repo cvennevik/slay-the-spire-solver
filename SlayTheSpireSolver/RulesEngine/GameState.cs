@@ -65,8 +65,8 @@ public record GameState
     public override int GetHashCode()
     {
         return HashCode.Combine(
-            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty),
-            HashCode.Combine(Turn, Hand, DrawPile, DiscardPile, EffectStack)
+            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty, Turn),
+            HashCode.Combine(Hand, DrawPile, DiscardPile, ExhaustPile, EffectStack)
         );
     }
 
