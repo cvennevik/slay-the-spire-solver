@@ -7,6 +7,7 @@ public record ExhaustCardEffect(Card TargetCard) : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
+        if (!gameState.Hand.Contains(TargetCard)) return gameState;
         return gameState with
         {
             Hand = gameState.Hand.Remove(TargetCard),
