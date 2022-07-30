@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
@@ -25,5 +26,9 @@ internal class ExhaustEtherealCardsEffectTests
     [Test]
     public void DoesNothingWhenNoEtherealCardsInHand()
     {
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike(), new Defend(), new Bash())
+        };
     }
 }
