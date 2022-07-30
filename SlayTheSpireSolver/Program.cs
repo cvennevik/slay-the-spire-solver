@@ -27,7 +27,7 @@ Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
 Console.WriteLine("");
 
-for (var i = 1; i < 10; i++)
+for (var i = 1; i < 8; i++)
 {
     var solver = new Solver(i);
     Console.WriteLine($"Searching at new depth: {solver.GameStateSearchDepth}");
@@ -37,11 +37,9 @@ for (var i = 1; i < 10; i++)
     var (bestAction, expectedValue) = solver.FindBestAction(gameState);
     stopWatch.Stop();
 
-    Console.WriteLine("Search complete.");
     Console.WriteLine($"Recommended action: {bestAction}");
     Console.WriteLine($"Expected value: {expectedValue}");
     Console.WriteLine("");
-    Console.WriteLine("STATISTICS");
     Console.WriteLine($"Elapsed time: {stopWatch.Elapsed}");
     Console.WriteLine($"Evaluated game states: {solver.EvaluatedGameStates}, cache hits: {solver.GameStateCacheHits}");
     Console.WriteLine($"Pruned action outcomes: {solver.PrunedActionOutcomes}");
