@@ -17,6 +17,10 @@ internal class ExhaustCardEffectTests
     [Test]
     public void ExhaustsOneOfTargetCard()
     {
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike(), new Strike())
+        };
         var effect = new ExhaustCardEffect(new Strike());
     }
 }
