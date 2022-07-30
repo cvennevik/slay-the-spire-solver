@@ -55,5 +55,9 @@ internal class ExhaustCardEffectTests
     [Test]
     public void DoesNothingWhenCardNotInHand()
     {
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Defend())
+        };
     }
 }
