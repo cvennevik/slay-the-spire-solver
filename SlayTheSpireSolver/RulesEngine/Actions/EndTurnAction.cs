@@ -74,9 +74,12 @@ internal class EndTurnEffectTests
     {
         var gameState = new GameState
         {
-            Hand = new Hand(new AscendersBane(), new Defend()),
+            Hand = new Hand(new AscendersBane(), new Defend())
         };
         var result = new EndTurnAction(gameState).Resolve();
-        Assert.True(result.Select(x => x.GameState).All(x => x.ExhaustPile == new ExhaustPile(new AscendersBane())));
+        Assert.True(result
+            .Select(x => x.GameState)
+            .All(x => x.ExhaustPile == new ExhaustPile(new AscendersBane()))
+        );
     }
 }
