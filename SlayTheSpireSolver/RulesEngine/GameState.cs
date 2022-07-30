@@ -62,14 +62,6 @@ public record GameState
         return new Possibility(this, probability);
     }
 
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(
-            HashCode.Combine(PlayerHealth, PlayerArmor, BaseEnergy, Energy, EnemyParty, Turn),
-            HashCode.Combine(Hand, DrawPile, DiscardPile, ExhaustPile, EffectStack)
-        );
-    }
-
     public override string ToString()
     {
         return $@"GameState {{
