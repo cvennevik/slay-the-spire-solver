@@ -75,6 +75,17 @@ internal class ExhaustEtherealCardsEffectTests
     [Test]
     public void PushesExhaustEffectsOntoExistingEffects()
     {
-        // TODO
+        var gameState = new GameState
+        {
+            Hand = new Hand(new Strike(), new AscendersBane()),
+            EffectStack = new EffectStack(new NullEffect())
+        };
+        var effect = new ExhaustEtherealCardsEffect();
+        var result = effect.Resolve(gameState);
+        var expectedGameState = gameState with
+        {
+            EffectStack = new EffectStack(new NullEffect(), new ExhaustCardEffect(new AscendersBane()))
+        };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 }
