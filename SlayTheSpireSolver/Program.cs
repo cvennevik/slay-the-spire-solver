@@ -27,7 +27,7 @@ Console.WriteLine("Evaluating Jaw Worm fight.");
 Console.WriteLine($"Initial game state: {gameState}");
 Console.WriteLine("");
 
-for (var i = 1; i < 8; i++)
+for (var i = 1; i <= 8; i++)
 {
     var solver = new Solver(i);
     Console.WriteLine($"Searching for best player action, search depth: {solver.GameStateSearchDepth}...");
