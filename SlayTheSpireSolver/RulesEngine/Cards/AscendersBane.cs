@@ -6,9 +6,9 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public record AscendersBane : Card
 {
-    public override bool IsEthereal => true;
     public override Energy Cost => 0;
     protected override string Name => "Ascender's Bane";
+    public override bool IsEthereal => true;
 
     public override IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState)
     {
