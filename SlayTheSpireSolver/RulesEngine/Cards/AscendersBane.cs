@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Values;
 
@@ -19,4 +20,9 @@ public record AscendersBane : Card
     {
         return "Ascender's Bane";
     }
+}
+
+[TestFixture]
+internal class AscendersBaneTests
+{
 }
