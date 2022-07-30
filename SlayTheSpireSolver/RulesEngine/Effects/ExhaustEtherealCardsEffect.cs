@@ -14,7 +14,9 @@ public record ExhaustEtherealCardsEffect : Effect
 internal class ExhaustEtherealCardsEffectTests
 {
     [Test]
-    public void DoesNothingWhenNoEtherealCardsInHand()
+    public void DoesNothingWhenHandEmpty()
     {
+        var gameState = new GameState();
+        var effect = new ExhaustEtherealCardsEffect();
     }
 }
