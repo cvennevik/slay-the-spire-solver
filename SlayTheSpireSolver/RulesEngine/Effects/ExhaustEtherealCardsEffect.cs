@@ -42,6 +42,8 @@ internal class ExhaustEtherealCardsEffectTests
         {
             Hand = new Hand(new Strike(), new AscendersBane())
         };
+        var effect = new ExhaustEtherealCardsEffect();
+        var result = effect.Resolve(gameState);
     }
 
     [Test]
