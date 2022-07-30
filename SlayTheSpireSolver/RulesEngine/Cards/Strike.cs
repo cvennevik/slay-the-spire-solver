@@ -10,11 +10,6 @@ public record Strike : TargetedCard
 {
     public override Energy Cost => 1;
 
-    public override Energy GetCost()
-    {
-        return 1;
-    }
-
     public override EffectStack GetTargetedEffects(EnemyId target)
     {
         return new AttackEnemyEffect(target, 6);
