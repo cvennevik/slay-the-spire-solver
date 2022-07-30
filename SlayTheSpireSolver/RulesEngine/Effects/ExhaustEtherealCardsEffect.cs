@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record ExhaustEtherealCardsEffect : Effect
@@ -6,4 +8,9 @@ public record ExhaustEtherealCardsEffect : Effect
     {
         throw new NotImplementedException();
     }
+}
+
+[TestFixture]
+internal class ExhaustEtherealCardsEffectTests
+{
 }
