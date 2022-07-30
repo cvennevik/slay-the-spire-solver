@@ -82,6 +82,7 @@ public record GameState
     Hand: {Hand}
     DrawPile: {DrawPile}
     DiscardPile: {DiscardPile}
+    ExhaustPile: {ExhaustPile}
     EffectStack: {EffectStack}
 }}";
     }
