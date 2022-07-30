@@ -74,8 +74,6 @@ internal class EndTurnEffectTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
-            PlayerArmor = 50,
             EnemyParty = new[]
             {
                 new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }
