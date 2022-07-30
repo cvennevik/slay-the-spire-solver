@@ -72,5 +72,21 @@ internal class EndTurnEffectTests
     [Test]
     public void TestWithAscendersBaneInHand()
     {
+        var gameState = new GameState
+        {
+            BaseEnergy = 3,
+            Energy = 0,
+            PlayerHealth = 50,
+            PlayerArmor = 50,
+            EnemyParty = new[]
+            {
+                new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
+                new JawWorm { Id = EnemyId.New(), IntendedMove = new Thrash() }
+            },
+            Hand = new Hand(new Strike(), new Defend()),
+            DiscardPile = new DiscardPile(new Strike(), new Strike(), new Strike()),
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike())
+        };
+        var result = new EndTurnAction(gameState).Resolve();
     }
 }
