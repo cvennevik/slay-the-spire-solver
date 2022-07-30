@@ -30,8 +30,7 @@ Console.WriteLine("");
 for (var i = 1; i < 8; i++)
 {
     var solver = new Solver(i);
-    Console.WriteLine($"Searching at new depth: {solver.GameStateSearchDepth}");
-    Console.WriteLine("Searching for best player action...");
+    Console.WriteLine($"Searching for best player action, search depth: {solver.GameStateSearchDepth}...");
 
     var stopWatch = Stopwatch.StartNew();
     var (bestAction, expectedValue) = solver.FindBestAction(gameState);
