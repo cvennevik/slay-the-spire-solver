@@ -8,9 +8,9 @@ namespace SlayTheSpireSolver.RulesEngine.Cards;
 
 public abstract record Card : IComparable<Card>
 {
-    public virtual bool IsEthereal { get; } = false;
     public abstract Energy Cost { get; }
     protected abstract string Name { get; }
+    public virtual bool IsEthereal { get; } = false;
     public abstract IReadOnlyCollection<PlayCardAction> GetLegalActions(GameState gameState);
 
     protected bool CanBePlayed(GameState gameState)
