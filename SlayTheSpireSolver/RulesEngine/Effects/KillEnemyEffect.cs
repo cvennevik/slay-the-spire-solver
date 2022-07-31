@@ -10,6 +10,7 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
     {
         if (!gameState.EnemyParty.Has(TargetId)) return gameState;
         var newEnemyParty = gameState.EnemyParty.Remove(TargetId);
+        if (newEnemyParty.Any()) return gameState with { EnemyParty = newEnemyParty };
         return gameState with { EnemyParty = newEnemyParty };
     }
 }
