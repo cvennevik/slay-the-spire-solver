@@ -20,5 +20,6 @@ internal class EndCombatEffectTests
         var effect = new EndCombatEffect();
         var result = effect.Resolve(gameState);
         var expectedGameState = new GameState { CombatHasEnded = true };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 }
