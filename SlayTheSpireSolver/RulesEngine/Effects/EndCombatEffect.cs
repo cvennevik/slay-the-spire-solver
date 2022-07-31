@@ -6,7 +6,7 @@ public record EndCombatEffect : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
-        return gameState;
+        return gameState with { CombatHasEnded = true };
     }
 }
 
