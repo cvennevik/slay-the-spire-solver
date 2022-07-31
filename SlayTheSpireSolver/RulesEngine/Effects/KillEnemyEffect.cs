@@ -9,7 +9,8 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
     public override PossibilitySet Resolve(GameState gameState)
     {
         if (!gameState.EnemyParty.Has(TargetId)) return gameState;
-        return gameState with { EnemyParty = gameState.EnemyParty.Remove(TargetId) };
+        var newEnemyParty = gameState.EnemyParty.Remove(TargetId);
+        return gameState with { EnemyParty = newEnemyParty };
     }
 }
 
