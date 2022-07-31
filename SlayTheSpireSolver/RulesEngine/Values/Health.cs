@@ -21,12 +21,12 @@ public readonly record struct Health(int Amount)
 
     public static bool operator <(Health a, Health b)
     {
-        return a.Amount <= b.Amount;
+        return a.Amount < b.Amount;
     }
 
     public static bool operator >(Health a, Health b)
     {
-        return a.Amount >= b.Amount;
+        return a.Amount > b.Amount;
     }
 
     public static implicit operator Health(int amount)
