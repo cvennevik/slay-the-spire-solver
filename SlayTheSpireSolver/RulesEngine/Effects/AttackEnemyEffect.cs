@@ -21,7 +21,7 @@ internal class AttackEnemyEffectTests
     [Test]
     public void DoesNothingWhenNoEnemies()
     {
-        var gameState = new GameState { Turn = 3 };
+        var gameState = new GameState();
         var effect = new AttackEnemyEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(result, gameState);
