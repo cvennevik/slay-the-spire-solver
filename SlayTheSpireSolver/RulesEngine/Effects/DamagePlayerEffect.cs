@@ -38,13 +38,12 @@ internal class DamagePlayerEffectTests
 
 
     [Test]
-    [TestCase(5, 0, 10, -5, 0)]
-    [TestCase(10, 10, 25, -5, 0)]
-    public void KillsPlayer(int initialHealth, int initialArmor, int damage, int expectedHealth, int expectedArmor)
+    [TestCase(5, 10, -5)]
+    public void KillsPlayer(int initialHealth, int damage, int expectedHealth)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
-        var gameState = new GameState { PlayerHealth = initialHealth, PlayerArmor = initialArmor };
+        var gameState = new GameState { PlayerHealth = initialHealth };
         var result = damagePlayerEffect.Resolve(gameState).Single().GameState;
-        Assert.AreEqual(new GameState { PlayerHealth = expectedHealth, PlayerArmor = expectedArmor }, result);
+        Assert.AreEqual(new GameState { PlayerHealth = expectedHealth }, result);
     }
 }
