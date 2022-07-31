@@ -29,6 +29,16 @@ public class RelicCollection
         return obj is RelicCollection otherRelicCollection && _relics.SequenceEqual(otherRelicCollection._relics);
     }
 
+    private bool Equals(RelicCollection other)
+    {
+        return _relics.Equals(other._relics);
+    }
+
+    public override int GetHashCode()
+    {
+        return _relics.GetHashCode();
+    }
+
     public override string ToString()
     {
         return $"[{string.Join<Relic>(",", _relics)}]";
