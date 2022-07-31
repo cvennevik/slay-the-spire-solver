@@ -25,7 +25,7 @@ internal class ClearPlayerArmorEffectTests
     [Test]
     public void ClearsPlayerArmor()
     {
-        var gameState = new GameState {PlayerArmor = 5, Turn = 3};
+        var gameState = new GameState {PlayerArmor = 5};
         var effect = new ClearPlayerArmorEffect();
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState with {PlayerArmor = 0}, result);
