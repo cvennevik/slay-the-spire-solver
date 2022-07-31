@@ -31,7 +31,8 @@ public class RelicCollection
 
     private bool Equals(RelicCollection other)
     {
-        return _relics.Equals(other._relics);
+        if (ReferenceEquals(this, other)) return true;
+        return _relics.SequenceEqual(other._relics);
     }
 
     public override int GetHashCode()
