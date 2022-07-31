@@ -9,6 +9,7 @@ public class RelicCollection
 
     public RelicCollection(params Relic[] relics)
     {
+        Array.Sort(relics);
         _relics = relics;
     }
 
