@@ -2,7 +2,7 @@ namespace SlayTheSpireSolver.RulesEngine.Relics;
 
 public abstract record Relic : IComparable<Relic>
 {
-    public abstract string Name { get; }
+    protected abstract string Name { get; }
 
     public int CompareTo(Relic? other)
     {
