@@ -12,7 +12,7 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
         var newEnemyParty = gameState.EnemyParty.Remove(TargetId);
         var newGameState = gameState with { EnemyParty = newEnemyParty };
         if (newEnemyParty.Any()) return newGameState;
-        return newGameState;
+        return newGameState.WithAddedEffects(new EndCombatEffect());
     }
 }
 
@@ -28,7 +28,10 @@ internal class KillEnemyEffectTests
             EffectStack = new EffectStack(new NullEffect())
         };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        var expectedGameState = new GameState { EffectStack = new EffectStack(new NullEffect()) };
+        var expectedGameState = new GameState
+        {
+            EffectStack = new EffectStack(new NullEffect(), new EndCombatEffect())
+        };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
 

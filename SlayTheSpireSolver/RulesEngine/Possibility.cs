@@ -71,7 +71,8 @@ internal class PossibilityTests
         var expectedGameState = new GameState
         {
             EnemyParty = new EnemyParty(),
-            EffectStack = new EffectStack()
+            EffectStack = new EffectStack(),
+            CombatHasEnded = true
         };
         var expectedPossibility = new Possibility(expectedGameState, 0.8);
         Assert.AreEqual(expectedPossibility, result);
