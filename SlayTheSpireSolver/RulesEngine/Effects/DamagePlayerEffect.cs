@@ -40,9 +40,15 @@ internal class DamagePlayerEffectTests
     public void KillsPlayer(int initialHealth, int damage, int expectedHealth)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
-        var gameState = new GameState { PlayerHealth = initialHealth };
+        var gameState = new GameState
+        {
+            PlayerHealth = initialHealth
+        };
         var result = damagePlayerEffect.Resolve(gameState);
-        var expectedGameState = new GameState { PlayerHealth = expectedHealth };
+        var expectedGameState = new GameState
+        {
+            PlayerHealth = expectedHealth
+        };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 }
