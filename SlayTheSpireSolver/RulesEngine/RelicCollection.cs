@@ -10,4 +10,9 @@ public class RelicCollection
     {
         _relics = relics;
     }
+
+    public override string ToString()
+    {
+        return $"[{string.Join<Relic>(",", _relics)}]";
+    }
 }
