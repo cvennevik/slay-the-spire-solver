@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Cards;
 
