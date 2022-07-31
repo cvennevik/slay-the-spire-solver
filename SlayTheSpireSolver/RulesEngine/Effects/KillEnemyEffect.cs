@@ -24,8 +24,8 @@ internal class KillEnemyEffectTests
             CombatHasEnded = false
         };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        var expectedGameState = new GameState { CombatHasEnded = true };
-        // Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
+        var expectedGameState = new GameState { CombatHasEnded = false };
+        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
 
     [Test]
