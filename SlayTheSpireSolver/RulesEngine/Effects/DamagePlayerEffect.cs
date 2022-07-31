@@ -7,13 +7,10 @@ public record DamagePlayerEffect(Damage Damage) : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
-        if (Damage > gameState.PlayerArmor)
-        {
-            var remainingDamage = Damage - gameState.PlayerArmor;
-            return gameState with { PlayerArmor = 0, PlayerHealth = gameState.PlayerHealth - remainingDamage };
-        }
+        if (Damage <= gameState.PlayerArmor) return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
 
-        return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
+        var remainingDamage = Damage - gameState.PlayerArmor;
+        return gameState with { PlayerArmor = 0, PlayerHealth = gameState.PlayerHealth - remainingDamage };
     }
 }
 
