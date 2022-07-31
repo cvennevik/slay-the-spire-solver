@@ -19,6 +19,7 @@ public record GameState
     public DrawPile DrawPile { get; init; } = new();
     public DiscardPile DiscardPile { get; init; } = new();
     public ExhaustPile ExhaustPile { get; init; } = new();
+    public RelicCollection Relics { get; init; } = new();
     public Turn Turn { get; init; } = 1;
     public EffectStack EffectStack { get; init; } = new();
 
