@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record EndCombatEffect : Effect
@@ -6,4 +8,10 @@ public record EndCombatEffect : Effect
     {
         throw new NotImplementedException();
     }
+}
+
+[TestFixture]
+internal class EndCombatEffectTests
+{
+    
 }
