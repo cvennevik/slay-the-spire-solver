@@ -53,5 +53,7 @@ internal class RelicCollectionTests
         Assert.AreEqual(new RelicCollection(), new RelicCollection());
         Assert.AreEqual(new RelicCollection(new BurningBlood()), new RelicCollection(new BurningBlood()));
         Assert.AreNotEqual(new RelicCollection(new BurningBlood()), new RelicCollection());
+        Assert.AreEqual(new RelicCollection(new BurningBlood(), new OldCoin()),
+            new RelicCollection(new OldCoin(), new BurningBlood()));
     }
 }
