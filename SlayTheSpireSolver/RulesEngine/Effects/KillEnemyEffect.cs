@@ -25,7 +25,7 @@ internal class KillEnemyEffectTests
             EnemyParty = new EnemyParty(new JawWorm())
         };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        var expectedGameState = new GameState { CombatHasEnded = false };
+        var expectedGameState = new GameState { EffectStack = new EffectStack() };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
 
