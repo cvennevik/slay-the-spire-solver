@@ -18,9 +18,9 @@ public record DamagePlayerEffect(Damage Damage) : Effect
 internal class DamagePlayerEffectTests
 {
     [Test]
+    [TestCase(20, 0, 0, 20, 0)]
     [TestCase(20, 0, 10, 10, 0)]
     [TestCase(20, 0, 19, 1, 0)]
-    [TestCase(20, 0, 0, 20, 0)]
     [TestCase(10, 10, 5, 10, 5)]
     [TestCase(10, 10, 10, 10, 0)]
     [TestCase(10, 10, 11, 9, 0)]
