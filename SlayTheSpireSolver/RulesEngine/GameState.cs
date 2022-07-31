@@ -77,6 +77,8 @@ public record GameState
     DrawPile: {DrawPile}
     DiscardPile: {DiscardPile}
     ExhaustPile: {ExhaustPile}
+    Relics: {Relics}
+    CombatHasEnded: {CombatHasEnded}
     EffectStack: {EffectStack}
 }}";
     }
