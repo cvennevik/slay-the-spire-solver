@@ -46,7 +46,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     [Test]
     public void DoesNothingIfVulnerableAlreadyZero()
     {
-        var gameState = new GameState { Turn = 2, EnemyParty = new[] { new JawWorm { Vulnerable = 0 } } };
+        var gameState = new GameState { EnemyParty = new[] { new JawWorm { Vulnerable = 0 } } };
         var effect = new DecreaseEnemyVulnerableEffect(EnemyId.Default);
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
