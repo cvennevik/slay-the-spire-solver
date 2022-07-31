@@ -19,6 +19,16 @@ public readonly record struct Health(int Amount)
         return a.Amount >= b.Amount;
     }
 
+    public static bool operator <(Health a, Health b)
+    {
+        return a.Amount <= b.Amount;
+    }
+
+    public static bool operator >(Health a, Health b)
+    {
+        return a.Amount >= b.Amount;
+    }
+
     public static implicit operator Health(int amount)
     {
         return new Health(amount);
