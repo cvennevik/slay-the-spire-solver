@@ -72,13 +72,13 @@ public record GameState
     BaseEnergy: {BaseEnergy}
     Energy: {Energy}
     EnemyParty: {EnemyParty}
-    Turn: {Turn}
     Hand: {Hand}
     DrawPile: {DrawPile}
     DiscardPile: {DiscardPile}
     ExhaustPile: {ExhaustPile}
     Relics: {Relics}
     CombatHasEnded: {CombatHasEnded}
+    Turn: {Turn}
     EffectStack: {EffectStack}
 }}";
     }
