@@ -1,3 +1,3 @@
 namespace SlayTheSpireSolver.RulesEngine.Relics;
 
-public record BurningBlood;
+public readonly record struct BurningBlood;
