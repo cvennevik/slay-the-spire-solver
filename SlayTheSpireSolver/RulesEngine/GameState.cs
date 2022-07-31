@@ -20,7 +20,7 @@ public record GameState
     public DiscardPile DiscardPile { get; init; } = new();
     public ExhaustPile ExhaustPile { get; init; } = new();
     public RelicCollection Relics { get; init; } = new();
-    public bool CombatIsOver { get; init; }
+    public bool CombatHasEnded { get; init; }
     public Turn Turn { get; init; } = 1;
     public EffectStack EffectStack { get; init; } = new();
 

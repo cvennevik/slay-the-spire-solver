@@ -13,5 +13,8 @@ public record EndCombatEffect : Effect
 [TestFixture]
 internal class EndCombatEffectTests
 {
-    
+    [Test]
+    public void SetsCombatHasEndedToTrue()
+    {
+    }
 }
