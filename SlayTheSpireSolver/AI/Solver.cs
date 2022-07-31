@@ -54,7 +54,7 @@ public class Solver
     private ExpectedValue FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
     {
         var playerHealth = Math.Max(gameState.PlayerHealth.Amount, 0);
-        if (gameState.IsCombatOver()) return new ExpectedValue(playerHealth);
+        if (gameState.CombatHasEnded) return new ExpectedValue(playerHealth);
         if (gameStateDepthLimit <= 0) return new ExpectedValue(0, 0);
 
         gameStateDepthLimit -= 1;
