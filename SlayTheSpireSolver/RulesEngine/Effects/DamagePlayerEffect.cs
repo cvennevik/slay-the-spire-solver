@@ -39,11 +39,11 @@ internal class DamagePlayerEffectTests
     [TestCase(5, 6, -1)]
     public void KillsPlayer(int initialHealth, int damage, int expectedHealth)
     {
-        var damagePlayerEffect = new DamagePlayerEffect(damage);
         var gameState = new GameState
         {
             PlayerHealth = initialHealth
         };
+        var damagePlayerEffect = new DamagePlayerEffect(damage);
         var result = damagePlayerEffect.Resolve(gameState);
         var expectedGameState = new GameState
         {
