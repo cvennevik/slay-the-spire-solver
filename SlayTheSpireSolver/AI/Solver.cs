@@ -252,8 +252,7 @@ internal class SolverTests
             Energy = 3,
             EnemyParty = new[] { jawWorm },
             Hand = new Hand(new Strike(), new Strike(), new Strike(), new Bash(), new Defend()),
-            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
-            Turn = 1
+            DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike())
         };
         var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, 5);
         AssertExpectedValueMinimumNeverDecreasesWithDepthPerAction(actionsAndExpectedValues);
@@ -276,8 +275,7 @@ internal class SolverTests
             EnemyParty = new[] { jawWorm },
             Hand = new Hand(new Strike(), new Strike(), new Strike(), new Defend()),
             DrawPile = new DrawPile(new Defend(), new Defend(), new Defend(), new Strike(), new Strike()),
-            DiscardPile = new DiscardPile(new Bash()),
-            Turn = 1
+            DiscardPile = new DiscardPile(new Bash())
         };
 
         var actionsAndExpectedValues = FindBestActionsAndExpectedValuesForSearchDepths(gameState, 6);
