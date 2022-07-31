@@ -25,8 +25,7 @@ public class RelicCollection
 
     public override bool Equals(object? obj)
     {
-        if (ReferenceEquals(this, obj)) return true;
-        return obj is RelicCollection otherRelicCollection && _relics.SequenceEqual(otherRelicCollection._relics);
+        return obj is RelicCollection otherRelicCollection && Equals(otherRelicCollection);
     }
 
     private bool Equals(RelicCollection other)
