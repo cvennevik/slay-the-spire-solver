@@ -30,7 +30,7 @@ internal class KillEnemyEffectTests
     }
 
     [Test]
-    public void KillsOnceEnemyAndDoesNotEndCombat()
+    public void KillsOnlyTargetEnemyAndDoesNotEndCombat()
     {
         var (id1, id2, id3) = (EnemyId.New(), EnemyId.New(), EnemyId.New());
         var gameState = new GameState
