@@ -51,7 +51,7 @@ internal class DamagePlayerEffectTests
         var expectedGameState = new GameState
         {
             PlayerHealth = expectedHealth,
-            EffectStack = new EffectStack(new NullEffect())
+            EffectStack = new EffectStack(new NullEffect()) //TODO: EndCombatEffect
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
