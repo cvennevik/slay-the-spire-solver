@@ -128,7 +128,6 @@ internal class GameStateTests
         {
             var gameState = CreateBasicGameState() with { PlayerHealth = amountOfHealth };
             AssertNoLegalActions(gameState);
-            Assert.True(gameState.IsCombatOver());
         }
 
         [Test]
@@ -136,7 +135,6 @@ internal class GameStateTests
         {
             var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
             AssertNoLegalActions(gameState);
-            Assert.True(gameState.IsCombatOver());
         }
 
         [Test]
@@ -148,7 +146,6 @@ internal class GameStateTests
                 EnemyParty = new EnemyParty()
             };
             AssertNoLegalActions(gameState);
-            Assert.True(gameState.IsCombatOver());
         }
 
         private static void AssertLegalActions(GameState gameState, params PlayerAction[] expectedActions)
@@ -159,52 +156,6 @@ internal class GameStateTests
         private static void AssertNoLegalActions(GameState gameState)
         {
             Assert.IsEmpty(gameState.GetLegalActions());
-        }
-    }
-
-    [TestFixture]
-    internal class IsCombatOverTests : GameStateTests
-    {
-        [Test]
-        public void BasicGameState()
-        {
-            var gameState = CreateBasicGameState();
-            Assert.False(gameState.IsCombatOver());
-        }
-
-        [Test]
-        public void EmptyHand()
-        {
-            var gameState = CreateBasicGameState() with { Hand = new Hand() };
-            Assert.False(gameState.IsCombatOver());
-        }
-
-        [Test]
-        [TestCase(0)]
-        [TestCase(-1)]
-        [TestCase(-999)]
-        public void HealthBelowOne(int amountOfHealth)
-        {
-            var gameState = CreateBasicGameState() with { PlayerHealth = amountOfHealth };
-            Assert.True(gameState.IsCombatOver());
-        }
-
-        [Test]
-        public void NoEnemiesLeft()
-        {
-            var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-            Assert.True(gameState.IsCombatOver());
-        }
-
-        [Test]
-        public void HealthBelowOneWithNoEnemies()
-        {
-            var gameState = CreateBasicGameState() with
-            {
-                PlayerHealth = 0,
-                EnemyParty = new EnemyParty()
-            };
-            Assert.True(gameState.IsCombatOver());
         }
     }
 
