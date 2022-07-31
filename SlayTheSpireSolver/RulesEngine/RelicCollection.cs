@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SlayTheSpireSolver.RulesEngine.Relics;
 
 namespace SlayTheSpireSolver.RulesEngine;
@@ -15,4 +16,10 @@ public class RelicCollection
     {
         return $"[{string.Join<Relic>(",", _relics)}]";
     }
+}
+
+[TestFixture]
+internal class RelicCollectionTests
+{
+    
 }
