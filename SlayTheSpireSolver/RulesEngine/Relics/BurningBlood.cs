@@ -1,5 +1,5 @@
 namespace SlayTheSpireSolver.RulesEngine.Relics;
 
-public struct BurningBlood
+public struct BurningBlood : Relic
 {
 }
