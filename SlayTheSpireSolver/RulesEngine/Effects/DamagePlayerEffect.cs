@@ -35,8 +35,8 @@ internal class DamagePlayerEffectTests
 
 
     [Test]
-    [TestCase(5, 10, -5)]
-    [TestCase(5, 10, -5)]
+    [TestCase(5, 5, 0)]
+    [TestCase(5, 6, -1)]
     public void KillsPlayer(int initialHealth, int damage, int expectedHealth)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
