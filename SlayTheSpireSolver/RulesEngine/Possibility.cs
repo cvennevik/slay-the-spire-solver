@@ -63,7 +63,6 @@ internal class PossibilityTests
     {
         var gameState = new GameState
         {
-            Turn = 2,
             EnemyParty = new EnemyParty(new JawWorm { Health = 2 }),
             EffectStack = new AttackEnemyEffect(EnemyId.Default, 3)
         };
@@ -71,7 +70,6 @@ internal class PossibilityTests
         var result = possibility.Resolve().Single();
         var expectedGameState = new GameState
         {
-            Turn = 2,
             EnemyParty = new EnemyParty(),
             EffectStack = new EffectStack()
         };
