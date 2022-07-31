@@ -21,5 +21,8 @@ public class RelicCollection
 [TestFixture]
 internal class RelicCollectionTests
 {
-    
+    [Test]
+    public void TestEquality()
+    {
+    }
 }
