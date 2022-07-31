@@ -22,10 +22,11 @@ internal class KillEnemyEffectTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm())
+            EnemyParty = new EnemyParty(new JawWorm()),
+            EffectStack = new EffectStack(new NullEffect())
         };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        var expectedGameState = new GameState { EffectStack = new EffectStack() };
+        var expectedGameState = new GameState { EffectStack = new EffectStack(new NullEffect()) };
         Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
 
