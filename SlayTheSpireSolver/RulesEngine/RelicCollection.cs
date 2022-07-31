@@ -41,5 +41,6 @@ internal class RelicCollectionTests
     [Test]
     public void TestEquality()
     {
+        Assert.AreEqual(new RelicCollection(), new RelicCollection());
     }
 }
