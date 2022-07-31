@@ -16,11 +16,12 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
 internal class KillEnemyEffectTests
 {
     [Test]
-    public void KillsSingleEnemy()
+    public void KillsSingleEnemyAndEndsCombat()
     {
         var gameState = new GameState { EnemyParty = new EnemyParty(new JawWorm()) };
         var effect = new KillEnemyEffect(EnemyId.Default);
-        Assert.AreEqual(new GameState(), effect.Resolve(gameState).Single().GameState);
+        var expectedGameState = new GameState();
+        Assert.AreEqual(expectedGameState, effect.Resolve(gameState).Single().GameState);
     }
 
     [Test]
