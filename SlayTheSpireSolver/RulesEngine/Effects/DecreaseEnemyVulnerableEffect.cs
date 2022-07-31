@@ -57,7 +57,7 @@ internal class DecreaseEnemyVulnerableEffectTests
     {
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 3 };
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Vulnerable = 2 };
-        var gameState = new GameState { Turn = 2, EnemyParty = new[] { targetEnemy, otherEnemy } };
+        var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
         var effect = new DecreaseEnemyVulnerableEffect(targetEnemy.Id);
         var result = effect.Resolve(gameState).Single().GameState;
         var expectedResult = gameState with { EnemyParty = new[] { targetEnemy with { Vulnerable = 2 }, otherEnemy } };
