@@ -16,7 +16,7 @@ internal class ClearPlayerArmorEffectTests
     [Test]
     public void DoesNothingWhenNoPlayerArmor()
     {
-        var gameState = new GameState {PlayerArmor = 0, Turn = 3};
+        var gameState = new GameState {PlayerArmor = 0};
         var effect = new ClearPlayerArmorEffect();
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
