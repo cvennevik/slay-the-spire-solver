@@ -10,7 +10,8 @@ public record DamagePlayerEffect(Damage Damage) : Effect
         if (Damage <= gameState.PlayerArmor) return gameState with { PlayerArmor = gameState.PlayerArmor - Damage };
 
         var remainingDamage = Damage - gameState.PlayerArmor;
-        return gameState with { PlayerArmor = 0, PlayerHealth = gameState.PlayerHealth - remainingDamage };
+        var remainingHealth = gameState.PlayerHealth - remainingDamage;
+        return gameState with { PlayerArmor = 0, PlayerHealth = remainingHealth };
     }
 }
 
