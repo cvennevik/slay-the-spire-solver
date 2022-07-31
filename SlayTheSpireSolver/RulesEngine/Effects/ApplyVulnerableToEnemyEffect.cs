@@ -20,7 +20,7 @@ internal class ApplyVulnerableToEnemyEffectTests
     [Test]
     public void DoesNothingWhenNoEnemies()
     {
-        var gameState = new GameState { Turn = 3 };
+        var gameState = new GameState();
         var effect = new ApplyVulnerableToEnemyEffect(EnemyId.Default, new Vulnerable(1));
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
