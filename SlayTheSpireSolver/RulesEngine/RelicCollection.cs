@@ -65,5 +65,7 @@ internal class RelicCollectionTests
         Assert.AreEqual(new RelicCollection().GetHashCode(), new RelicCollection().GetHashCode());
         Assert.AreEqual(new RelicCollection(new BurningBlood()).GetHashCode(),
             new RelicCollection(new BurningBlood()).GetHashCode());
+        Assert.AreEqual(new RelicCollection(new BurningBlood(), new OldCoin()).GetHashCode(),
+            new RelicCollection(new OldCoin(), new BurningBlood()).GetHashCode());
     }
 }
