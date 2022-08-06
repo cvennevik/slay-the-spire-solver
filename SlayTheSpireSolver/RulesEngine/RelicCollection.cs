@@ -61,5 +61,6 @@ internal class RelicCollectionTests
     [Test]
     public void TestHashCodeEquality()
     {
+        Assert.AreEqual(new RelicCollection().GetHashCode(), new RelicCollection().GetHashCode());
     }
 }
