@@ -35,7 +35,7 @@ public record GameState
 
     public bool IsCombatOver()
     {
-        return PlayerHealth.Amount < 1 || !EnemyParty.Any() || CombatHasEnded;
+        return !EnemyParty.Any() || CombatHasEnded;
     }
 
     public GameState ModifyEnemy(EnemyId id, Func<Enemy, Enemy> modifier)
