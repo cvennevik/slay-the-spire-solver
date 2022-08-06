@@ -57,21 +57,15 @@ internal abstract class CardTests<TCard> where TCard : Card, new()
     }
 
     [Test]
-    public void NoLegalActionsWhenNoEnemies()
+    public void NoLegalActionsWhenCombatHasEnded()
     {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { EnemyParty = new EnemyParty() }));
+        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { CombatHasEnded = true }));
     }
 
     [Test]
     public void NoLegalActionsWhenCardNotInHand()
     {
         Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { Hand = new Hand() }));
-    }
-
-    [Test]
-    public void NoLegalActionsWhenPlayerDefeated()
-    {
-        Assert.IsEmpty(Card.GetLegalActions(BasicGameState with { PlayerHealth = 0 }));
     }
 
     [Test]
