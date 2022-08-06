@@ -33,6 +33,7 @@ internal class EndCombatEffectTests
         var gameState = new GameState
         {
             PlayerHealth = 1,
+            PlayerMaxHealth = 10,
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = false
         };
@@ -41,6 +42,7 @@ internal class EndCombatEffectTests
         var expectedGameState = new GameState
         {
             PlayerHealth = 7,
+            PlayerMaxHealth = 10,
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = true
         };
