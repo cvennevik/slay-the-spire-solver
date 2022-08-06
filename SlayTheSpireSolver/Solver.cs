@@ -5,7 +5,7 @@ using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
 
-namespace SlayTheSpireSolver.AI;
+namespace SlayTheSpireSolver;
 
 public class Solver
 {

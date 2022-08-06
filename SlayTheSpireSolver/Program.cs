@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Diagnostics;
-using SlayTheSpireSolver.AI;
+using SlayTheSpireSolver;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;

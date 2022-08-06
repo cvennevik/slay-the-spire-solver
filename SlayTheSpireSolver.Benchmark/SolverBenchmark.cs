@@ -1,5 +1,4 @@
 using BenchmarkDotNet.Attributes;
-using SlayTheSpireSolver.AI;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
