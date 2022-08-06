@@ -9,6 +9,7 @@ public record EndCombatEffect : Effect
     {
         if (gameState.Relics.Contains(new BurningBlood()))
             return gameState with { CombatHasEnded = true, PlayerHealth = gameState.PlayerHealth + 6 };
+
         return gameState with { CombatHasEnded = true };
     }
 }
@@ -40,5 +41,16 @@ internal class EndCombatEffectTests
             CombatHasEnded = true, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 7
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
+    }
+
+    [Test]
+    public void DoesNotHealPlayerWhenPlayerDeadWithBurningBlood()
+    {
+        var gameState = new GameState
+        {
+            CombatHasEnded = false, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 0
+        };
+        var effect = new EndCombatEffect();
+        var result = effect.Resolve(gameState);
     }
 }
