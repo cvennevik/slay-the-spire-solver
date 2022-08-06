@@ -17,6 +17,6 @@ public record AscendersBane : Card
 }
 
 [TestFixture]
-internal class AscendersBaneTests
+internal class AscendersBaneTests : CardTests<AscendersBane>
 {
 }
