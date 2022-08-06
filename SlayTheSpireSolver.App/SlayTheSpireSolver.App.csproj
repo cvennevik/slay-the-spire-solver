@@ -7,4 +7,9 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SlayTheSpireSolver.AI\SlayTheSpireSolver.AI.csproj" />
+      <ProjectReference Include="..\SlayTheSpireSolver.RulesEngine\SlayTheSpireSolver.RulesEngine.csproj" />
+    </ItemGroup>
+
 </Project>
