@@ -6,6 +6,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 public class RelicCollection
 {
     private readonly Relic[] _relics;
+    private readonly int _hashCode;
 
     public RelicCollection(params Relic[] relics)
     {
