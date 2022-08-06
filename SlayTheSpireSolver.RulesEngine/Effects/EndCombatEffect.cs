@@ -8,7 +8,11 @@ public record EndCombatEffect : Effect
     public override PossibilitySet Resolve(GameState gameState)
     {
         if (gameState.Relics.Contains(new BurningBlood()) && gameState.PlayerHealth > 0)
-            return gameState with { CombatHasEnded = true, PlayerHealth = gameState.PlayerHealth + 6 };
+            return gameState with
+            {
+                CombatHasEnded = true,
+                PlayerHealth = Math.Min(gameState.PlayerHealth.Amount + 6, gameState.PlayerMaxHealth.Amount)
+            };
 
         return gameState with { CombatHasEnded = true };
     }
@@ -43,6 +47,28 @@ internal class EndCombatEffectTests
         {
             PlayerHealth = 7,
             PlayerMaxHealth = 10,
+            Relics = new RelicCollection(new BurningBlood()),
+            CombatHasEnded = true
+        };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
+    }
+
+    [Test]
+    public void HealsPlayerUpToMaxHealthWhenPlayerAliveWithBurningBlood()
+    {
+        var gameState = new GameState
+        {
+            PlayerHealth = 1,
+            PlayerMaxHealth = 5,
+            Relics = new RelicCollection(new BurningBlood()),
+            CombatHasEnded = false
+        };
+        var effect = new EndCombatEffect();
+        var result = effect.Resolve(gameState);
+        var expectedGameState = new GameState
+        {
+            PlayerHealth = 5,
+            PlayerMaxHealth = 5,
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = true
         };
