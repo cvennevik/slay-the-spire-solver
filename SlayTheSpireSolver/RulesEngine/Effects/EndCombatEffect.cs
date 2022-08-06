@@ -22,4 +22,9 @@ internal class EndCombatEffectTests
         var expectedGameState = new GameState { CombatHasEnded = true };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
+
+    [Test]
+    public void HealsPlayerWhenPlayerAliveWithBurningBlood()
+    {
+    }
 }
