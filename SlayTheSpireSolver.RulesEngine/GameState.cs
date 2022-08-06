@@ -11,6 +11,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 public record GameState
 {
     public Health PlayerHealth { get; init; } = 1;
+    public Health PlayerMaxHealth { get; init; } = 1;
     public Armor PlayerArmor { get; init; } = 0;
     public Energy BaseEnergy { get; init; } = 3;
     public Energy Energy { get; init; } = 0;
@@ -63,6 +64,7 @@ public record GameState
     {
         return $@"GameState {{
     PlayerHealth: {PlayerHealth}
+    PlayerMaxHealth: {PlayerMaxHealth}
     PlayerArmor: {PlayerArmor}
     BaseEnergy: {BaseEnergy}
     Energy: {Energy}
