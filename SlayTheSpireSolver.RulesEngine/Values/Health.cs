@@ -4,6 +4,8 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public readonly record struct Health(int Amount)
 {
+    // TODO: Expand into current + max value
+
     public static Health operator -(Health health, Damage damage)
     {
         return new Health(health.Amount - damage.Amount);
