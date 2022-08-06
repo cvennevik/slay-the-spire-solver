@@ -120,42 +120,9 @@ internal class GameStateTests
             AssertLegalActions(gameState, new EndTurnAction(gameState));
         }
 
-        [Test]
-        [TestCase(0)]
-        [TestCase(-1)]
-        [TestCase(-999)]
-        public void OutOfHealth(int amountOfHealth)
-        {
-            var gameState = CreateBasicGameState() with { PlayerHealth = amountOfHealth };
-            AssertNoLegalActions(gameState);
-        }
-
-        [Test]
-        public void NoEnemiesLeft()
-        {
-            var gameState = CreateBasicGameState() with { EnemyParty = new EnemyParty() };
-            AssertNoLegalActions(gameState);
-        }
-
-        [Test]
-        public void OutOfHealthWithNoEnemies()
-        {
-            var gameState = CreateBasicGameState() with
-            {
-                PlayerHealth = 0,
-                EnemyParty = new EnemyParty()
-            };
-            AssertNoLegalActions(gameState);
-        }
-
         private static void AssertLegalActions(GameState gameState, params PlayerAction[] expectedActions)
         {
             Assert.That(gameState.GetLegalActions(), Is.EquivalentTo(expectedActions));
-        }
-
-        private static void AssertNoLegalActions(GameState gameState)
-        {
-            Assert.IsEmpty(gameState.GetLegalActions());
         }
     }
 
