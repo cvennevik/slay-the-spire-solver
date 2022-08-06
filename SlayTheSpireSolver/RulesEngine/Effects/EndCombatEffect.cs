@@ -7,6 +7,8 @@ public record EndCombatEffect : Effect
 {
     public override PossibilitySet Resolve(GameState gameState)
     {
+        if (gameState.Relics.Contains(new BurningBlood()))
+            return gameState with { CombatHasEnded = true, PlayerHealth = gameState.PlayerHealth.Amount + 6 };
         return gameState with { CombatHasEnded = true };
     }
 }
