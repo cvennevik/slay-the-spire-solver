@@ -80,5 +80,6 @@ internal class RelicCollectionTests
         Assert.False(new RelicCollection().Contains(new BurningBlood()));
         Assert.True(new RelicCollection(new BurningBlood()).Contains(new BurningBlood()));
         Assert.False(new RelicCollection(new BurningBlood()).Contains(new OldCoin()));
+        Assert.True(new RelicCollection(new BurningBlood(), new OldCoin()).Contains(new OldCoin()));
     }
 }
