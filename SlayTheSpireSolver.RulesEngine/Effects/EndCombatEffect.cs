@@ -40,7 +40,9 @@ internal class EndCombatEffectTests
         var result = effect.Resolve(gameState);
         var expectedGameState = new GameState
         {
-            CombatHasEnded = true, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 7
+            PlayerHealth = 7,
+            Relics = new RelicCollection(new BurningBlood()),
+            CombatHasEnded = true
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
