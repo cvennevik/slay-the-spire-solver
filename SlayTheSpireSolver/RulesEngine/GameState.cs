@@ -33,11 +33,6 @@ public record GameState
             .ToArray();
     }
 
-    public bool IsCombatOver()
-    {
-        return CombatHasEnded;
-    }
-
     public GameState ModifyEnemy(EnemyId id, Func<Enemy, Enemy> modifier)
     {
         return this with { EnemyParty = EnemyParty.ModifyEnemy(id, modifier) };
