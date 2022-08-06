@@ -21,8 +21,4 @@
     <ProjectReference Include="..\SlayTheSpireSolver.RulesEngine\SlayTheSpireSolver.RulesEngine.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AI" />
-  </ItemGroup>
-
 </Project>
