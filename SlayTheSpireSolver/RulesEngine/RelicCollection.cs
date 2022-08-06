@@ -12,6 +12,7 @@ public class RelicCollection
     {
         Array.Sort(relics);
         _relics = relics;
+        _hashCode = _relics.Aggregate(0, HashCode.Combine);
     }
 
     public static bool operator ==(RelicCollection a, RelicCollection b)
