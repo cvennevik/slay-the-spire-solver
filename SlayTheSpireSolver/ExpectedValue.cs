@@ -1,4 +1,4 @@
-namespace SlayTheSpireSolver;
+namespace SlayTheSpireSolver.AI;
 
 public record ExpectedValue
 {

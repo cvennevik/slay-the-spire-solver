@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using SlayTheSpireSolver;
+using SlayTheSpireSolver.AI;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
