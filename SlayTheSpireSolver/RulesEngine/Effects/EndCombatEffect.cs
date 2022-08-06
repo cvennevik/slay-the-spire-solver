@@ -26,5 +26,9 @@ internal class EndCombatEffectTests
     [Test]
     public void HealsPlayerWhenPlayerAliveWithBurningBlood()
     {
+        var gameState = new GameState { CombatHasEnded = false, PlayerHealth = 1 };
+        var effect = new EndCombatEffect();
+        var result = effect.Resolve(gameState);
+        var expectedGameState = new GameState { CombatHasEnded = true, PlayerHealth = 7 };
     }
 }
