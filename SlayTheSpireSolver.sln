@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlayTheSpireSolver", "SlayT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlayTheSpireSolver.Benchmark", "SlayTheSpireSolver.Benchmark\SlayTheSpireSolver.Benchmark.csproj", "{0329D7DD-9F4A-4FF0-911A-ACA5185FDCB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlayTheSpireSolver.App", "SlayTheSpireSolver.App\SlayTheSpireSolver.App.csproj", "{AFE8B57C-6148-48EE-A28D-6F75930CB5EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0329D7DD-9F4A-4FF0-911A-ACA5185FDCB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0329D7DD-9F4A-4FF0-911A-ACA5185FDCB8}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{0329D7DD-9F4A-4FF0-911A-ACA5185FDCB8}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{AFE8B57C-6148-48EE-A28D-6F75930CB5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE8B57C-6148-48EE-A28D-6F75930CB5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE8B57C-6148-48EE-A28D-6F75930CB5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE8B57C-6148-48EE-A28D-6F75930CB5EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
