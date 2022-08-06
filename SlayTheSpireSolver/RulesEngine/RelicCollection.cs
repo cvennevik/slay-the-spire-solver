@@ -37,7 +37,7 @@ public class RelicCollection
 
     public override int GetHashCode()
     {
-        return _relics.GetHashCode();
+        return _hashCode;
     }
 
     public override string ToString()
