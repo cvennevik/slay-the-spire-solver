@@ -78,5 +78,6 @@ internal class RelicCollectionTests
     public void TestContains()
     {
         Assert.False(new RelicCollection().Contains(new BurningBlood()));
+        Assert.True(new RelicCollection(new BurningBlood()).Contains(new BurningBlood()));
     }
 }
