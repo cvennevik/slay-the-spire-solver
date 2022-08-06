@@ -32,7 +32,9 @@ internal class EndCombatEffectTests
     {
         var gameState = new GameState
         {
-            CombatHasEnded = false, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 1
+            PlayerHealth = 1,
+            Relics = new RelicCollection(new BurningBlood()),
+            CombatHasEnded = false
         };
         var effect = new EndCombatEffect();
         var result = effect.Resolve(gameState);
