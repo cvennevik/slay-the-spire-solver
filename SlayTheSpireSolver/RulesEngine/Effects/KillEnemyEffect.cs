@@ -11,8 +11,7 @@ public record KillEnemyEffect(EnemyId TargetId) : Effect
         if (!gameState.EnemyParty.Has(TargetId)) return gameState;
         var newEnemyParty = gameState.EnemyParty.Remove(TargetId);
         var newGameState = gameState with { EnemyParty = newEnemyParty };
-        if (newEnemyParty.Any()) return newGameState;
-        return newGameState.WithAddedEffects(new EndCombatEffect());
+        return newEnemyParty.Any() ? newGameState : newGameState.WithAddedEffects(new EndCombatEffect());
     }
 }
 
