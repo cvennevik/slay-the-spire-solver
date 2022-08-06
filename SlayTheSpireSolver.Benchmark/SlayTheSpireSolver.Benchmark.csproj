@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SlayTheSpireSolver\SlayTheSpireSolver.csproj" />
+      <ProjectReference Include="..\SlayTheSpireSolver.AI\SlayTheSpireSolver.AI.csproj" />
     </ItemGroup>
 
 </Project>
