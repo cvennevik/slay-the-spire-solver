@@ -146,10 +146,7 @@ internal class SolverTests
     public void FindBestActionThrowsExceptionForTerminalGameState()
     {
         var solver = new Solver(3);
-        Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
-            { PlayerHealth = 0 }));
-        Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState
-            { PlayerHealth = 10, EnemyParty = new EnemyParty() }));
+        Assert.Throws<ArgumentException>(() => solver.FindBestAction(new GameState { CombatHasEnded = true }));
     }
 
     [Test]
