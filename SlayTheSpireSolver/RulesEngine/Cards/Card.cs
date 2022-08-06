@@ -15,7 +15,7 @@ public abstract record Card : IComparable<Card>
 
     protected bool CanBePlayed(GameState gameState)
     {
-        return !gameState.IsCombatOver()
+        return !gameState.CombatHasEnded
                && gameState.Hand.Contains(this)
                && gameState.Energy >= Cost;
     }
