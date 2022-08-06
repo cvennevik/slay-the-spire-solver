@@ -15,6 +15,11 @@ public class RelicCollection
         _hashCode = _relics.Aggregate(0, HashCode.Combine);
     }
 
+    public bool Contains(Relic relic)
+    {
+        return _relics.Contains(relic);
+    }
+
     public static bool operator ==(RelicCollection a, RelicCollection b)
     {
         return a.Equals(b);
@@ -67,5 +72,11 @@ internal class RelicCollectionTests
             new RelicCollection(new BurningBlood()).GetHashCode());
         Assert.AreEqual(new RelicCollection(new BurningBlood(), new OldCoin()).GetHashCode(),
             new RelicCollection(new OldCoin(), new BurningBlood()).GetHashCode());
+    }
+
+    [Test]
+    public void TestContains()
+    {
+        Assert.False(new RelicCollection().Contains(new BurningBlood()));
     }
 }
