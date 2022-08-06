@@ -52,5 +52,9 @@ internal class EndCombatEffectTests
         };
         var effect = new EndCombatEffect();
         var result = effect.Resolve(gameState);
+        var expectedGameState = new GameState
+        {
+            CombatHasEnded = true, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 0
+        };
     }
 }
