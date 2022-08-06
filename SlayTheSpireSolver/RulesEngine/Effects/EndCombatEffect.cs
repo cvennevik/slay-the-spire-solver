@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Relics;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
@@ -26,9 +27,15 @@ internal class EndCombatEffectTests
     [Test]
     public void HealsPlayerWhenPlayerAliveWithBurningBlood()
     {
-        var gameState = new GameState { CombatHasEnded = false, PlayerHealth = 1 };
+        var gameState = new GameState
+        {
+            CombatHasEnded = false, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 1
+        };
         var effect = new EndCombatEffect();
         var result = effect.Resolve(gameState);
-        var expectedGameState = new GameState { CombatHasEnded = true, PlayerHealth = 7 };
+        var expectedGameState = new GameState
+        {
+            CombatHasEnded = true, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 7
+        };
     }
 }
