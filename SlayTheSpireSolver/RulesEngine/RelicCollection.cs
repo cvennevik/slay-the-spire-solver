@@ -57,4 +57,9 @@ internal class RelicCollectionTests
         Assert.AreEqual(new RelicCollection(new BurningBlood(), new OldCoin()),
             new RelicCollection(new OldCoin(), new BurningBlood()));
     }
+
+    [Test]
+    public void TestHashCodeEquality()
+    {
+    }
 }
