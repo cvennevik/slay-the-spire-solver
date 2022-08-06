@@ -1,9 +1,3 @@
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public record PlayerHealth
-{
-    public PlayerHealth(Health current, Health max)
-    {
-        
-    }
-}
+public record PlayerHealth(Health Current, Health Max);
