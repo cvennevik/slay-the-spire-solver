@@ -56,5 +56,6 @@ internal class EndCombatEffectTests
         {
             CombatHasEnded = true, Relics = new RelicCollection(new BurningBlood()), PlayerHealth = 0
         };
+        Assert.AreEqual(expectedGameState, result.Single().GameState);
     }
 }
