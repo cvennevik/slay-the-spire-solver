@@ -8,11 +8,7 @@ public readonly record struct Health
     public int Current { get; }
     public int Maximum { get; }
 
-    public Health(int current) : this(current, int.MaxValue)
-    {
-    }
-
-    public Health(int current, int maximum)
+    public Health(int current, int maximum = int.MaxValue)
     {
         if (current > maximum) throw new ArgumentException("Current health cannot exceed maximum health");
         Current = current;
