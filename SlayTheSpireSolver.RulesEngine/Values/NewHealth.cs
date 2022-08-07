@@ -21,7 +21,7 @@ public readonly record struct NewHealth
 
     public override string ToString()
     {
-        return $"{Current}";
+        return $"{Current}/{Maximum}";
     }
 }
 
