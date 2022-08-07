@@ -13,7 +13,7 @@ public record Strike : TargetedCard
 
     public override EffectStack GetTargetedEffects(EnemyId target)
     {
-        return new AttackEnemyEffect(target, 6);
+        return new AttackEnemyEffect(target, new Damage(6));
     }
 }
 
