@@ -79,6 +79,7 @@ internal class HealthTests
     [Test]
     public void TestHeal()
     {
+        Assert.AreEqual(new Health(10, 30), new Health(10, 30).Heal(0));
         Assert.AreEqual(new Health(15, 30), new Health(10, 30).Heal(5));
         Assert.AreEqual(new Health(30, 30), new Health(10, 30).Heal(100));
         Assert.Throws<ArgumentException>(() => new Health(10).Heal(-1));
