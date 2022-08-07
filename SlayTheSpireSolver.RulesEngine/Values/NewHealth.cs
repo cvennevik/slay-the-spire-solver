@@ -14,26 +14,6 @@ public readonly record struct NewHealth(int Current)
         return new NewHealth(a.Current + b.Current);
     }
 
-    public static bool operator <=(NewHealth a, NewHealth b)
-    {
-        return a.Current <= b.Current;
-    }
-
-    public static bool operator >=(NewHealth a, NewHealth b)
-    {
-        return a.Current >= b.Current;
-    }
-
-    public static bool operator <(NewHealth a, NewHealth b)
-    {
-        return a.Current < b.Current;
-    }
-
-    public static bool operator >(NewHealth a, NewHealth b)
-    {
-        return a.Current > b.Current;
-    }
-
     public override string ToString()
     {
         return $"{Current}";
