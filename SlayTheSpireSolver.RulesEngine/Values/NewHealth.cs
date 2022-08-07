@@ -4,11 +4,11 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public readonly record struct NewHealth
 {
-    public NewHealth(int Current, int Maximum)
+    public NewHealth(int current, int maximum)
     {
-        if (Current > Maximum) throw new ArgumentException("Current health cannot exceed maximum health");
-        this.Current = Current;
-        this.Maximum = Maximum;
+        if (current > maximum) throw new ArgumentException("Current health cannot exceed maximum health");
+        Current = current;
+        Maximum = maximum;
     }
 
     public static NewHealth operator -(NewHealth newHealth, Damage damage)
