@@ -40,9 +40,8 @@ internal class AttackEnemyEffectTests
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(2)]
-    public void AddsDamageEnemyEffect(int damageAmount)
+    public void AddsDamageEnemyEffect(int damage)
     {
-        var damage = new Damage(damageAmount);
         var targetEnemy = new JawWorm { Id = EnemyId.New(), Health = 10 };
         var otherEnemy = new JawWorm { Id = EnemyId.New(), Health = 15 };
         var gameState = new GameState { EnemyParty = new[] { targetEnemy, otherEnemy } };
