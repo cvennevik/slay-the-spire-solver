@@ -69,4 +69,10 @@ internal class HealthTests
         Assert.AreEqual(new Health(expectedAmountOfHealth, 100),
             new Health(amountOfHealth, 100) - new Damage(amountOfDamage));
     }
+
+    [Test]
+    public void TestHeal()
+    {
+        
+    }
 }
