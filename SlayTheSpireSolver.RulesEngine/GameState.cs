@@ -25,6 +25,8 @@ public record GameState
     public Turn Turn { get; init; } = 1;
     public EffectStack EffectStack { get; init; } = new();
 
+    public bool PlayerAlive => PlayerHealth.Current > 0;
+
     public IReadOnlyCollection<PlayerAction> GetLegalActions()
     {
         if (CombatHasEnded) return Array.Empty<PlayerAction>();
