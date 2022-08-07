@@ -5,6 +5,7 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 public readonly record struct Health
 {
     public int Current { get; }
+    public int Maximum { get; } = int.MaxValue;
 
     public Health(int Current)
     {
