@@ -66,7 +66,7 @@ internal class EndTurnEffectTests
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.0000000001);
         Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
         Assert.AreEqual(12, result.Count(x => x.GameState.Turn == 2));
-        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == 50));
+        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth.Current == 50));
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerArmor == 0));
     }
 
