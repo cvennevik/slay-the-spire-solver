@@ -68,7 +68,7 @@ internal class HealthTests
     public void TestDamageSubtraction(int amountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
     {
         Assert.AreEqual(new Health(expectedAmountOfHealth),
-            new Health(amountOfHealth).Damage(amountOfDamage));
+            new Health(amountOfHealth) - new Damage(amountOfDamage));
     }
 
     [Test]
