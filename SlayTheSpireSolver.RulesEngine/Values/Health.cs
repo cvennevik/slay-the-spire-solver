@@ -6,7 +6,7 @@ public readonly record struct Health(int Current)
 {
     // TODO: Expand into current + max value
 
-    public Health DamageCurrent(Damage damage)
+    public Health Damage(Damage damage)
     {
         return new Health(Current - damage.Amount);
     }
@@ -68,7 +68,7 @@ internal class HealthTests
     public void TestDamageSubtraction(int amountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
     {
         Assert.AreEqual(new Health(expectedAmountOfHealth),
-            new Health(amountOfHealth).DamageCurrent(amountOfDamage));
+            new Health(amountOfHealth).Damage(amountOfDamage));
     }
 
     [Test]
