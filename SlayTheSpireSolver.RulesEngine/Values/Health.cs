@@ -17,6 +17,7 @@ public readonly record struct Health
 
     public Health Heal(int healing)
     {
+        if (healing < 0) throw new ArgumentException("Cannot heal negative amount");
         return new Health(Current + healing, Maximum);
     }
 
