@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record GameState
 {
-    public Health PlayerHealth { get; init; } = 1;
+    public Health PlayerHealth { get; init; } = new(1);
     public Health PlayerMaxHealth { get; init; } = 1;
     public Armor PlayerArmor { get; init; } = 0;
     public Energy BaseEnergy { get; init; } = 3;
