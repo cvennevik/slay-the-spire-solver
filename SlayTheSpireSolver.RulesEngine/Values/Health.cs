@@ -16,9 +16,9 @@ public readonly record struct Health
         Maximum = maximum;
     }
 
-    public Health Heal(Healing healing)
+    public Health Heal(int healing)
     {
-        return new Health(Current + healing.Amount, Maximum);
+        return new Health(Current + healing, Maximum);
     }
 
     public static Health operator -(Health health, Damage damage)
@@ -79,8 +79,6 @@ internal class HealthTests
     [Test]
     public void TestHeal()
     {
-        var healing = new Healing(5);
-        var health = new Health(10, 30);
-        Assert.AreEqual(new Health(15, 30), health.Heal(healing));
+        Assert.AreEqual(new Health(15, 30), new Health(10, 30).Heal(5));
     }
 }
