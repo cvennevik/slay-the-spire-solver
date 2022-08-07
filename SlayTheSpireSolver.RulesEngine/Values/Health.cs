@@ -17,7 +17,7 @@ public readonly record struct Health
 
     public static Health operator -(Health health, Damage damage)
     {
-        return new Health(health.Current - damage.Amount);
+        return new Health(health.Current - damage.Amount, health.Maximum);
     }
 
     public static Health operator +(Health a, Health b)
@@ -71,7 +71,7 @@ internal class HealthTests
     [TestCase(2, 2, 0)]
     public void TestDamageSubtraction(int amountOfHealth, int amountOfDamage, int expectedAmountOfHealth)
     {
-        Assert.AreEqual(new Health(expectedAmountOfHealth),
-            new Health(amountOfHealth) - new Damage(amountOfDamage));
+        Assert.AreEqual(new Health(expectedAmountOfHealth, 100),
+            new Health(amountOfHealth, 100) - new Damage(amountOfDamage));
     }
 }
