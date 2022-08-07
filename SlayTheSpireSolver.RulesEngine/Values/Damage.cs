@@ -163,20 +163,4 @@ internal class DamageTests
             Assert.AreEqual(expectedResult, new Damage(amountOfDamage) <= new Armor(amountOfArmor));
         }
     }
-
-    [TestFixture]
-    internal class ImplicitConversionTests : DamageTests
-    {
-        [Test]
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(5)]
-        public void ImplicitlyConvertedDamageEqualsExplicitDamage(int amount)
-        {
-            Damage damage = amount;
-            Assert.AreEqual(new Damage(amount), damage);
-            Assert.True(new Damage(amount) == amount);
-            Assert.True(amount == new Damage(amount));
-        }
-    }
 }
