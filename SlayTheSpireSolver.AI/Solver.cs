@@ -4,6 +4,7 @@ using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.AI;
 
@@ -130,7 +131,7 @@ internal class SolverTests
     {
         var nonTerminalGameState = new GameState
         {
-            PlayerHealth = 10,
+            PlayerHealth = new Health(10, 80),
             EnemyParty = new[] { new JawWorm() },
             Energy = 3,
             Hand = new Hand(new Strike(), new Defend())
@@ -154,7 +155,7 @@ internal class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
+            PlayerHealth = new Health(50, 80),
             EnemyParty = new[] { new JawWorm() },
             Energy = 3,
             Hand = new Hand(new Strike())
@@ -171,7 +172,7 @@ internal class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
+            PlayerHealth = new Health(50, 80),
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             DrawPile = new DrawPile(new Strike())
         };
@@ -187,7 +188,7 @@ internal class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
+            PlayerHealth = new Health(50, 80),
             EnemyParty = new[] { new JawWorm { IntendedMove = new Chomp() } },
             Energy = 3,
             Hand = new Hand(new Defend()),
@@ -205,8 +206,8 @@ internal class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
-            EnemyParty = new[] { new JawWorm { Health = 13, IntendedMove = new Chomp() } },
+            PlayerHealth = new Health(50, 80),
+            EnemyParty = new[] { new JawWorm { Health = new Health(13, 40), IntendedMove = new Chomp() } },
             BaseEnergy = 1,
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
@@ -224,8 +225,8 @@ internal class SolverTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 50,
-            EnemyParty = new[] { new JawWorm { Health = 13, IntendedMove = new Chomp() } },
+            PlayerHealth = new Health(50, 80),
+            EnemyParty = new[] { new JawWorm { Health = new Health(13, 40), IntendedMove = new Chomp() } },
             BaseEnergy = 1,
             Energy = 1,
             Hand = new Hand(new Defend(), new Strike())
@@ -239,12 +240,12 @@ internal class SolverTests
     {
         var jawWorm = new JawWorm
         {
-            Health = 30,
+            Health = new Health(30, 40),
             IntendedMove = new Chomp()
         };
         var gameState = new GameState
         {
-            PlayerHealth = 80,
+            PlayerHealth = new Health(80, 80),
             BaseEnergy = 3,
             Energy = 3,
             EnemyParty = new[] { jawWorm },
@@ -260,13 +261,13 @@ internal class SolverTests
     {
         var jawWorm = new JawWorm
         {
-            Health = 22,
+            Health = new Health(22, 40),
             IntendedMove = new Chomp(),
             Vulnerable = 2
         };
         var gameState = new GameState
         {
-            PlayerHealth = 80,
+            PlayerHealth = new Health(80, 80),
             BaseEnergy = 3,
             Energy = 1,
             EnemyParty = new[] { jawWorm },

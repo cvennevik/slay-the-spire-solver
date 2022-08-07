@@ -1,20 +1,20 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Diagnostics;
-using SlayTheSpireSolver;
 using SlayTheSpireSolver.AI;
 using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 var jawWorm = new JawWorm
 {
-    Health = 44,
+    Health = new Health(44, 44),
     IntendedMove = new Chomp()
 };
 var gameState = new GameState
 {
-    PlayerHealth = 80,
+    PlayerHealth = new Health(80, 80),
     BaseEnergy = 3,
     Energy = 3,
     EnemyParty = new[] { jawWorm },

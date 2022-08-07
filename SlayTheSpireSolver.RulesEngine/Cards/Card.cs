@@ -42,9 +42,8 @@ internal abstract class CardTests<TCard> where TCard : Card, new()
         Card = new TCard();
         BasicGameState = new GameState
         {
-            PlayerHealth = 70,
             Energy = 3,
-            EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
+            EnemyParty = new EnemyParty(new JawWorm { IntendedMove = new Chomp() }),
             Hand = new Hand(Card),
             DiscardPile = new DiscardPile()
         };

@@ -23,7 +23,7 @@ internal class AttackPlayerEffectTests
     [Test]
     public void DoesNothingWhenEnemyMissing()
     {
-        var gameState = new GameState { PlayerHealth = 10 };
+        var gameState = new GameState();
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single().GameState;
         Assert.AreEqual(gameState, result);
@@ -32,7 +32,10 @@ internal class AttackPlayerEffectTests
     [Test]
     public void AddsDamagePlayerEffect()
     {
-        var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm()) };
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm())
+        };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single().GameState;
         var expectedResult = gameState.WithAddedEffects(new EffectStack(new DamagePlayerEffect(1)));
@@ -42,7 +45,10 @@ internal class AttackPlayerEffectTests
     [Test]
     public void AddsEnemyStrengthToDamagePlayerEffect()
     {
-        var gameState = new GameState { PlayerHealth = 10, EnemyParty = new EnemyParty(new JawWorm { Strength = 5}) };
+        var gameState = new GameState
+        {
+            EnemyParty = new EnemyParty(new JawWorm { Strength = 5 })
+        };
         var effect = new AttackPlayerEffect(EnemyId.Default, new Damage(1));
         var result = effect.Resolve(gameState).Single().GameState;
         var expectedResult = gameState.WithAddedEffects(new EffectStack(new DamagePlayerEffect(6)));

@@ -7,7 +7,7 @@ public readonly record struct Health
     public int Current { get; }
     private int Maximum { get; }
 
-    public Health(int current, int maximum = int.MaxValue)
+    public Health(int current, int maximum)
     {
         if (current > maximum) throw new ArgumentException("Current health cannot exceed maximum health");
         Current = current;
@@ -23,11 +23,6 @@ public readonly record struct Health
     public static Health operator -(Health health, Damage damage)
     {
         return new Health(health.Current - damage.Amount, health.Maximum);
-    }
-
-    public static implicit operator Health(int amount)
-    {
-        return new Health(amount);
     }
 
     public override string ToString()
@@ -58,7 +53,7 @@ internal class HealthTests
     [Test]
     public void TestHeal()
     {
-        Assert.Throws<ArgumentException>(() => new Health(10).Heal(-1));
+        Assert.Throws<ArgumentException>(() => new Health(10, 30).Heal(-1));
         Assert.AreEqual(new Health(10, 30), new Health(10, 30).Heal(0));
         Assert.AreEqual(new Health(15, 30), new Health(10, 30).Heal(5));
         Assert.AreEqual(new Health(30, 30), new Health(10, 30).Heal(100));

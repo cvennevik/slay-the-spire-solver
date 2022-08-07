@@ -10,7 +10,7 @@ namespace SlayTheSpireSolver.RulesEngine;
 
 public record GameState
 {
-    public Health PlayerHealth { get; init; } = new(1);
+    public Health PlayerHealth { get; init; } = new(1, 1);
     public Armor PlayerArmor { get; init; } = 0;
     public Energy BaseEnergy { get; init; } = 3;
     public Energy Energy { get; init; } = 0;
@@ -88,9 +88,9 @@ internal class GameStateTests
     {
         return new GameState
         {
-            PlayerHealth = 70,
+            PlayerHealth = new Health(70, 70),
             Energy = 3,
-            EnemyParty = new EnemyParty(new JawWorm { Health = 40, IntendedMove = new Chomp() }),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(40, 40), IntendedMove = new Chomp() }),
             Hand = new Hand(new Strike())
         };
     }
@@ -161,13 +161,16 @@ internal class GameStateTests
         {
             var gameState = new GameState
             {
-                PlayerHealth = 30,
+                PlayerHealth = new Health(30, 70),
                 EnemyParty = new EnemyParty(new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() },
                     new JawWorm { Id = EnemyId.New(), IntendedMove = new Chomp() }),
                 EffectStack = new EffectStack(new ResolveForAllEnemiesEffect<ResolveEnemyMoveEffect>())
             };
             var resolvedState = gameState.Resolve().Single().GameState;
-            var expectedGameState = gameState with { PlayerHealth = 8, EffectStack = new EffectStack() };
+            var expectedGameState = gameState with
+            {
+                PlayerHealth = new Health(8, 70), EffectStack = new EffectStack()
+            };
             Assert.AreEqual(expectedGameState, resolvedState);
         }
 

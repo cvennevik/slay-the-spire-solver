@@ -32,7 +32,7 @@ internal class BashTests : TargetedCardTests<Bash>
         {
             Energy = 3,
             Hand = new Hand(new Bash()),
-            EnemyParty = new[] { new JawWorm { Health = 10 } }
+            EnemyParty = new[] { new JawWorm { Health = new Health(10, 10) } }
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
@@ -41,7 +41,7 @@ internal class BashTests : TargetedCardTests<Bash>
             Energy = 1,
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Bash()),
-            EnemyParty = new[] { new JawWorm { Health = 2, Vulnerable = 2 } }
+            EnemyParty = new[] { new JawWorm { Health = new Health(2, 10), Vulnerable = 2 } }
         };
         Assert.AreEqual(expectedGameState.WithProbability(1), result);
     }

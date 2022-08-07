@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.RulesEngine.Effects;
 
@@ -18,7 +19,10 @@ internal class IncrementTurnEffectTests
     [TestCase(2, 3)]
     public void Test(int initialTurn, int expectedTurn)
     {
-        var gameState = new GameState { PlayerHealth = 21, Turn = initialTurn };
+        var gameState = new GameState
+        {
+            PlayerHealth = new Health(21, 70), Turn = initialTurn
+        };
         var effect = new IncrementTurnEffect();
         var newGameState = effect.Resolve(gameState).Single().GameState;
         var expectedGameState = gameState with { Turn = expectedTurn };

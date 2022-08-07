@@ -63,7 +63,7 @@ internal class PossibilityTests
     {
         var gameState = new GameState
         {
-            EnemyParty = new EnemyParty(new JawWorm { Health = 2 }),
+            EnemyParty = new EnemyParty(new JawWorm { Health = new Health(2, 40) }),
             EffectStack = new AttackEnemyEffect(EnemyId.Default, 3)
         };
         var possibility = new Possibility(gameState, 0.8);

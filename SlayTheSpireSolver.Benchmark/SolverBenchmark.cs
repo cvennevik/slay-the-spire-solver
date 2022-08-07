@@ -4,6 +4,7 @@ using SlayTheSpireSolver.RulesEngine;
 using SlayTheSpireSolver.RulesEngine.Actions;
 using SlayTheSpireSolver.RulesEngine.Cards;
 using SlayTheSpireSolver.RulesEngine.Enemies.JawWorms;
+using SlayTheSpireSolver.RulesEngine.Values;
 
 namespace SlayTheSpireSolver.Benchmark;
 
@@ -12,14 +13,14 @@ public class Benchmarks
 {
     private readonly GameState _gameState = new()
     {
-        PlayerHealth = 80,
+        PlayerHealth = new Health(80, 80),
         BaseEnergy = 3,
         Energy = 3,
         EnemyParty = new[]
         {
             new JawWorm
             {
-                Health = 30,
+                Health = new Health(30, 30),
                 IntendedMove = new Chomp()
             }
         },

@@ -39,7 +39,7 @@ internal class EndCombatEffectTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 1,
+            PlayerHealth = new Health(1, 70),
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = false
         };
@@ -47,7 +47,7 @@ internal class EndCombatEffectTests
         var result = effect.Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = 7,
+            PlayerHealth = new Health(7, 70),
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = true
         };
@@ -79,7 +79,7 @@ internal class EndCombatEffectTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = 0,
+            PlayerHealth = new Health(0, 70),
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = false
         };
@@ -87,7 +87,7 @@ internal class EndCombatEffectTests
         var result = effect.Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = 0,
+            PlayerHealth = new Health(0, 70),
             Relics = new RelicCollection(new BurningBlood()),
             CombatHasEnded = true
         };

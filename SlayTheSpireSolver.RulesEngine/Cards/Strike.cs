@@ -27,7 +27,7 @@ internal class StrikeTests : TargetedCardTests<Strike>
         {
             Energy = 3,
             Hand = new Hand(new Strike()),
-            EnemyParty = new[] { new JawWorm { Health = 10 } }
+            EnemyParty = new[] { new JawWorm { Health = new Health(10, 10) } }
         };
         var action = gameState.Hand.Cards.First().GetLegalActions(gameState).Single();
         var result = action.Resolve().Single();
@@ -36,7 +36,7 @@ internal class StrikeTests : TargetedCardTests<Strike>
             Energy = 2,
             Hand = new Hand(),
             DiscardPile = new DiscardPile(new Strike()),
-            EnemyParty = new[] { new JawWorm { Health = 4 } }
+            EnemyParty = new[] { new JawWorm { Health = new Health(4, 10) } }
         };
         Assert.AreEqual(expectedGameState.WithProbability(1), result);
     }

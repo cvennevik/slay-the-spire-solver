@@ -30,9 +30,16 @@ internal class DamagePlayerEffectTests
     public void DamagesPlayer(int initialHealth, int initialArmor, int damage, int expectedHealth, int expectedArmor)
     {
         var damagePlayerEffect = new DamagePlayerEffect(damage);
-        var gameState = new GameState { PlayerHealth = initialHealth, PlayerArmor = initialArmor };
+        var gameState = new GameState
+        {
+            PlayerHealth = new Health(initialHealth, 100), PlayerArmor = initialArmor
+        };
         var result = damagePlayerEffect.Resolve(gameState).Single().GameState;
-        Assert.AreEqual(new GameState { PlayerHealth = expectedHealth, PlayerArmor = expectedArmor }, result);
+        var expectedGameState = new GameState
+        {
+            PlayerHealth = new Health(expectedHealth, 100), PlayerArmor = expectedArmor
+        };
+        Assert.AreEqual(expectedGameState, result);
     }
 
 
@@ -43,14 +50,14 @@ internal class DamagePlayerEffectTests
     {
         var gameState = new GameState
         {
-            PlayerHealth = initialHealth,
+            PlayerHealth = new Health(initialHealth, 100),
             EffectStack = new EffectStack(new NullEffect())
         };
         var damagePlayerEffect = new DamagePlayerEffect(damage);
         var result = damagePlayerEffect.Resolve(gameState);
         var expectedGameState = new GameState
         {
-            PlayerHealth = expectedHealth,
+            PlayerHealth = new Health(expectedHealth, 100),
             EffectStack = new EffectStack(new NullEffect(), new EndCombatEffect())
         };
         Assert.AreEqual(expectedGameState, result.Single().GameState);

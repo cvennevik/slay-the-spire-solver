@@ -24,7 +24,7 @@ internal class EndTurnEffectTests
         {
             BaseEnergy = 3,
             Energy = 0,
-            PlayerHealth = 50,
+            PlayerHealth = new Health(50, 70),
             PlayerArmor = 15,
             EnemyParty = new[]
             {
@@ -40,7 +40,7 @@ internal class EndTurnEffectTests
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.0000000001);
         Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
         Assert.AreEqual(12, result.Count(x => x.GameState.Turn == 2));
-        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == new Health(47)));
+        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == new Health(47, 70)));
     }
 
     [Test]
@@ -50,7 +50,7 @@ internal class EndTurnEffectTests
         {
             BaseEnergy = 3,
             Energy = 0,
-            PlayerHealth = 50,
+            PlayerHealth = new Health(50, 70),
             PlayerArmor = 50,
             EnemyParty = new[]
             {
@@ -66,7 +66,7 @@ internal class EndTurnEffectTests
         Assert.AreEqual(1, result.Select(x => x.Probability.Value).Sum(), 0.0000000001);
         Assert.AreEqual(12, result.Count(x => x.GameState.EnemyParty.All(enemy => enemy.PreviousMoves.Count == 1)));
         Assert.AreEqual(12, result.Count(x => x.GameState.Turn == 2));
-        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == new Health(50)));
+        Assert.AreEqual(12, result.Count(x => x.GameState.PlayerHealth == new Health(50, 70)));
         Assert.AreEqual(12, result.Count(x => x.GameState.PlayerArmor == 0));
     }
 
