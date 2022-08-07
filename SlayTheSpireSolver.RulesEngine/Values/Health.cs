@@ -73,6 +73,7 @@ internal class HealthTests
     [Test]
     public void TestHeal()
     {
-        
+        var healing = new Healing(10);
+        var health = new Health(10, 30);
     }
 }
