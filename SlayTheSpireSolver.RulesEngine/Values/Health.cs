@@ -65,18 +65,4 @@ internal class HealthTests
         Assert.AreEqual(new Health(expectedAmountOfHealth),
             new Health(amountOfHealth) - new Damage(amountOfDamage));
     }
-
-    [Test]
-    [TestCase(-5)]
-    [TestCase(-1)]
-    [TestCase(0)]
-    [TestCase(1)]
-    [TestCase(5)]
-    public void ImplicitlyConvertedHealthEqualsExplicitHealth(int amount)
-    {
-        Health health = amount;
-        Assert.AreEqual(new Health(amount), health);
-        Assert.True(new Health(amount) == amount);
-        Assert.True(amount == new Health(amount));
-    }
 }
