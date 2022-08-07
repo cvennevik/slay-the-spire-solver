@@ -8,9 +8,8 @@ public readonly record struct Health
     public int Current { get; }
     public int Maximum { get; } = int.MaxValue;
 
-    public Health(int current)
+    public Health(int current) : this(current, int.MaxValue)
     {
-        Current = current;
     }
 
     public Health(int current, int maximum)
