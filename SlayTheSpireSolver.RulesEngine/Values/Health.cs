@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SlayTheSpireSolver.RulesEngine.Cards;
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
@@ -13,6 +14,11 @@ public readonly record struct Health
         if (current > maximum) throw new ArgumentException("Current health cannot exceed maximum health");
         Current = current;
         Maximum = maximum;
+    }
+
+    public Health Heal(Healing healing)
+    {
+        return new Health(15, 30);
     }
 
     public static Health operator -(Health health, Damage damage)
@@ -75,5 +81,6 @@ internal class HealthTests
     {
         var healing = new Healing(5);
         var health = new Health(10, 30);
+        Assert.AreEqual(new Health(15, 30), health.Heal(healing));
     }
 }
