@@ -52,7 +52,7 @@ public readonly record struct Health
 
     public override string ToString()
     {
-        return $"{Current}";
+        return $"{Current}/{Maximum}";
     }
 }
 
