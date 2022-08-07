@@ -6,11 +6,6 @@ public readonly record struct Health(int Current)
 {
     // TODO: Expand into current + max value
 
-    public Health Damage(Damage damage)
-    {
-        return new Health(Current - damage.Amount);
-    }
-
     public static Health operator -(Health health, Damage damage)
     {
         return new Health(health.Current - damage.Amount);
