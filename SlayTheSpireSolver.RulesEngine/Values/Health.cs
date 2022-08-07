@@ -10,7 +10,13 @@ public readonly record struct Health
 
     public Health(int current)
     {
-        this.Current = current;
+        Current = current;
+    }
+
+    public Health(int current, int maximum)
+    {
+        Current = current;
+        Maximum = maximum;
     }
 
     public static Health operator -(Health health, Damage damage)
