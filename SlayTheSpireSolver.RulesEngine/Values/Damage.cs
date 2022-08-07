@@ -178,13 +178,5 @@ internal class DamageTests
             Assert.True(new Damage(amount) == amount);
             Assert.True(amount == new Damage(amount));
         }
-
-        [Test]
-        public void ImplicitlyConvertsNegativeAmountsToZeroDamage()
-        {
-            Assert.True(new Damage(0) == 0);
-            Assert.True(new Damage(0) == -1);
-            Assert.True(new Damage(0) == -5);
-        }
     }
 }
