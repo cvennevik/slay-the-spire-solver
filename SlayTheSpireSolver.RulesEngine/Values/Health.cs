@@ -4,7 +4,6 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public readonly record struct Health
 {
-    // TODO: Expand into current + max value
     public int Current { get; }
     private int Maximum { get; }
 
