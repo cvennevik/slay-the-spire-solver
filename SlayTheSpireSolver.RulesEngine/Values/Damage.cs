@@ -15,7 +15,7 @@ public readonly record struct Damage
 
     public Damage AgainstVulnerableEnemy()
     {
-        return (int)(Amount * 1.5);
+        return new Damage((int)(Amount * 1.5));
     }
 
     public static bool operator >(Damage damage, Armor armor)
