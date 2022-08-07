@@ -20,11 +20,6 @@ public readonly record struct Health
         return new Health(health.Current - damage.Amount, health.Maximum);
     }
 
-    public static Health operator +(Health a, Health b)
-    {
-        return new Health(a.Current + b.Current);
-    }
-
     public static bool operator <=(Health a, Health b)
     {
         return a.Current <= b.Current;
