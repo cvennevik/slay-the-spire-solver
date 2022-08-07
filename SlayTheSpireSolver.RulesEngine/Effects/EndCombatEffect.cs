@@ -11,7 +11,7 @@ public record EndCombatEffect : Effect
             return gameState with
             {
                 CombatHasEnded = true,
-                PlayerHealth = Math.Min(gameState.PlayerHealth.Amount + 6, gameState.PlayerMaxHealth.Amount)
+                PlayerHealth = Math.Min(gameState.PlayerHealth.Current + 6, gameState.PlayerMaxHealth.Current)
             };
 
         return gameState with { CombatHasEnded = true };

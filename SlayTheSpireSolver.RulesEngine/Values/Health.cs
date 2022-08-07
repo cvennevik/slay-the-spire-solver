@@ -2,38 +2,38 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public readonly record struct Health(int Amount)
+public readonly record struct Health(int Current)
 {
     // TODO: Expand into current + max value
 
     public static Health operator -(Health health, Damage damage)
     {
-        return new Health(health.Amount - damage.Amount);
+        return new Health(health.Current - damage.Amount);
     }
 
     public static Health operator +(Health a, Health b)
     {
-        return new Health(a.Amount + b.Amount);
+        return new Health(a.Current + b.Current);
     }
 
     public static bool operator <=(Health a, Health b)
     {
-        return a.Amount <= b.Amount;
+        return a.Current <= b.Current;
     }
 
     public static bool operator >=(Health a, Health b)
     {
-        return a.Amount >= b.Amount;
+        return a.Current >= b.Current;
     }
 
     public static bool operator <(Health a, Health b)
     {
-        return a.Amount < b.Amount;
+        return a.Current < b.Current;
     }
 
     public static bool operator >(Health a, Health b)
     {
-        return a.Amount > b.Amount;
+        return a.Current > b.Current;
     }
 
     public static implicit operator Health(int amount)
@@ -43,7 +43,7 @@ public readonly record struct Health(int Amount)
 
     public override string ToString()
     {
-        return $"{Amount}";
+        return $"{Current}";
     }
 }
 

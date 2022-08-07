@@ -53,7 +53,7 @@ public class Solver
 
     private ExpectedValue FindExpectedValueUncached(GameState gameState, int gameStateDepthLimit)
     {
-        var playerHealth = Math.Max(gameState.PlayerHealth.Amount, 0);
+        var playerHealth = Math.Max(gameState.PlayerHealth.Current, 0);
         if (gameState.CombatHasEnded) return new ExpectedValue(playerHealth);
         if (gameStateDepthLimit <= 0) return new ExpectedValue(0, 0);
 
@@ -89,7 +89,7 @@ public class Solver
         double cutoffValue = double.MinValue)
     {
         var possibleOutcomes = action.Resolve().OrderByDescending(x => x.Probability.Value).ToList();
-        var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Amount);
+        var possibleMaximum = possibleOutcomes.Max(x => x.GameState.PlayerHealth.Current);
         if (possibleMaximum <= cutoffValue)
         {
             PrunedActionOutcomes += possibleOutcomes.Count;
