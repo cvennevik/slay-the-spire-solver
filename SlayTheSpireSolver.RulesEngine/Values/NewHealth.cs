@@ -2,17 +2,22 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public readonly record struct NewHealth(int Current)
+public readonly record struct NewHealth
 {
-    public static NewHealth operator -(NewHealth newHealth, Damage damage)
+    public NewHealth(int Current, int Maximum)
     {
-        return new NewHealth(newHealth.Current - damage.Amount);
+        if (Current > Maximum) throw new ArgumentException("Current health cannot exceed maximum health");
+        this.Current = Current;
+        this.Maximum = Maximum;
     }
 
-    public static NewHealth operator +(NewHealth a, NewHealth b)
+    public static NewHealth operator -(NewHealth newHealth, Damage damage)
     {
-        return new NewHealth(a.Current + b.Current);
+        return new NewHealth(newHealth.Current - damage.Amount, newHealth.Maximum);
     }
+
+    public int Current { get; }
+    public int Maximum { get; }
 
     public override string ToString()
     {
@@ -35,7 +40,7 @@ internal class NewHealthTests
     [TestCase(2, 2, 0)]
     public void TestDamageSubtraction(int amountOfNewHealth, int amountOfDamage, int expectedAmountOfNewHealth)
     {
-        Assert.AreEqual(new NewHealth(expectedAmountOfNewHealth),
-            new NewHealth(amountOfNewHealth) - new Damage(amountOfDamage));
+        Assert.AreEqual(new NewHealth(expectedAmountOfNewHealth, 10),
+            new NewHealth(amountOfNewHealth, 10) - new Damage(amountOfDamage));
     }
 }
