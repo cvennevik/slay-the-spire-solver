@@ -12,7 +12,7 @@ public record DamagePlayerEffect(Damage Damage) : Effect
         var remainingDamage = Damage - gameState.PlayerArmor;
         var remainingHealth = gameState.PlayerHealth - remainingDamage;
         var newGameState = gameState with { PlayerArmor = 0, PlayerHealth = remainingHealth };
-        return remainingHealth > 0 ? newGameState : newGameState.WithAddedEffects(new EndCombatEffect());
+        return newGameState.PlayerAlive ? newGameState : newGameState.WithAddedEffects(new EndCombatEffect());
     }
 }
 
