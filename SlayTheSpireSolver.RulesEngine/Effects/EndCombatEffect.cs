@@ -5,6 +5,8 @@ namespace SlayTheSpireSolver.RulesEngine.Effects;
 
 public record EndCombatEffect : Effect
 {
+    // TODO: Split into WinCombat and LoseCombat effect
+
     public override PossibilitySet Resolve(GameState gameState)
     {
         if (gameState.Relics.Contains(new BurningBlood()) && gameState.PlayerAlive)
