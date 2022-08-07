@@ -4,6 +4,9 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public readonly record struct NewHealth
 {
+    public int Current { get; }
+    public int Maximum { get; }
+
     public NewHealth(int current, int maximum)
     {
         if (current > maximum) throw new ArgumentException("Current health cannot exceed maximum health");
@@ -15,9 +18,6 @@ public readonly record struct NewHealth
     {
         return new NewHealth(newHealth.Current - damage.Amount, newHealth.Maximum);
     }
-
-    public int Current { get; }
-    public int Maximum { get; }
 
     public override string ToString()
     {
