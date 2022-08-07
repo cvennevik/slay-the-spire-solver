@@ -4,8 +4,7 @@ namespace SlayTheSpireSolver.RulesEngine.Values;
 
 public readonly record struct Health
 {
-
-    public int Current { get; init; }
+    public int Current { get; }
 
     public Health(int Current)
     {
