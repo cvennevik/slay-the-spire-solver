@@ -2,8 +2,16 @@
 
 namespace SlayTheSpireSolver.RulesEngine.Values;
 
-public readonly record struct Health(int Current)
+public readonly record struct Health
 {
+
+    public int Current { get; init; }
+
+    public Health(int Current)
+    {
+        this.Current = Current;
+    }
+
     // TODO: Expand into current + max value
 
     public static Health operator -(Health health, Damage damage)
