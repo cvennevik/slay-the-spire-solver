@@ -18,7 +18,7 @@ public readonly record struct Health
 
     public Health Heal(Healing healing)
     {
-        return new Health(15, 30);
+        return new Health(Current + healing.Amount, Maximum);
     }
 
     public static Health operator -(Health health, Damage damage)
